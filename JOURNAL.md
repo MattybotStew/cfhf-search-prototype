@@ -1,5 +1,23 @@
 # Journal — CFHF Search Prototype
 
+## 2026-07-17 — Cursor: white stroke on hours-bar search input
+
+- Added white border stroke around hours-bar search input wrapper
+
+## 2026-07-17 — Cursor: hours-bar search white + always-open input
+
+- Hours-bar search: white icon; “Search…” input always visible to the left of the icon
+- No expand/collapse or close button in hours bar; icon click submits
+- Files: `index.html`, `search.html`, `assets/css/search.css`, `assets/js/search.js`
+
+## 2026-07-17 — Cursor: center hero text + fix gaps
+
+- Vertically centered hero slide copy (`justify-content: center`) to match live
+- Retuned gaps: tight title stack, medium before subtitle, tight before body, larger before CTA
+- Moved carousel controls to bottom; added hours-bar bottom hairline on desktop
+- Files: `assets/css/home.css`, `assets/css/search.css`
+- **Next:** Step 4 — results hero + layout
+
 ## 2026-07-17 — Cursor: handoff — Cline owns hours-bar search
 
 - Decision locked: search moves from hero/results header into the **hours bar** (icon → inline expand, Option A)

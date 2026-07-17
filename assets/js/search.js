@@ -45,7 +45,9 @@
   searchWraps.forEach(function (slot) {
     var bar = slot.querySelector(".search-bar");
     if (!bar) return;
-    var isHero = bar.classList.contains("search-bar--hero");
+    var isAlwaysOpen =
+      bar.classList.contains("search-bar--hero") ||
+      bar.classList.contains("search-bar--hours");
 
     var input = bar.querySelector(".search-bar__input");
     if (!input) return;
@@ -62,7 +64,7 @@
       bar.classList.toggle("is-expanded", expanded);
       var listOpen = suggestList && !suggestList.hidden;
       input.setAttribute("aria-expanded", String(Boolean(expanded && listOpen)));
-      if (trigger) {
+      if (trigger && !isAlwaysOpen) {
         trigger.setAttribute("aria-label", expanded ? "Submit search" : "Open search");
       }
     }
@@ -88,13 +90,11 @@
       loadSearchIndex();
     }
 
-    /* Wire trigger if present (rail mode: icon expands input) */
+    /* Wire trigger if present */
     if (trigger) {
       trigger.addEventListener("click", function (e) {
         e.stopPropagation();
-        var isExpanded = bar.classList.contains("is-expanded");
-
-        if (isExpanded) {
+        if (isAlwaysOpen || bar.classList.contains("is-expanded")) {
           submitSearch(input.value.trim());
         } else {
           expandSearchBar();
@@ -109,8 +109,8 @@
       });
     }
 
-    /* Hero mode: always expanded, input visible at all times */
-    if (isHero) {
+    /* Hours / hero: always expanded, input visible at all times */
+    if (isAlwaysOpen) {
       bar.classList.add("is-expanded");
       loadSearchIndex();
     }
@@ -156,13 +156,22 @@
           hideSuggestions();
           return;
         }
+        if (isAlwaysOpen) {
+          hideSuggestions();
+          input.blur();
+          return;
+        }
         collapseSearchBar();
       }
     });
 
     document.addEventListener("click", function (e) {
       if (!slot.contains(e.target)) {
-        collapseSearchBar();
+        if (isAlwaysOpen) {
+          hideSuggestions();
+        } else {
+          collapseSearchBar();
+        }
       }
     });
 

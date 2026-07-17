@@ -48,7 +48,7 @@ Skip only for pure Q&A with **zero** file or plan changes.
 | 7. Empty state | pending |
 | 8. A11y + mobile polish | partially done |
 
-**Handoff:** **Cline** is moving search into the hours bar (locked). Cursor: don’t touch search placement until Cline pushes. After that → Step 4+ (results hero wiring, filters/cards).
+**Handoff:** Hours-bar search done (Cline). Hero text centering/gaps tuned (Cursor). Next: Step 4+ (results hero wiring, filters/cards).
 
 ### Decision LOCKED — hours-bar search
 - Search icon in `.hours-bar` beside “Important Details +”; inline expand; dropdown downward
@@ -57,9 +57,9 @@ Skip only for pure Q&A with **zero** file or plan changes.
 
 ### What hours-bar search move delivered (Cline)
 - Search moved into `.hours-bar` alongside "Important Details +" on both `index.html` and `search.html`
-- `.hours-bar__end` flex container: search icon → inline expand input → "Important Details +" link
-- CSS: `.search-bar--hours` (transparent bg, white text, crimson icon, dark dropdown), `.hours-bar__end` layout
-- Removed dead `.hero-carousel__search` CSS; rail remains logo/CTAs/nav only
+- `.hours-bar__end`: Important Details + · always-open “Search…” input · white search icon (Cursor polish)
+- CSS: `.search-bar--hours`; dropdown opens downward; dead hero-search CSS removed
+- Rail remains logo/CTAs/nav only
 
 ### What live home match delivered (Cursor)
 - Hero carousel (Game Day Goes Global / Summer Legendary / CityPASS) + hours bar

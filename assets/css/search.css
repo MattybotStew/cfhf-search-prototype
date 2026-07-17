@@ -474,11 +474,25 @@ button {
   text-align: center;
 }
 
-/* Hours-bar search — icon + inline expand inside the black bar */
+/* Screen-reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Hours-bar search — input + white icon (always visible) */
 .hours-bar__end {
   display: flex;
   align-items: center;
   gap: var(--space-4);
+  pointer-events: auto;
 }
 
 .search-bar--hours {
@@ -488,30 +502,49 @@ button {
   color: var(--cfhf-white);
 }
 
+.search-bar--hours:focus-within,
+.search-bar--hours.is-expanded {
+  border-color: transparent;
+}
+
+.search-bar--hours .search-bar__input-wrapper--always-open {
+  max-width: 11rem;
+  overflow: visible;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  padding: 0 var(--space-2);
+}
+
+.search-bar--hours:focus-within .search-bar__input-wrapper--always-open {
+  border-color: var(--cfhf-white);
+}
+
 .search-bar--hours .search-bar__trigger {
-  color: var(--cfhf-crimson);
+  width: 2rem;
+  height: 2rem;
+  color: var(--cfhf-white);
 }
 
 .search-bar--hours .search-bar__trigger:hover {
-  color: var(--cfhf-crimson-hover);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.search-bar--hours .search-bar__icon {
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
 .search-bar--hours .search-bar__input {
   color: var(--cfhf-white);
   font-size: var(--fs-ui);
-  padding: var(--space-1) 0 var(--space-1) var(--space-2);
+  padding: var(--space-1) 0;
 }
 
 .search-bar--hours .search-bar__input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.55);
 }
 
-.search-bar--hours .search-bar__close {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.search-bar--hours .search-bar__close:hover {
-  color: var(--cfhf-crimson);
+.search-bar--hours .search-bar__input::-webkit-search-cancel-button {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2'%3E%3Cpath d='M18 6L6 18M6 6l12 12'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
 /* Hours-bar dropdown opens downward */
@@ -552,16 +585,15 @@ button {
   gap: var(--space-3);
   min-height: var(--hours-bar-height);
   padding: var(--space-3) var(--space-6);
-  background: var(--cfhf-black);
+  background: rgba(0, 0, 0, 0.3);
   color: var(--cfhf-white);
   font-family: var(--font-body);
   font-size: var(--fs-ui);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 @media (min-width: 1024px) {
   .hours-bar {
-    background: transparent;
-    color: var(--cfhf-white);
     position: absolute;
     top: 0;
     left: 0;

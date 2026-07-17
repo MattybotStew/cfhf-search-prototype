@@ -6,14 +6,24 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-07-17 (Cline — hours-bar search move)
-**Active Agent:** **Cline** (implementing hours-bar search)
+**Last Updated:** 2026-07-17 (Cursor — hours-bar search white + always-open input)
+**Active Agent:** **Cursor**
 **Branch:** `master`
-**Status:** Search relocated to hours bar. Cursor can pick up Step 4+.
+**Status:** Hours-bar search: white icon + always-visible input (placeholder left of icon). Next: Step 4+.
 
 ### In Progress
-- **Cline:** Just moved search into hours bar — verifying + agent update
 - **Next:** Step 4 — results hero + layout (wire to live query/count)
+
+### Newly completed (2026-07-17 — Cursor: hours-bar search polish)
+- Input always visible with “Search…” placeholder to the **left** of a **white** search icon
+- Removed expand/collapse + close button from hours-bar search
+- Files: `index.html`, `search.html`, `assets/css/search.css`, `assets/js/search.js`
+
+### Newly completed (2026-07-17 — Cursor: hero text spacing)
+- Vertically centered `.hero-slide` content (`justify-content: center`)
+- Gaps: tight title lines; medium title→subtitle; tight subtitle→body; large body→CTA
+- Carousel controls at bottom; hours-bar bottom rule on desktop
+- Files: `assets/css/home.css`, `assets/css/search.css`
 
 ### Newly completed (2026-07-17 — Cline: hours-bar search)
 - Search moved from hero overlay into the `.hours-bar` alongside "Important Details +"

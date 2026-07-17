@@ -26,14 +26,22 @@
   position: relative;
   display: none;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   min-height: inherit;
-  padding: calc(var(--hours-bar-height) + var(--space-8)) var(--space-6) 7.5rem;
+  /* Top clears hours bar; bottom clears carousel controls — content centers in between */
+  padding: calc(var(--hours-bar-height) + var(--space-6)) var(--space-6) 5.5rem;
   background-color: #1a1a1a;
   background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.35) 55%, rgba(0, 0, 0, 0.2) 100%),
     var(--hero-bg);
   background-size: cover;
   background-position: center;
+}
+
+@media (min-width: 1024px) {
+  .hero-slide {
+    padding-left: var(--space-10);
+    padding-right: var(--space-10);
+  }
 }
 
 .hero-slide.is-active {
@@ -47,17 +55,17 @@
 .hero-slide__content {
   position: relative;
   z-index: 1;
-  max-width: 40rem;
+  max-width: 38rem;
 }
 
 .hero-slide__title {
   font-family: var(--font-display);
   font-size: clamp(2.75rem, 7vw, 5.5rem);
   font-weight: var(--fw-bold);
-  line-height: 0.85;
+  line-height: 0.82;
   letter-spacing: 1px;
   text-transform: uppercase;
-  margin: 0 0 var(--space-4);
+  margin: 0 0 var(--space-5);
 }
 
 .hero-slide__title-line {
@@ -72,20 +80,20 @@
 
 .hero-slide__subtitle {
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-size: clamp(1.25rem, 2.5vw, 1.85rem);
   font-weight: var(--fw-bold);
-  line-height: 1.05;
+  line-height: 1.1;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  margin: 0 0 var(--space-4);
+  margin: 0 0 var(--space-3);
 }
 
 .hero-slide__body {
   font-family: var(--font-body);
   font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  max-width: 36rem;
-  margin: 0 0 var(--space-6);
+  line-height: 1.45;
+  max-width: 32rem;
+  margin: 0 0 var(--space-10);
   opacity: 0.95;
 }
 
@@ -105,11 +113,18 @@
 .hero-carousel__controls {
   position: absolute;
   left: var(--space-6);
-  bottom: 5.25rem;
+  bottom: var(--space-6);
   z-index: 5;
   display: flex;
   align-items: center;
   gap: var(--space-3);
+}
+
+@media (min-width: 1024px) {
+  .hero-carousel__controls {
+    left: var(--space-10);
+    bottom: var(--space-8);
+  }
 }
 
 .hero-carousel__btn {
@@ -428,11 +443,11 @@
 
 @media (max-width: 900px) {
   .hero-carousel__controls {
-    bottom: 5.75rem;
+    bottom: var(--space-5);
   }
 
   .hero-slide {
-    padding-bottom: 8rem;
+    padding-bottom: 4.5rem;
   }
 }
 
