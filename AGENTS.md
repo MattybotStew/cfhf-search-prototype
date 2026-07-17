@@ -48,7 +48,14 @@ Skip only for pure Q&A with **zero** file or plan changes.
 | 7. Empty state | pending |
 | 8. A11y + mobile polish | partially done |
 
-**Handoff:** Homepage restored as demo entry (live site has no search). Steps 1–3 done. Next agent owns Step 4+ (results hero wiring, then filters/cards).
+**Handoff:** Homepage restored as demo entry (live site has no search). Steps 1–3 done. Next agent owns Step 4+ (results hero wiring, then filters/cards). Search moved from rail to hero.
+
+### What search UX refactor delivered (Cline)
+- Search removed from left rail on both `index.html` and `search.html`
+- Home: search input in dark hero (`#home-search`) — `.search-bar--hero`, always visible
+- Search results: search input in results header above query hero (`#results-search`)
+- CSS: hero search (translucent white bg, white text, downward dropdown)
+- JS: generalized to `.search-bar-wrap`; hero bars auto-expand without trigger
 
 ### What index restore delivered
 - `index.html`: full left-rail chrome + home hero explaining the search prototype + CTAs

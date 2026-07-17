@@ -40,20 +40,21 @@
   /* -------------------------------------------------- */
   /* 2–3. Inline expand search + predictive dropdown    */
   /* -------------------------------------------------- */
-  var searchSlots = document.querySelectorAll(".rail-search-slot");
+  var searchWraps = document.querySelectorAll(".search-bar-wrap");
 
-  searchSlots.forEach(function (slot) {
+  searchWraps.forEach(function (slot) {
     var bar = slot.querySelector(".search-bar");
     if (!bar) return;
+    var isHero = bar.classList.contains("search-bar--hero");
+
+    var input = bar.querySelector(".search-bar__input");
+    if (!input) return;
 
     var trigger = bar.querySelector(".search-bar__trigger");
-    var input = bar.querySelector(".search-bar__input");
     var closeBtn = bar.querySelector(".search-bar__close");
     var suggestList =
       slot.querySelector(".search-suggest") ||
       document.getElementById("search-suggest");
-
-    if (!trigger || !input) return;
 
     var activeIndex = -1;
 
@@ -61,10 +62,8 @@
       bar.classList.toggle("is-expanded", expanded);
       var listOpen = suggestList && !suggestList.hidden;
       input.setAttribute("aria-expanded", String(Boolean(expanded && listOpen)));
-      if (expanded) {
-        trigger.setAttribute("aria-label", "Submit search");
-      } else {
-        trigger.setAttribute("aria-label", "Open search");
+      if (trigger) {
+        trigger.setAttribute("aria-label", expanded ? "Submit search" : "Open search");
       }
     }
 
@@ -89,23 +88,31 @@
       loadSearchIndex();
     }
 
-    /* Expand on icon click; submit when already expanded */
-    trigger.addEventListener("click", function (e) {
-      e.stopPropagation();
-      var isExpanded = bar.classList.contains("is-expanded");
+    /* Wire trigger if present (rail mode: icon expands input) */
+    if (trigger) {
+      trigger.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var isExpanded = bar.classList.contains("is-expanded");
 
-      if (isExpanded) {
-        submitSearch(input.value.trim());
-      } else {
-        expandSearchBar();
-      }
-    });
+        if (isExpanded) {
+          submitSearch(input.value.trim());
+        } else {
+          expandSearchBar();
+        }
+      });
+    }
 
     if (closeBtn) {
       closeBtn.addEventListener("click", function (e) {
         e.stopPropagation();
         collapseSearchBar();
       });
+    }
+
+    /* Hero mode: always expanded, input visible at all times */
+    if (isHero) {
+      bar.classList.add("is-expanded");
+      loadSearchIndex();
     }
 
     input.addEventListener("keydown", function (e) {

@@ -59,6 +59,15 @@
 - Status: Step 1 DONE (Cursor), Step 2 DONE (Cline), Step 3 IN PROGRESS (Cline); Cursor still holding
 - Note: duplicate `logo.png` at repo root vs `assets/images/logo.png` — clean up later if needed
 
+## 2026-07-17 — Cline: search UX refactor — moved search from rail to hero
+
+- **Search removed from left rail** on both `index.html` and `search.html` — rail is now logo, CTAs, nav only
+- **Home (`index.html`):** search input placed in dark hero (`#home-search`) — `.search-bar--hero` (translucent white bg, white text, always visible, downward dropdown)
+- **Results (`search.html`):** search input in results header above query hero (`#results-search`), same hero style
+- **CSS:** `.search-bar--hero`, `.search-bar__icon--hero`, `.search-bar__input--hero`, `.search-bar__input-wrapper--always-open`, `.home-hero__search`, `.search-hero__search`, hero dropdown opens **downward**
+- **JS:** Attaches to all `.search-bar-wrap` elements instead of just `.rail-search-slot`; hero search bars auto-expand without trigger button
+- Left rail no longer has a search slot — matches live chrome
+
 ## 2026-07-17 — Cline: official logo added
 
 - Downloaded `assets/images/logo.png` from live site (cfbhall.com/images/logo.png, 32KB)
