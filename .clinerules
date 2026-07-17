@@ -1,43 +1,43 @@
 # CFHF Search Prototype — Shared Agent Rules
-# Read this before touching any file. Update after every change.
+# Read this before touching any file.
+# REQUIRED: After every finished prompt with file/plan changes → update Current Session State + JOURNAL.md + AGENTS.md progress.
 
 ---
 
 ## Current Session State
 
-**Last Updated:** 2026-07-17 (Cursor — decisions locked; plan synced for Cline)
-**Active Agent:** Cursor (just updated sync docs) — **Cline may start Step 1 after `git pull`**
+**Last Updated:** 2026-07-17 (Cursor — rail arrows use arrow.svg)
+**Active Agent:** **Cline** (Step 3) / Cursor chrome polish
 **Branch:** `master`
-**Status:** Planning complete. Decisions locked. Ready for Step 1 code.
-
-### Message for Cline (read this)
-
-Cursor reviewed your execution plan in `AGENTS.md`. **Build order, stack, and file map align.** Correct these before coding:
-
-1. Live chrome is a **white left sidebar**, not a navy top header — do not invent a horizontal navy bar.
-2. Drop **gold** as a brand token; use live crimson `#b5202b` + white rail + Kaneda/Neusa.
-3. Decisions are **locked** below — stop waiting on Matt for those five items.
-
-Then proceed with **Step 1: brand tokens + base shell**.
-
-### Decisions LOCKED (2026-07-17)
-
-| # | Decision | Locked choice |
-|---|---|---|
-| 1 | Chrome / header | **Match live left-rail chrome** (simplified OK). Logo + TICKETS / DONATE / MEMBERSHIP + nav. Put search in the rail (or hours bar). |
-| 2 | Search behavior | **Option A — icon expands inline** into input (not overlay). |
-| 3 | Filter sidebar on `/search` | **Right sticky** (left rail stays global nav). |
-| 4 | Categories | **One** category: `general-tickets` = “General Information and Tickets”. |
-| 5 | Logo | **Text / wordmark placeholder** OK until official shield assets. |
+**Status:** Steps 1–2 done. Rail uses `assets/images/arrow.svg`. Cline owns Step 3.
 
 ### In Progress
-- Ready for **Step 1** (either agent): `tokens.css` + shell HTML + starter `search-index.json`
+- **Cline:** Step 3 — predictive dropdown
 
-### Newly completed (2026-07-17)
-- Repo + Cline handoff docs
-- Live site audit (Cursor) — no search on live; Umbraco confirmed
-- Plan alignment check: Cline 8-step plan accepted with brand corrections
-- All open product decisions locked (table above)
+### Newly completed (2026-07-17 — Cursor)
+- Nav arrows → `assets/images/arrow.svg` (live-style swoosh)
+- Sidebar live match: logo-only, CTA layout, Kaneda nav
+- `index.html` → redirect to `search.html`
+
+### Newly completed (2026-07-17 — latest / Cline)
+- `assets/images/logo.png` — downloaded official CFHF logo from live site (cfbhall.com/images/logo.png, 32KB)
+- `assets/css/search.css` — added `.rail-logo__img` styles (max-width 180px, centered)
+- `index.html` + `search.html` — official logo image added above text wordmark in left rail
+
+### Newly completed (2026-07-17 — Step 2)
+- `assets/css/search.css` — `.search-bar` component: icon trigger, inline expand input (max-width transition), close button, focus styles, crimson border on expand
+- `assets/js/search.js` — expand/collapse logic, Enter/Escape keys, outside-click collapse, `submitSearch()` navigates to `search.html?q=`, `populateFromURL()` reads query param and updates hero
+- `index.html` + `search.html` — search slot replaced with interactive `.search-bar` markup
+- Search bar in white left rail, matches live chrome pattern
+
+### Newly completed (2026-07-17 — Step 1)
+- `assets/css/tokens.css` — live-site brand tokens (`#b5202b`, rail widths, Kaneda/Neusa vars)
+- `assets/css/search.css` — left-rail shell, hours bar, search page scaffold layout
+- `index.html` — home stub with live-style chrome
+- `search.html` — `/search` scaffold (hero, right filters, mobile pills placeholders)
+- `data/search-index.json` — 18 Examine-shaped mock documents
+- `assets/js/search.js` — mobile rail toggle only (search logic in Step 2+)
+- Typekit kit `acw8nkk` linked (same as live site)
 
 ### Live site facts (do not contradict)
 - **CMS:** Umbraco
@@ -48,15 +48,16 @@ Then proceed with **Step 1: brand tokens + base shell**.
 - **Type:** Kaneda (display) + Neusa Next / Std Compact (body/UI) via Typekit — use kit if available; otherwise closest licensed condensed + geometric stand-ins (**not Inter**)
 
 ### Still Blocked
-- (none for Step 1) — official logo assets optional later
+- Cursor: **hold on feature work** — Cline owns Step 3+
+- Official logo: present at `assets/images/logo.png`
 
 ---
 
 ## Who else is working on this codebase
 
-**Cursor** and **VS Code (Cline)** both edit this repo. Sync via git + this file + `JOURNAL.md` — see `AGENTS.md`.
+**Cursor** and **VS Code (Cline)** both edit this repo. Sync via git + this file + `JOURNAL.md` + `AGENTS.md` — see `AGENTS.md`.
 
-Before ending any session: update **Current Session State** above and prepend an entry to `JOURNAL.md`.
+**After every finished prompt** (not only end of day): update **Current Session State** above, prepend `JOURNAL.md`, and refresh `AGENTS.md` build progress if it changed.
 
 ---
 
@@ -152,10 +153,10 @@ Filter UI must **actually filter** this data.
   assets/css/tokens.css
   assets/css/search.css
   assets/js/search.js
+  assets/images/logo.png
   data/search-index.json
   .clinerules
   cline-project-handoff.md
   AGENTS.md
   JOURNAL.md
   README.md
-```

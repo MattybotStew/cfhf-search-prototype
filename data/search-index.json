@@ -1,0 +1,197 @@
+[
+  {
+    "id": "umb-inductee-001",
+    "docType": "inductee",
+    "category": "inductees",
+    "title": "Archie Griffin",
+    "excerpt": "Two-time Heisman Trophy winner and Ohio State legend. Inducted into the College Football Hall of Fame in 1986.",
+    "url": "/hall-of-fame/inductees/archie-griffin/",
+    "image": "",
+    "date": "1986-12-04",
+    "inductionYear": 1986,
+    "team": "Ohio State",
+    "teamBadge": "Ohio State"
+  },
+  {
+    "id": "umb-inductee-002",
+    "docType": "inductee",
+    "category": "inductees",
+    "title": "Tim Tebow",
+    "excerpt": "Heisman Trophy winner and two-time national champion with the Florida Gators. Class of 2023.",
+    "url": "/hall-of-fame/inductees/tim-tebow/",
+    "image": "",
+    "date": "2023-12-05",
+    "inductionYear": 2023,
+    "team": "Florida",
+    "teamBadge": "Florida"
+  },
+  {
+    "id": "umb-inductee-003",
+    "docType": "inductee",
+    "category": "inductees",
+    "title": "Joe Montana",
+    "excerpt": "Notre Dame quarterback and four-time Super Bowl champion. College Football Hall of Fame inductee.",
+    "url": "/hall-of-fame/inductees/joe-montana/",
+    "image": "",
+    "date": "2000-12-05",
+    "inductionYear": 2000,
+    "team": "Notre Dame",
+    "teamBadge": "Notre Dame"
+  },
+  {
+    "id": "umb-inductee-004",
+    "docType": "inductee",
+    "category": "inductees",
+    "title": "Barry Sanders",
+    "excerpt": "Oklahoma State running back and 1988 Heisman Trophy winner. One of college football's most electrifying players.",
+    "url": "/hall-of-fame/inductees/barry-sanders/",
+    "image": "",
+    "date": "2003-12-07",
+    "inductionYear": 2003,
+    "team": "Oklahoma State",
+    "teamBadge": "Oklahoma State"
+  },
+  {
+    "id": "umb-news-001",
+    "docType": "newsArticle",
+    "category": "news",
+    "title": "Two Free Admission Opportunities during Summer of Celebrations",
+    "excerpt": "The College Football Hall of Fame announces two free admission opportunities during its Summer of Celebrations.",
+    "url": "/news/two-free-admission-summer-celebrations/",
+    "image": "",
+    "date": "2026-07-01"
+  },
+  {
+    "id": "umb-news-002",
+    "docType": "newsArticle",
+    "category": "news",
+    "title": "Celebrate Father's Day and FIFA World Cup Action at the Hall",
+    "excerpt": "Special matchday experiences and family programming during FIFA World Cup action in Atlanta.",
+    "url": "/news/fathers-day-fifa-world-cup/",
+    "image": "",
+    "date": "2026-06-01"
+  },
+  {
+    "id": "umb-news-003",
+    "docType": "newsArticle",
+    "category": "news",
+    "title": "2026 College Football Hall of Fame Class Announced",
+    "excerpt": "The National Football Foundation announced the 2026 College Football Hall of Fame Class on ESPN2.",
+    "url": "/news/2026-hall-of-fame-class-announced/",
+    "image": "",
+    "date": "2026-01-14"
+  },
+  {
+    "id": "umb-event-001",
+    "docType": "event",
+    "category": "events",
+    "title": "Football Fest & Free Day Presented by Peach Bowl",
+    "excerpt": "Saturday, August 22 | 10AM–5PM. A day of football-themed activities and free admission for qualifying guests.",
+    "url": "/happenings/football-fest-free-day/",
+    "image": "",
+    "date": "2026-08-22"
+  },
+  {
+    "id": "umb-event-002",
+    "docType": "event",
+    "category": "events",
+    "title": "Football: One Name Two Games",
+    "excerpt": "Summer 2026 exhibit exploring American football and global football traditions.",
+    "url": "/happenings/football-one-name-two-games/",
+    "image": "",
+    "date": "2026-06-01"
+  },
+  {
+    "id": "umb-event-003",
+    "docType": "event",
+    "category": "events",
+    "title": "Ascension: Rise of the Black Quarterback",
+    "excerpt": "Presented by Kia and Coca-Cola. A landmark exhibit celebrating pioneering quarterbacks.",
+    "url": "/happenings/ascension-rise-of-the-black-quarterback/",
+    "image": "",
+    "date": "2026-05-01"
+  },
+  {
+    "id": "umb-event-004",
+    "docType": "event",
+    "category": "events",
+    "title": "Touchdown Fan Fest 2026",
+    "excerpt": "Join us for autographs, clinics, and memorabilia. August 14–16 at the Hall.",
+    "url": "/happenings/touchdown-fan-fest-2026/",
+    "image": "",
+    "date": "2026-08-14"
+  },
+  {
+    "id": "umb-general-001",
+    "docType": "generalPage",
+    "category": "general-tickets",
+    "title": "Tickets & Pricing",
+    "excerpt": "Score a touchdown today. Secure your tickets for general admission, VIP tours, and special packages.",
+    "url": "/visit/tickets/",
+    "image": "",
+    "date": "2026-01-01"
+  },
+  {
+    "id": "umb-general-002",
+    "docType": "generalPage",
+    "category": "general-tickets",
+    "title": "Hours, Directions & Parking",
+    "excerpt": "Open daily 10 a.m.–5 p.m. Last ticket at 4:30 p.m. Located at 250 Marietta St. NW, Atlanta, GA.",
+    "url": "/visit/hours-information/",
+    "image": "",
+    "date": "2026-01-01"
+  },
+  {
+    "id": "umb-general-003",
+    "docType": "generalPage",
+    "category": "general-tickets",
+    "title": "Group Tickets & Experiences",
+    "excerpt": "Lead your team to victory. Group rates for field trips, team building, and family outings.",
+    "url": "/visit/group-experiences/",
+    "image": "",
+    "date": "2026-01-01"
+  },
+  {
+    "id": "umb-general-004",
+    "docType": "generalPage",
+    "category": "general-tickets",
+    "title": "Plan Your Visit",
+    "excerpt": "Everything you need for an unforgettable day at the Chick-fil-A College Football Hall of Fame.",
+    "url": "/visit/",
+    "image": "",
+    "date": "2026-01-01"
+  },
+  {
+    "id": "umb-general-005",
+    "docType": "generalPage",
+    "category": "general-tickets",
+    "title": "Save with Atlanta CityPASS®",
+    "excerpt": "Save up to 47% on Atlanta's top attractions including the College Football Hall of Fame.",
+    "url": "/visit/citypass/",
+    "image": "",
+    "date": "2026-01-01"
+  },
+  {
+    "id": "umb-inductee-005",
+    "docType": "inductee",
+    "category": "inductees",
+    "title": "Emmitt Smith",
+    "excerpt": "Florida Gators running back and all-time NFL rushing leader. College Football Hall of Fame inductee.",
+    "url": "/hall-of-fame/inductees/emmitt-smith/",
+    "image": "",
+    "date": "2006-12-05",
+    "inductionYear": 2006,
+    "team": "Florida",
+    "teamBadge": "Florida"
+  },
+  {
+    "id": "umb-news-004",
+    "docType": "newsArticle",
+    "category": "news",
+    "title": "Greatest Touchdowns in College Football History",
+    "excerpt": "From the blog: iconic scoring plays that defined eras, rivalries, and championship moments.",
+    "url": "/blog/greatest-touchdowns-college-football/",
+    "image": "",
+    "date": "2026-03-15"
+  }
+]

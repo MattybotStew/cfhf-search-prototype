@@ -115,8 +115,8 @@ Production handoff story: swap JSON fetch for Umbraco search API; keep the same 
 
 - **Cursor** and **Cline** both work in this repo
 - Before coding: pull + read `.clinerules` Current Session State
-- After coding: update `.clinerules`, prepend `JOURNAL.md`, commit (when Matt asks) / push so the other agent sees it
-- Details: `AGENTS.md`
+- **After every finished prompt** (required): update `.clinerules`, prepend `JOURNAL.md`, refresh `AGENTS.md` build progress; commit/push when Matt asks
+- Details: `AGENTS.md` → “After every finished prompt (REQUIRED)”
 
 ---
 

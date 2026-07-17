@@ -14,11 +14,16 @@
 3. Read latest entries in `JOURNAL.md`
 4. If cold-starting in Cline, also read `cline-project-handoff.md`
 
-## After you finish a session
+## After every finished prompt (REQUIRED)
 
-1. Update `.clinerules` Current Session State (date, agent, in progress, completed, blockers)
-2. Prepend a short entry to `JOURNAL.md`
-3. Commit / push when Matt asks (keeps Cursor ↔ Cline in sync)
+**Do this at the end of every completed turn** — not only at end of day / long sessions.
+
+1. Update `.clinerules` → **Current Session State** (date, agent, status, in progress, newly completed, blockers, next step)
+2. Prepend a short entry to `JOURNAL.md` describing what changed
+3. Update **this file (`AGENTS.md`)** if build progress, next step, or sync notes changed
+4. Commit / push when Matt asks (keeps Cursor ↔ Cline in sync)
+
+Skip only for pure Q&A with **zero** file or plan changes.
 
 ## Do not
 
@@ -26,20 +31,34 @@
 - Rebuild the full CFHF site
 - Introduce frameworks or Search & Filter Pro without asking
 - Invent a navy top header or gold brand system (live site does not use those)
+- End a coding turn without updating agent continuity files
 
 ---
 
-## Cursor → Cline sync note (2026-07-17)
+## Build progress (2026-07-17)
 
-Your **8-step build plan is accepted**. Cursor’s live audit corrected brand chrome:
+| Step | Status |
+|---|---|
+| 1. Brand tokens + base shell | **DONE** (Cursor) |
+| 2. Global header search states | **DONE** (Cline) |
+| 3. Predictive dropdown | **IN PROGRESS** (Cline) |
+| 4. Results hero + layout | scaffold exists |
+| 5. Category filters (real) | UI only (not wired) |
+| 6. Standard + HOF cards | pending |
+| 7. Empty state | pending |
+| 8. A11y + mobile polish | partially done |
 
-- Live = **white left sidebar** + hours bar + crimson `#b5202b` TICKETS
-- **Not** a navy top header; **no** gold system token
-- Type target = **Kaneda + Neusa Next** (Typekit / approved stand-ins — not Inter + generic Google Fonts as the brand story)
+**Handoff:** Cline owns Step 3+. Cursor may do hygiene only unless Matt reassigns.
 
-**All five product decisions are LOCKED** in `.clinerules`. You may start **Step 1** after pull.
+### What Step 2 delivered
+- `.search-bar` component in `search.css`: crimson search icon, inline expand (max-width 200px with transition), close button, focus/expand border state
+- `search.js`: expand/collapse on icon click, close button, Enter to submit, Escape to collapse, outside-click collapse, `submitSearch()` → `search.html?q=`, `populateFromURL()` reads query param and updates hero on `/search`
+- `index.html` + `search.html`: search slot replaced with interactive `.search-bar`
 
----
+### What logo addition delivered
+- `assets/images/logo.png` — official CFHF logo downloaded from cfbhall.com/images/logo.png (32KB)
+- `.rail-logo__img` CSS: max-width 180px, centered
+- Both HTML pages now show the official logo above the text wordmark
 
 ## Execution Plan (shared — Cline draft + Cursor lock)
 
@@ -52,17 +71,6 @@ Your **8-step build plan is accepted**. Cursor’s live audit corrected brand ch
 | 3 | Filter sidebar | **Right** sticky on `/search` |
 | 4 | Categories | **One** — `general-tickets` |
 | 5 | Logo | Wordmark placeholder OK |
-
-### Phase: Build (8 steps in order)
-
-1. **Brand tokens + base shell** — `tokens.css`, `search-index.json`, `index.html`, `search.html` scaffold
-2. **Global header search states** — icon → inline expand, desktop + mobile
-3. **Predictive dropdown** — live JSON filtering, HOF vs general split
-4. **Results hero + layout** — query + count; main + **right** filter column
-5. **Category filters** — right sticky desktop, mobile pills, **real** filtering
-6. **Standard + HOF cards** — metadata from index shape
-7. **Empty state** — suggestions + inductees path
-8. **A11y + mobile polish**
 
 ### File map (target)
 
@@ -82,7 +90,6 @@ Your **8-step build plan is accepted**. Cursor’s live audit corrected brand ch
 ```
 
 ### Tech stack
-
 - Vanilla HTML / CSS / JS only
 - No React/Next, no Search & Filter Pro, no Umbraco runtime
 - Tokens from live: crimson `#b5202b`, white rail, `#C0C1C3`, `#888A8E`, black hours
