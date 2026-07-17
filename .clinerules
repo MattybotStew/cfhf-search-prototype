@@ -6,13 +6,20 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-07-17 (Cursor — nav arrow orientation fixed)
-**Active Agent:** **Cline** (Step 3) / Cursor chrome polish
+**Last Updated:** 2026-07-17 (Cursor — Step 3 predictive dropdown)
+**Active Agent:** **Cursor** (just finished Step 3) — Cline can pick up Step 4+
 **Branch:** `master`
-**Status:** Steps 1–2 done + committed (`a5e41c7`). Nav arrows point right. Cline owns Step 3.
+**Status:** Steps 1–3 done. Predictive typeahead wired to `data/search-index.json`. Uncommitted until Matt asks.
 
 ### In Progress
-- **Cline:** Step 3 — predictive dropdown
+- **Next:** Step 4 — results hero + layout (scaffold exists; wire to live query/count)
+
+### Newly completed (2026-07-17 — Cursor Step 3)
+- Predictive dropdown: live filter from `data/search-index.json` (shared Examine-shaped index)
+- HOF suggestions: initials avatar + team badge; general: category icon + label
+- Wired into `.search-bar` expand (Step 2): input → suggestions; ArrowUp/Down; Enter / click → `search.html?q=`
+- Escape / outside click collapse; suggestions open upward above rail-bottom search
+- Combobox a11y: `role="combobox"`, listbox, `aria-activedescendant`
 
 ### Newly completed (2026-07-17 — Cursor)
 - Fixed nav arrow orientation: dropped Figma `rotate(83.976deg)` (assumed vertical source); arrow.svg already points right, sized to rotated result 27.823×11.765px
@@ -49,7 +56,7 @@
 - **Type:** Kaneda (display) + Neusa Next / Std Compact (body/UI) via Typekit — use kit if available; otherwise closest licensed condensed + geometric stand-ins (**not Inter**)
 
 ### Still Blocked
-- Cursor: **hold on feature work** — Cline owns Step 3+
+- None for Step 3
 - Official logo: present at `assets/images/logo.png`
 
 ---

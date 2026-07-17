@@ -18,8 +18,9 @@ Umbraco is mocked via a local search-index JSON shaped like an Examine index. No
 |---|---|
 | 1. Brand tokens + base shell | Done |
 | 2. Inline expand search | Done |
-| 3. Predictive dropdown | In progress (Cline) |
-| 4–8 | Pending |
+| 3. Predictive dropdown | Done (Cursor) |
+| 4. Results hero + layout | Next |
+| 5–8 | Pending |
 
 ## Run locally
 

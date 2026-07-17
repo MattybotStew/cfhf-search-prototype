@@ -1,5 +1,14 @@
 # Journal — CFHF Search Prototype
 
+## 2026-07-17 — Cursor: Step 3 predictive dropdown
+
+- Wired live typeahead to `data/search-index.json` (fetch + scored title/team/excerpt match)
+- HOF suggestions: circular avatar (image or initials) + team badge; general: category icon + label
+- Opens upward above rail-bottom `.search-bar`; ArrowUp/Down, Enter/click → `search.html?q=`
+- Escape / outside-click collapse preserved; combobox/listbox a11y attributes
+- Files: `assets/js/search.js`, `assets/css/search.css`, `search.html`
+- **Next:** Step 4 — results hero + layout wired to real query/count
+
 ## 2026-07-17 — Cursor: fix arrow orientation
 
 - Figma's rotate(83.976deg) assumed a vertical source; our arrow.svg already points right

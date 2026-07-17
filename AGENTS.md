@@ -41,14 +41,21 @@ Skip only for pure Q&A with **zero** file or plan changes.
 |---|---|
 | 1. Brand tokens + base shell | **DONE** (Cursor) |
 | 2. Global header search states | **DONE** (Cline) |
-| 3. Predictive dropdown | **IN PROGRESS** (Cline) |
-| 4. Results hero + layout | scaffold exists |
+| 3. Predictive dropdown | **DONE** (Cursor) |
+| 4. Results hero + layout | scaffold exists — **NEXT** |
 | 5. Category filters (real) | UI only (not wired) |
 | 6. Standard + HOF cards | pending |
 | 7. Empty state | pending |
 | 8. A11y + mobile polish | partially done |
 
-**Handoff:** Cline owns Step 3+. Cursor may do hygiene only unless Matt reassigns.
+**Handoff:** Step 3 complete (Cursor). Next agent owns Step 4+ (results hero wiring, then filters/cards).
+
+### What Step 3 delivered
+- `search.js`: fetch + score `data/search-index.json`; live typeahead on `.search-bar__input`
+- HOF rows: avatar (image or initials) + team badge; general rows: category icon + label
+- Keyboard: ArrowUp/Down, Enter selects, Escape closes suggestions then collapses bar
+- `search.css`: `.search-suggest` panel opens upward above rail-bottom search
+- `search.html`: combobox markup + `#search-suggest` listbox
 
 ### What Step 2 delivered
 - `.search-bar` component in `search.css`: crimson search icon, inline expand (max-width 200px with transition), close button, focus/expand border state
