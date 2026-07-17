@@ -42,13 +42,21 @@ Skip only for pure Q&A with **zero** file or plan changes.
 | 1. Brand tokens + base shell | **DONE** (Cursor) |
 | 2. Global header search states | **DONE** (Cline) |
 | 3. Predictive dropdown | **DONE** (Cursor) |
-| 4. Results hero + layout | scaffold exists — **NEXT** |
-| 5. Category filters (real) | UI only (not wired) |
-| 6. Standard + HOF cards | pending |
-| 7. Empty state | pending |
-| 8. A11y + mobile polish | partially done |
+| 4. Results hero + layout | **DONE** (Grok) |
+| 5. Category filters (real) | **DONE** (Grok) |
+| 6. Standard + HOF cards | **DONE** (Grok) |
+| 7. Empty state | **DONE** (Grok) |
+| 8. A11y + mobile polish | **DONE** baseline (Grok) — design iterate next |
 
-**Handoff:** Hours-bar search chrome **LOCKED** (Matt): keep always-visible input + crimson square + focus expand-left + typeahead. Do **not** revert to icon-only Option A. Next: Step 4+.
+**Handoff:** Full search funnel is implemented (typeahead → results hero → filters → cards → empty). Hours-bar chrome remains **LOCKED**. Ready for design iteration / visual polish; not production Umbraco.
+
+### What Steps 4–8 delivered (Grok — 2026-07-17)
+- Results hero: live query from `?q=`, real counts, browse-all when no query
+- Category filters: desktop aside + mobile pills, live counts, `?category=` sync
+- Cards: HOF (initials/portrait, team badge, class year) + standard (tag, date, excerpt)
+- Empty: no matches + empty-category; popular search chips; inductees/tickets CTAs
+- Typeahead: “Search all results for …” row; multi-token soft match
+- Mobile: stacked hours bar, full-width search field; filter a11y as real buttons
 
 ### Decision LOCKED — hours-bar search (updated 2026-07-17)
 - Placement: `.hours-bar` beside “Important Details +” (both pages)

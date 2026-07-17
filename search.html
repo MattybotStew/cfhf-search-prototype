@@ -12,7 +12,7 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <div class="app-shell">
-    <aside class="site-rail" aria-label="Site navigation">
+    <aside class="site-rail" id="site-rail" aria-label="Site navigation">
       <div class="rail-inner">
         <a href="index.html" class="rail-logo">
           <img src="assets/images/logo.png" alt="Chick-fil-A College Football Hall of Fame Atlanta" class="rail-logo__img" width="200" height="100">
@@ -64,13 +64,11 @@
             </li>
           </ul>
         </nav>
-
-
       </div>
     </aside>
 
     <div class="site-main">
-      <header class="hours-bar" role="complementary" aria-label="Hours and visitor information">
+      <header class="hours-bar hours-bar--solid" role="complementary" aria-label="Hours and visitor information">
         <p class="hours-bar__status">
           <strong>Open Today!</strong> 10:00 AM–5:00 PM
         </p>
@@ -111,57 +109,95 @@
         </div>
       </header>
 
-      <main id="main" class="page-content">
+      <header class="mobile-topbar" aria-label="Mobile site header">
+        <button
+          type="button"
+          class="mobile-topbar__menu rail-toggle"
+          aria-expanded="false"
+          aria-controls="site-rail"
+          aria-label="Open menu"
+        >
+          <span class="mobile-topbar__burger" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
+        <a href="index.html" class="mobile-topbar__logo">
+          <img
+            src="assets/images/logo.png"
+            alt="Chick-fil-A College Football Hall of Fame Atlanta"
+            class="mobile-topbar__logo-img"
+            width="120"
+            height="60"
+          >
+        </a>
+        <a href="#" class="mobile-topbar__tickets">Tickets</a>
+      </header>
+
+      <main id="main" class="page-content page-content--search" data-results-page tabindex="-1">
         <header class="search-hero" aria-live="polite">
-          <h1 class="search-hero__title">
-            Showing results for
-            <span class="search-hero__query" id="search-query">"Touchdown"</span>
-            <span class="search-hero__meta" id="search-count">· 24 results</span>
+          <p class="search-hero__eyebrow">Search</p>
+          <h1 class="search-hero__title" id="search-hero-title">
+            <span class="search-hero__lead" id="search-hero-lead">Showing results for</span>
+            <span class="search-hero__query" id="search-query"></span>
           </h1>
+          <p class="search-hero__meta" id="search-count"></p>
         </header>
 
-        <div class="mobile-filter-pills" role="tablist" aria-label="Filter results by category">
-          <button type="button" class="pill pill--active" role="tab" aria-selected="true">All (24)</button>
-          <button type="button" class="pill" role="tab" aria-selected="false">Inductees (8)</button>
-          <button type="button" class="pill" role="tab" aria-selected="false">News (6)</button>
-          <button type="button" class="pill" role="tab" aria-selected="false">Events (5)</button>
-          <button type="button" class="pill" role="tab" aria-selected="false">General &amp; Tickets (5)</button>
+        <div
+          class="mobile-filter-pills"
+          id="mobile-filters"
+          role="group"
+          aria-label="Filter results by category"
+        >
+          <!-- Filled by search.js -->
         </div>
 
         <div class="search-layout">
           <div class="search-results-main">
-            <div class="cards-placeholder" id="results-grid">
-              Result cards render here in Step 6.<br>
-              Mock data: <code>data/search-index.json</code> (18 items)
-            </div>
-            <div class="results-placeholder" id="no-results" hidden>
-              Empty state renders here in Step 7.
+            <div
+              class="results-grid"
+              id="results-grid"
+              role="list"
+              aria-label="Search results"
+            ></div>
+
+            <div class="empty-state" id="no-results" hidden>
+              <div class="empty-state__icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="22" cy="22" r="12"/>
+                  <path d="M31 31l10 10"/>
+                  <path d="M16 22h12M22 16v12" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h2 class="empty-state__title" id="empty-title">No results found</h2>
+              <p class="empty-state__body" id="empty-body">
+                We couldn’t find a match. Try another term, or explore popular searches below.
+              </p>
+              <div class="empty-state__suggestions">
+                <p class="empty-state__label">Popular searches</p>
+                <ul class="empty-state__chips" id="empty-suggestions">
+                  <li><a class="empty-chip" href="search.html?q=Tim%20Tebow">Tim Tebow</a></li>
+                  <li><a class="empty-chip" href="search.html?q=Tickets">Tickets</a></li>
+                  <li><a class="empty-chip" href="search.html?q=Touchdown">Touchdown</a></li>
+                  <li><a class="empty-chip" href="search.html?q=2026">2026 Class</a></li>
+                </ul>
+              </div>
+              <div class="empty-state__actions">
+                <a href="#" class="btn btn--tickets btn--inline">Browse Inductees</a>
+                <a href="#" class="btn btn--outline btn--sm btn--inline">Get Tickets</a>
+              </div>
             </div>
           </div>
 
           <aside class="search-filters-aside" aria-label="Filter by category">
-            <h2>Categories</h2>
-            <ul class="filter-list" role="tablist">
-              <li class="filter-list__item filter-list__item--active" role="tab" aria-selected="true">
-                <span>All Results</span>
-                <span class="filter-list__count">24</span>
-              </li>
-              <li class="filter-list__item" role="tab" aria-selected="false">
-                <span>Inductees &amp; Players</span>
-                <span class="filter-list__count">8</span>
-              </li>
-              <li class="filter-list__item" role="tab" aria-selected="false">
-                <span>News &amp; Blog</span>
-                <span class="filter-list__count">6</span>
-              </li>
-              <li class="filter-list__item" role="tab" aria-selected="false">
-                <span>Exhibits &amp; Events</span>
-                <span class="filter-list__count">5</span>
-              </li>
-              <li class="filter-list__item" role="tab" aria-selected="false">
-                <span>General Information and Tickets</span>
-                <span class="filter-list__count">5</span>
-              </li>
+            <h2 id="filter-heading">Categories</h2>
+            <ul
+              class="filter-list"
+              id="desktop-filters"
+              role="list"
+              aria-labelledby="filter-heading"
+            >
+              <!-- Filled by search.js -->
             </ul>
           </aside>
         </div>
@@ -169,11 +205,7 @@
     </div>
   </div>
 
-  <button type="button" class="rail-toggle" aria-expanded="false" aria-label="Open menu">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-      <path d="M4 6h16M4 12h16M4 18h16"/>
-    </svg>
-  </button>
+  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
 
   <script src="assets/js/search.js" defer></script>
 </body>

@@ -1,44 +1,87 @@
 /**
  * CFHF Search Prototype — search logic
- * Step 2: inline expand search
- * Step 3: predictive dropdown from data/search-index.json
+ * Steps 2–8: hours-bar typeahead, results hero, filters, cards, empty state
  */
 (function () {
   "use strict";
 
   var INDEX_URL = "data/search-index.json";
   var MAX_SUGGESTIONS = 8;
+  var CATEGORIES = [
+    { id: "all", label: "All Results", shortLabel: "All" },
+    { id: "inductees", label: "Inductees & Players", shortLabel: "Inductees" },
+    { id: "news", label: "News & Blog", shortLabel: "News" },
+    { id: "events", label: "Exhibits & Events", shortLabel: "Events" },
+    {
+      id: "general-tickets",
+      label: "General Information and Tickets",
+      shortLabel: "General & Tickets",
+    },
+  ];
+
   var searchIndex = null;
   var indexPromise = null;
+  var resultsState = {
+    query: "",
+    category: "all",
+    matches: [],
+  };
 
   /* -------------------------------------------------- */
-  /* 1. Mobile rail toggle                              */
+  /* 1. Mobile rail toggle (topbar hamburger)           */
   /* -------------------------------------------------- */
   var rail = document.querySelector(".site-rail");
-  var railToggle = document.querySelector(".rail-toggle");
+  var railToggles = document.querySelectorAll(".rail-toggle");
+  var navBackdrop = document.getElementById("nav-backdrop");
 
-  if (railToggle && rail) {
-    railToggle.addEventListener("click", function () {
-      var isOpen = rail.classList.toggle("is-open");
-      railToggle.setAttribute("aria-expanded", String(isOpen));
-      railToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+  function setRailOpen(isOpen) {
+    if (!rail) return;
+    rail.classList.toggle("is-open", isOpen);
+    document.body.classList.toggle("is-nav-open", isOpen);
+    railToggles.forEach(function (btn) {
+      btn.setAttribute("aria-expanded", String(isOpen));
+      btn.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+    });
+    if (navBackdrop) {
+      navBackdrop.hidden = !isOpen;
+    }
+  }
+
+  if (rail && railToggles.length) {
+    railToggles.forEach(function (btn) {
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        setRailOpen(!rail.classList.contains("is-open"));
+      });
     });
 
+    if (navBackdrop) {
+      navBackdrop.addEventListener("click", function () {
+        setRailOpen(false);
+      });
+    }
+
     document.addEventListener("click", function (e) {
-      if (
-        rail.classList.contains("is-open") &&
-        !rail.contains(e.target) &&
-        !railToggle.contains(e.target)
-      ) {
-        rail.classList.remove("is-open");
-        railToggle.setAttribute("aria-expanded", "false");
-        railToggle.setAttribute("aria-label", "Open menu");
+      if (!rail.classList.contains("is-open")) return;
+      var onToggle = false;
+      railToggles.forEach(function (btn) {
+        if (btn.contains(e.target)) onToggle = true;
+      });
+      if (!rail.contains(e.target) && !onToggle) {
+        setRailOpen(false);
+      }
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && rail.classList.contains("is-open")) {
+        setRailOpen(false);
+        if (railToggles[0]) railToggles[0].focus();
       }
     });
   }
 
   /* -------------------------------------------------- */
-  /* 2–3. Inline expand search + predictive dropdown    */
+  /* 2–3. Hours-bar search + predictive dropdown        */
   /* -------------------------------------------------- */
   var searchWraps = document.querySelectorAll(".search-bar-wrap");
 
@@ -65,7 +108,10 @@
       var listOpen = suggestList && !suggestList.hidden;
       input.setAttribute("aria-expanded", String(Boolean(expanded && listOpen)));
       if (trigger && !isAlwaysOpen) {
-        trigger.setAttribute("aria-label", expanded ? "Submit search" : "Open search");
+        trigger.setAttribute(
+          "aria-label",
+          expanded ? "Submit search" : "Open search"
+        );
       }
     }
 
@@ -90,7 +136,6 @@
       loadSearchIndex();
     }
 
-    /* Wire trigger if present */
     if (trigger) {
       trigger.addEventListener("click", function (e) {
         e.stopPropagation();
@@ -109,7 +154,6 @@
       });
     }
 
-    /* Hours / hero: always expanded, input visible at all times */
     if (isAlwaysOpen) {
       bar.classList.add("is-expanded");
       loadSearchIndex();
@@ -253,9 +297,20 @@
       .trim();
   }
 
-  function matchDocuments(query) {
+  /**
+   * Score and rank documents for a query.
+   * Empty query returns the full index (browse-all on results page).
+   */
+  function matchDocuments(query, limit) {
+    if (!searchIndex) return [];
+
     var q = normalize(query);
-    if (!q || !searchIndex) return [];
+    if (!q) {
+      var all = searchIndex.slice().sort(function (a, b) {
+        return a.title.localeCompare(b.title);
+      });
+      return typeof limit === "number" ? all.slice(0, limit) : all;
+    }
 
     var scored = [];
 
@@ -274,6 +329,16 @@
       if (excerpt.indexOf(q) !== -1) score += 20;
       if (category.indexOf(q) !== -1) score += 10;
 
+      /* Multi-word: require each token somewhere for partial credit */
+      var tokens = q.split(" ").filter(Boolean);
+      if (tokens.length > 1) {
+        var hay = title + " " + excerpt + " " + team;
+        var allTokens = tokens.every(function (t) {
+          return hay.indexOf(t) !== -1;
+        });
+        if (allTokens && score === 0) score += 30;
+      }
+
       if (score > 0) {
         scored.push({ doc: doc, score: score });
       }
@@ -284,9 +349,29 @@
       return a.doc.title.localeCompare(b.doc.title);
     });
 
-    return scored.slice(0, MAX_SUGGESTIONS).map(function (row) {
+    var docs = scored.map(function (row) {
       return row.doc;
     });
+
+    return typeof limit === "number" ? docs.slice(0, limit) : docs;
+  }
+
+  function filterByCategory(docs, categoryId) {
+    if (!categoryId || categoryId === "all") return docs.slice();
+    return docs.filter(function (doc) {
+      return doc.category === categoryId;
+    });
+  }
+
+  function countByCategory(docs) {
+    var counts = { all: docs.length };
+    CATEGORIES.forEach(function (cat) {
+      if (cat.id === "all") return;
+      counts[cat.id] = docs.filter(function (d) {
+        return d.category === cat.id;
+      }).length;
+    });
+    return counts;
   }
 
   function isHof(doc) {
@@ -318,8 +403,25 @@
     }
   }
 
+  function categoryFilterLabel(categoryId) {
+    for (var i = 0; i < CATEGORIES.length; i++) {
+      if (CATEGORIES[i].id === categoryId) return CATEGORIES[i].label;
+    }
+    return categoryId;
+  }
+
+  function formatDate(iso) {
+    if (!iso) return "";
+    var d = new Date(iso + (String(iso).length === 10 ? "T12:00:00" : ""));
+    if (isNaN(d.getTime())) return iso;
+    return d.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  }
+
   function categoryIconSvg(doc) {
-    /* Simple stroke icons — tickets / news / events / page */
     if (doc.category === "general-tickets") {
       return (
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">' +
@@ -361,6 +463,13 @@
       .replace(/"/g, "&quot;");
   }
 
+  function resultCountLabel(n) {
+    return n === 1 ? "1 result" : n + " results";
+  }
+
+  /* -------------------------------------------------- */
+  /* Typeahead rendering                                */
+  /* -------------------------------------------------- */
   function renderSuggestionItem(doc, index) {
     var id = "search-suggest-option-" + index;
     var query = escapeHtml(doc.title);
@@ -369,7 +478,9 @@
 
     if (hof) {
       var badge = escapeHtml(doc.teamBadge || doc.team || "Hall of Fame");
-      var year = doc.inductionYear ? " · " + escapeHtml(String(doc.inductionYear)) : "";
+      var year = doc.inductionYear
+        ? " · " + escapeHtml(String(doc.inductionYear))
+        : "";
       var avatarInner = doc.image
         ? '<img src="' +
           escapeHtml(doc.image) +
@@ -427,6 +538,47 @@
     );
   }
 
+  function renderSearchAllRow(query, index) {
+    var id = "search-suggest-option-" + index;
+    var q = escapeHtml(query);
+    return (
+      '<li class="search-suggest__item search-suggest__item--search-all" role="option" id="' +
+      id +
+      '" data-query="' +
+      q +
+      '" aria-selected="false">' +
+      '<button type="button" class="search-suggest__btn">' +
+      '<span class="search-suggest__icon" aria-hidden="true">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg>' +
+      "</span>" +
+      '<span class="search-suggest__body">' +
+      '<span class="search-suggest__title">Search all results for “' +
+      q +
+      '”</span>' +
+      '<span class="search-suggest__meta">View full results</span>' +
+      "</span>" +
+      "</button>" +
+      "</li>"
+    );
+  }
+
+  function wireSuggestionClicks(suggestList) {
+    suggestList.querySelectorAll(".search-suggest__btn").forEach(function (btn) {
+      btn.addEventListener("mousedown", function (e) {
+        e.preventDefault();
+      });
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var item = btn.closest(".search-suggest__item");
+        var selected = item && item.getAttribute("data-query");
+        if (selected) {
+          submitSearch(selected);
+        }
+      });
+    });
+  }
+
   function renderSuggestions(query, suggestList, input, setActiveIndex) {
     if (!suggestList) return;
 
@@ -440,60 +592,50 @@
     }
 
     loadSearchIndex().then(function () {
-      /* Ignore stale renders if the field changed */
       if (normalize(input.value) !== normalize(query)) return;
 
-      var matches = matchDocuments(query);
+      var matches = matchDocuments(query, MAX_SUGGESTIONS);
       if (setActiveIndex) setActiveIndex(-1);
       input.removeAttribute("aria-activedescendant");
 
+      var html = [];
       if (!matches.length) {
-        suggestList.innerHTML =
-          '<li class="search-suggest__empty" role="presentation">No matching suggestions</li>';
-        suggestList.hidden = false;
-        input.setAttribute("aria-expanded", "true");
-        return;
+        html.push(
+          '<li class="search-suggest__empty" role="presentation">No quick matches</li>'
+        );
+        html.push(renderSearchAllRow(query, 0));
+      } else {
+        matches.forEach(function (doc, i) {
+          html.push(renderSuggestionItem(doc, i));
+        });
+        html.push(renderSearchAllRow(query, matches.length));
       }
 
-      suggestList.innerHTML = matches
-        .map(function (doc, i) {
-          return renderSuggestionItem(doc, i);
-        })
-        .join("");
+      suggestList.innerHTML = html.join("");
       suggestList.hidden = false;
       input.setAttribute("aria-expanded", "true");
-
-      suggestList.querySelectorAll(".search-suggest__btn").forEach(function (btn) {
-        btn.addEventListener("mousedown", function (e) {
-          /* Prevent input blur before click registers */
-          e.preventDefault();
-        });
-        btn.addEventListener("click", function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          var item = btn.closest(".search-suggest__item");
-          var selected = item && item.getAttribute("data-query");
-          if (selected) {
-            submitSearch(selected);
-          }
-        });
-      });
+      wireSuggestionClicks(suggestList);
     });
   }
 
   /* -------------------------------------------------- */
   /* Navigation helpers                                 */
   /* -------------------------------------------------- */
+  function isSearchPage() {
+    return (
+      /(^|\/)search\.html$/.test(window.location.pathname) ||
+      /\/search\/?$/.test(window.location.pathname) ||
+      Boolean(document.querySelector("[data-results-page]"))
+    );
+  }
+
   function submitSearch(query) {
     if (!query) return;
 
-    var onSearchPage =
-      /(^|\/)search\.html$/.test(window.location.pathname) ||
-      /\/search\/?$/.test(window.location.pathname);
-
-    if (onSearchPage) {
+    if (isSearchPage()) {
       var url = new URL(window.location.href);
       url.searchParams.set("q", query);
+      url.searchParams.delete("category");
       window.location.href = url.toString();
       return;
     }
@@ -509,33 +651,355 @@
       if (bar) {
         bar.classList.add("is-expanded");
       }
-      updateSearchHero(q);
     }
   }
 
-  function updateSearchHero(query) {
-    var queryEl = document.getElementById("search-query");
-    if (queryEl) {
-      queryEl.textContent = "\u201C" + query + "\u201D";
+  /* -------------------------------------------------- */
+  /* Steps 4–7: Results page                            */
+  /* -------------------------------------------------- */
+  function initResultsPage() {
+    var page = document.querySelector("[data-results-page]");
+    if (!page) return;
+
+    var params = new URLSearchParams(window.location.search);
+    resultsState.query = params.get("q") || "";
+    resultsState.category = params.get("category") || "all";
+    if (
+      !CATEGORIES.some(function (c) {
+        return c.id === resultsState.category;
+      })
+    ) {
+      resultsState.category = "all";
     }
 
-    /* Step 5+ will compute real count; placeholder for now */
+    loadSearchIndex().then(function () {
+      resultsState.matches = matchDocuments(resultsState.query);
+      renderResultsPage();
+    });
+  }
+
+  function renderResultsPage() {
+    var filtered = filterByCategory(
+      resultsState.matches,
+      resultsState.category
+    );
+    var counts = countByCategory(resultsState.matches);
+
+    updateSearchHero(
+      resultsState.query,
+      filtered.length,
+      resultsState.category,
+      resultsState.matches.length
+    );
+    renderFilters(counts);
+    renderResultCards(filtered);
+    renderEmptyState(
+      resultsState.query,
+      resultsState.matches.length,
+      filtered.length,
+      resultsState.category
+    );
+
+    /* Keep URL category in sync without full reload */
+    if (history.replaceState) {
+      var url = new URL(window.location.href);
+      if (resultsState.query) {
+        url.searchParams.set("q", resultsState.query);
+      } else {
+        url.searchParams.delete("q");
+      }
+      if (resultsState.category && resultsState.category !== "all") {
+        url.searchParams.set("category", resultsState.category);
+      } else {
+        url.searchParams.delete("category");
+      }
+      history.replaceState(null, "", url.toString());
+    }
+  }
+
+  function updateSearchHero(query, visibleCount, category, totalMatches) {
+    var leadEl = document.getElementById("search-hero-lead");
+    var queryEl = document.getElementById("search-query");
     var countEl = document.getElementById("search-count");
+    var titleEl = document.getElementById("search-hero-title");
+
+    if (queryEl) {
+      if (query) {
+        queryEl.textContent = "\u201C" + query + "\u201D";
+        queryEl.hidden = false;
+      } else {
+        queryEl.textContent = "";
+        queryEl.hidden = true;
+      }
+    }
+
+    if (leadEl) {
+      if (query) {
+        leadEl.textContent = "Showing results for";
+      } else {
+        leadEl.textContent = "Browse all results";
+      }
+    }
+
     if (countEl) {
-      countEl.textContent = "\u00B7 18 results";
+      var parts = [resultCountLabel(visibleCount)];
+      if (category && category !== "all" && totalMatches !== visibleCount) {
+        parts.push("in " + categoryFilterLabel(category));
+        parts.push("(" + totalMatches + " total)");
+      }
+      countEl.textContent = parts.join(" · ");
+    }
+
+    if (titleEl) {
+      document.title = query
+        ? "Search: " + query + " · College Football Hall of Fame"
+        : "Search · College Football Hall of Fame";
+    }
+  }
+
+  function setCategory(categoryId) {
+    resultsState.category = categoryId || "all";
+    renderResultsPage();
+
+    var main = document.getElementById("main");
+    if (main) {
+      main.focus({ preventScroll: true });
+    }
+  }
+
+  function renderFilters(counts) {
+    var desktop = document.getElementById("desktop-filters");
+    var mobile = document.getElementById("mobile-filters");
+
+    if (desktop) {
+      desktop.innerHTML = CATEGORIES.map(function (cat) {
+        var active = resultsState.category === cat.id;
+        var count = counts[cat.id] != null ? counts[cat.id] : 0;
+        return (
+          '<li class="filter-list__item' +
+          (active ? " filter-list__item--active" : "") +
+          '">' +
+          '<button type="button" class="filter-list__btn" data-category="' +
+          escapeHtml(cat.id) +
+          '" aria-pressed="' +
+          String(active) +
+          '">' +
+          '<span class="filter-list__label">' +
+          escapeHtml(cat.label) +
+          "</span>" +
+          '<span class="filter-list__count">' +
+          count +
+          "</span>" +
+          "</button>" +
+          "</li>"
+        );
+      }).join("");
+
+      desktop.querySelectorAll(".filter-list__btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          setCategory(btn.getAttribute("data-category"));
+        });
+      });
+    }
+
+    if (mobile) {
+      mobile.innerHTML = CATEGORIES.map(function (cat) {
+        var active = resultsState.category === cat.id;
+        var count = counts[cat.id] != null ? counts[cat.id] : 0;
+        return (
+          '<button type="button" class="pill' +
+          (active ? " pill--active" : "") +
+          '" data-category="' +
+          escapeHtml(cat.id) +
+          '" aria-pressed="' +
+          String(active) +
+          '">' +
+          escapeHtml(cat.shortLabel) +
+          " (" +
+          count +
+          ")" +
+          "</button>"
+        );
+      }).join("");
+
+      mobile.querySelectorAll(".pill").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          setCategory(btn.getAttribute("data-category"));
+        });
+      });
+    }
+  }
+
+  function renderResultCards(docs) {
+    var grid = document.getElementById("results-grid");
+    if (!grid) return;
+
+    if (!docs.length) {
+      grid.innerHTML = "";
+      grid.hidden = true;
+      return;
+    }
+
+    grid.hidden = false;
+    grid.innerHTML = docs
+      .map(function (doc) {
+        return isHof(doc) ? renderHofCard(doc) : renderStandardCard(doc);
+      })
+      .join("");
+
+    grid.querySelectorAll(".result-card__link").forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+      });
+    });
+  }
+
+  function renderHofCard(doc) {
+    var title = escapeHtml(doc.title);
+    var excerpt = escapeHtml(doc.excerpt || "");
+    var team = escapeHtml(doc.teamBadge || doc.team || "Hall of Fame");
+    var year = doc.inductionYear
+      ? escapeHtml(String(doc.inductionYear))
+      : "";
+    /* Prototype: keep mock Umbraco path on data-url; # avoids local 404s */
+    var mockUrl = escapeHtml(doc.url || "");
+    var avatar = doc.image
+      ? '<img class="result-card__photo" src="' +
+        escapeHtml(doc.image) +
+        '" alt="" width="96" height="96">'
+      : '<span class="result-card__initials" aria-hidden="true">' +
+        initials(doc.title) +
+        "</span>";
+
+    return (
+      '<article class="result-card result-card--hof" role="listitem">' +
+      '<a class="result-card__link" href="#"' +
+      (mockUrl ? ' data-url="' + mockUrl + '"' : "") +
+      ' aria-label="' +
+      title +
+      ' (prototype link)">' +
+      '<div class="result-card__media" aria-hidden="true">' +
+      avatar +
+      "</div>" +
+      '<div class="result-card__body">' +
+      '<div class="result-card__meta-row">' +
+      '<span class="result-card__tag result-card__tag--hof">Hall of Famer</span>' +
+      (year
+        ? '<span class="result-card__year">Class of ' + year + "</span>"
+        : "") +
+      "</div>" +
+      '<h2 class="result-card__title">' +
+      title +
+      "</h2>" +
+      '<p class="result-card__team"><span class="result-card__badge">' +
+      team +
+      "</span></p>" +
+      (excerpt
+        ? '<p class="result-card__excerpt">' + excerpt + "</p>"
+        : "") +
+      "</div>" +
+      "</a>" +
+      "</article>"
+    );
+  }
+
+  function renderStandardCard(doc) {
+    var title = escapeHtml(doc.title);
+    var excerpt = escapeHtml(doc.excerpt || "");
+    var cat = escapeHtml(categoryLabel(doc));
+    var date = formatDate(doc.date);
+    var mockUrl = escapeHtml(doc.url || "");
+
+    return (
+      '<article class="result-card result-card--standard" role="listitem">' +
+      '<a class="result-card__link" href="#"' +
+      (mockUrl ? ' data-url="' + mockUrl + '"' : "") +
+      ' aria-label="' +
+      title +
+      ' (prototype link)">' +
+      '<div class="result-card__body">' +
+      '<div class="result-card__meta-row">' +
+      '<span class="result-card__tag">' +
+      cat +
+      "</span>" +
+      (date
+        ? '<time class="result-card__date" datetime="' +
+          escapeHtml(doc.date || "") +
+          '">' +
+          escapeHtml(date) +
+          "</time>"
+        : "") +
+      "</div>" +
+      '<h2 class="result-card__title">' +
+      title +
+      "</h2>" +
+      (excerpt
+        ? '<p class="result-card__excerpt">' + excerpt + "</p>"
+        : "") +
+      "</div>" +
+      '<span class="result-card__chevron" aria-hidden="true">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>' +
+      "</span>" +
+      "</a>" +
+      "</article>"
+    );
+  }
+
+  function renderEmptyState(query, totalMatches, visibleCount, category) {
+    var empty = document.getElementById("no-results");
+    var titleEl = document.getElementById("empty-title");
+    var bodyEl = document.getElementById("empty-body");
+    if (!empty) return;
+
+    var showEmpty = visibleCount === 0;
+    empty.hidden = !showEmpty;
+
+    if (!showEmpty) return;
+
+    if (totalMatches === 0 && query) {
+      if (titleEl) titleEl.textContent = "No results found";
+      if (bodyEl) {
+        bodyEl.textContent =
+          "We couldn’t find matches for “" +
+          query +
+          "”. Try another term, or explore popular searches below.";
+      }
+    } else if (totalMatches > 0 && visibleCount === 0 && category !== "all") {
+      if (titleEl) titleEl.textContent = "No results in this category";
+      if (bodyEl) {
+        bodyEl.textContent =
+          "There are " +
+          totalMatches +
+          " result" +
+          (totalMatches === 1 ? "" : "s") +
+          " for “" +
+          (query || "your search") +
+          "”, but none in " +
+          categoryFilterLabel(category) +
+          ". Try All Results or another category.";
+      }
+    } else {
+      if (titleEl) titleEl.textContent = "No results found";
+      if (bodyEl) {
+        bodyEl.textContent =
+          "Try a search above, or explore popular searches below.";
+      }
     }
   }
 
   /* Prefetch index for snappier typeahead */
   loadSearchIndex();
 
-  /* Home CTA: expand rail search */
+  /* Results page (Steps 4–7) */
+  initResultsPage();
+
+  /* Home CTA: focus hours-bar search */
   var trySearchCta = document.getElementById("cta-try-search");
   if (trySearchCta) {
     trySearchCta.addEventListener("click", function () {
-      var trigger = document.querySelector(".search-bar__trigger");
-      if (trigger) {
-        trigger.click();
+      var input = document.querySelector(".search-bar--hours .search-bar__input");
+      if (input) {
+        input.focus();
       }
     });
   }

@@ -4,23 +4,25 @@ Client-shareable prototype for the Chick-fil-A College Football Hall of Fame **s
 
 ## Scope
 
-- Global header search states (default → expanded)
-- Predictive typeahead (Hall of Famer vs general)
-- `/search` results page with category filters
-- Standard + Hall of Famer result cards
-- Empty state
+- Hours-bar global search (always-visible input + crimson submit, expand-left, typeahead)
+- Predictive typeahead (Hall of Famer vs general + “search all”)
+- `/search` results page with live hero, category filters, cards, empty state
+- Mock Umbraco backend via local Examine-shaped JSON
 
-Umbraco is mocked via a local search-index JSON shaped like an Examine index. No Search & Filter Pro.
+No Search & Filter Pro. Vanilla HTML / CSS / JS only.
 
 ## Status
 
 | Step | Status |
 |---|---|
-| 1. Brand tokens + base shell | Done |
-| 2. Inline expand search | Done |
-| 3. Predictive dropdown | Done (Cursor) |
-| 4. Results hero + layout | Next |
-| 5–8 | Pending |
+| 1. Brand tokens + base shell | **Done** |
+| 2. Hours-bar search chrome | **Done** |
+| 3. Predictive dropdown | **Done** |
+| 4. Results hero + layout | **Done** |
+| 5. Category filters (real) | **Done** |
+| 6. Standard + HOF cards | **Done** |
+| 7. Empty state | **Done** |
+| 8. A11y + mobile polish | **Done** (baseline; iterate in design) |
 
 ## Run locally
 
@@ -31,18 +33,27 @@ cd ~/Projects/cfhf-search-prototype
 python3 -m http.server 8080
 ```
 
-Entry is **home** (`index.html`) — left-rail chrome like live, first three main sections matched to the live homepage, with prototype search in the hero:
-
-- http://localhost:8080/ — home (hero carousel + Destination/Happenings + Join the Legacy)
-- http://localhost:8080/search.html — results page
+- http://localhost:8080/ — home (live-style chrome + hours-bar search)
+- http://localhost:8080/search.html — browse all results
 - http://localhost:8080/search.html?q=touchdown — sample query
+- http://localhost:8080/search.html?q=tebow&category=inductees — query + category
 
-## For Cline (VS Code)
+### Demo queries
 
-1. Open this folder as the workspace: `~/Projects/cfhf-search-prototype`
+| Query | Expect |
+|---|---|
+| `tebow` | 1 HOF card (Tim Tebow) |
+| `ticket` | Visit & Tickets pages |
+| `touchdown` | Event + tickets + news mix |
+| `florida` | Tebow + Emmitt Smith |
+| `zzzz` | Empty state + popular chips |
+
+## For agents (Cursor / Cline)
+
+1. Open this folder as the workspace
 2. Read **`.clinerules`** (current state) and **`cline-project-handoff.md`** (full brief)
-3. Check **`JOURNAL.md`** + **`AGENTS.md`** for Cursor ↔ Cline sync
-4. `git pull` before starting; update those files after every finished prompt
+3. Check **`JOURNAL.md`** + **`AGENTS.md`** for sync
+4. `git pull` before starting; update those files after every finished prompt with file/plan changes
 
 ## Repo
 

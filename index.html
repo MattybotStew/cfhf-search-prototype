@@ -13,7 +13,7 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <div class="app-shell">
-    <aside class="site-rail" aria-label="Site navigation">
+    <aside class="site-rail" id="site-rail" aria-label="Site navigation">
       <div class="rail-inner">
         <a href="index.html" class="rail-logo" aria-current="page">
           <img src="assets/images/logo.png" alt="Chick-fil-A College Football Hall of Fame Atlanta" class="rail-logo__img" width="200" height="100">
@@ -110,6 +110,30 @@
         </div>
       </header>
 
+      <header class="mobile-topbar" aria-label="Mobile site header">
+        <button
+          type="button"
+          class="mobile-topbar__menu rail-toggle"
+          aria-expanded="false"
+          aria-controls="site-rail"
+          aria-label="Open menu"
+        >
+          <span class="mobile-topbar__burger" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
+        <a href="index.html" class="mobile-topbar__logo" aria-current="page">
+          <img
+            src="assets/images/logo.png"
+            alt="Chick-fil-A College Football Hall of Fame Atlanta"
+            class="mobile-topbar__logo-img"
+            width="120"
+            height="60"
+          >
+        </a>
+        <a href="#" class="mobile-topbar__tickets">Tickets</a>
+      </header>
+
       <main id="main">
         <!-- 1. Hero carousel (live homepage) + prototype search overlay -->
         <section class="hero-carousel" aria-roledescription="carousel" aria-label="Featured campaigns" data-hero-carousel>
@@ -149,7 +173,7 @@
                   <span class="hero-slide__title-line">in Atlanta?</span>
                 </h1>
                 <h2 class="hero-slide__subtitle">Save up to 47% with Atlanta CityPASS®</h2>
-                <p class="hero-slide__body">Visiting Atlanta’s top five attractions, including the College Football Hall of Fame, is easy and affordable with Atlanta CityPASS®.</p>
+                <p class="hero-slide__body">Visiting Atlanta’s top five attractions, including the College Football Hall of Fame, is easy and affordable with Atlanta CityPASS®! One purchase and mobile ticket delivery saves you time and money.</p>
                 <a href="#" class="btn btn--outline btn--hero">Purchase CityPASS®</a>
               </div>
             </article>
@@ -263,11 +287,7 @@
     </div>
   </div>
 
-  <button type="button" class="rail-toggle" aria-expanded="false" aria-label="Open menu">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-      <path d="M4 6h16M4 12h16M4 18h16"/>
-    </svg>
-  </button>
+  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
 
   <script src="assets/js/search.js" defer></script>
   <script src="assets/js/home.js" defer></script>

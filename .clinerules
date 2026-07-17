@@ -6,69 +6,28 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-07-17 (Cursor — hours-bar search hardened + locked)
-**Active Agent:** **Cursor**
+**Last Updated:** 2026-07-17 (Grok — live-style mobile top bar)
+**Active Agent:** **Grok**
 **Branch:** `master`
-**Status:** Hours-bar search = current chrome + typeahead (HOF/general). Locked — do not revert to icon-only Option A.
+**Status:** Full search funnel shipped. Mobile header matches live (hamburger · logo · TICKETS). Design iteration continues.
 
 ### Decision LOCKED (2026-07-17 — Matt)
-Matt: “i want what is there now with the search functionality requested.” Cursor implemented/verified.
+Matt: “i want what is there now with the search functionality requested.”
 - Chrome: always-visible stroked input + crimson square submit; expands left on hover/focus
 - Functionality: live predictive dropdown (HOF avatar + team badge vs general icon/label)
 - Do **not** switch to icon-only click-expand
 
 ### In Progress
-- **Next:** Step 4 — results hero + layout (wire to live query/count)
+- **Next:** Design iteration / visual polish (not blocked on missing features)
 
-### Newly completed (2026-07-17 — Cursor: hours-bar search harden)
-- Pointer-events on hours-bar input; hover+focus expand; dropdown z-index over hero
-- Verified typeahead: Tebow → HOF avatar/badge; ticket → general rows
-- Continuity locked against Option A revert
-
-### Newly completed (2026-07-17 — Cursor: hours search height + expand left)
-- Icon square height matches input (1.75rem); input expands left on focus
-
-### Newly completed (2026-07-17 — Cursor: crimson square search icon)
-- Input always visible with “Search…” placeholder to the **left** of a **white** search icon
-- Removed expand/collapse + close button from hours-bar search
-- Files: `index.html`, `search.html`, `assets/css/search.css`, `assets/js/search.js`
-
-### Newly completed (2026-07-17 — Cursor: hero text spacing)
-- Vertically centered `.hero-slide` content (`justify-content: center`)
-- Gaps: tight title lines; medium title→subtitle; tight subtitle→body; large body→CTA
-- Carousel controls at bottom; hours-bar bottom rule on desktop
-- Files: `assets/css/home.css`, `assets/css/search.css`
-
-### Newly completed (2026-07-17 — Cline: hours-bar search)
-- Search moved from hero overlay into the `.hours-bar` alongside "Important Details +"
-- `.hours-bar__end` flex container: search icon → inline expand input → "Important Details +" link
-- CSS: `.search-bar--hours` (transparent bg, white text, crimson icon, dark dropdown), `.hours-bar__end` layout
-- Both `index.html` and `search.html` share identical hours-bar search markup
-- Removed dead `.hero-carousel__search` CSS
-- Rail remains logo/CTAs/nav only (no search)
-
-### Newly completed (2026-07-17 — Cursor: live home sections on index)
-- `index.html`: hero carousel (3 slides), Destination + cards + Happenings, Join the Legacy / Tebow quote
-- `assets/css/home.css`, `assets/js/home.js` — carousel + section styles
-- Rail remains logo/CTAs/nav only
-
-### Newly completed (2026-07-17 — Cline: search UX refactor)
-- Search removed from left rail on both `index.html` and `search.html`
-- CSS: hero search styling (translucent white bg, white text, downward dropdown)
-- JS: generalized from `.rail-search-slot` to `.search-bar-wrap`
-
-### Newly completed (2026-07-17 — Step 3)
-- Predictive dropdown: live filter from `data/search-index.json`
-- HOF suggestions: initials avatar + team badge; general: category icon + label
-- Combobox a11y: `role="combobox"`, listbox, `aria-activedescendant`
-
-### Newly completed (2026-07-17 — Step 2)
-- `.search-bar` component: icon trigger, inline expand input (max-width transition), close button
-- `search.js`: expand/collapse, Enter/Escape, outside-click, `submitSearch()`, `populateFromURL()`
-
-### Newly completed (2026-07-17 — Step 1)
-- Brand tokens + left-rail shell + search page scaffold + 18-doc mock index
-- Typekit kit `acw8nkk` linked
+### Newly completed (2026-07-17 — Grok: Steps 4–8)
+- Results hero: `?q=` + live counts; browse-all with no query
+- Filters: desktop + mobile pills, real counts, `?category=` URL sync
+- Cards: HOF + standard from shared index match
+- Empty state: no hits + empty category; popular chips
+- Typeahead “Search all results for …” row
+- Mobile hours-bar stack + full-width input; filter buttons (not fake tabs)
+- Files: `search.html`, `assets/js/search.js`, `assets/css/search.css`, `README.md`
 
 ### Live site facts (do not contradict)
 - **CMS:** Umbraco
@@ -145,11 +104,11 @@ Categories (locked): `all` | `inductees` | `news` | `events` | `general-tickets`
 1. Brand tokens + base shell ✅
 2. Global header search states ✅
 3. Predictive dropdown ✅
-4. Search page hero + layout (next)
-5. Category filters (real filtering)
-6. Standard + HOF cards
-7. Empty state
-8. A11y + mobile polish
+4. Search page hero + layout ✅
+5. Category filters (real filtering) ✅
+6. Standard + HOF cards ✅
+7. Empty state ✅
+8. A11y + mobile polish ✅ (baseline)
 
 ---
 

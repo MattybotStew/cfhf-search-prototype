@@ -1,5 +1,39 @@
 # Journal — CFHF Search Prototype
 
+## 2026-07-17 — Grok: typeahead z-index above mobile topbar
+- Hours bar / search-suggest raised (z 100–130); mobile topbar lowered (z 40)
+- Predictive dropdown no longer sits under logo/TICKETS bar
+
+## 2026-07-17 — Grok: mobile hero layout (live match)
+- Hero mobile: content lower stack, full-width outlined CTA, bottom gradient for readability
+- Carousel controls: prev left · dots center · next right (full width)
+- CityPASS body copy aligned to live screenshot
+
+## 2026-07-17 — Grok: live-style mobile top bar
+- Mobile nav matches live screenshot: white bar with hamburger · centered logo · outlined TICKETS
+- Replaced floating crimson FAB; hamburger opens slide-out rail + dim backdrop
+- Both `index.html` + `search.html`; desktop left rail unchanged
+
+## 2026-07-17 — Grok: more space under search hours bar
+- Search page content: `padding-top` gap after hours bar → `--space-12` (desktop), `--space-10` (mobile)
+
+## 2026-07-17 — Grok: solid black hours bar on search page
+- `search.html`: `.hours-bar--solid` → 100% black (`#000`) hours header
+- Home keeps translucent hours bar over hero
+
+## 2026-07-17 — Grok: Steps 4–8 complete (results funnel ready for design)
+
+- Wired full results page to `data/search-index.json` (same match engine as typeahead)
+- Hero: live `?q=`, real counts, browse-all when no query; document title updates
+- Filters: desktop aside + mobile pills with live category counts; `?category=` sync
+- Cards: HOF (initials/media, team badge, class year) + standard (tag, date, excerpt)
+- Empty: no matches + empty-in-category; popular chips; Browse Inductees / Get Tickets
+- Typeahead: always offers “Search all results for …” row; multi-token soft match
+- Mobile: stacked hours bar, full-width search; Escape closes rail; focus-visible preserved
+- Card links stay in-prototype (`href="#"` + `data-url` mock path) for design iteration
+- Files: `search.html`, `assets/js/search.js`, `assets/css/search.css`, `README.md`, continuity docs
+- **Next:** Visual/design iteration — no remaining build-order steps
+
 ## 2026-07-17 — Cursor: deliver locked hours-bar search (chrome + typeahead)
 
 - Matt: keep current hours-bar chrome + requested search functionality (not icon-only Option A)
