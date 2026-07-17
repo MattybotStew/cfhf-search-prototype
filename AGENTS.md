@@ -48,12 +48,13 @@ Skip only for pure Q&A with **zero** file or plan changes.
 | 7. Empty state | pending |
 | 8. A11y + mobile polish | partially done |
 
-**Handoff:** Hours-bar search done (Cline). Hero text centering/gaps tuned (Cursor). Next: Step 4+ (results hero wiring, filters/cards).
+**Handoff:** Hours-bar search chrome **LOCKED** (Matt): keep always-visible input + crimson square + focus expand-left + typeahead. Do **not** revert to icon-only Option A. Next: Step 4+.
 
-### Decision LOCKED — hours-bar search
-- Search icon in `.hours-bar` beside “Important Details +”; inline expand; dropdown downward
-- Remove hero / results-header search overlays
-- Global chrome on both `index.html` and `search.html`
+### Decision LOCKED — hours-bar search (updated 2026-07-17)
+- Placement: `.hours-bar` beside “Important Details +” (both pages)
+- Chrome: always-visible white-stroked input + crimson square icon (submit); focus expands input left
+- Functionality: predictive dropdown downward — HOF (avatar/initials + team badge) vs general (icon + label)
+- **Not** icon-only → click-expand → close (supersedes old Option A for hours bar)
 
 ### What hours-bar search move delivered (Cline)
 - Search moved into `.hours-bar` alongside "Important Details +" on both `index.html` and `search.html`
@@ -103,7 +104,7 @@ Skip only for pure Q&A with **zero** file or plan changes.
 | # | Decision | Locked |
 |---|---|---|
 | 1 | Chrome | Match live **left-rail** (simplified OK); search in rail or hours bar |
-| 2 | Search behavior | **Option A** — icon expands **inline** |
+| 2 | Search behavior | Hours bar: always-visible input + crimson square submit; focus expands left; typeahead (**not** icon-only Option A) |
 | 3 | Filter sidebar | **Right** sticky on `/search` |
 | 4 | Categories | **One** — `general-tickets` |
 | 5 | Logo | Wordmark placeholder OK |

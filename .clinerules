@@ -6,13 +6,24 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-07-17 (Cursor — hours search height + expand left)
+**Last Updated:** 2026-07-17 (Cursor — hours-bar search hardened + locked)
 **Active Agent:** **Cursor**
 **Branch:** `master`
-**Status:** Hours-bar search: matched-height crimson square + expand-left on focus. Next: Step 4+.
+**Status:** Hours-bar search = current chrome + typeahead (HOF/general). Locked — do not revert to icon-only Option A.
+
+### Decision LOCKED (2026-07-17 — Matt)
+Matt: “i want what is there now with the search functionality requested.” Cursor implemented/verified.
+- Chrome: always-visible stroked input + crimson square submit; expands left on hover/focus
+- Functionality: live predictive dropdown (HOF avatar + team badge vs general icon/label)
+- Do **not** switch to icon-only click-expand
 
 ### In Progress
 - **Next:** Step 4 — results hero + layout (wire to live query/count)
+
+### Newly completed (2026-07-17 — Cursor: hours-bar search harden)
+- Pointer-events on hours-bar input; hover+focus expand; dropdown z-index over hero
+- Verified typeahead: Tebow → HOF avatar/badge; ticket → general rows
+- Continuity locked against Option A revert
 
 ### Newly completed (2026-07-17 — Cursor: hours search height + expand left)
 - Icon square height matches input (1.75rem); input expands left on focus
@@ -91,7 +102,7 @@
 
 ## What We Are Building
 
-1. Global header search — default **icon** → expand to input (desktop + mobile) — **inline, Option A**
+1. Global header search — hours bar: always-visible input + crimson square; focus expands left; typeahead (not icon-only)
 2. Predictive dropdown — HOF (avatar + team badge) vs general (text/icon)
 3. `/search` page — query hero, **right** category filters, result cards, empty state
 4. Mock Umbraco backend — local `search-index.json` (Examine-shaped documents)

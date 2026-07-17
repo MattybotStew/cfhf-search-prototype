@@ -1,5 +1,19 @@
 # Journal — CFHF Search Prototype
 
+## 2026-07-17 — Cursor: deliver locked hours-bar search (chrome + typeahead)
+
+- Matt: keep current hours-bar chrome + requested search functionality (not icon-only Option A)
+- Hardened: pointer-events on input; expand on hover/focus; dropdown z-index over hero
+- Verified: “tebow” → HOF avatar + team badge; “ticket” → general suggestions
+- **Next:** Step 4 — results hero + layout
+
+## 2026-07-17 — Cursor: Matt locks hours-bar search chrome
+
+- Matt to Cline: keep **what’s there now** + the requested search functionality (typeahead)
+- Locked: always-visible input + crimson square + focus expand-left + HOF/general predictive dropdown
+- Do **not** revert to icon-only Option A expand/collapse
+- **Next:** Step 4 — results hero + layout
+
 ## 2026-07-17 — Cursor: match icon height + expand-left hours search
 
 - Crimson search icon square matches input height (1.75rem), flush to input
