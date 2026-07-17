@@ -1,5 +1,14 @@
 # Journal — CFHF Search Prototype
 
+## 2026-07-17 — Cursor: match icon height + expand-left hours search
+
+- Crimson search icon square matches input height (1.75rem), flush to input
+- Input expands left on focus (7.5rem → 14rem)
+
+## 2026-07-17 — Cursor: crimson square search icon in hours bar
+
+- Hours-bar search trigger: brand crimson square background, white icon
+
 ## 2026-07-17 — Cursor: white stroke on hours-bar search input
 
 - Added white border stroke around hours-bar search input wrapper

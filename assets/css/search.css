@@ -487,7 +487,7 @@ button {
   border: 0;
 }
 
-/* Hours-bar search — input + white icon (always visible) */
+/* Hours-bar search — input + crimson square icon (matched height, expands left) */
 .hours-bar__end {
   display: flex;
   align-items: center;
@@ -496,10 +496,14 @@ button {
 }
 
 .search-bar--hours {
+  display: flex;
+  align-items: stretch;
+  height: 1.75rem;
   background: transparent;
   border: none;
   border-radius: 0;
   color: var(--cfhf-white);
+  gap: 0;
 }
 
 .search-bar--hours:focus-within,
@@ -508,35 +512,52 @@ button {
 }
 
 .search-bar--hours .search-bar__input-wrapper--always-open {
-  max-width: 11rem;
-  overflow: visible;
+  box-sizing: border-box;
+  width: 7.5rem;
+  max-width: 7.5rem;
+  height: 100%;
+  overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.85);
+  border-right: none;
   padding: 0 var(--space-2);
+  display: flex;
+  align-items: center;
+  transition: width var(--duration-normal) var(--ease-out),
+    max-width var(--duration-normal) var(--ease-out);
 }
 
 .search-bar--hours:focus-within .search-bar__input-wrapper--always-open {
+  width: 14rem;
+  max-width: 14rem;
   border-color: var(--cfhf-white);
 }
 
 .search-bar--hours .search-bar__trigger {
-  width: 2rem;
-  height: 2rem;
+  box-sizing: border-box;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  padding: 0;
+  background: var(--cfhf-crimson);
   color: var(--cfhf-white);
 }
 
 .search-bar--hours .search-bar__trigger:hover {
-  color: rgba(255, 255, 255, 0.75);
+  background: var(--cfhf-crimson-hover);
+  color: var(--cfhf-white);
 }
 
 .search-bar--hours .search-bar__icon {
-  width: 1.125rem;
-  height: 1.125rem;
+  width: 0.95rem;
+  height: 0.95rem;
 }
 
 .search-bar--hours .search-bar__input {
   color: var(--cfhf-white);
   font-size: var(--fs-ui);
-  padding: var(--space-1) 0;
+  line-height: 1;
+  padding: 0;
+  height: 100%;
 }
 
 .search-bar--hours .search-bar__input::placeholder {

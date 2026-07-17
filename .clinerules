@@ -6,15 +6,18 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-07-17 (Cursor — hours-bar search white + always-open input)
+**Last Updated:** 2026-07-17 (Cursor — hours search height + expand left)
 **Active Agent:** **Cursor**
 **Branch:** `master`
-**Status:** Hours-bar search: white icon + always-visible input (placeholder left of icon). Next: Step 4+.
+**Status:** Hours-bar search: matched-height crimson square + expand-left on focus. Next: Step 4+.
 
 ### In Progress
 - **Next:** Step 4 — results hero + layout (wire to live query/count)
 
-### Newly completed (2026-07-17 — Cursor: hours-bar search polish)
+### Newly completed (2026-07-17 — Cursor: hours search height + expand left)
+- Icon square height matches input (1.75rem); input expands left on focus
+
+### Newly completed (2026-07-17 — Cursor: crimson square search icon)
 - Input always visible with “Search…” placeholder to the **left** of a **white** search icon
 - Removed expand/collapse + close button from hours-bar search
 - Files: `index.html`, `search.html`, `assets/css/search.css`, `assets/js/search.js`
