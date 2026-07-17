@@ -6,28 +6,32 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-07-17 (Grok — HOF visual fidelity + filter polish for client share)
+**Last Updated:** 2026-07-17 (Grok — full agent continuity sync; client-ready)
 **Active Agent:** **Grok**
-**Branch:** `master`
-**Status:** Review gaps closed: portrait placeholders, team shield badges, sticky filters, mobile pill tap targets. Pages: mattybotstew.github.io/cfhf-search-prototype
+**Branch:** `master` (synced with origin)
+**Status:** Build Steps 1–8 **COMPLETE**. Client-shareable on GitHub Pages. Continuity docs refreshed.
+
+### Live
+- https://mattybotstew.github.io/cfhf-search-prototype/
+- Pages source: `master` / root + `.nojekyll`
 
 ### Decision LOCKED (2026-07-17 — Matt)
 Matt: “i want what is there now with the search functionality requested.”
 - Chrome: always-visible stroked input + crimson square submit; expands left on hover/focus
-- Functionality: live predictive dropdown (HOF avatar + team badge vs general icon/label)
+- Functionality: live predictive dropdown (HOF portrait + team badge vs general icon/label)
 - Do **not** switch to icon-only click-expand
 
-### In Progress
-- **Next:** Design iteration / visual polish (not blocked on missing features)
+### In Progress / Next
+- Client feedback, design iteration, Figma capture as needed
+- Optional later: real CMS portrait URLs in `image` field; production Umbraco API swap
 
-### Newly completed (2026-07-17 — Grok: Steps 4–8)
-- Results hero: `?q=` + live counts; browse-all with no query
-- Filters: desktop + mobile pills, real counts, `?category=` URL sync
-- Cards: HOF + standard from shared index match
-- Empty state: no hits + empty category; popular chips
-- Typeahead “Search all results for …” row
-- Mobile hours-bar stack + full-width input; filter buttons (not fake tabs)
-- Files: `search.html`, `assets/js/search.js`, `assets/css/search.css`, `README.md`
+### Newly completed (session summary — 2026-07-17)
+- Steps 4–8: results hero, real filters, HOF/standard cards, empty state, a11y/mobile baseline
+- Mobile: live-style topbar (hamburger · logo · TICKETS); hero layout match; typeahead z-index fix
+- Search page: solid black hours bar; extra space under bar
+- HOF fidelity: silhouette portraits, shield badges, Inducted year treatment
+- Sticky filter sidebar + mobile pill tap targets + dynamic counts
+- GitHub Pages enabled and verified (200s)
 
 ### Live site facts (do not contradict)
 - **CMS:** Umbraco
@@ -44,7 +48,7 @@ Matt: “i want what is there now with the search functionality requested.”
 
 ## Who else is working on this codebase
 
-**Cursor** and **VS Code (Cline)** both edit this repo. Sync via git + this file + `JOURNAL.md` + `AGENTS.md`.
+**Cursor**, **Cline (VS Code)**, and **Grok** edit this repo. Sync via git + this file + `JOURNAL.md` + `AGENTS.md`.
 
 **After every finished prompt:** update **Current Session State**, prepend `JOURNAL.md`, refresh `AGENTS.md`.
 
@@ -61,9 +65,9 @@ Matt: “i want what is there now with the search functionality requested.”
 
 ## What We Are Building
 
-1. Global header search — hours bar: always-visible input + crimson square; focus expands left; typeahead (not icon-only)
-2. Predictive dropdown — HOF (avatar + team badge) vs general (text/icon)
-3. `/search` page — query hero, **right** category filters, result cards, empty state
+1. Global header search — hours bar: always-visible input + crimson square; focus expands left; typeahead
+2. Predictive dropdown — HOF (portrait + team badge) vs general (text/icon)
+3. `/search` page — query hero, **right** sticky category filters, result cards, empty state
 4. Mock Umbraco backend — local `search-index.json` (Examine-shaped documents)
 
 ---
@@ -95,6 +99,8 @@ One shared dataset for typeahead **and** results: `data/search-index.json`
 Fields: `id`, `docType`, `category`, `title`, `excerpt`, `url`, `image`, `date`  
 Inductees also: `inductionYear`, `team`, `teamBadge`
 
+Empty `image` → prototype renders silhouette portrait (team colors). Real CMS images replace when set.
+
 Categories (locked): `all` | `inductees` | `news` | `events` | `general-tickets`
 
 ---
@@ -108,7 +114,7 @@ Categories (locked): `all` | `inductees` | `news` | `events` | `general-tickets`
 5. Category filters (real filtering) ✅
 6. Standard + HOF cards ✅
 7. Empty state ✅
-8. A11y + mobile polish ✅ (baseline)
+8. A11y + mobile polish ✅
 
 ---
 
@@ -120,6 +126,7 @@ Categories (locked): `all` | `inductees` | `news` | `events` | `general-tickets`
 - Do not add Search & Filter Pro or Umbraco packages
 - Do not leave Inter + amber/gold as the client-facing brand
 - Do not force-push `master` or skip hooks
+- Do not revert hours-bar search to icon-only Option A
 
 ---
 
@@ -137,8 +144,10 @@ Categories (locked): `all` | `inductees` | `news` | `events` | `general-tickets`
   assets/images/logo.png
   assets/images/arrow.svg
   data/search-index.json
+  .nojekyll
   .clinerules
   cline-project-handoff.md
   AGENTS.md
   JOURNAL.md
   README.md
+```

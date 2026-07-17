@@ -22,7 +22,9 @@ No Search & Filter Pro. Vanilla HTML / CSS / JS only.
 | 5. Category filters (real) | **Done** |
 | 6. Standard + HOF cards | **Done** |
 | 7. Empty state | **Done** |
-| 8. A11y + mobile polish | **Done** (baseline; iterate in design) |
+| 8. A11y + mobile polish | **Done** |
+
+**Client-ready** on GitHub Pages. Design feedback / Figma next.
 
 ## Run locally
 
@@ -48,12 +50,13 @@ python3 -m http.server 8080
 | `florida` | Tebow + Emmitt Smith |
 | `zzzz` | Empty state + popular chips |
 
-## For agents (Cursor / Cline)
+## For agents (Cursor / Cline / Grok)
 
 1. Open this folder as the workspace
-2. Read **`.clinerules`** (current state) and **`cline-project-handoff.md`** (full brief)
-3. Check **`JOURNAL.md`** + **`AGENTS.md`** for sync
-4. `git pull` before starting; update those files after every finished prompt with file/plan changes
+2. `git pull`
+3. Read **`.clinerules`** (Current Session State) → **`JOURNAL.md`** → **`AGENTS.md`**
+4. Cold-start in Cline: also **`cline-project-handoff.md`**
+5. After finished prompts with file/plan changes: update those three continuity files
 
 ## Live demo (GitHub Pages)
 

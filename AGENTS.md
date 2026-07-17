@@ -4,13 +4,14 @@
 
 | Tool | Role |
 |---|---|
-| **Cursor** | Primary scaffolding / paired implementation |
-| **Cline (VS Code)** | Parallel or handoff implementation — open this folder as the workspace |
+| **Cursor** | Scaffolding / paired implementation |
+| **Cline (VS Code)** | Parallel or handoff implementation |
+| **Grok** | Recent: Steps 4–8, mobile chrome, Pages, HOF visual fidelity |
 
 ## Before you start
 
 1. `git pull`
-2. Read `.clinerules` → **Current Session State** (especially **Message for Cline** + **Decisions LOCKED**)
+2. Read `.clinerules` → **Current Session State** (especially **Decisions LOCKED**)
 3. Read latest entries in `JOURNAL.md`
 4. If cold-starting in Cline, also read `cline-project-handoff.md`
 
@@ -21,7 +22,7 @@
 1. Update `.clinerules` → **Current Session State** (date, agent, status, in progress, newly completed, blockers, next step)
 2. Prepend a short entry to `JOURNAL.md` describing what changed
 3. Update **this file (`AGENTS.md`)** if build progress, next step, or sync notes changed
-4. Commit / push when Matt asks (keeps Cursor ↔ Cline in sync)
+4. Commit / push when Matt asks (keeps agents in sync)
 
 Skip only for pure Q&A with **zero** file or plan changes.
 
@@ -31,93 +32,82 @@ Skip only for pure Q&A with **zero** file or plan changes.
 - Rebuild the full CFHF site
 - Introduce frameworks or Search & Filter Pro without asking
 - Invent a navy top header or gold brand system (live site does not use those)
+- Revert hours-bar search to icon-only Option A
 - End a coding turn without updating agent continuity files
 
 ---
 
-## Build progress (2026-07-17)
+## Live demo
+
+**GitHub Pages:** https://mattybotstew.github.io/cfhf-search-prototype/  
+**Source:** `master` root + `.nojekyll`  
+**Repo:** https://github.com/MattybotStew/cfhf-search-prototype  
+
+| Page | URL |
+|---|---|
+| Home | https://mattybotstew.github.io/cfhf-search-prototype/ |
+| Search | https://mattybotstew.github.io/cfhf-search-prototype/search.html |
+| Sample | https://mattybotstew.github.io/cfhf-search-prototype/search.html?q=tebow |
+
+Local: `python3 -m http.server 8080` from repo root.
+
+---
+
+## Build progress (2026-07-17) — COMPLETE
 
 | Step | Status |
 |---|---|
-| 1. Brand tokens + base shell | **DONE** (Cursor) |
-| 2. Global header search states | **DONE** (Cline) |
-| 3. Predictive dropdown | **DONE** (Cursor) |
-| 4. Results hero + layout | **DONE** (Grok) |
-| 5. Category filters (real) | **DONE** (Grok) |
-| 6. Standard + HOF cards | **DONE** (Grok) |
-| 7. Empty state | **DONE** (Grok) |
-| 8. A11y + mobile polish | **DONE** baseline (Grok) — design iterate next |
+| 1. Brand tokens + base shell | **DONE** |
+| 2. Global header search states | **DONE** |
+| 3. Predictive dropdown | **DONE** |
+| 4. Results hero + layout | **DONE** |
+| 5. Category filters (real) | **DONE** |
+| 6. Standard + HOF cards | **DONE** |
+| 7. Empty state | **DONE** |
+| 8. A11y + mobile polish | **DONE** |
 
-**Handoff:** Full search funnel is implemented (typeahead → results hero → filters → cards → empty). Hours-bar chrome remains **LOCKED**. Ready for design iteration / visual polish; not production Umbraco.
+**Status:** Client-shareable prototype. Full funnel live. Design feedback / Figma capture next — not blocked on missing build steps.
 
-### What Steps 4–8 delivered (Grok — 2026-07-17)
-- Results hero: live query from `?q=`, real counts, browse-all when no query
-- Category filters: desktop aside + mobile pills, live counts, `?category=` sync
-- Cards: HOF (initials/portrait, team badge, class year) + standard (tag, date, excerpt)
-- Empty: no matches + empty-category; popular search chips; inductees/tickets CTAs
-- Typeahead: “Search all results for …” row; multi-token soft match
-- Mobile: stacked hours bar, full-width search field; filter a11y as real buttons
+**Handoff:** Hours-bar search chrome **LOCKED** (Matt). Do **not** revert to icon-only Option A.
 
-### Decision LOCKED — hours-bar search (updated 2026-07-17)
+### Decision LOCKED — hours-bar search
 - Placement: `.hours-bar` beside “Important Details +” (both pages)
-- Chrome: always-visible white-stroked input + crimson square icon (submit); focus expands input left
-- Functionality: predictive dropdown downward — HOF (avatar/initials + team badge) vs general (icon + label)
-- **Not** icon-only → click-expand → close (supersedes old Option A for hours bar)
+- Chrome: always-visible white-stroked input + crimson square submit; focus expands left
+- Functionality: predictive dropdown downward — HOF (portrait + team badge) vs general (icon + label)
+- Search page hours bar: solid black (`.hours-bar--solid`)
+- **Not** icon-only → click-expand → close
 
-### What hours-bar search move delivered (Cline)
-- Search moved into `.hours-bar` alongside "Important Details +" on both `index.html` and `search.html`
-- `.hours-bar__end`: Important Details + · always-open “Search…” input · white search icon (Cursor polish)
-- CSS: `.search-bar--hours`; dropdown opens downward; dead hero-search CSS removed
-- Rail remains logo/CTAs/nav only
+### What client-ready polish delivered (Grok)
+- HOF portrait placeholders (team-tinted silhouette + initials) when `image` empty
+- Team shield badge + school name (brand colors for OSU/UF/ND/OKST)
+- HOF cards show portrait + Inducted year + team badge
+- Sticky right filter aside (clears hours bar); mobile pills ≥44px, horizontal scroll
+- Dynamic category counts on desktop + mobile
+- Typeahead z-index above mobile topbar
+- GitHub Pages live
 
-### What live home match delivered (Cursor)
-- Hero carousel (Game Day Goes Global / Summer Legendary / CityPASS) + hours bar
-- Destination section + Tickets / Group Outings / 2026 Class cards + Happenings strip
-- Join the Legacy band with Tebow quote
-- Files: `index.html`, `assets/css/home.css`, `assets/js/home.js`
+### What Steps 4–8 delivered (Grok)
+- Results hero: `?q=`, live counts, browse-all without query
+- Filters: desktop aside + mobile pills, `?category=` sync
+- Cards: HOF + standard from shared index
+- Empty: no hits + empty-category; popular chips; CTAs
+- Mobile topbar: hamburger · logo · TICKETS (live match)
+- Mobile hero layout match (full-width CTA, edge carousel controls)
 
-### What search UX refactor delivered (Cline)
-- Search removed from left rail on both `index.html` and `search.html`
-- Home: search input in dark hero (`#home-search`) — `.search-bar--hero`, always visible
-- Search results: search input in results header above query hero (`#results-search`)
-- CSS: hero search (translucent white bg, white text, downward dropdown)
-- JS: generalized to `.search-bar-wrap`; hero bars auto-expand without trigger
+### What earlier steps delivered
+- Hours-bar search (Cline + Cursor lock); typeahead (Cursor); left-rail chrome + logo; home sections match live first 3 blocks
 
-### What index restore delivered
-- `index.html`: full left-rail chrome + home hero explaining the search prototype + CTAs
-- Shared `tokens.css` / `search.css` / `search.js` / Typekit `acw8nkk` with results page
-- Entry: `/` → home; results: `/search.html` (and `?q=`)
-
-### What Step 3 delivered
-- `search.js`: fetch + score `data/search-index.json`; live typeahead on `.search-bar__input`
-- HOF rows: avatar (image or initials) + team badge; general rows: category icon + label
-- Keyboard: ArrowUp/Down, Enter selects, Escape closes suggestions then collapses bar
-- `search.css`: `.search-suggest` panel opens upward above rail-bottom search
-- `search.html`: combobox markup + `#search-suggest` listbox
-
-### What Step 2 delivered
-- `.search-bar` component in `search.css`: crimson search icon, inline expand (max-width 200px with transition), close button, focus/expand border state
-- `search.js`: expand/collapse on icon click, close button, Enter to submit, Escape to collapse, outside-click collapse, `submitSearch()` → `search.html?q=`, `populateFromURL()` reads query param and updates hero on `/search`
-- `index.html` + `search.html`: search slot replaced with interactive `.search-bar`
-
-### What logo addition delivered
-- `assets/images/logo.png` — official CFHF logo downloaded from cfbhall.com/images/logo.png (32KB)
-- `.rail-logo__img` CSS: max-width 180px, centered
-- Both HTML pages now show the official logo above the text wordmark
-
-## Execution Plan (shared — Cline draft + Cursor lock)
-
-### Phase: Planning — COMPLETE
+## Execution Plan (locked decisions)
 
 | # | Decision | Locked |
 |---|---|---|
-| 1 | Chrome | Match live **left-rail** (simplified OK); search in rail or hours bar |
-| 2 | Search behavior | Hours bar: always-visible input + crimson square submit; focus expands left; typeahead (**not** icon-only Option A) |
+| 1 | Chrome | Live **left-rail** (desktop); mobile topbar hamburger · logo · TICKETS |
+| 2 | Search | Hours bar: always-visible + crimson square + expand-left + typeahead |
 | 3 | Filter sidebar | **Right** sticky on `/search` |
-| 4 | Categories | **One** — `general-tickets` |
-| 5 | Logo | Wordmark placeholder OK |
+| 4 | Categories | **One** bucket `general-tickets` |
+| 5 | Logo | Official `assets/images/logo.png` |
 
-### File map (target)
+### File map
 
 ```
 /
@@ -125,8 +115,13 @@ Skip only for pure Q&A with **zero** file or plan changes.
   search.html
   assets/css/tokens.css
   assets/css/search.css
+  assets/css/home.css
   assets/js/search.js
+  assets/js/home.js
+  assets/images/logo.png
+  assets/images/arrow.svg
   data/search-index.json
+  .nojekyll
   .clinerules
   cline-project-handoff.md
   AGENTS.md
@@ -137,5 +132,5 @@ Skip only for pure Q&A with **zero** file or plan changes.
 ### Tech stack
 - Vanilla HTML / CSS / JS only
 - No React/Next, no Search & Filter Pro, no Umbraco runtime
-- Tokens from live: crimson `#b5202b`, white rail, `#C0C1C3`, `#888A8E`, black hours
-- Fonts: Kaneda + Neusa Next (or closest licensed stand-ins) — **not Inter**; **no gold system**
+- Tokens: crimson `#b5202b`, white rail, `#C0C1C3`, `#888A8E`, black hours
+- Fonts: Kaneda + Neusa Next (Typekit `acw8nkk`) — **not Inter**; **no gold system**
