@@ -1,7 +1,7 @@
 
 ## 2026-07-17 — Grok: GitHub Pages enabled
-- Source: `master` / root
-- Live: https://mattybotstew.github.io/cfhf-search-prototype/
+- Source: `master` / root; added `.nojekyll` (Jekyll builds were failing)
+- Live: https://mattybotstew.github.io/cfhf-search-prototype/ (home + search 200)
 
 # Journal — CFHF Search Prototype
 
