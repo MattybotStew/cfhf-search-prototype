@@ -68,7 +68,17 @@ Local: `python3 -m http.server 8080` from repo root.
 
 **Status:** Client-shareable prototype. Full funnel live. Design feedback / Figma capture next — not blocked on missing build steps.
 
-**Handoff:** Hours-bar search chrome **LOCKED** (Matt). Do **not** revert to icon-only Option A.
+**Handoff:** Client-ready. Review gaps verified on live Pages (Cursor). Empty `image` → runtime HOF placeholders (documented in README). Do **not** revert hours-bar to icon-only Option A. Next: client feedback / Figma.
+
+### Client review gap status (2026-07-17 — Cursor QA)
+| Item | Status |
+|---|---|
+| HOF portrait placeholders | Verified live (silhouette + initials) |
+| Team badge visual | Verified live (shield + school name) |
+| Sticky right filters | Verified (`position: sticky`) |
+| Mobile pills scroll + tap | Verified (overflow-x, 44px, counts) |
+| Dynamic category counts | Verified desktop + mobile |
+| Empty `image: ""` in JSON | Intentional — see README |
 
 ### Decision LOCKED — hours-bar search
 - Placement: `.hours-bar` beside “Important Details +” (both pages)

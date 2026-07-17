@@ -478,7 +478,7 @@ button {
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
-  font-size: 1.35rem;
+  font-size: 1.6rem;
   font-weight: var(--fw-bold);
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -498,20 +498,20 @@ button {
   --team-secondary: #b5202b;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   max-width: 100%;
-  padding: 0.2rem 0.55rem 0.2rem 0.25rem;
-  border: 1px solid color-mix(in srgb, var(--team-primary) 35%, var(--cfhf-border));
+  padding: 0.3rem 0.65rem 0.3rem 0.3rem;
+  border: 1.5px solid color-mix(in srgb, var(--team-primary) 45%, var(--cfhf-border));
   border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--team-primary) 8%, var(--cfhf-white));
+  background: color-mix(in srgb, var(--team-primary) 10%, var(--cfhf-white));
   color: var(--cfhf-ink);
   vertical-align: middle;
 }
 
 .team-badge__shield {
   flex-shrink: 0;
-  width: 1.35rem;
-  height: 1.5rem;
+  width: 1.55rem;
+  height: 1.7rem;
   display: block;
 }
 
@@ -990,13 +990,14 @@ button {
 
 .filter-list__count {
   flex-shrink: 0;
-  min-width: 1.75rem;
+  min-width: 1.85rem;
   text-align: center;
   font-size: var(--fs-caption);
   font-weight: var(--fw-bold);
   font-variant-numeric: tabular-nums;
-  padding: 0.2em 0.55em;
+  padding: 0.25em 0.6em;
   background: var(--cfhf-surface-alt);
+  border: 1px solid var(--cfhf-border);
   border-radius: var(--radius-pill);
   color: var(--cfhf-ink);
 }
@@ -1068,9 +1069,11 @@ button {
 }
 
 .result-card--hof .result-card__media {
-  flex-basis: 6.25rem;
-  width: 6.25rem;
-  height: 6.25rem;
+  flex-basis: 7rem;
+  width: 7rem;
+  height: 7rem;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--cfhf-crimson) 25%, var(--cfhf-border)),
+    var(--shadow-sm);
 }
 
 .result-card__body {
@@ -1544,13 +1547,13 @@ button {
 
   .result-card__media,
   .result-card--hof .result-card__media {
-    flex-basis: 4.75rem;
-    width: 4.75rem;
-    height: 4.75rem;
+    flex-basis: 5.25rem;
+    width: 5.25rem;
+    height: 5.25rem;
   }
 
   .hof-portrait__initials {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   .result-card--standard .result-card__chevron {

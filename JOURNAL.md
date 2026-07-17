@@ -1,5 +1,13 @@
 # Journal — CFHF Search Prototype
 
+## 2026-07-17 — Cursor: close client review gaps
+
+- Live Pages QA confirmed: HOF silhouette + Inducted year + shield badge; sticky filters; mobile pills (44px, scroll, counts); dynamic category counts
+- Clarified in README: empty `image` fields are intentional — placeholders render in JS
+- Residual CSS: larger HOF portrait, stronger team badge + filter count treatment
+- No code path change needed for sticky/pills/counts (already shipped in `3dc4dd7`)
+- **Next:** client share / feedback; optional real CMS portrait URLs later
+
 ## 2026-07-17 — Grok: update all agent continuity files
 - Refreshed `AGENTS.md`, `.clinerules`, `cline-project-handoff.md`, this journal
 - Status: Steps 1–8 complete; client-ready on GitHub Pages

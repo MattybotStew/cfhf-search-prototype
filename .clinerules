@@ -6,10 +6,10 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-07-17 (Grok — full agent continuity sync; client-ready)
-**Active Agent:** **Grok**
-**Branch:** `master` (synced with origin)
-**Status:** Build Steps 1–8 **COMPLETE**. Client-shareable on GitHub Pages. Continuity docs refreshed.
+**Last Updated:** 2026-07-17 (Cursor — client review gaps QA + residual polish)
+**Active Agent:** **Cursor**
+**Branch:** `master`
+**Status:** Steps 1–8 complete. Live Pages QA confirmed review gaps already met; residual polish for client share.
 
 ### Live
 - https://mattybotstew.github.io/cfhf-search-prototype/
@@ -22,8 +22,14 @@ Matt: “i want what is there now with the search functionality requested.”
 - Do **not** switch to icon-only click-expand
 
 ### In Progress / Next
-- Client feedback, design iteration, Figma capture as needed
-- Optional later: real CMS portrait URLs in `image` field; production Umbraco API swap
+- Client feedback / Figma after share
+- Optional later: real CMS portrait URLs in `image` field
+
+### Newly completed (2026-07-17 — Cursor: client review response)
+- Live Pages QA: HOF card (portrait + Inducted year + shield badge), sticky filters, mobile pills ≥44px + horizontal scroll + counts, typeahead
+- README: empty `image: ""` → runtime silhouette/badge (intentional Examine mock)
+- CSS: larger HOF media + stronger team badge / filter count emphasis
+- Review gap map: all items verified done; no icon-only Option A revert
 
 ### Newly completed (session summary — 2026-07-17)
 - Steps 4–8: results hero, real filters, HOF/standard cards, empty state, a11y/mobile baseline

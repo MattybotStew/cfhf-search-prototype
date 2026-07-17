@@ -26,6 +26,12 @@ No Search & Filter Pro. Vanilla HTML / CSS / JS only.
 
 **Client-ready** on GitHub Pages. Design feedback / Figma next.
 
+## Mock index notes
+
+`data/search-index.json` is Examine-shaped (title, excerpt, image, category, dates, inductionYear, team, teamBadge).
+
+**Empty `image: ""` fields are intentional.** The UI generates HOF portrait placeholders at runtime (team-tinted silhouette + initials) plus a shield-style team badge from `team` / `teamBadge`. Real CMS portrait URLs can drop into `image` later without markup changes.
+
 ## Run locally
 
 Serve the folder (needed for `fetch` on the JSON index):
