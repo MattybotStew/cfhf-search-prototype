@@ -1,0 +1,144 @@
+# CFHF Search Prototype — Shared Agent Rules
+# Read this before touching any file. Update after every change.
+
+---
+
+## Current Session State
+
+**Last Updated:** 2026-07-17 (Cursor — repo bootstrap + Cline handoff)
+**Active Agent:** Cursor
+**Branch:** `master` — synced with `origin/master`
+**Last Commit:** bootstrap (`README.md`, `.gitignore`) — handoff files may be newer; check `git status`
+
+### In Progress
+- (none) — ready to start **Step 1: brand tokens + header search states**
+
+### Newly completed (2026-07-17)
+- Private GitHub repo: `MattybotStew/cfhf-search-prototype`
+- Local path: `~/Projects/cfhf-search-prototype`
+- Scope locked: **search UX prototype only** (not full CFHF site rebuild)
+- Cline handoff added: `.clinerules`, `cline-project-handoff.md`, `AGENTS.md`, `JOURNAL.md`
+
+### Still Blocked / Decide Before Coding Filters
+1. Filter sidebar: brief says **sticky right**; early HTML draft used **left** — confirm before filter layout
+2. Categories: brief has **"General Information and Tickets"** as one; draft split Tickets / General — confirm
+
+### Awaiting
+- Official logo / shield assets (use text/wordmark stand-in until provided)
+- Real inductee photography (use initials/placeholder avatars for prototype)
+
+---
+
+## Who else is working on this codebase
+
+**Cursor** and **VS Code (Cline)** both edit this repo. Sync via git + this file + `JOURNAL.md` — see `AGENTS.md`.
+
+Before ending any session: update **Current Session State** above and prepend an entry to `JOURNAL.md`.
+
+---
+
+## Project Context
+
+- **Client:** Chick-fil-A College Football Hall of Fame (cfbhall.com)
+- **Agency work:** Client-shareable **search prototype** for presentation + Figma import later
+- **This repo:** Static prototype — **NOT** production Umbraco
+- **CMS target (later):** Umbraco Search / Examine index — **NO Search & Filter Pro**
+
+---
+
+## What We Are Building
+
+1. Global header search — default **icon** → expand to input (desktop + mobile)
+2. Predictive dropdown — HOF (avatar + team badge) vs general (text/icon)
+3. `/search` page — query hero, category filters, result cards, empty state
+4. Mock Umbraco backend — local `search-index.json` (Examine-shaped documents)
+
+Primary user intents: **inductees**, **tickets**, **events**.
+
+---
+
+## Tech Stack (do not change without asking)
+
+- Prefer **vanilla HTML / CSS / JS** (matches prior CloudMellow prototypes; easy client share + Figma capture)
+- Optional light Vite static shell later if needed — ask first
+- **No** React/Next unless Matt explicitly switches
+- **No** Search & Filter Pro or other paid search plugins
+- Fonts: athletic condensed uppercase for headings + geometric sans for body — **not Inter / Roboto / Arial / system default stack as the brand face**
+- Brand colors live in a tokens file once created — never hardcode crimson/navy outside tokens
+
+### Planned brand tokens (from CFHF design spec)
+
+| Token role | Direction |
+|---|---|
+| Primary accent | Deep athletic red / crimson (TICKETS CTAs, accents) |
+| Secondary | Dark navy (header, logo ground, footer) |
+| Surfaces | White / light gray |
+| Overlays | Charcoal / midnight |
+| Avoid | Gold/indigo “generic SaaS” look from the early draft HTML; purple gradients; cream+serif terracotta |
+
+---
+
+## Umbraco Mimic (required pattern)
+
+One shared dataset for typeahead **and** results:
+
+```text
+data/search-index.json  →  fields shaped like Examine hits
+```
+
+Document shape (keep realistic):
+
+- `id`, `docType`, `category`, `title`, `excerpt`, `url`, `image`, `date`
+- Inductees also: `inductionYear`, `team`, `teamBadge`
+
+Categories (until Matt confirms otherwise — match the brief):
+
+- `all` | `inductees` | `news` | `events` | `general-tickets`
+
+Filter UI must actually filter this data. Do not ship toy toggles that only change CSS `display` without filtering.
+
+---
+
+## Build Order (follow this)
+
+1. Brand tokens + base shell
+2. Global header search states
+3. Predictive dropdown (same data source)
+4. Search page hero + layout
+5. Category filters (desktop sticky + mobile pills) — real filtering
+6. Standard + Hall of Famer cards
+7. Empty state
+8. A11y + mobile polish + share link (GitHub Pages later if asked)
+
+---
+
+## What NOT To Do
+
+- Do not rebuild the full CFHF marketing site
+- Do not add Search & Filter Pro or Umbraco packages
+- Do not invent final legal logo lockups — placeholder wordmark OK
+- Do not leave Inter + amber/gold as the client-facing brand
+- Do not commit secrets or real private API keys (none needed)
+- Do not force-push `master` or skip hooks
+- Do not guess blocked layout decisions (sidebar side, category merge) — ask or use the defaults noted above and flag in JOURNAL
+
+---
+
+## File Map (target)
+
+```text
+/
+  index.html                 # optional home stub linking into search demo
+  search.html                # /search prototype page
+  assets/css/tokens.css
+  assets/css/search.css
+  assets/js/search.js
+  data/search-index.json
+  .clinerules
+  cline-project-handoff.md
+  AGENTS.md
+  JOURNAL.md
+  README.md
+```
+
+Adjust paths if a tiny Vite setup is approved later; keep the same responsibilities.
