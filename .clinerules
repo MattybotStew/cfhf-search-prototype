@@ -5,27 +5,50 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-07-17 (Cursor — repo bootstrap + Cline handoff)
-**Active Agent:** Cursor
-**Branch:** `master` — synced with `origin/master`
-**Last Commit:** bootstrap (`README.md`, `.gitignore`) — handoff files may be newer; check `git status`
+**Last Updated:** 2026-07-17 (Cursor — decisions locked; plan synced for Cline)
+**Active Agent:** Cursor (just updated sync docs) — **Cline may start Step 1 after `git pull`**
+**Branch:** `master`
+**Status:** Planning complete. Decisions locked. Ready for Step 1 code.
+
+### Message for Cline (read this)
+
+Cursor reviewed your execution plan in `AGENTS.md`. **Build order, stack, and file map align.** Correct these before coding:
+
+1. Live chrome is a **white left sidebar**, not a navy top header — do not invent a horizontal navy bar.
+2. Drop **gold** as a brand token; use live crimson `#b5202b` + white rail + Kaneda/Neusa.
+3. Decisions are **locked** below — stop waiting on Matt for those five items.
+
+Then proceed with **Step 1: brand tokens + base shell**.
+
+### Decisions LOCKED (2026-07-17)
+
+| # | Decision | Locked choice |
+|---|---|---|
+| 1 | Chrome / header | **Match live left-rail chrome** (simplified OK). Logo + TICKETS / DONATE / MEMBERSHIP + nav. Put search in the rail (or hours bar). |
+| 2 | Search behavior | **Option A — icon expands inline** into input (not overlay). |
+| 3 | Filter sidebar on `/search` | **Right sticky** (left rail stays global nav). |
+| 4 | Categories | **One** category: `general-tickets` = “General Information and Tickets”. |
+| 5 | Logo | **Text / wordmark placeholder** OK until official shield assets. |
 
 ### In Progress
-- (none) — ready to start **Step 1: brand tokens + header search states**
+- Ready for **Step 1** (either agent): `tokens.css` + shell HTML + starter `search-index.json`
 
 ### Newly completed (2026-07-17)
-- Private GitHub repo: `MattybotStew/cfhf-search-prototype`
-- Local path: `~/Projects/cfhf-search-prototype`
-- Scope locked: **search UX prototype only** (not full CFHF site rebuild)
-- Cline handoff added: `.clinerules`, `cline-project-handoff.md`, `AGENTS.md`, `JOURNAL.md`
+- Repo + Cline handoff docs
+- Live site audit (Cursor) — no search on live; Umbraco confirmed
+- Plan alignment check: Cline 8-step plan accepted with brand corrections
+- All open product decisions locked (table above)
 
-### Still Blocked / Decide Before Coding Filters
-1. Filter sidebar: brief says **sticky right**; early HTML draft used **left** — confirm before filter layout
-2. Categories: brief has **"General Information and Tickets"** as one; draft split Tickets / General — confirm
+### Live site facts (do not contradict)
+- **CMS:** Umbraco
+- **No public search UX today** — `/search` 404; `?s=` ignored
+- **Chrome:** white left sidebar ~280–328px; hours bar; crimson TICKETS
+- **Crimson:** `#b5202b` / `#b5212a`
+- **Borders / muted:** `#C0C1C3` / `#888A8E`
+- **Type:** Kaneda (display) + Neusa Next / Std Compact (body/UI) via Typekit — use kit if available; otherwise closest licensed condensed + geometric stand-ins (**not Inter**)
 
-### Awaiting
-- Official logo / shield assets (use text/wordmark stand-in until provided)
-- Real inductee photography (use initials/placeholder avatars for prototype)
+### Still Blocked
+- (none for Step 1) — official logo assets optional later
 
 ---
 
@@ -48,9 +71,9 @@ Before ending any session: update **Current Session State** above and prepend an
 
 ## What We Are Building
 
-1. Global header search — default **icon** → expand to input (desktop + mobile)
+1. Global header search — default **icon** → expand to input (desktop + mobile) — **inline, Option A**
 2. Predictive dropdown — HOF (avatar + team badge) vs general (text/icon)
-3. `/search` page — query hero, category filters, result cards, empty state
+3. `/search` page — query hero, **right** category filters, result cards, empty state
 4. Mock Umbraco backend — local `search-index.json` (Examine-shaped documents)
 
 Primary user intents: **inductees**, **tickets**, **events**.
@@ -59,68 +82,64 @@ Primary user intents: **inductees**, **tickets**, **events**.
 
 ## Tech Stack (do not change without asking)
 
-- Prefer **vanilla HTML / CSS / JS** (matches prior CloudMellow prototypes; easy client share + Figma capture)
-- Optional light Vite static shell later if needed — ask first
+- Prefer **vanilla HTML / CSS / JS**
 - **No** React/Next unless Matt explicitly switches
 - **No** Search & Filter Pro or other paid search plugins
-- Fonts: athletic condensed uppercase for headings + geometric sans for body — **not Inter / Roboto / Arial / system default stack as the brand face**
-- Brand colors live in a tokens file once created — never hardcode crimson/navy outside tokens
+- Fonts: Kaneda + Neusa Next (or approved stand-ins) — **not Inter / Roboto / Arial as brand faces**
+- Brand colors live in `tokens.css` only
 
-### Planned brand tokens (from CFHF design spec)
+### Brand tokens (locked from live site)
 
-| Token role | Direction |
+| Token role | Live value |
 |---|---|
-| Primary accent | Deep athletic red / crimson (TICKETS CTAs, accents) |
-| Secondary | Dark navy (header, logo ground, footer) |
-| Surfaces | White / light gray |
-| Overlays | Charcoal / midnight |
-| Avoid | Gold/indigo “generic SaaS” look from the early draft HTML; purple gradients; cream+serif terracotta |
+| Primary CTA / accent | `#b5202b` / `#b5212a` crimson |
+| Chrome | **White** left sidebar; border `#C0C1C3` |
+| Hours / dark strips | Black `#000000` |
+| Muted UI text | `#888A8E` |
+| Logo navy | Inside shield lockup only |
+| Display font | Kaneda (condensed uppercase) |
+| Body / UI font | Neusa Next / Neusa Next Std Compact |
+| Avoid | Inter; amber/gold SaaS accents; indigo; navy top-bar chrome the live site does not use |
 
 ---
 
 ## Umbraco Mimic (required pattern)
 
-One shared dataset for typeahead **and** results:
+One shared dataset for typeahead **and** results: `data/search-index.json`
 
-```text
-data/search-index.json  →  fields shaped like Examine hits
-```
+Fields: `id`, `docType`, `category`, `title`, `excerpt`, `url`, `image`, `date`  
+Inductees also: `inductionYear`, `team`, `teamBadge`
 
-Document shape (keep realistic):
-
-- `id`, `docType`, `category`, `title`, `excerpt`, `url`, `image`, `date`
-- Inductees also: `inductionYear`, `team`, `teamBadge`
-
-Categories (until Matt confirms otherwise — match the brief):
+Categories (locked):
 
 - `all` | `inductees` | `news` | `events` | `general-tickets`
 
-Filter UI must actually filter this data. Do not ship toy toggles that only change CSS `display` without filtering.
+Filter UI must **actually filter** this data.
 
 ---
 
-## Build Order (follow this)
+## Build Order (follow this — shared with Cline)
 
 1. Brand tokens + base shell
-2. Global header search states
+2. Global header search states (inline expand)
 3. Predictive dropdown (same data source)
 4. Search page hero + layout
-5. Category filters (desktop sticky + mobile pills) — real filtering
+5. Category filters — **right** desktop sticky + mobile pills — real filtering
 6. Standard + Hall of Famer cards
 7. Empty state
-8. A11y + mobile polish + share link (GitHub Pages later if asked)
+8. A11y + mobile polish (+ GitHub Pages later if asked)
 
 ---
 
 ## What NOT To Do
 
 - Do not rebuild the full CFHF marketing site
+- Do not invent a navy horizontal global header
+- Do not use gold as a system brand color
 - Do not add Search & Filter Pro or Umbraco packages
 - Do not invent final legal logo lockups — placeholder wordmark OK
 - Do not leave Inter + amber/gold as the client-facing brand
-- Do not commit secrets or real private API keys (none needed)
 - Do not force-push `master` or skip hooks
-- Do not guess blocked layout decisions (sidebar side, category merge) — ask or use the defaults noted above and flag in JOURNAL
 
 ---
 
@@ -128,8 +147,8 @@ Filter UI must actually filter this data. Do not ship toy toggles that only chan
 
 ```text
 /
-  index.html                 # optional home stub linking into search demo
-  search.html                # /search prototype page
+  index.html
+  search.html
   assets/css/tokens.css
   assets/css/search.css
   assets/js/search.js
@@ -140,5 +159,3 @@ Filter UI must actually filter this data. Do not ship toy toggles that only chan
   JOURNAL.md
   README.md
 ```
-
-Adjust paths if a tiny Vite setup is approved later; keep the same responsibilities.

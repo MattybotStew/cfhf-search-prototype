@@ -50,16 +50,21 @@ CloudMellow is building a **client-shareable search UX prototype** for the Chick
 
 ---
 
-## 3. Brand Direction (site design spec)
+## 3. Brand Direction (live site + design spec)
 
-| Role | Direction |
+**Live reference:** https://www.cfbhall.com/ (audited 2026-07-17)
+
+| Role | Live value / direction |
 |---|---|
-| Primary | Deep athletic red / crimson |
-| Secondary | Dark navy |
-| Backgrounds | White / light gray |
-| Dark overlays | Charcoal / midnight |
-| Headings | Bold condensed uppercase (scoreboard / athletic) |
-| Body | Clean geometric sans |
+| Primary | `#b5202b` crimson (TICKETS, accents) |
+| Secondary / logo | Navy in Chick-fil-A CFHF shield |
+| Borders | `#C0C1C3` |
+| Muted | `#888A8E` |
+| Chrome | Left sticky white sidebar (~280–328px); hours bar over content |
+| Headings | **Kaneda** — bold condensed uppercase |
+| Body / UI | **Neusa Next** / Neusa Next Std Compact (Typekit) |
+
+**Critical gap:** live site has **no search UI** and **no `/search` page**. This prototype is the proposed new experience; it must still feel native to the live chrome/brand.
 
 Avoid the early draft’s Inter + amber/gold + indigo “SaaS search” look for anything client-facing.
 
@@ -115,10 +120,15 @@ Production handoff story: swap JSON fetch for Umbraco search API; keep the same 
 
 ---
 
-## 7. Open Decisions
+## 7. Decisions (LOCKED 2026-07-17 — Cursor → Cline)
 
-1. Filter sidebar left vs **right** (brief = right)  
-2. Keep “General Information and Tickets” as one category vs split  
+1. Chrome: match live **left-rail** (simplified OK); search in rail or hours bar  
+2. Search: **Option A** icon → **inline** expand  
+3. Filters: **right** sticky on `/search`  
+4. Categories: keep **“General Information and Tickets”** as one (`general-tickets`)  
+5. Logo: wordmark placeholder OK  
+
+See `.clinerules` → **Message for Cline** and `AGENTS.md` → **Cursor → Cline sync note**.
 
 ---
 
