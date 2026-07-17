@@ -6,15 +6,16 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-07-17 (Cursor — rail arrows use arrow.svg)
+**Last Updated:** 2026-07-17 (Cursor — nav arrow orientation fixed)
 **Active Agent:** **Cline** (Step 3) / Cursor chrome polish
 **Branch:** `master`
-**Status:** Steps 1–2 done. Rail uses `assets/images/arrow.svg`. Cline owns Step 3.
+**Status:** Steps 1–2 done + committed (`a5e41c7`). Nav arrows point right. Cline owns Step 3.
 
 ### In Progress
 - **Cline:** Step 3 — predictive dropdown
 
 ### Newly completed (2026-07-17 — Cursor)
+- Fixed nav arrow orientation: dropped Figma `rotate(83.976deg)` (assumed vertical source); arrow.svg already points right, sized to rotated result 27.823×11.765px
 - Nav arrows → `assets/images/arrow.svg` (live-style swoosh)
 - Sidebar live match: logo-only, CTA layout, Kaneda nav
 - `index.html` → redirect to `search.html`

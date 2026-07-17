@@ -1,5 +1,10 @@
 # Journal — CFHF Search Prototype
 
+## 2026-07-17 — Cursor: fix arrow orientation
+
+- Figma's rotate(83.976deg) assumed a vertical source; our arrow.svg already points right
+- Removed transform; sized `.rail-nav__arrow` to the rotated result (27.823×11.765px)
+
 ## 2026-07-17 — Cursor: Figma arrow size + rotation
 
 - `.rail-nav__arrow`: 11.765×27.823px, `rotate(83.976deg)` per Figma

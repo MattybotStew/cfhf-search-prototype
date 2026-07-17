@@ -215,14 +215,14 @@ button {
   color: var(--cfhf-crimson);
 }
 
+/* Figma spec (11.765×27.823 @ rotate 83.976deg) describes a vertical source
+   asset; arrow.svg already points right, so we use the rotated result size. */
 .rail-nav__arrow {
   flex-shrink: 0;
-  width: 11.765px;
-  height: 27.823px;
+  width: 27.823px;
+  height: 11.765px;
   display: block;
   object-fit: contain;
-  transform: rotate(83.976deg);
-  transform-origin: center;
 }
 
 .rail-nav__link:hover .rail-nav__arrow {
