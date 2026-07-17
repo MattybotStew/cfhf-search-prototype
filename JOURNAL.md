@@ -1,3 +1,8 @@
+
+## 2026-07-17 — Grok: GitHub Pages enabled
+- Source: `master` / root
+- Live: https://mattybotstew.github.io/cfhf-search-prototype/
+
 # Journal — CFHF Search Prototype
 
 ## 2026-07-17 — Grok: typeahead z-index above mobile topbar
