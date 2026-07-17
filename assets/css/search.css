@@ -474,66 +474,57 @@ button {
   text-align: center;
 }
 
-/* Hero search — always open, no expand/collapse */
-.search-bar--hero {
-  border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+/* Hours-bar search — icon + inline expand inside the black bar */
+.hours-bar__end {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
 }
 
-.search-bar--hero:focus-within {
-  border-color: rgba(255, 255, 255, 0.7);
-  background: rgba(255, 255, 255, 0.18);
-}
-
-.search-bar__icon--hero {
-  width: 1.125rem;
-  height: 1.125rem;
-  color: var(--cfhf-crimson);
-  flex-shrink: 0;
-  margin: 0 var(--space-3);
-}
-
-.search-bar__input-wrapper--always-open {
-  max-width: none;
-}
-
-.search-bar__input--hero {
-  padding: var(--space-3) 0;
-  font-size: 1rem;
+.search-bar--hours {
+  background: transparent;
+  border: none;
+  border-radius: 0;
   color: var(--cfhf-white);
 }
 
-.search-bar__input--hero::placeholder {
+.search-bar--hours .search-bar__trigger {
+  color: var(--cfhf-crimson);
+}
+
+.search-bar--hours .search-bar__trigger:hover {
+  color: var(--cfhf-crimson-hover);
+}
+
+.search-bar--hours .search-bar__input {
+  color: var(--cfhf-white);
+  font-size: var(--fs-ui);
+  padding: var(--space-1) 0 var(--space-1) var(--space-2);
+}
+
+.search-bar--hours .search-bar__input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.search-bar--hours .search-bar__close {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.search-bar__input--hero::-webkit-search-cancel-button {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2'%3E%3Cpath d='M18 6L6 18M6 6l12 12'/%3E%3C/svg%3E") center / contain no-repeat;
-  cursor: pointer;
-  opacity: 0.7;
+.search-bar--hours .search-bar__close:hover {
+  color: var(--cfhf-crimson);
 }
 
-.home-hero__search {
-  max-width: 32rem;
-  margin-bottom: var(--space-6);
-}
-
-.search-hero__search {
-  max-width: 32rem;
-  margin-bottom: var(--space-5);
-}
-
-/* Hero-positioned dropdown opens downward */
-.home-hero .search-suggest,
-.search-hero .search-suggest {
+/* Hours-bar dropdown opens downward */
+.hours-bar .search-suggest {
   position: absolute;
   top: 100%;
-  left: 0;
   right: 0;
+  left: auto;
   bottom: auto;
   margin-top: var(--space-1);
+  min-width: 18rem;
   border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
   z-index: 50;
 }
 

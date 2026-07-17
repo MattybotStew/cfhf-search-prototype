@@ -1,5 +1,21 @@
 # Journal — CFHF Search Prototype
 
+## 2026-07-17 — Cursor: handoff — Cline owns hours-bar search
+
+- Decision locked: search moves from hero/results header into the **hours bar** (icon → inline expand, Option A)
+- **Cline** implementing; Cursor standing down on search placement until Cline commits/pushes
+- **Next after that:** Step 4 — results hero + layout wired to real query/count
+
+## 2026-07-17 — Cline: search moved to hours bar (final placement)
+
+- **Search relocated into `#hours-bar`** alongside "Important Details +" — no longer in hero or rail
+- `.hours-bar__end` flex container: search icon → inline expand input → "Important Details +" link
+- Both `index.html` and `search.html` share identical hours-bar search markup
+- CSS: `.search-bar--hours` (transparent bg, white text, crimson icon, dark downward dropdown)
+- `.hours-bar__end` layout with gap
+- Removed dead `.hero-carousel__search` CSS from `home.css`
+- Rail remains logo/CTAs/nav only — no search slot
+
 ## 2026-07-17 — Cursor: match index to live first 3 sections
 
 - Rebuilt `index.html` main column to mirror live homepage: (1) hero carousel, (2) Destination + Happenings, (3) Join the Legacy

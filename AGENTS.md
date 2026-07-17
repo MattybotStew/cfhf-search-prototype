@@ -48,10 +48,21 @@ Skip only for pure Q&A with **zero** file or plan changes.
 | 7. Empty state | pending |
 | 8. A11y + mobile polish | partially done |
 
-**Handoff:** Index first-three sections match live homepage. Steps 1–3 done. Next: Step 4+ (results hero wiring, filters/cards). Search lives in hero areas, not the rail.
+**Handoff:** **Cline** is moving search into the hours bar (locked). Cursor: don’t touch search placement until Cline pushes. After that → Step 4+ (results hero wiring, filters/cards).
+
+### Decision LOCKED — hours-bar search
+- Search icon in `.hours-bar` beside “Important Details +”; inline expand; dropdown downward
+- Remove hero / results-header search overlays
+- Global chrome on both `index.html` and `search.html`
+
+### What hours-bar search move delivered (Cline)
+- Search moved into `.hours-bar` alongside "Important Details +" on both `index.html` and `search.html`
+- `.hours-bar__end` flex container: search icon → inline expand input → "Important Details +" link
+- CSS: `.search-bar--hours` (transparent bg, white text, crimson icon, dark dropdown), `.hours-bar__end` layout
+- Removed dead `.hero-carousel__search` CSS; rail remains logo/CTAs/nav only
 
 ### What live home match delivered (Cursor)
-- Hero carousel (Game Day Goes Global / Summer Legendary / CityPASS) + hours bar + hero search overlay
+- Hero carousel (Game Day Goes Global / Summer Legendary / CityPASS) + hours bar
 - Destination section + Tickets / Group Outings / 2026 Class cards + Happenings strip
 - Join the Legacy band with Tebow quote
 - Files: `index.html`, `assets/css/home.css`, `assets/js/home.js`

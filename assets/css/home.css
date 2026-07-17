@@ -148,27 +148,6 @@
   background: var(--cfhf-crimson);
 }
 
-/* Prototype search overlay on hero */
-.hero-carousel__search {
-  position: absolute;
-  left: var(--space-6);
-  right: var(--space-6);
-  bottom: var(--space-5);
-  z-index: 6;
-  max-width: 32rem;
-}
-
-.hero-carousel .search-suggest {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  bottom: auto;
-  margin-top: var(--space-1);
-  border-radius: var(--radius-sm);
-  z-index: 50;
-}
-
 /* ----- 2. Destination + Happenings ----- */
 .home-intro {
   display: grid;

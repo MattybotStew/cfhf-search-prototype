@@ -6,66 +6,45 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-07-17 (Cursor — index matches live first 3 sections)
-**Active Agent:** **Cursor**
+**Last Updated:** 2026-07-17 (Cline — hours-bar search move)
+**Active Agent:** **Cline** (implementing hours-bar search)
 **Branch:** `master`
-**Status:** Steps 1–3 done. Index homepage first 3 right-column sections match live (hero carousel, Destination+Happenings, Join the Legacy). Hero search kept (Option A).
+**Status:** Search relocated to hours bar. Cursor can pick up Step 4+.
 
 ### In Progress
+- **Cline:** Just moved search into hours bar — verifying + agent update
 - **Next:** Step 4 — results hero + layout (wire to live query/count)
+
+### Newly completed (2026-07-17 — Cline: hours-bar search)
+- Search moved from hero overlay into the `.hours-bar` alongside "Important Details +"
+- `.hours-bar__end` flex container: search icon → inline expand input → "Important Details +" link
+- CSS: `.search-bar--hours` (transparent bg, white text, crimson icon, dark dropdown), `.hours-bar__end` layout
+- Both `index.html` and `search.html` share identical hours-bar search markup
+- Removed dead `.hero-carousel__search` CSS
+- Rail remains logo/CTAs/nav only (no search)
 
 ### Newly completed (2026-07-17 — Cursor: live home sections on index)
 - `index.html`: hero carousel (3 slides), Destination + cards + Happenings, Join the Legacy / Tebow quote
 - `assets/css/home.css`, `assets/js/home.js` — carousel + section styles
-- Prototype search stays overlaid on hero (`#home-search`); rail remains logo/CTAs/nav only
-- Live media URLs used as stand-in hero/happenings imagery
+- Rail remains logo/CTAs/nav only
 
 ### Newly completed (2026-07-17 — Cline: search UX refactor)
 - Search removed from left rail on both `index.html` and `search.html`
-- Home: search input placed directly in the dark hero section (`#home-search`) with full predictive dropdown (`.search-bar--hero` style, always visible, no expand/collapse)
-- Search results page: search input placed in results header above the query hero (`#results-search`)
-- CSS: hero search styling (translucent white bg, white text, downward dropdown); `.home-hero__actions` layout
-- JS: generalized from `.rail-search-slot` to `.search-bar-wrap`; hero search bars auto-expand and work without a trigger button
-- Left rail: logo, CTAs, nav only (no search slot)
+- CSS: hero search styling (translucent white bg, white text, downward dropdown)
+- JS: generalized from `.rail-search-slot` to `.search-bar-wrap`
 
-### Newly completed (2026-07-17 — Cursor: restore index home)
-- `index.html` restored as real homepage (not redirect): same left-rail chrome as `search.html`, home hero stub + CTAs (try rail search / sample results)
-- Logo links → `index.html`; `search.html` remains results page
-- README entry points: home first, search at `/search.html`
-- Minor: `.home-hero__actions` styles; `#cta-try-search` expands rail search via `search.js`
-
-### Newly completed (2026-07-17 — Cursor Step 3)
-- Predictive dropdown: live filter from `data/search-index.json` (shared Examine-shaped index)
+### Newly completed (2026-07-17 — Step 3)
+- Predictive dropdown: live filter from `data/search-index.json`
 - HOF suggestions: initials avatar + team badge; general: category icon + label
-- Wired into `.search-bar` expand (Step 2): input → suggestions; ArrowUp/Down; Enter / click → `search.html?q=`
-- Escape / outside click collapse; suggestions open upward above rail-bottom search
 - Combobox a11y: `role="combobox"`, listbox, `aria-activedescendant`
 
-### Newly completed (2026-07-17 — Cursor)
-- Fixed nav arrow orientation: dropped Figma `rotate(83.976deg)` (assumed vertical source); arrow.svg already points right, sized to rotated result 27.823×11.765px
-- Nav arrows → `assets/images/arrow.svg` (live-style swoosh)
-- Sidebar live match: logo-only, CTA layout, Kaneda nav
-- ~~`index.html` → redirect to `search.html`~~ (superseded — home restored)
-
-### Newly completed (2026-07-17 — latest / Cline)
-- `assets/images/logo.png` — downloaded official CFHF logo from live site (cfbhall.com/images/logo.png, 32KB)
-- `assets/css/search.css` — added `.rail-logo__img` styles (max-width 180px, centered)
-- `index.html` + `search.html` — official logo image added above text wordmark in left rail
-
 ### Newly completed (2026-07-17 — Step 2)
-- `assets/css/search.css` — `.search-bar` component: icon trigger, inline expand input (max-width transition), close button, focus styles, crimson border on expand
-- `assets/js/search.js` — expand/collapse logic, Enter/Escape keys, outside-click collapse, `submitSearch()` navigates to `search.html?q=`, `populateFromURL()` reads query param and updates hero
-- `index.html` + `search.html` — search slot replaced with interactive `.search-bar` markup
-- Search bar in white left rail, matches live chrome pattern
+- `.search-bar` component: icon trigger, inline expand input (max-width transition), close button
+- `search.js`: expand/collapse, Enter/Escape, outside-click, `submitSearch()`, `populateFromURL()`
 
 ### Newly completed (2026-07-17 — Step 1)
-- `assets/css/tokens.css` — live-site brand tokens (`#b5202b`, rail widths, Kaneda/Neusa vars)
-- `assets/css/search.css` — left-rail shell, hours bar, search page scaffold layout
-- `index.html` — home stub with live-style chrome
-- `search.html` — `/search` scaffold (hero, right filters, mobile pills placeholders)
-- `data/search-index.json` — 18 Examine-shaped mock documents
-- `assets/js/search.js` — mobile rail toggle only (search logic in Step 2+)
-- Typekit kit `acw8nkk` linked (same as live site)
+- Brand tokens + left-rail shell + search page scaffold + 18-doc mock index
+- Typekit kit `acw8nkk` linked
 
 ### Live site facts (do not contradict)
 - **CMS:** Umbraco
@@ -73,20 +52,18 @@
 - **Chrome:** white left sidebar ~280–328px; hours bar; crimson TICKETS
 - **Crimson:** `#b5202b` / `#b5212a`
 - **Borders / muted:** `#C0C1C3` / `#888A8E`
-- **Type:** Kaneda (display) + Neusa Next / Std Compact (body/UI) via Typekit — use kit if available; otherwise closest licensed condensed + geometric stand-ins (**not Inter**)
+- **Type:** Kaneda (display) + Neusa Next / Std Compact (body/UI) via Typekit
 
 ### Still Blocked
 - None
-- Official logo: present at `assets/images/logo.png`
-- **Next for either agent:** Step 4 — wire results hero + layout to real query/count from index
 
 ---
 
 ## Who else is working on this codebase
 
-**Cursor** and **VS Code (Cline)** both edit this repo. Sync via git + this file + `JOURNAL.md` + `AGENTS.md` — see `AGENTS.md`.
+**Cursor** and **VS Code (Cline)** both edit this repo. Sync via git + this file + `JOURNAL.md` + `AGENTS.md`.
 
-**After every finished prompt** (not only end of day): update **Current Session State** above, prepend `JOURNAL.md`, and refresh `AGENTS.md` build progress if it changed.
+**After every finished prompt:** update **Current Session State**, prepend `JOURNAL.md`, refresh `AGENTS.md`.
 
 ---
 
@@ -106,17 +83,13 @@
 3. `/search` page — query hero, **right** category filters, result cards, empty state
 4. Mock Umbraco backend — local `search-index.json` (Examine-shaped documents)
 
-Primary user intents: **inductees**, **tickets**, **events**.
-
 ---
 
 ## Tech Stack (do not change without asking)
 
 - Prefer **vanilla HTML / CSS / JS**
-- **No** React/Next unless Matt explicitly switches
-- **No** Search & Filter Pro or other paid search plugins
-- Fonts: Kaneda + Neusa Next (or approved stand-ins) — **not Inter / Roboto / Arial as brand faces**
-- Brand colors live in `tokens.css` only
+- **No** React/Next, **No** Search & Filter Pro
+- Fonts: Kaneda + Neusa Next — **not Inter / Roboto / Arial as brand faces**
 
 ### Brand tokens (locked from live site)
 
@@ -126,10 +99,9 @@ Primary user intents: **inductees**, **tickets**, **events**.
 | Chrome | **White** left sidebar; border `#C0C1C3` |
 | Hours / dark strips | Black `#000000` |
 | Muted UI text | `#888A8E` |
-| Logo navy | Inside shield lockup only |
 | Display font | Kaneda (condensed uppercase) |
 | Body / UI font | Neusa Next / Neusa Next Std Compact |
-| Avoid | Inter; amber/gold SaaS accents; indigo; navy top-bar chrome the live site does not use |
+| Avoid | Inter; amber/gold SaaS accents; indigo; navy top-bar |
 
 ---
 
@@ -140,24 +112,20 @@ One shared dataset for typeahead **and** results: `data/search-index.json`
 Fields: `id`, `docType`, `category`, `title`, `excerpt`, `url`, `image`, `date`  
 Inductees also: `inductionYear`, `team`, `teamBadge`
 
-Categories (locked):
-
-- `all` | `inductees` | `news` | `events` | `general-tickets`
-
-Filter UI must **actually filter** this data.
+Categories (locked): `all` | `inductees` | `news` | `events` | `general-tickets`
 
 ---
 
-## Build Order (follow this — shared with Cline)
+## Build Order
 
-1. Brand tokens + base shell
-2. Global header search states (inline expand)
-3. Predictive dropdown (same data source)
-4. Search page hero + layout
-5. Category filters — **right** desktop sticky + mobile pills — real filtering
-6. Standard + Hall of Famer cards
+1. Brand tokens + base shell ✅
+2. Global header search states ✅
+3. Predictive dropdown ✅
+4. Search page hero + layout (next)
+5. Category filters (real filtering)
+6. Standard + HOF cards
 7. Empty state
-8. A11y + mobile polish (+ GitHub Pages later if asked)
+8. A11y + mobile polish
 
 ---
 
@@ -167,7 +135,6 @@ Filter UI must **actually filter** this data.
 - Do not invent a navy horizontal global header
 - Do not use gold as a system brand color
 - Do not add Search & Filter Pro or Umbraco packages
-- Do not invent final legal logo lockups — placeholder wordmark OK
 - Do not leave Inter + amber/gold as the client-facing brand
 - Do not force-push `master` or skip hooks
 
@@ -181,8 +148,11 @@ Filter UI must **actually filter** this data.
   search.html
   assets/css/tokens.css
   assets/css/search.css
+  assets/css/home.css
   assets/js/search.js
+  assets/js/home.js
   assets/images/logo.png
+  assets/images/arrow.svg
   data/search-index.json
   .clinerules
   cline-project-handoff.md
