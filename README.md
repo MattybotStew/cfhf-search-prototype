@@ -31,9 +31,9 @@ cd ~/Projects/cfhf-search-prototype
 python3 -m http.server 8080
 ```
 
-Entry is **home** (`index.html`) — same left-rail chrome as live, with prototype search:
+Entry is **home** (`index.html`) — left-rail chrome like live, first three main sections matched to the live homepage, with prototype search in the hero:
 
-- http://localhost:8080/ — home / demo entry
+- http://localhost:8080/ — home (hero carousel + Destination/Happenings + Join the Legacy)
 - http://localhost:8080/search.html — results page
 - http://localhost:8080/search.html?q=touchdown — sample query
 

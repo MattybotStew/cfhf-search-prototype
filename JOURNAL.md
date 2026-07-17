@@ -1,5 +1,13 @@
 # Journal — CFHF Search Prototype
 
+## 2026-07-17 — Cursor: match index to live first 3 sections
+
+- Rebuilt `index.html` main column to mirror live homepage: (1) hero carousel, (2) Destination + Happenings, (3) Join the Legacy
+- Kept Option A hero search overlay on carousel; left rail unchanged (no search)
+- Added `assets/css/home.css` + `assets/js/home.js` (simple carousel)
+- Stand-in imagery from cfbhall.com media URLs
+- **Next:** Step 4 — results hero + layout wired to real query/count
+
 ## 2026-07-17 — Cursor: restore index homepage
 
 - Restored real `index.html` (was redirect-only) as demo home: same left-rail chrome as `search.html`, expand search + typeahead, hero stub + CTAs

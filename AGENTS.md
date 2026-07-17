@@ -48,7 +48,13 @@ Skip only for pure Q&A with **zero** file or plan changes.
 | 7. Empty state | pending |
 | 8. A11y + mobile polish | partially done |
 
-**Handoff:** Homepage restored as demo entry (live site has no search). Steps 1–3 done. Next agent owns Step 4+ (results hero wiring, then filters/cards). Search moved from rail to hero.
+**Handoff:** Index first-three sections match live homepage. Steps 1–3 done. Next: Step 4+ (results hero wiring, filters/cards). Search lives in hero areas, not the rail.
+
+### What live home match delivered (Cursor)
+- Hero carousel (Game Day Goes Global / Summer Legendary / CityPASS) + hours bar + hero search overlay
+- Destination section + Tickets / Group Outings / 2026 Class cards + Happenings strip
+- Join the Legacy band with Tebow quote
+- Files: `index.html`, `assets/css/home.css`, `assets/js/home.js`
 
 ### What search UX refactor delivered (Cline)
 - Search removed from left rail on both `index.html` and `search.html`

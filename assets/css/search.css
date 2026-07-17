@@ -549,6 +549,7 @@ button {
   min-width: 0;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 /* Hours bar */
@@ -572,7 +573,7 @@ button {
     color: var(--cfhf-white);
     position: absolute;
     top: 0;
-    left: var(--rail-width);
+    left: 0;
     right: 0;
     z-index: 10;
     pointer-events: none;
@@ -581,12 +582,6 @@ button {
   .hours-bar a,
   .hours-bar button {
     pointer-events: auto;
-  }
-}
-
-@media (min-width: 1280px) {
-  .hours-bar {
-    left: var(--rail-width-xl);
   }
 }
 

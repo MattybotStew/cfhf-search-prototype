@@ -6,13 +6,19 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-07-17 (Cline — Step 3+ UX refactor: search moved to hero)
-**Active Agent:** **Cline** (just moved search out of rail) — Cursor can pick up Step 4+
+**Last Updated:** 2026-07-17 (Cursor — index matches live first 3 sections)
+**Active Agent:** **Cursor**
 **Branch:** `master`
-**Status:** Steps 1–3 done. Search relocated to hero (home + search pages). Uncommitted until Matt asks.
+**Status:** Steps 1–3 done. Index homepage first 3 right-column sections match live (hero carousel, Destination+Happenings, Join the Legacy). Hero search kept (Option A).
 
 ### In Progress
-- **Next:** Step 4 — results hero + layout (scaffold exists; wire to live query/count)
+- **Next:** Step 4 — results hero + layout (wire to live query/count)
+
+### Newly completed (2026-07-17 — Cursor: live home sections on index)
+- `index.html`: hero carousel (3 slides), Destination + cards + Happenings, Join the Legacy / Tebow quote
+- `assets/css/home.css`, `assets/js/home.js` — carousel + section styles
+- Prototype search stays overlaid on hero (`#home-search`); rail remains logo/CTAs/nav only
+- Live media URLs used as stand-in hero/happenings imagery
 
 ### Newly completed (2026-07-17 — Cline: search UX refactor)
 - Search removed from left rail on both `index.html` and `search.html`
@@ -70,8 +76,9 @@
 - **Type:** Kaneda (display) + Neusa Next / Std Compact (body/UI) via Typekit — use kit if available; otherwise closest licensed condensed + geometric stand-ins (**not Inter**)
 
 ### Still Blocked
-- None for Step 3
+- None
 - Official logo: present at `assets/images/logo.png`
+- **Next for either agent:** Step 4 — wire results hero + layout to real query/count from index
 
 ---
 

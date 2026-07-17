@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/acw8nkk.css">
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/search.css">
+  <link rel="stylesheet" href="assets/css/home.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -64,7 +65,6 @@
             </li>
           </ul>
         </nav>
-
       </div>
     </aside>
 
@@ -76,15 +76,62 @@
         <a href="#" class="hours-bar__details">Important Details +</a>
       </header>
 
-      <main id="main" class="page-content page-content--hero">
-        <section class="home-hero" aria-labelledby="home-hero-title">
-          <p class="home-hero__eyebrow">Prototype demo</p>
-          <h1 class="home-hero__title" id="home-hero-title">Search prototype</h1>
-          <p class="home-hero__lead">
-            The live CFHF site has no search yet. Type a name or keyword below to see
-            predictive suggestions, then press Enter for the full results page.
-          </p>
-          <div class="search-bar-wrap home-hero__search" id="home-search">
+      <main id="main">
+        <!-- 1. Hero carousel (live homepage) + prototype search overlay -->
+        <section class="hero-carousel" aria-roledescription="carousel" aria-label="Featured campaigns" data-hero-carousel>
+          <div class="hero-carousel__track">
+            <!-- Placeholder media from live site -->
+            <article class="hero-slide is-active" data-slide="0" style="--hero-bg: url('https://www.cfbhall.com/media/bzegtofb/football-fest24-afternoon-22-3-2.jpg?width=1920&amp;format=webp&amp;v=1dcf3857200d790')">
+              <div class="hero-slide__overlay"></div>
+              <div class="hero-slide__content">
+                <h1 class="hero-slide__title">
+                  <span class="hero-slide__title-line hero-slide__title-line--stroke">Game Day</span>
+                  <span class="hero-slide__title-line">Goes Global</span>
+                </h1>
+                <h2 class="hero-slide__subtitle">The capital of college football. The epicenter of soccer.</h2>
+                <p class="hero-slide__body">In the heart of downtown Atlanta’s FIFA World Cup action, the Hall is turning game day into an all-out sports experience.</p>
+                <a href="#" class="btn btn--outline btn--hero">Explore FIFA at the Hall</a>
+              </div>
+            </article>
+
+            <article class="hero-slide" data-slide="1" hidden style="--hero-bg: url('https://www.cfbhall.com/media/qavbhkxx/4-17-23-aerials-3.jpg?width=1920&amp;format=webp&amp;v=1da76f8212523a0')">
+              <div class="hero-slide__overlay"></div>
+              <div class="hero-slide__content">
+                <h1 class="hero-slide__title">
+                  <span class="hero-slide__title-line hero-slide__title-line--stroke">Make Your</span>
+                  <span class="hero-slide__title-line">Summer Legendary</span>
+                </h1>
+                <h2 class="hero-slide__subtitle">A must-visit Atlanta destination for fans of all ages</h2>
+                <p class="hero-slide__body">Bring the whole crew for an indoor experience packed with legendary stories, fan-favorite exhibits, and plenty of ways to play.</p>
+                <a href="#" class="btn btn--outline btn--hero">Plan Your Visit</a>
+              </div>
+            </article>
+
+            <article class="hero-slide" data-slide="2" hidden style="--hero-bg: url('https://www.cfbhall.com/media/xrkhvd0e/aprilrandom25-p3-9.jpg?width=1920&amp;format=webp&amp;v=1dcf386785efad0')">
+              <div class="hero-slide__overlay"></div>
+              <div class="hero-slide__content">
+                <h1 class="hero-slide__title">
+                  <span class="hero-slide__title-line hero-slide__title-line--stroke">Sightseeing</span>
+                  <span class="hero-slide__title-line">in Atlanta?</span>
+                </h1>
+                <h2 class="hero-slide__subtitle">Save up to 47% with Atlanta CityPASS®</h2>
+                <p class="hero-slide__body">Visiting Atlanta’s top five attractions, including the College Football Hall of Fame, is easy and affordable with Atlanta CityPASS®.</p>
+                <a href="#" class="btn btn--outline btn--hero">Purchase CityPASS®</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="hero-carousel__controls">
+            <button type="button" class="hero-carousel__btn" data-hero-prev aria-label="Previous slide">‹</button>
+            <div class="hero-carousel__dots" role="tablist" aria-label="Choose slide">
+              <button type="button" class="hero-carousel__dot is-active" role="tab" aria-selected="true" data-hero-dot="0" aria-label="Slide 1"></button>
+              <button type="button" class="hero-carousel__dot" role="tab" aria-selected="false" data-hero-dot="1" aria-label="Slide 2"></button>
+              <button type="button" class="hero-carousel__dot" role="tab" aria-selected="false" data-hero-dot="2" aria-label="Slide 3"></button>
+            </div>
+            <button type="button" class="hero-carousel__btn" data-hero-next aria-label="Next slide">›</button>
+          </div>
+
+          <div class="hero-carousel__search search-bar-wrap" id="home-search">
             <div class="search-bar search-bar--hero" role="search">
               <svg class="search-bar__icon search-bar__icon--hero" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <circle cx="11" cy="11" r="7"/>
@@ -113,25 +160,100 @@
               hidden
             ></ul>
           </div>
-          <div class="home-hero__actions">
-            <a href="search.html?q=touchdown" class="btn btn--outline btn--sm" style="color:#fff;border-color:#fff;">
-              Open sample results
-            </a>
-          </div>
         </section>
 
-        <aside class="home-stub-note" aria-label="How to demo">
-          <h2>How to try it</h2>
-          <p>
-            Start typing in the search box above. Predictive suggestions appear as you
-            type — Hall of Famers show initials and team badges, other results show
-            category icons. Press Enter or click a suggestion for the results page.
-          </p>
-          <p>
-            Results live at <a href="search.html">search.html</a>
-            · Sample: <a href="search.html?q=touchdown">search.html?q=touchdown</a>
-          </p>
-        </aside>
+        <!-- 2. Destination + Happenings (live home-intro) -->
+        <section class="home-intro" aria-labelledby="destination-title">
+          <div class="home-intro__destination">
+            <h2 id="destination-title" class="home-intro__title">The Destination For College Football</h2>
+            <p class="home-intro__mission">
+              Our mission is to inspire and entertain by celebrating the passion and traditions of college football and its greatest players and coaches.
+            </p>
+
+            <ul class="home-intro__cards">
+              <li>
+                <a href="#" class="home-card">
+                  <h3 class="home-card__title">Tickets</h3>
+                  <p class="home-card__text">Score a Touchdown Today! Secure Your Tickets!</p>
+                  <span class="home-card__arrow" aria-hidden="true">
+                    <img src="assets/images/arrow.svg" alt="" width="28" height="12">
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="home-card">
+                  <h3 class="home-card__title">Group Outings</h3>
+                  <p class="home-card__text">Lead Your Team to Victory! Score your Group Tickets!</p>
+                  <span class="home-card__arrow" aria-hidden="true">
+                    <img src="assets/images/arrow.svg" alt="" width="28" height="12">
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="home-card">
+                  <h3 class="home-card__title">2026 Hall of Fame Class</h3>
+                  <p class="home-card__text">Meet the 2026 Inductees!</p>
+                  <span class="home-card__arrow" aria-hidden="true">
+                    <img src="assets/images/arrow.svg" alt="" width="28" height="12">
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <aside class="home-intro__happenings" aria-labelledby="happenings-title">
+            <div class="happenings-head">
+              <h2 id="happenings-title" class="happenings-head__title">Happenings</h2>
+              <a href="#" class="happenings-head__link">View All</a>
+            </div>
+            <ul class="happenings-list">
+              <li>
+                <a href="#" class="happening-card">
+                  <!-- Placeholder graphic from live site -->
+                  <img class="happening-card__img" src="https://www.cfbhall.com/media/azqc2sic/ff26-logo_vertical_rgb.png?width=380&amp;format=webp" alt="">
+                  <h3 class="happening-card__title">Football Fest &amp; Free Day Presented by Peach Bowl</h3>
+                  <p class="happening-card__meta">Saturday, August 22 | 10AM–5PM</p>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="happening-card">
+                  <img class="happening-card__img" src="https://www.cfbhall.com/media/nyrlchxi/football-one-name-two-games-graphic.png?width=380&amp;format=webp" alt="">
+                  <h3 class="happening-card__title">Football: One Name Two Games</h3>
+                  <p class="happening-card__meta">Summer 2026</p>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="happening-card">
+                  <img class="happening-card__img" src="https://www.cfbhall.com/media/y5bjgt43/subtext_kia_coke_ascension_main-1.png?width=380&amp;format=webp" alt="">
+                  <h3 class="happening-card__title">Ascension: Rise of the Black Quarterback</h3>
+                  <p class="happening-card__meta">Presented by Kia | Coca-Cola</p>
+                </a>
+              </li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- 3. Join the Legacy -->
+        <section class="home-legacy" aria-labelledby="legacy-title">
+          <div class="home-legacy__inner">
+            <div class="home-legacy__copy">
+              <h2 id="legacy-title" class="home-legacy__title">
+                <span class="home-legacy__title-stroke">Join the Legacy</span>
+                Unleash Exclusive Benefits
+              </h2>
+              <p class="home-legacy__body">
+                Join the legacy of the College Football Hall of Fame and unleash a world of exclusive benefits, engagement, and more.
+              </p>
+              <a href="#" class="btn btn--outline btn--sm">Join the Legacy Today</a>
+            </div>
+            <blockquote class="home-legacy__quote">
+              <p>
+                “None of us are here on our own. We're here because there are so many people that influenced us and inspired us, lead us and encouraged us and picked us up when we were down.”
+              </p>
+              <footer>— Tim Tebow · Class of 2023</footer>
+            </blockquote>
+          </div>
+        </section>
       </main>
     </div>
   </div>
@@ -143,5 +265,6 @@
   </button>
 
   <script src="assets/js/search.js" defer></script>
+  <script src="assets/js/home.js" defer></script>
 </body>
 </html>
