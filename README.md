@@ -55,6 +55,16 @@ python3 -m http.server 8080
 3. Check **`JOURNAL.md`** + **`AGENTS.md`** for sync
 4. `git pull` before starting; update those files after every finished prompt with file/plan changes
 
+## Live demo (GitHub Pages)
+
+https://mattybotstew.github.io/cfhf-search-prototype/
+
+- Home: https://mattybotstew.github.io/cfhf-search-prototype/
+- Search: https://mattybotstew.github.io/cfhf-search-prototype/search.html
+- Sample: https://mattybotstew.github.io/cfhf-search-prototype/search.html?q=touchdown
+
+Published from `master` (root). After each push, wait a minute for Pages to rebuild.
+
 ## Repo
 
-Private: https://github.com/MattybotStew/cfhf-search-prototype
+https://github.com/MattybotStew/cfhf-search-prototype
