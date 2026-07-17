@@ -6,13 +6,19 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-07-17 (Cursor — Step 3 predictive dropdown)
-**Active Agent:** **Cursor** (just finished Step 3) — Cline can pick up Step 4+
+**Last Updated:** 2026-07-17 (Cursor — restored index homepage)
+**Active Agent:** **Cursor** (just restored home entry) — Cline can pick up Step 4+
 **Branch:** `master`
-**Status:** Steps 1–3 done. Predictive typeahead wired to `data/search-index.json`. Uncommitted until Matt asks.
+**Status:** Steps 1–3 done. Homepage restored as demo entry (live site has no search). Uncommitted until Matt asks.
 
 ### In Progress
 - **Next:** Step 4 — results hero + layout (scaffold exists; wire to live query/count)
+
+### Newly completed (2026-07-17 — Cursor: restore index home)
+- `index.html` restored as real homepage (not redirect): same left-rail chrome as `search.html`, home hero stub + CTAs (try rail search / sample results)
+- Logo links → `index.html`; `search.html` remains results page
+- README entry points: home first, search at `/search.html`
+- Minor: `.home-hero__actions` styles; `#cta-try-search` expands rail search via `search.js`
 
 ### Newly completed (2026-07-17 — Cursor Step 3)
 - Predictive dropdown: live filter from `data/search-index.json` (shared Examine-shaped index)
@@ -25,7 +31,7 @@
 - Fixed nav arrow orientation: dropped Figma `rotate(83.976deg)` (assumed vertical source); arrow.svg already points right, sized to rotated result 27.823×11.765px
 - Nav arrows → `assets/images/arrow.svg` (live-style swoosh)
 - Sidebar live match: logo-only, CTA layout, Kaneda nav
-- `index.html` → redirect to `search.html`
+- ~~`index.html` → redirect to `search.html`~~ (superseded — home restored)
 
 ### Newly completed (2026-07-17 — latest / Cline)
 - `assets/images/logo.png` — downloaded official CFHF logo from live site (cfbhall.com/images/logo.png, 32KB)

@@ -583,6 +583,30 @@ button {
   opacity: 0.9;
 }
 
+.home-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.home-hero .btn--outline {
+  background: transparent;
+  color: var(--cfhf-white);
+  border-color: var(--cfhf-white);
+}
+
+.home-hero .btn--outline:hover {
+  background: var(--cfhf-white);
+  color: var(--cfhf-black);
+}
+
+.home-stub-note a {
+  color: var(--cfhf-crimson);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .home-stub-note {
   padding: var(--space-6);
   background: var(--cfhf-surface);

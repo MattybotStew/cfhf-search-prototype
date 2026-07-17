@@ -48,7 +48,12 @@ Skip only for pure Q&A with **zero** file or plan changes.
 | 7. Empty state | pending |
 | 8. A11y + mobile polish | partially done |
 
-**Handoff:** Step 3 complete (Cursor). Next agent owns Step 4+ (results hero wiring, then filters/cards).
+**Handoff:** Homepage restored as demo entry (live site has no search). Steps 1–3 done. Next agent owns Step 4+ (results hero wiring, then filters/cards).
+
+### What index restore delivered
+- `index.html`: full left-rail chrome + home hero explaining the search prototype + CTAs
+- Shared `tokens.css` / `search.css` / `search.js` / Typekit `acw8nkk` with results page
+- Entry: `/` → home; results: `/search.html` (and `?q=`)
 
 ### What Step 3 delivered
 - `search.js`: fetch + score `data/search-index.json`; live typeahead on `.search-bar__input`

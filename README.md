@@ -31,11 +31,11 @@ cd ~/Projects/cfhf-search-prototype
 python3 -m http.server 8080
 ```
 
-Entry is **search** (no home gateway):
+Entry is **home** (`index.html`) — same left-rail chrome as live, with prototype search:
 
-- http://localhost:8080/ → redirects to `search.html`
-- http://localhost:8080/search.html
-- http://localhost:8080/search.html?q=touchdown
+- http://localhost:8080/ — home / demo entry
+- http://localhost:8080/search.html — results page
+- http://localhost:8080/search.html?q=touchdown — sample query
 
 ## For Cline (VS Code)
 

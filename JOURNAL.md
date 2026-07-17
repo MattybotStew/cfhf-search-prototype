@@ -1,5 +1,13 @@
 # Journal — CFHF Search Prototype
 
+## 2026-07-17 — Cursor: restore index homepage
+
+- Restored real `index.html` (was redirect-only) as demo home: same left-rail chrome as `search.html`, expand search + typeahead, hero stub + CTAs
+- CTAs: “Try search” expands rail bar; “Open sample results” → `search.html?q=touchdown`
+- Logo → `index.html`; README entry is home again; results stay at `/search.html`
+- Files: `index.html`, `search.html`, `assets/css/search.css`, `assets/js/search.js`, README, continuity docs
+- **Next:** Step 4 — results hero + layout wired to real query/count
+
 ## 2026-07-17 — Cursor: Step 3 predictive dropdown
 
 - Wired live typeahead to `data/search-index.json` (fetch + scored title/team/excerpt match)

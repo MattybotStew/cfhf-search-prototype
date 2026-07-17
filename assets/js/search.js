@@ -512,4 +512,15 @@
 
   /* Prefetch index for snappier typeahead */
   loadSearchIndex();
+
+  /* Home CTA: expand rail search */
+  var trySearchCta = document.getElementById("cta-try-search");
+  if (trySearchCta) {
+    trySearchCta.addEventListener("click", function () {
+      var trigger = document.querySelector(".search-bar__trigger");
+      if (trigger) {
+        trigger.click();
+      }
+    });
+  }
 })();
