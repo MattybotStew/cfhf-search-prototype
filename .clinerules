@@ -6,10 +6,10 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-07-17 (Grok — live-style mobile top bar)
+**Last Updated:** 2026-07-17 (Grok — HOF visual fidelity + filter polish for client share)
 **Active Agent:** **Grok**
 **Branch:** `master`
-**Status:** Full search funnel shipped. Mobile header matches live (hamburger · logo · TICKETS). Design iteration continues.
+**Status:** Review gaps closed: portrait placeholders, team shield badges, sticky filters, mobile pill tap targets. Pages: mattybotstew.github.io/cfhf-search-prototype
 
 ### Decision LOCKED (2026-07-17 — Matt)
 Matt: “i want what is there now with the search functionality requested.”

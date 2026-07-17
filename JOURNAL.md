@@ -1,4 +1,12 @@
 
+## 2026-07-17 — Grok: review gaps — HOF visuals + filter polish
+- HOF portrait placeholders: team-tinted silhouette + initials (cards + typeahead)
+- Team badge: shield mark + school name with brand colors (OSU/UF/ND/OKST)
+- HOF cards: portrait, “Inducted YYYY”, team badge all visible
+- Sticky filter aside: top clears hours bar; max-height scroll
+- Mobile pills: ≥44px tap, horizontal scroll + snap; counts remain dynamic
+- Files: `assets/js/search.js`, `assets/css/search.css`
+
 ## 2026-07-17 — Grok: GitHub Pages enabled
 - Source: `master` / root; added `.nojekyll` (Jekyll builds were failing)
 - Live: https://mattybotstew.github.io/cfhf-search-prototype/ (home + search 200)

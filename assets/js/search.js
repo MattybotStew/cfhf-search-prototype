@@ -388,6 +388,134 @@
     return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
   }
 
+  /** Prototype team branding for badge/portrait when CMS images are absent */
+  function teamBrand(team) {
+    var name = String(team || "").trim();
+    var key = normalize(name);
+    var brands = {
+      "ohio state": { abbr: "OSU", primary: "#bb0000", secondary: "#666666" },
+      florida: { abbr: "UF", primary: "#0021a5", secondary: "#fa4616" },
+      "notre dame": { abbr: "ND", primary: "#0c2340", secondary: "#c99700" },
+      "oklahoma state": {
+        abbr: "OKST",
+        primary: "#ff7300",
+        secondary: "#111111",
+      },
+    };
+    if (brands[key]) {
+      return {
+        name: name || "Hall of Fame",
+        abbr: brands[key].abbr,
+        primary: brands[key].primary,
+        secondary: brands[key].secondary,
+      };
+    }
+    var abbr = name
+      ? name
+          .split(/\s+/)
+          .map(function (w) {
+            return w[0];
+          })
+          .join("")
+          .slice(0, 4)
+          .toUpperCase()
+      : "HOF";
+    return {
+      name: name || "Hall of Fame",
+      abbr: abbr,
+      primary: "#1e1e1e",
+      secondary: "#b5202b",
+    };
+  }
+
+  /**
+   * Portrait: real image if present, else silhouette + initials (team-tinted).
+   * size: "sm" | "md"
+   */
+  function portraitHtml(doc, size) {
+    size = size || "md";
+    var cls =
+      size === "sm" ? "hof-portrait hof-portrait--sm" : "hof-portrait";
+    if (doc.image) {
+      return (
+        '<span class="' +
+        cls +
+        '">' +
+        '<img class="hof-portrait__img" src="' +
+        escapeHtml(doc.image) +
+        '" alt="" width="96" height="96">' +
+        "</span>"
+      );
+    }
+
+    var brand = teamBrand(doc.team || doc.teamBadge);
+    var init = initials(doc.title);
+    var gid = "hof-grad-" + escapeHtml(String(doc.id || init)).replace(/[^a-zA-Z0-9_-]/g, "");
+
+    return (
+      '<span class="' +
+      cls +
+      ' hof-portrait--placeholder" style="--hof-primary:' +
+      brand.primary +
+      ";--hof-secondary:" +
+      brand.secondary +
+      '">' +
+      '<svg class="hof-portrait__silhouette" viewBox="0 0 80 80" aria-hidden="true">' +
+      "<defs>" +
+      '<linearGradient id="' +
+      gid +
+      '" x1="0" y1="0" x2="1" y2="1">' +
+      '<stop offset="0%" stop-color="' +
+      brand.primary +
+      '"/>' +
+      '<stop offset="100%" stop-color="' +
+      brand.secondary +
+      '"/>' +
+      "</linearGradient>" +
+      "</defs>" +
+      '<circle cx="40" cy="40" r="40" fill="url(#' +
+      gid +
+      ')"/>' +
+      '<circle cx="40" cy="30" r="13" fill="rgba(255,255,255,0.22)"/>' +
+      '<ellipse cx="40" cy="66" rx="22" ry="18" fill="rgba(255,255,255,0.18)"/>' +
+      "</svg>" +
+      '<span class="hof-portrait__initials">' +
+      escapeHtml(init) +
+      "</span>" +
+      "</span>"
+    );
+  }
+
+  /** Shield + team name badge (typeahead + cards) */
+  function teamBadgeHtml(doc, compact) {
+    var brand = teamBrand(doc.teamBadge || doc.team);
+    var name = escapeHtml(brand.name);
+    var abbr = escapeHtml(brand.abbr);
+    var compactCls = compact ? " team-badge--compact" : "";
+    return (
+      '<span class="team-badge' +
+      compactCls +
+      '" style="--team-primary:' +
+      brand.primary +
+      ";--team-secondary:" +
+      brand.secondary +
+      '">' +
+      '<span class="team-badge__shield" aria-hidden="true">' +
+      '<svg viewBox="0 0 32 36" fill="none">' +
+      '<path d="M16 2L28 7v10c0 8-5.5 14.5-12 17C9.5 31.5 4 25 4 17V7L16 2z" fill="var(--team-primary)"/>' +
+      '<path d="M16 5L25 9v8c0 6.2-4 11.3-9 13.5C11 28.3 7 23.2 7 17V9l9-4z" fill="var(--team-secondary)" opacity="0.35"/>' +
+      '<text x="16" y="20" text-anchor="middle" fill="#fff" font-size="8" font-weight="700" font-family="system-ui,sans-serif">' +
+      abbr +
+      "</text>" +
+      "</svg>" +
+      "</span>" +
+      '<span class="team-badge__label">' +
+      name +
+      "</span>" +
+      "</span>"
+    );
+  }
+
   function categoryLabel(doc) {
     switch (doc.category) {
       case "inductees":
@@ -477,15 +605,9 @@
     var hof = isHof(doc);
 
     if (hof) {
-      var badge = escapeHtml(doc.teamBadge || doc.team || "Hall of Fame");
       var year = doc.inductionYear
         ? " · " + escapeHtml(String(doc.inductionYear))
         : "";
-      var avatarInner = doc.image
-        ? '<img src="' +
-          escapeHtml(doc.image) +
-          '" alt="" width="40" height="40">'
-        : initials(doc.title);
 
       return (
         '<li class="search-suggest__item search-suggest__item--hof" role="option" id="' +
@@ -495,16 +617,14 @@
         '" aria-selected="false">' +
         '<button type="button" class="search-suggest__btn">' +
         '<span class="search-suggest__avatar" aria-hidden="true">' +
-        avatarInner +
+        portraitHtml(doc, "sm") +
         "</span>" +
         '<span class="search-suggest__body">' +
         '<span class="search-suggest__title">' +
         title +
         "</span>" +
         '<span class="search-suggest__meta">' +
-        '<span class="search-suggest__badge">' +
-        badge +
-        "</span>" +
+        teamBadgeHtml(doc, true) +
         "<span>Hall of Famer" +
         year +
         "</span>" +
@@ -857,19 +977,11 @@
   function renderHofCard(doc) {
     var title = escapeHtml(doc.title);
     var excerpt = escapeHtml(doc.excerpt || "");
-    var team = escapeHtml(doc.teamBadge || doc.team || "Hall of Fame");
     var year = doc.inductionYear
       ? escapeHtml(String(doc.inductionYear))
       : "";
     /* Prototype: keep mock Umbraco path on data-url; # avoids local 404s */
     var mockUrl = escapeHtml(doc.url || "");
-    var avatar = doc.image
-      ? '<img class="result-card__photo" src="' +
-        escapeHtml(doc.image) +
-        '" alt="" width="96" height="96">'
-      : '<span class="result-card__initials" aria-hidden="true">' +
-        initials(doc.title) +
-        "</span>";
 
     return (
       '<article class="result-card result-card--hof" role="listitem">' +
@@ -877,23 +989,27 @@
       (mockUrl ? ' data-url="' + mockUrl + '"' : "") +
       ' aria-label="' +
       title +
+      ', Hall of Famer' +
+      (year ? ", Class of " + year : "") +
       ' (prototype link)">' +
       '<div class="result-card__media" aria-hidden="true">' +
-      avatar +
+      portraitHtml(doc, "md") +
       "</div>" +
       '<div class="result-card__body">' +
       '<div class="result-card__meta-row">' +
       '<span class="result-card__tag result-card__tag--hof">Hall of Famer</span>' +
       (year
-        ? '<span class="result-card__year">Class of ' + year + "</span>"
+        ? '<span class="result-card__year"><span class="result-card__year-label">Inducted</span> ' +
+          year +
+          "</span>"
         : "") +
       "</div>" +
       '<h2 class="result-card__title">' +
       title +
       "</h2>" +
-      '<p class="result-card__team"><span class="result-card__badge">' +
-      team +
-      "</span></p>" +
+      '<div class="result-card__team">' +
+      teamBadgeHtml(doc, false) +
+      "</div>" +
       (excerpt
         ? '<p class="result-card__excerpt">' + excerpt + "</p>"
         : "") +
