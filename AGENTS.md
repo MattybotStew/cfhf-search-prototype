@@ -39,9 +39,9 @@ Skip only for pure Q&A with **zero** file or plan changes.
 
 ## Live demo
 
-**GitHub Pages:** https://mattybotstew.github.io/cfhf-search-prototype/  
-**Source:** `master` root + `.nojekyll`  
-**Repo:** https://github.com/MattybotStew/cfhf-search-prototype  
+**GitHub Pages:** https://mattybotstew.github.io/cfhf-search-prototype/
+**Source:** `master` root + `.nojekyll`
+**Repo:** https://github.com/MattybotStew/cfhf-search-prototype
 
 | Page | URL |
 |---|---|
@@ -66,9 +66,18 @@ Local: `python3 -m http.server 8080` from repo root.
 | 7. Empty state | **DONE** |
 | 8. A11y + mobile polish | **DONE** |
 
-**Status:** Client-shareable prototype. Full funnel live. Design feedback / Figma capture next — not blocked on missing build steps.
+**Status:** Client-shareable prototype. Full funnel live + full live-matching site footer. Design feedback / Figma capture next — not blocked on missing build steps.
 
-**Handoff:** Client-ready. Review gaps verified on live Pages (Cursor). Empty `image` → runtime HOF placeholders (documented in README). Do **not** revert hours-bar to icon-only Option A. Next: client feedback / Figma.
+**Handoff:** Client-ready. Review gaps verified on live Pages (Cursor). Empty `image` → runtime HOF placeholders (documented in README). Do **not** revert hours-bar to icon-only Option A. Footer matches cfbhall.com (newsletter, social, About, address/phone, CityPASS, Aflac promo, legal) with review icons **Google Reviews → Yelp → TripAdvisor**. Next: commit/push when asked; client feedback / Figma.
+
+### What the full footer delivered (Cursor/Grok — 2026-08-06)
+- Full live-style footer on both `index.html` and `search.html`
+- Stay In The Know + email/Subscribe; social icons; review icons (**Google Reviews → Yelp → TripAdvisor**); About nav; Address/Phone; CityPASS; Aflac Kickoff promo; copyright/legal bar
+- Assets: `assets/images/footer/` (live SVGs + images, including `icon-google.svg`)
+- CSS: `assets/css/search.css`; newsletter is prototype-only (no Umbraco POST)
+
+### What the earlier footer delivered (Cline — 2026-08-06)
+- Review-link pills only (Google → Yelp → TripAdvisor) — superseded by full live footer above
 
 ### Client review gap status (2026-07-17 — Cursor QA)
 | Item | Status |
@@ -130,6 +139,7 @@ Local: `python3 -m http.server 8080` from repo root.
   assets/js/home.js
   assets/images/logo.png
   assets/images/arrow.svg
+  assets/images/footer/
   data/search-index.json
   .nojekyll
   .clinerules

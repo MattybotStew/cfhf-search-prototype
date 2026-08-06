@@ -6,14 +6,15 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-07-17 (Cursor — client review gaps QA + residual polish)
+**Last Updated:** 2026-08-06 (Cursor — Google Reviews first in footer)
 **Active Agent:** **Cursor**
 **Branch:** `master`
-**Status:** Steps 1–8 complete. Live Pages QA confirmed review gaps already met; residual polish for client share.
+**Status:** Steps 1–8 complete + full cfbhall.com-style footer; review icons ordered Google Reviews → Yelp → TripAdvisor.
 
 ### Live
 - https://mattybotstew.github.io/cfhf-search-prototype/
 - Pages source: `master` / root + `.nojekyll`
+- Local preview: `python3 -m http.server 8080`
 
 ### Decision LOCKED (2026-07-17 — Matt)
 Matt: “i want what is there now with the search functionality requested.”
@@ -24,6 +25,21 @@ Matt: “i want what is there now with the search functionality requested.”
 ### In Progress / Next
 - Client feedback / Figma after share
 - Optional later: real CMS portrait URLs in `image` field
+- Commit / push when Matt asks (footer not on Pages until push)
+
+### Newly completed (2026-08-06 — Cursor: Google Reviews first)
+- Added Google Reviews as first icon in `.site-footer__review-icons` on `index.html` + `search.html`
+- Order: **Google Reviews → Yelp → TripAdvisor**
+- Asset: `assets/images/footer/icon-google.svg`; CSS `.site-footer__social-link--google`
+
+### Newly completed (2026-08-06 — Cursor/Grok: full live footer)
+- Replaced review-pills footer with full live layout on `index.html` + `search.html`
+- Columns: Stay In The Know (email + Subscribe) · social icons · review icons · About nav · Address/Phone · CityPASS · Aflac Kickoff promo · copyright/legal bar
+- Assets in `assets/images/footer/` (live SVGs + CityPASS + Aflac ad)
+- CSS rewrite in `assets/css/search.css`; newsletter submit is prototype-only (no Umbraco POST)
+
+### Newly completed (2026-08-06 — Cline: site footer)
+- Earlier: review-link pills only (superseded by full live footer above)
 
 ### Newly completed (2026-07-17 — Cursor: client review response)
 - Live Pages QA: HOF card (portrait + Inducted year + shield badge), sticky filters, mobile pills ≥44px + horizontal scroll + counts, typeahead
@@ -102,7 +118,7 @@ Matt: “i want what is there now with the search functionality requested.”
 
 One shared dataset for typeahead **and** results: `data/search-index.json`
 
-Fields: `id`, `docType`, `category`, `title`, `excerpt`, `url`, `image`, `date`  
+Fields: `id`, `docType`, `category`, `title`, `excerpt`, `url`, `image`, `date`
 Inductees also: `inductionYear`, `team`, `teamBadge`
 
 Empty `image` → prototype renders silhouette portrait (team colors). Real CMS images replace when set.
@@ -149,6 +165,7 @@ Categories (locked): `all` | `inductees` | `news` | `events` | `general-tickets`
   assets/js/home.js
   assets/images/logo.png
   assets/images/arrow.svg
+  assets/images/footer/   (CityPASS, Aflac promo, social/review SVGs)
   data/search-index.json
   .nojekyll
   .clinerules

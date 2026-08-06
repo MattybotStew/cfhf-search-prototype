@@ -1,5 +1,30 @@
 # Journal — CFHF Search Prototype
 
+## 2026-08-06 — Cursor: Google Reviews first in footer
+
+- Added Google Reviews as first review icon (before Yelp + TripAdvisor) on `index.html` + `search.html`
+- Order: **Google Reviews → Yelp → TripAdvisor**
+- Asset: `assets/images/footer/icon-google.svg`; CSS `.site-footer__social-link--google` in `assets/css/search.css`
+
+## 2026-08-06 — Cursor/Grok: full live-matching site footer
+
+- Replaced review-pills-only footer with full cfbhall.com footer on `index.html` + `search.html`
+- Layout: Stay In The Know + email/Subscribe · Facebook/Instagram/X/YouTube/TikTok/LinkedIn · Yelp + TripAdvisor review icons · About links · Address/Phone · Atlanta CityPASS · Aflac Kickoff 300×300 promo · copyright + Privacy/Terms bar
+- Assets downloaded from live site into `assets/images/footer/`
+- Shared CSS in `assets/css/search.css`; newsletter form is client-side prototype only (no Umbraco API)
+- Matches live structure (reviews = Yelp + TripAdvisor icons, not Google pills)
+- **Next:** commit/push when Matt asks so Pages updates; then client feedback / Figma
+
+## 2026-08-06 — Cline: site footer with review links
+
+- Added `.site-footer` to both `index.html` and `search.html`
+- Review links ordered: **Google Reviews → Yelp → TripAdvisor** (Google Reviews first, per Matt's request)
+- Black background matching live site dark strips; pill-style links with white border + crimson hover
+- SVG icons for Google, Yelp, TripAdvisor; responsive (stacked full-width on mobile)
+- CSS in `assets/css/search.css` (shared across both pages)
+- Files: `index.html`, `search.html`, `assets/css/search.css`
+- Note: superseded the same day by full live footer above
+
 ## 2026-07-17 — Cursor: close client review gaps
 
 - Live Pages QA confirmed: HOF silhouette + Inducted year + shield badge; sticky filters; mobile pills (44px, scroll, counts); dynamic category counts

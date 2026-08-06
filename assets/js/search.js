@@ -1119,4 +1119,26 @@
       }
     });
   }
+
+  /* Footer newsletter (prototype — no Umbraco POST) */
+  var footerSignup = document.getElementById("footer-signup");
+  if (footerSignup) {
+    footerSignup.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var email = footerSignup.querySelector('input[type="email"]');
+      var btn = footerSignup.querySelector('button[type="submit"]');
+      if (!email || !email.value.trim()) {
+        if (email) email.focus();
+        return;
+      }
+      footerSignup.classList.add("is-success");
+      if (btn) {
+        btn.setAttribute("aria-label", "Subscribed");
+        var label = btn.querySelector("span");
+        if (label) label.textContent = "Subscribed";
+      }
+      email.disabled = true;
+      email.value = "";
+    });
+  }
 })();
