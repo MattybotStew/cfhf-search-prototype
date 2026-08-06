@@ -1,5 +1,13 @@
 # Journal — CFHF Search Prototype
 
+## 2026-08-06 — Cursor: unstuck Pages — CCFB options page LIVE (200)
+
+- **Symptom:** `/ccfb-logo-options.html` returned **404**; homepage **200** (`last-modified` still 12:18Z footer deploy). File was on `master` (`0d58776` / `6fad3bf`).
+- **Cause:** `pages build and deployment` for `6fad3bf` stuck in **queued**; prior CCFB run cancelled.
+- **Tried:** public Actions API (no Pages API without auth); `gh` not logged in — skipped cancel/rebuild API.
+- **Fix:** empty commit `a4c5a77` ("Re-trigger Pages deploy — CCFB options page stuck in queued build") + push → run success ~20:42Z → live URL **HTTP 200**.
+- **No** Settings → Pages toggle required this round.
+
 ## 2026-08-06 — Cursor: remove internal preview note from CCFB logo options
 
 - Removed `<p class="note">` under `main.page > header.page-header` (placement-comparison / `python3 -m http.server` callout)

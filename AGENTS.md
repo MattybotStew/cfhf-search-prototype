@@ -71,6 +71,8 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 
 > **2026-08-06 Pages deploy fix (Cline):** Pages silently stopped building this repo on 2026-07-17 (last deploy `68f871e`); pushes `06c8673`/`b9e4ffa` queued no build. Footer code was correct on `origin/master`. Fixed by toggling **Settings → Pages → Source** off/on (`master` / root), which re-queued a build; that first build's "Deploy to GitHub Pages" step hit a transient 10-min timeout, so a re-trigger empty commit (`6628a013`) was pushed → **deploy succeeded; footer is LIVE** (home + search, assets 200, Google Reviews first). If Pages stops deploying with no failed build, use the Settings → Pages source off/on toggle.
 
+> **2026-08-06 CCFB options 404 (Cursor):** `/ccfb-logo-options.html` 404 while home 200; Actions for `6fad3bf` stuck **queued**. Empty re-trigger `a4c5a77` → deploy success → **page LIVE (200)**. No Pages Settings toggle needed.
+
 **Handoff:** Client-ready search prototype + full footer LIVE. Standalone **CCFB logo placement** review board LIVE at https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html (+ `assets/images/ccfb/`, Logos 1–3; Logo #4 excluded). Empty `image` → runtime HOF placeholders (documented in README). Do **not** revert hours-bar to icon-only Option A. Footer review icons **Google Reviews → Yelp → TripAdvisor**. Next: client picks CCFB nav/footer options; optional wire-in; Figma as needed.
 
 ### What CCFB logo options delivered (Cursor — 2026-08-06)

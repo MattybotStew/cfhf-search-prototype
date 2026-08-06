@@ -6,14 +6,14 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-08-06 (Cursor — removed CCFB page internal preview note)
+**Last Updated:** 2026-08-06 (Cursor — unstuck Pages deploy for CCFB options)
 **Active Agent:** **Cursor**
 **Branch:** `master`
-**Status:** Steps 1–8 + full footer LIVE on Pages. Standalone CCFB logo placement review board LIVE at `/ccfb-logo-options.html`. Not wired into live chrome. Logo #4 excluded. Internal preview note removed from page header.
+**Status:** Steps 1–8 + full footer LIVE. CCFB logo options page LIVE (200) after empty re-trigger commit `a4c5a77`. Not wired into live chrome. Logo #4 excluded.
 
 ### Live
 - https://mattybotstew.github.io/cfhf-search-prototype/
-- CCFB logo options: https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html
+- CCFB logo options: https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html (**200** after `a4c5a77` deploy)
 - Pages source: `master` / root + `.nojekyll`
 - Local preview: `python3 -m http.server 8080`
 
@@ -27,6 +27,11 @@ Matt: “i want what is there now with the search functionality requested.”
 - Share CCFB placement options with client; pick nav + footer option
 - Optional: wire chosen placements into `index.html` / `search.html` after client pick
 - Client feedback / Figma after share
+
+### Newly completed (2026-08-06 — Cursor: Pages re-trigger → CCFB options LIVE)
+- Confirmed live `/ccfb-logo-options.html` **404** while homepage **200**; Actions run for `6fad3bf` stuck **queued**
+- `gh` unauthenticated — could not cancel via API; pushed empty commit `a4c5a77` → deploy **success** → URL **200**
+- No Settings → Pages toggle needed this time
 
 ### Newly completed (2026-08-06 — Cursor: remove CCFB preview note)
 - Removed `<p class="note">` (internal placement-comparison / http.server callout) from `ccfb-logo-options.html` header
