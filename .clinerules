@@ -6,10 +6,10 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-08-06 (Cursor — Option H drop “Official campaign”)
+**Last Updated:** 2026-08-06 (Cursor — Option H restore CityPASS under FAQ)
 **Active Agent:** **Cursor**
 **Branch:** `master`
-**Status:** Steps 1–8 + full footer LIVE. CCFB options page updated locally (Option E Figma footer; Logo 3; Option H band logo-only). Not committed/pushed yet. Not wired into live chrome. Logo #4 excluded.
+**Status:** Steps 1–8 + full footer LIVE. CCFB options page on `master` (Option E Figma footer; Logo 3; Option H band logo-only + CityPASS under FAQ). Not wired into live chrome. Logo #4 excluded.
 
 ### Live
 - https://mattybotstew.github.io/cfhf-search-prototype/
@@ -25,8 +25,11 @@ Matt: “i want what is there now with the search functionality requested.”
 
 ### In Progress / Next
 - Review Option E Figma-mirrored footer stub + Logo 3 + Option H band; share with client when ready
-- Commit/push CCFB local options changes when Matt asks
 - Optional: wire chosen placements into `index.html` / `search.html` after client pick
+
+### Newly completed (2026-08-06 — Cursor: Option H restore CityPASS under FAQ)
+- `#option-h` About column: restored `.footer-stub__partner` + `citypass.png` under FAQs (same as Options F/G)
+- Standalone page only; live `index.html` / `search.html` untouched
 
 ### Newly completed (2026-08-06 — Cursor: Option H remove “Official campaign”)
 - `#option-h` `.footer-band`: removed `<p>Official campaign</p>`; band is logo-only

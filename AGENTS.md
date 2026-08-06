@@ -73,14 +73,14 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 
 > **2026-08-06 CCFB options 404 (Cursor):** `/ccfb-logo-options.html` 404 while home 200; Actions for `6fad3bf` stuck **queued**. Empty re-trigger `a4c5a77` → deploy success → **page LIVE (200)**. No Pages Settings toggle needed.
 
-**Handoff:** Client-ready search prototype + full footer LIVE. Standalone **CCFB logo placement** review board at https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html (+ `assets/images/ccfb/`, Logos 1–3; Logo #4 excluded). **Local (unpushed):** Option E from Figma Footer `446:2457`; Logo 3 from Figma `449:2992`; Option H band logo-only (no “Official campaign”). Empty `image` → runtime HOF placeholders (documented in README). Do **not** revert hours-bar to icon-only Option A. Footer review icons **Google Reviews → Yelp → TripAdvisor**. Next: review locally → commit/push when asked; client picks nav/footer options; optional wire-in.
+**Handoff:** Client-ready search prototype + full footer LIVE. Standalone **CCFB logo placement** review board at https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html (+ `assets/images/ccfb/`, Logos 1–3; Logo #4 excluded). Option E from Figma Footer `446:2457`; Logo 3 from Figma `449:2992`; Option H band logo-only (no “Official campaign”) + CityPASS under FAQ — all on `master`. Empty `image` → runtime HOF placeholders (documented in README). Do **not** revert hours-bar to icon-only Option A. Footer review icons **Google Reviews → Yelp → TripAdvisor**. Next: client picks nav/footer options; optional wire-in.
 
 ### What CCFB logo options delivered (Cursor — 2026-08-06)
 - Standalone `ccfb-logo-options.html` (not wired into live chrome)
 - Exported: `ccfb-logo-01-on-black(-transparent)-web.png`, `ccfb-logo-02-crimson-block-web.png`, `ccfb-logo-03.svg` (+ `ccfb-logo-03-figma-web.png` / updated `ccfb-logo-03-on-white-web.png` from Figma)
 - Nav Options A–D; Footer Options E–H
 - **Option E:** Figma desktop Footer layout example (`446:2457`) + Logo 3 partner slot above CityPASS — standalone only
-- **Option H:** endorsement band is logo-only (removed “Official campaign” + dead `.footer-band p` CSS)
+- **Option H:** endorsement band is logo-only (no “Official campaign”); CityPASS proud-partner mark under FAQ in About column (same as F/G)
 - Internal preview note (`<p class="note">` + `.note` CSS) removed from page header (2026-08-06)
 
 ### What the full footer delivered (Cursor/Grok — 2026-08-06)

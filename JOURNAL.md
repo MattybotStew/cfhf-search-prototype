@@ -1,5 +1,10 @@
 # Journal — CFHF Search Prototype
 
+## 2026-08-06 — Cursor: Option H — CityPASS back under FAQ
+
+- `#option-h` on `ccfb-logo-options.html`: restored `.footer-stub__partner` with `assets/images/footer/citypass.png` immediately after About nav (under FAQs) — same proud-partner stub as Options F/G
+- Standalone page only; committed + pushed to `origin/master`
+
 ## 2026-08-06 — Cursor: Option H band — drop “Official campaign”
 
 - `#option-h` on `ccfb-logo-options.html`: removed `<p>Official campaign</p>` from `.footer-band` (logo-only strip)
