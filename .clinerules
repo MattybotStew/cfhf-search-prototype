@@ -6,16 +6,16 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-08-06 (Cursor — unstuck Pages deploy for CCFB options)
+**Last Updated:** 2026-08-06 (Cursor — Option H drop “Official campaign”)
 **Active Agent:** **Cursor**
 **Branch:** `master`
-**Status:** Steps 1–8 + full footer LIVE. CCFB logo options page LIVE (200) after empty re-trigger commit `a4c5a77`. Not wired into live chrome. Logo #4 excluded.
+**Status:** Steps 1–8 + full footer LIVE. CCFB options page updated locally (Option E Figma footer; Logo 3; Option H band logo-only). Not committed/pushed yet. Not wired into live chrome. Logo #4 excluded.
 
 ### Live
 - https://mattybotstew.github.io/cfhf-search-prototype/
-- CCFB logo options: https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html (**200** after `a4c5a77` deploy)
+- CCFB logo options: https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html (**200** after `a4c5a77` deploy; local has newer Option E / Logo 3 / Option H not yet pushed)
 - Pages source: `master` / root + `.nojekyll`
-- Local preview: `python3 -m http.server 8080`
+- Local preview: `python3 -m http.server 8080` → http://127.0.0.1:8080/ccfb-logo-options.html#option-h
 
 ### Decision LOCKED (2026-07-17 — Matt)
 Matt: “i want what is there now with the search functionality requested.”
@@ -24,9 +24,20 @@ Matt: “i want what is there now with the search functionality requested.”
 - Do **not** switch to icon-only click-expand
 
 ### In Progress / Next
-- Share CCFB placement options with client; pick nav + footer option
+- Review Option E Figma-mirrored footer stub + Logo 3 + Option H band; share with client when ready
+- Commit/push CCFB local options changes when Matt asks
 - Optional: wire chosen placements into `index.html` / `search.html` after client pick
-- Client feedback / Figma after share
+
+### Newly completed (2026-08-06 — Cursor: Option H remove “Official campaign”)
+- `#option-h` `.footer-band`: removed `<p>Official campaign</p>`; band is logo-only
+- Removed unused `.footer-band p` CSS; standalone page only
+
+### Newly completed (2026-08-06 — Cursor: Option E from Figma + Logo 3)
+- Figma file `jcbtHK67Ih9BsBxFQK7F7l`: logo node `449:2992` + desktop Footer `446:2457` (same Footer page)
+- Exported Logo 3 → `assets/images/ccfb/ccfb-logo-03.svg` (+ high-res PNG `ccfb-logo-03-figma-web.png` / replaced `ccfb-logo-03-on-white-web.png`)
+- Restyled `#option-e` only to mirror Figma footer columns/spacing (Stay In The Know + social/reviews · About | Address/Phone · Aflac · legal bar); CCFB Logo 3 in light partner panel above CityPASS
+- Nav A/C/D + variant card use new Logo 3 SVG; **index.html / search.html untouched**
+- Local server 8080 serving page + assets 200
 
 ### Newly completed (2026-08-06 — Cursor: Pages re-trigger → CCFB options LIVE)
 - Confirmed live `/ccfb-logo-options.html` **404** while homepage **200**; Actions run for `6fad3bf` stuck **queued**

@@ -1,5 +1,20 @@
 # Journal — CFHF Search Prototype
 
+## 2026-08-06 — Cursor: Option H band — drop “Official campaign”
+
+- `#option-h` on `ccfb-logo-options.html`: removed `<p>Official campaign</p>` from `.footer-band` (logo-only strip)
+- Removed unused `.footer-band p` CSS
+- Standalone page only; not committed/pushed
+
+## 2026-08-06 — Cursor: Option E mirrors Figma Footer + Logo 3 from Figma
+
+- **Figma:** `jcbtHK67Ih9BsBxFQK7F7l` — logo `449:2992` (Layer_1); desktop Footer example `446:2457` on same Footer page (logo sits beside footer comps, not inside the frame)
+- **Assets:** exported SVG + 3× PNG → `assets/images/ccfb/ccfb-logo-03.svg`, `ccfb-logo-03-figma-web.png`; replaced `ccfb-logo-03-on-white-web.png`
+- **Option E** (`#option-e` on `ccfb-logo-options.html` only): restyled to Figma column rhythm — Stay In The Know + outlined Subscribe + social row + review strip · About (full link list) | Address/Phone · light Logo 3 panel above CityPASS · Aflac promo · legal bar with full copyright
+- Logo 3 variant card + nav Options A/C/D now use `ccfb-logo-03.svg`
+- **Not touched:** `index.html` / `search.html` live footer
+- **Preview:** http://127.0.0.1:8080/ccfb-logo-options.html#option-e (not committed/pushed)
+
 ## 2026-08-06 — Cursor: unstuck Pages — CCFB options page LIVE (200)
 
 - **Symptom:** `/ccfb-logo-options.html` returned **404**; homepage **200** (`last-modified` still 12:18Z footer deploy). File was on `master` (`0d58776` / `6fad3bf`).
