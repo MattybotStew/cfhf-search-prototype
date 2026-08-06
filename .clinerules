@@ -6,10 +6,10 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-08-06 (Cursor — Google Reviews first in footer)
-**Active Agent:** **Cursor**
+**Last Updated:** 2026-08-06 (Cline — footer LIVE on GitHub Pages; fixed stuck deploy)
+**Active Agent:** **Cline**
 **Branch:** `master`
-**Status:** Steps 1–8 complete + full cfbhall.com-style footer; review icons ordered Google Reviews → Yelp → TripAdvisor.
+**Status:** Steps 1–8 complete + full cfbhall.com-style footer **now LIVE on Pages**. Root cause of "missing footer": Pages silently stopped building this repo on 2026-07-17 (deploy disabled). Fixed by Matt toggling Settings → Pages → Source off/on, then a re-trigger push (`6628a013`) after the first re-queued build hit a transient 10-min deploy-step timeout. Verified live: footer on home + search, assets 200, Google Reviews first.
 
 ### Live
 - https://mattybotstew.github.io/cfhf-search-prototype/

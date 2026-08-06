@@ -68,6 +68,8 @@ Local: `python3 -m http.server 8080` from repo root.
 
 **Status:** Client-shareable prototype. Full funnel live + full live-matching site footer. Design feedback / Figma capture next — not blocked on missing build steps.
 
+> **2026-08-06 Pages deploy fix (Cline):** Pages silently stopped building this repo on 2026-07-17 (last deploy `68f871e`); pushes `06c8673`/`b9e4ffa` queued no build. Footer code was correct on `origin/master`. Fixed by toggling **Settings → Pages → Source** off/on (`master` / root), which re-queued a build; that first build's "Deploy to GitHub Pages" step hit a transient 10-min timeout, so a re-trigger empty commit (`6628a013`) was pushed → **deploy succeeded; footer is LIVE** (home + search, assets 200, Google Reviews first). If Pages stops deploying with no failed build, use the Settings → Pages source off/on toggle.
+
 **Handoff:** Client-ready. Review gaps verified on live Pages (Cursor). Empty `image` → runtime HOF placeholders (documented in README). Do **not** revert hours-bar to icon-only Option A. Footer matches cfbhall.com (newsletter, social, About, address/phone, CityPASS, Aflac promo, legal) with review icons **Google Reviews → Yelp → TripAdvisor**. Next: commit/push when asked; client feedback / Figma.
 
 ### What the full footer delivered (Cursor/Grok — 2026-08-06)

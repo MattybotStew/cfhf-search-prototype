@@ -1,5 +1,15 @@
 # Journal — CFHF Search Prototype
 
+## 2026-08-06 — Cline: fixed stuck GitHub Pages deploy — footer now LIVE
+
+- **Problem:** Matt didn't see the new footer on Pages. Root cause was NOT the code — footer commit `06c8673` was correctly on `origin/master`, but GitHub Pages had **silently stopped building this repo on 2026-07-17** (last deployment sha `68f871e`). Live site kept serving the Jul 17 build (footer markers = 0, `last-modified` Jul 17).
+- **Ruled out:** browser/CDN cache (query-string busts, `no-cache` headers), wrong branch (remote `master` = `b9e4ffa`), account-wide outage (sibling repos `gerotech-prototype` + `Homepagev2` deployed Aug 4–5).
+- **Tried:** empty trigger commit `b9e4ffa` ("Trigger GitHub Pages rebuild") — did **not** queue a build (repo-level deploy was disabled/stuck).
+- **Fix (part 1):** Matt toggled **Settings → Pages → Source** off then back on (`master` / root). This re-queued the build → new deployment for sha `b9e4ffa`.
+- **Build then FAILED:** the "Deploy to GitHub Pages" Actions step ran the full ~10 min then `failure` (11:43→11:53Z) — a transient deploy-step timeout/cancel, **not** a code error ("Set up job" succeeded; static HTML can't fail a build). Job log requires admin auth to read (Cline had none).
+- **Fix (part 2 — RESOLVED):** pushed a re-trigger empty commit `6628a013` ("Re-trigger Pages deploy after transient build failure") → deployment `6628a013` **success @ 12:18:10Z**. Verified live: `last-modified` flipped to Aug 6; full footer (Stay In The Know, `.site-footer__review-icons`, CityPASS, Aflac promo) on **both** home + `search.html`; all footer assets return 200; Google Reviews link present; `search.css` has footer styles.
+- **Lesson:** if Pages stops deploying a repo with no failed build, toggle Settings → Pages source off/on. If the re-queued build then fails on a transient deploy-step timeout, re-push to re-trigger. `gh` CLI was unauthenticated this session; used public REST API for deployments instead.
+
 ## 2026-08-06 — Cursor: Google Reviews first in footer
 
 - Added Google Reviews as first review icon (before Yelp + TripAdvisor) on `index.html` + `search.html`
