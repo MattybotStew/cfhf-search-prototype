@@ -6,10 +6,10 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-08-06 (Cursor — CCFB logo options pushed live)
+**Last Updated:** 2026-08-06 (Cursor — removed CCFB page internal preview note)
 **Active Agent:** **Cursor**
 **Branch:** `master`
-**Status:** Steps 1–8 + full footer LIVE on Pages. Standalone CCFB logo placement review board LIVE at `/ccfb-logo-options.html`. Not wired into live chrome. Logo #4 excluded.
+**Status:** Steps 1–8 + full footer LIVE on Pages. Standalone CCFB logo placement review board LIVE at `/ccfb-logo-options.html`. Not wired into live chrome. Logo #4 excluded. Internal preview note removed from page header.
 
 ### Live
 - https://mattybotstew.github.io/cfhf-search-prototype/
@@ -27,6 +27,10 @@ Matt: “i want what is there now with the search functionality requested.”
 - Share CCFB placement options with client; pick nav + footer option
 - Optional: wire chosen placements into `index.html` / `search.html` after client pick
 - Client feedback / Figma after share
+
+### Newly completed (2026-08-06 — Cursor: remove CCFB preview note)
+- Removed `<p class="note">` (internal placement-comparison / http.server callout) from `ccfb-logo-options.html` header
+- Removed dead `.note` CSS
 
 ### Newly completed (2026-08-06 — Cursor: CCFB logo placement options)
 - Extracted Logos 1–3 from `CCFB_logo_041426A.ai` into `assets/images/ccfb/` (skipped Logo #4 Black ATL outline)

@@ -1,5 +1,11 @@
 # Journal — CFHF Search Prototype
 
+## 2026-08-06 — Cursor: remove internal preview note from CCFB logo options
+
+- Removed `<p class="note">` under `main.page > header.page-header` (placement-comparison / `python3 -m http.server` callout)
+- Removed unused `.note` CSS
+- New commit + push to `origin/master` (did not amend prior CCFB push)
+
 ## 2026-08-06 — Cursor: CCFB logo options committed + pushed live
 
 - Committed + pushed standalone `ccfb-logo-options.html` + `assets/images/ccfb/` web PNGs to `origin/master`

@@ -77,6 +77,7 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 - Standalone `ccfb-logo-options.html` (not wired into live chrome)
 - Exported: `ccfb-logo-01-on-black(-transparent)-web.png`, `ccfb-logo-02-crimson-block-web.png`, `ccfb-logo-03-on-white-web.png`
 - Nav Options A–D; Footer Options E–H (see JOURNAL)
+- Internal preview note (`<p class="note">` + `.note` CSS) removed from page header (2026-08-06)
 
 ### What the full footer delivered (Cursor/Grok — 2026-08-06)
 - Full live-style footer on both `index.html` and `search.html`
