@@ -6,13 +6,14 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-08-06 (Cline — footer LIVE on GitHub Pages; fixed stuck deploy)
-**Active Agent:** **Cline**
+**Last Updated:** 2026-08-06 (Cursor — CCFB logo options pushed live)
+**Active Agent:** **Cursor**
 **Branch:** `master`
-**Status:** Steps 1–8 complete + full cfbhall.com-style footer **now LIVE on Pages**. Root cause of "missing footer": Pages silently stopped building this repo on 2026-07-17 (deploy disabled). Fixed by Matt toggling Settings → Pages → Source off/on, then a re-trigger push (`6628a013`) after the first re-queued build hit a transient 10-min deploy-step timeout. Verified live: footer on home + search, assets 200, Google Reviews first.
+**Status:** Steps 1–8 + full footer LIVE on Pages. Standalone CCFB logo placement review board LIVE at `/ccfb-logo-options.html`. Not wired into live chrome. Logo #4 excluded.
 
 ### Live
 - https://mattybotstew.github.io/cfhf-search-prototype/
+- CCFB logo options: https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html
 - Pages source: `master` / root + `.nojekyll`
 - Local preview: `python3 -m http.server 8080`
 
@@ -23,9 +24,16 @@ Matt: “i want what is there now with the search functionality requested.”
 - Do **not** switch to icon-only click-expand
 
 ### In Progress / Next
+- Share CCFB placement options with client; pick nav + footer option
+- Optional: wire chosen placements into `index.html` / `search.html` after client pick
 - Client feedback / Figma after share
-- Optional later: real CMS portrait URLs in `image` field
-- Commit / push when Matt asks (footer not on Pages until push)
+
+### Newly completed (2026-08-06 — Cursor: CCFB logo placement options)
+- Extracted Logos 1–3 from `CCFB_logo_041426A.ai` into `assets/images/ccfb/` (skipped Logo #4 Black ATL outline)
+- Standalone review page: `ccfb-logo-options.html`
+- Nav options A–D (under Hall logo; below CTAs; rail foot; mobile strip)
+- Footer options E–H (near About/CityPASS; legal bar; Stay In The Know col; endorsement band)
+- Cleaned `_source.ai.pdf` / preview junk from `assets/images/ccfb/`
 
 ### Newly completed (2026-08-06 — Cursor: Google Reviews first)
 - Added Google Reviews as first icon in `.site-footer__review-icons` on `index.html` + `search.html`

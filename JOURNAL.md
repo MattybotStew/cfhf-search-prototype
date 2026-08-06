@@ -1,5 +1,22 @@
 # Journal — CFHF Search Prototype
 
+## 2026-08-06 — Cursor: CCFB logo options committed + pushed live
+
+- Committed + pushed standalone `ccfb-logo-options.html` + `assets/images/ccfb/` web PNGs to `origin/master`
+- **Live:** https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html
+- Continuity files updated for push (AGENTS / .clinerules / JOURNAL)
+
+## 2026-08-06 — Cursor: CCFB logo placement options (standalone client review)
+
+- Extracted approved logo variants from `CCFB_logo_041426A.ai` (PDF sheet, 4 labeled marks) → PNGs in `assets/images/ccfb/`
+- **Used:** Logo 1 (on black), Logo 2 (crimson block), Logo 3 (on white). **Skipped:** Logo #4 (Black ATL outline)
+- Built standalone `ccfb-logo-options.html` — rail/footer stubs, not wired into live site JS
+- **Nav:** A under Hall logo · B below CTAs · C rail foot · D mobile strip under topbar
+- **Footer:** E near About/CityPASS · F legal bar · G Stay In The Know column · H band above footer
+- Footer review order Google → Yelp → TripAdvisor left alone on index/search
+- Removed leftover `_source.ai.pdf` / sheet preview junk under `assets/images/ccfb/`
+- **Next:** client picks options; optional wire-in later
+
 ## 2026-08-06 — Cline: fixed stuck GitHub Pages deploy — footer now LIVE
 
 - **Problem:** Matt didn't see the new footer on Pages. Root cause was NOT the code — footer commit `06c8673` was correctly on `origin/master`, but GitHub Pages had **silently stopped building this repo on 2026-07-17** (last deployment sha `68f871e`). Live site kept serving the Jul 17 build (footer markers = 0, `last-modified` Jul 17).

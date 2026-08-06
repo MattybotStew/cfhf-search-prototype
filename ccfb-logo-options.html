@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CCFB Logo Placement Options · Client Review</title>
+  <link rel="stylesheet" href="https://use.typekit.net/acw8nkk.css">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+      color: var(--cfhf-body);
+      background: var(--cfhf-surface);
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; margin: 0; padding: 0; }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: var(--space-8) var(--space-5) var(--space-12);
+    }
+
+    .page-header {
+      margin-bottom: var(--space-10);
+      padding-bottom: var(--space-6);
+      border-bottom: 2px solid var(--cfhf-border);
+    }
+
+    .page-header__eyebrow {
+      margin: 0 0 var(--space-2);
+      font-family: var(--font-ui-compact);
+      font-size: var(--fs-caption);
+      font-weight: var(--fw-bold);
+      letter-spacing: var(--ls-wide);
+      text-transform: uppercase;
+      color: var(--cfhf-crimson);
+    }
+
+    .page-header h1 {
+      margin: 0 0 var(--space-3);
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: var(--fw-bold);
+      line-height: var(--lh-tight);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .page-header p {
+      margin: 0 0 var(--space-3);
+      max-width: 42rem;
+      color: var(--cfhf-ink);
+    }
+
+    .page-header p:last-child { margin-bottom: 0; }
+
+    .note {
+      padding: var(--space-3) var(--space-4);
+      background: var(--cfhf-white);
+      border-left: 4px solid var(--cfhf-crimson);
+      font-size: var(--fs-ui);
+    }
+
+    .variants {
+      display: grid;
+      gap: var(--space-4);
+      margin: var(--space-8) 0 var(--space-10);
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 768px) {
+      .variants { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .variant-card {
+      background: var(--cfhf-white);
+      border: 1px solid var(--cfhf-border);
+      padding: var(--space-4);
+    }
+
+    .variant-card h3 {
+      margin: 0 0 var(--space-2);
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .variant-card p {
+      margin: 0 0 var(--space-4);
+      font-size: var(--fs-ui);
+      color: var(--cfhf-muted);
+    }
+
+    .variant-card__frame {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 140px;
+      padding: var(--space-4);
+      border: 1px solid var(--cfhf-border);
+    }
+
+    .variant-card__frame--dark { background: #000; }
+    .variant-card__frame--light { background: #fff; }
+
+    .variant-card__frame img {
+      width: 100%;
+      max-width: 220px;
+      height: auto;
+    }
+
+    .section {
+      margin-bottom: var(--space-12);
+    }
+
+    .section__title {
+      margin: 0 0 var(--space-2);
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .section__lede {
+      margin: 0 0 var(--space-6);
+      max-width: 40rem;
+      color: var(--cfhf-ink);
+    }
+
+    .option {
+      margin-bottom: var(--space-8);
+      background: var(--cfhf-white);
+      border: 1px solid var(--cfhf-border);
+    }
+
+    .option__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2) var(--space-4);
+      align-items: baseline;
+      padding: var(--space-4) var(--space-5);
+      border-bottom: 1px solid var(--cfhf-border);
+      background: var(--cfhf-surface-alt);
+    }
+
+    .option__label {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: var(--fw-bold);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--cfhf-crimson);
+    }
+
+    .option__title {
+      font-family: var(--font-body);
+      font-weight: var(--fw-bold);
+      font-size: 1.05rem;
+    }
+
+    .option__why {
+      flex: 1 1 100%;
+      margin: 0;
+      font-size: var(--fs-ui);
+      color: var(--cfhf-ink);
+    }
+
+    .option__preview {
+      padding: var(--space-5);
+      overflow-x: auto;
+    }
+
+    /* —— Rail stub —— */
+    .rail-stub {
+      width: 280px;
+      max-width: 100%;
+      margin: 0 auto;
+      background: #fff;
+      border: 2px solid var(--cfhf-border);
+      padding: 1.5rem 1.75rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .rail-stub__logo {
+      display: block;
+      text-align: center;
+      margin-bottom: 0;
+    }
+
+    .rail-stub__logo img {
+      width: 100%;
+      max-width: 200px;
+      margin: 0 auto;
+    }
+
+    .rail-stub__ccfb {
+      margin: 1rem auto 0;
+      max-width: 160px;
+    }
+
+    .rail-stub__ccfb--wide { max-width: 180px; }
+
+    .rail-stub__divider {
+      height: 1px;
+      background: var(--cfhf-border);
+      margin: 1rem 0 0;
+    }
+
+    .rail-stub__ctas {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem 0;
+    }
+
+    .rail-stub__cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: var(--fw-bold);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 2px solid #000;
+      min-height: 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    .rail-stub__cta--tickets {
+      width: 100%;
+      min-height: 3.2rem;
+      background: var(--cfhf-crimson);
+      border-color: var(--cfhf-crimson);
+      color: #fff;
+      font-size: 1.35rem;
+    }
+
+    .rail-stub__cta--half {
+      width: 47%;
+      background: #fff;
+      color: #000;
+    }
+
+    .rail-stub__nav {
+      margin-top: 1.75rem;
+    }
+
+    .rail-stub__nav li {
+      padding: 0.55rem 0;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      border-bottom: 1px solid transparent;
+      display: flex;
+      justify-content: space-between;
+      color: #000;
+    }
+
+    .rail-stub__nav li span {
+      color: var(--cfhf-muted);
+      font-size: 0.85rem;
+    }
+
+    .rail-stub__ccfb-below-ctas {
+      margin: 1.25rem auto 0;
+      max-width: 150px;
+    }
+
+    .rail-stub__ccfb-above-nav {
+      margin: 1.5rem auto 0;
+      max-width: 150px;
+    }
+
+    .rail-stub__ccfb-rail-foot {
+      margin: auto auto 0;
+      padding-top: 2rem;
+      max-width: 140px;
+    }
+
+    .rail-stub--tall {
+      min-height: 520px;
+    }
+
+    /* —— Mobile topbar stub —— */
+    .mobile-stub {
+      max-width: 390px;
+      margin: 0 auto;
+      border: 2px solid var(--cfhf-border);
+      background: #fff;
+    }
+
+    .mobile-stub__bar {
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid var(--cfhf-border);
+      min-height: 56px;
+    }
+
+    .mobile-stub__burger {
+      width: 28px;
+      height: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .mobile-stub__burger span {
+      display: block;
+      height: 2px;
+      background: #000;
+    }
+
+    .mobile-stub__logo img {
+      max-height: 40px;
+      width: auto;
+      margin: 0 auto;
+    }
+
+    .mobile-stub__tickets {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.4rem 0.75rem;
+      background: var(--cfhf-crimson);
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: var(--fw-bold);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .mobile-stub__ccfb-row {
+      display: flex;
+      justify-content: center;
+      padding: 0.5rem 0.75rem 0.65rem;
+      border-bottom: 1px solid var(--cfhf-border);
+      background: #fafafa;
+    }
+
+    .mobile-stub__ccfb-row img {
+      max-height: 36px;
+      width: auto;
+    }
+
+    .mobile-stub__body {
+      height: 72px;
+      background: linear-gradient(180deg, #efefef, #f7f7f8);
+    }
+
+    /* —— Footer stubs —— */
+    .footer-stub {
+      background: #000;
+      color: #fff;
+      padding: var(--space-8) var(--space-5);
+    }
+
+    .footer-stub__grid {
+      display: grid;
+      gap: var(--space-6);
+      grid-template-columns: 1fr;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      .footer-stub__grid {
+        grid-template-columns: 1.2fr 1fr 0.7fr;
+        align-items: start;
+      }
+    }
+
+    .footer-stub__title {
+      margin: 0 0 var(--space-2);
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-stub__lede {
+      margin: 0 0 var(--space-3);
+      font-size: var(--fs-ui);
+      color: var(--cfhf-border);
+    }
+
+    .footer-stub__form {
+      display: flex;
+      border: 2px solid #fff;
+      max-width: 280px;
+      margin-bottom: var(--space-4);
+    }
+
+    .footer-stub__form span {
+      flex: 1;
+      padding: 0.55rem 0.75rem;
+      font-size: var(--fs-ui);
+      color: var(--cfhf-muted);
+    }
+
+    .footer-stub__form em {
+      font-style: normal;
+      padding: 0.55rem 0.75rem;
+      background: var(--cfhf-crimson);
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 0.9rem;
+    }
+
+    .footer-stub__heading {
+      margin: 0 0 var(--space-2);
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-stub__nav a {
+      display: block;
+      padding: 0.2rem 0;
+      font-size: var(--fs-ui);
+      color: var(--cfhf-border);
+    }
+
+    .footer-stub__partner {
+      margin-top: var(--space-5);
+    }
+
+    .footer-stub__partner img {
+      max-width: 120px;
+    }
+
+    .footer-stub__ccfb-partner {
+      margin-top: var(--space-5);
+      max-width: 150px;
+    }
+
+    .footer-stub__promo {
+      width: 100%;
+      max-width: 160px;
+      aspect-ratio: 1;
+      background: #292e34;
+      border: 1px solid #444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--fs-caption);
+      color: var(--cfhf-muted);
+      text-align: center;
+      padding: var(--space-3);
+      margin-left: auto;
+    }
+
+    .footer-stub__ccfb-know {
+      margin: var(--space-4) 0 0;
+      max-width: 180px;
+    }
+
+    .footer-stub__reviews {
+      margin-top: var(--space-3);
+      font-size: var(--fs-caption);
+      color: var(--cfhf-muted);
+    }
+
+    .footer-stub__reviews strong {
+      color: #fff;
+      font-weight: var(--fw-medium);
+    }
+
+    .legal-stub {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3) var(--space-6);
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-5) var(--space-5);
+      background: #000;
+      border-top: 1px solid #fff;
+      color: #fff;
+      font-size: var(--fs-ui);
+    }
+
+    .legal-stub__links {
+      display: flex;
+      gap: var(--space-4);
+    }
+
+    .legal-stub__links a { text-decoration: underline; }
+
+    .legal-stub__ccfb {
+      max-width: 120px;
+    }
+
+    .legal-stub--with-logo {
+      justify-content: space-between;
+    }
+
+    .footer-band {
+      background: #000;
+      border-bottom: 1px solid #333;
+      padding: var(--space-5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      text-align: center;
+    }
+
+    .footer-band p {
+      margin: 0;
+      font-size: var(--fs-caption);
+      letter-spacing: var(--ls-caps);
+      text-transform: uppercase;
+      color: var(--cfhf-muted);
+    }
+
+    .footer-band img {
+      max-width: 200px;
+    }
+
+    .toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin: var(--space-5) 0 0;
+    }
+
+    .toc a {
+      display: inline-flex;
+      padding: 0.35rem 0.7rem;
+      border: 1px solid var(--cfhf-border);
+      background: #fff;
+      font-size: var(--fs-ui);
+      font-weight: var(--fw-medium);
+    }
+
+    .toc a:hover {
+      border-color: var(--cfhf-crimson);
+      color: var(--cfhf-crimson);
+    }
+
+    .page-footer-note {
+      margin-top: var(--space-10);
+      padding-top: var(--space-6);
+      border-top: 2px solid var(--cfhf-border);
+      font-size: var(--fs-ui);
+      color: var(--cfhf-muted);
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <p class="page-header__eyebrow">Client review · Capital of College Football</p>
+      <h1>CCFB Logo Placement Options</h1>
+      <p>
+        Standalone mockups for integrating the approved <strong>Capital of College Football</strong> logo
+        into the CFHF site chrome. Each option uses real artwork from the CCFB logo sheet
+        (Logos&nbsp;1–3). Logo&nbsp;#4 (Black ATL outline) is excluded.
+      </p>
+      <p class="note">
+        This page is for placement comparison only — it is not wired into live site search or navigation JS.
+        Preview locally via <code>python3 -m http.server 8080</code> →
+        <code>/ccfb-logo-options.html</code>.
+      </p>
+      <nav class="toc" aria-label="Jump to options">
+        <a href="#variants">Logo variants</a>
+        <a href="#nav">Nav options A–D</a>
+        <a href="#footer">Footer options E–H</a>
+      </nav>
+    </header>
+
+    <section class="section" id="variants" aria-labelledby="variants-title">
+      <h2 class="section__title" id="variants-title">Approved logo variants used</h2>
+      <p class="section__lede">
+        Extracted from <code>CCFB_logo_041426A.ai</code>. Prefer Logo&nbsp;1 on black surfaces (footer);
+        Logos&nbsp;2–3 on white rail / light surfaces.
+      </p>
+      <div class="variants">
+        <article class="variant-card">
+          <h3>Logo 1</h3>
+          <p>Full-color mark on black — best for footer / dark bars.</p>
+          <div class="variant-card__frame variant-card__frame--dark">
+            <img src="assets/images/ccfb/ccfb-logo-01-on-black-web.png" alt="CCFB Logo 1 — ATL Capital of College Football on black" width="220" height="132">
+          </div>
+        </article>
+        <article class="variant-card">
+          <h3>Logo 2</h3>
+          <p>Crimson header block + white lower half — strong in the white left rail.</p>
+          <div class="variant-card__frame variant-card__frame--light">
+            <img src="assets/images/ccfb/ccfb-logo-02-crimson-block-web.png" alt="CCFB Logo 2 — crimson block variant" width="220" height="137">
+          </div>
+        </article>
+        <article class="variant-card">
+          <h3>Logo 3</h3>
+          <p>Skyline + ATL on white — lighter footprint for rail / partner slots.</p>
+          <div class="variant-card__frame variant-card__frame--light">
+            <img src="assets/images/ccfb/ccfb-logo-03-on-white-web.png" alt="CCFB Logo 3 — on white variant" width="220" height="133">
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========== NAV ========== -->
+    <section class="section" id="nav" aria-labelledby="nav-title">
+      <h2 class="section__title" id="nav-title">1. Main navigation</h2>
+      <p class="section__lede">
+        Desktop left rail stubs (live white rail chrome). Mobile topbar considered in Option&nbsp;D.
+      </p>
+
+      <!-- Option A -->
+      <article class="option" id="option-a">
+        <div class="option__meta">
+          <span class="option__label">Option A</span>
+          <span class="option__title">Under CFHF logo in left rail</span>
+          <p class="option__why">Partner lockup directly beneath the Hall logo — reads as co-branded identity at the top of every page. Uses Logo&nbsp;3 for a lighter mark under the primary logo.</p>
+        </div>
+        <div class="option__preview">
+          <div class="rail-stub" aria-label="Rail mockup Option A">
+            <a class="rail-stub__logo" href="#">
+              <img src="assets/images/logo.png" alt="Chick-fil-A College Football Hall of Fame Atlanta" width="200" height="100">
+            </a>
+            <div class="rail-stub__ccfb">
+              <img src="assets/images/ccfb/ccfb-logo-03-on-white-web.png" alt="Capital of College Football" width="160" height="97">
+            </div>
+            <div class="rail-stub__divider" aria-hidden="true"></div>
+            <div class="rail-stub__ctas">
+              <span class="rail-stub__cta rail-stub__cta--tickets">Tickets</span>
+              <span class="rail-stub__cta rail-stub__cta--half">Donate</span>
+              <span class="rail-stub__cta rail-stub__cta--half">Membership</span>
+            </div>
+            <ul class="rail-stub__nav">
+              <li>Hall of Fame <span>›</span></li>
+              <li>Experience <span>›</span></li>
+              <li>Visit <span>›</span></li>
+              <li>News &amp; Happenings <span>›</span></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Option B -->
+      <article class="option" id="option-b">
+        <div class="option__meta">
+          <span class="option__label">Option B</span>
+          <span class="option__title">Below CTAs, above primary nav</span>
+          <p class="option__why">Keeps the Hall logo + Tickets/Donate/Membership stack clean; CCFB sits as a campaign endorsement between CTAs and menu. Uses Logo&nbsp;2 (crimson block) for presence without competing with the Hall mark.</p>
+        </div>
+        <div class="option__preview">
+          <div class="rail-stub" aria-label="Rail mockup Option B">
+            <a class="rail-stub__logo" href="#">
+              <img src="assets/images/logo.png" alt="Chick-fil-A College Football Hall of Fame Atlanta" width="200" height="100">
+            </a>
+            <div class="rail-stub__ctas">
+              <span class="rail-stub__cta rail-stub__cta--tickets">Tickets</span>
+              <span class="rail-stub__cta rail-stub__cta--half">Donate</span>
+              <span class="rail-stub__cta rail-stub__cta--half">Membership</span>
+            </div>
+            <div class="rail-stub__ccfb-below-ctas">
+              <img src="assets/images/ccfb/ccfb-logo-02-crimson-block-web.png" alt="Capital of College Football" width="150" height="93">
+            </div>
+            <ul class="rail-stub__nav">
+              <li>Hall of Fame <span>›</span></li>
+              <li>Experience <span>›</span></li>
+              <li>Visit <span>›</span></li>
+              <li>News &amp; Happenings <span>›</span></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Option C -->
+      <article class="option" id="option-c">
+        <div class="option__meta">
+          <span class="option__label">Option C</span>
+          <span class="option__title">Bottom of left rail (above fold foot)</span>
+          <p class="option__why">Treats CCFB like a persistent partner badge at the rail foot — visible while browsing nav, lower hierarchy than Hall identity. Uses Logo&nbsp;3.</p>
+        </div>
+        <div class="option__preview">
+          <div class="rail-stub rail-stub--tall" aria-label="Rail mockup Option C">
+            <a class="rail-stub__logo" href="#">
+              <img src="assets/images/logo.png" alt="Chick-fil-A College Football Hall of Fame Atlanta" width="200" height="100">
+            </a>
+            <div class="rail-stub__ctas">
+              <span class="rail-stub__cta rail-stub__cta--tickets">Tickets</span>
+              <span class="rail-stub__cta rail-stub__cta--half">Donate</span>
+              <span class="rail-stub__cta rail-stub__cta--half">Membership</span>
+            </div>
+            <ul class="rail-stub__nav">
+              <li>Hall of Fame <span>›</span></li>
+              <li>Experience <span>›</span></li>
+              <li>Visit <span>›</span></li>
+              <li>News &amp; Happenings <span>›</span></li>
+              <li>Venue Rental</li>
+              <li>Save with CityPASS®</li>
+            </ul>
+            <div class="rail-stub__ccfb-rail-foot">
+              <img src="assets/images/ccfb/ccfb-logo-03-on-white-web.png" alt="Capital of College Football" width="140" height="85">
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Option D -->
+      <article class="option" id="option-d">
+        <div class="option__meta">
+          <span class="option__label">Option D</span>
+          <span class="option__title">Mobile — slim strip under topbar</span>
+          <p class="option__why">Preserves hamburger · Hall logo · TICKETS. Adds a compact CCFB strip beneath the topbar (Logo&nbsp;3). Pairs with any desktop option A–C.</p>
+        </div>
+        <div class="option__preview">
+          <div class="mobile-stub" aria-label="Mobile topbar mockup Option D">
+            <div class="mobile-stub__bar">
+              <div class="mobile-stub__burger" aria-hidden="true"><span></span><span></span><span></span></div>
+              <div class="mobile-stub__logo">
+                <img src="assets/images/logo.png" alt="CFHF" width="120" height="40">
+              </div>
+              <span class="mobile-stub__tickets">Tickets</span>
+            </div>
+            <div class="mobile-stub__ccfb-row">
+              <img src="assets/images/ccfb/ccfb-logo-03-on-white-web.png" alt="Capital of College Football" width="120" height="36">
+            </div>
+            <div class="mobile-stub__body" aria-hidden="true"></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <section class="section" id="footer" aria-labelledby="footer-title">
+      <h2 class="section__title" id="footer-title">2. Website footer</h2>
+      <p class="section__lede">
+        Black footer matching the current prototype. Review icons stay
+        <strong>Google → Yelp → TripAdvisor</strong> (already live — not changed here).
+        Footer mockups use Logo&nbsp;1 (dark-background artwork).
+      </p>
+
+      <!-- Option E -->
+      <article class="option" id="option-e">
+        <div class="option__meta">
+          <span class="option__label">Option E</span>
+          <span class="option__title">Partner slot near About / CityPASS</span>
+          <p class="option__why">Places CCFB in the middle footer column with Address / CityPASS — reads as an official Atlanta / college football partnership mark beside existing partner art.</p>
+        </div>
+        <div class="option__preview" style="padding:0;">
+          <div class="footer-stub" aria-label="Footer mockup Option E">
+            <div class="footer-stub__grid">
+              <div>
+                <p class="footer-stub__title">Stay In The Know</p>
+                <p class="footer-stub__lede">Sign up for exclusive updates, discounts, and promotions.</p>
+                <div class="footer-stub__form"><span>Your email</span><em>Subscribe</em></div>
+                <p class="footer-stub__reviews">Reviews: <strong>Google</strong> · Yelp · TripAdvisor</p>
+              </div>
+              <div>
+                <p class="footer-stub__heading">About</p>
+                <nav class="footer-stub__nav" aria-label="About">
+                  <a href="#">Contact</a>
+                  <a href="#">Media</a>
+                  <a href="#">Careers</a>
+                  <a href="#">FAQs</a>
+                </nav>
+                <p class="footer-stub__heading" style="margin-top:1.25rem;">Address</p>
+                <p class="footer-stub__lede">250 Marietta St. N.W.<br>Atlanta, GA 30313</p>
+                <div class="footer-stub__ccfb-partner">
+                  <img src="assets/images/ccfb/ccfb-logo-01-on-black-web.png" alt="Capital of College Football" width="150" height="90">
+                </div>
+                <div class="footer-stub__partner">
+                  <img src="assets/images/footer/citypass.png" alt="Atlanta CityPASS" width="120" height="71">
+                </div>
+              </div>
+              <div>
+                <div class="footer-stub__promo">Aflac Kickoff promo</div>
+              </div>
+            </div>
+          </div>
+          <div class="legal-stub">
+            <p>©2026 College Football Hall of Fame</p>
+            <div class="legal-stub__links">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Option F -->
+      <article class="option" id="option-f">
+        <div class="option__meta">
+          <span class="option__label">Option F</span>
+          <span class="option__title">Legal bar (bottom copyright strip)</span>
+          <p class="option__why">Smallest footprint — CCFB sits in the copyright / legal row. Good if the campaign should be present but secondary to CityPASS and Aflac promo.</p>
+        </div>
+        <div class="option__preview" style="padding:0;">
+          <div class="footer-stub" aria-label="Footer mockup Option F">
+            <div class="footer-stub__grid">
+              <div>
+                <p class="footer-stub__title">Stay In The Know</p>
+                <div class="footer-stub__form"><span>Your email</span><em>Subscribe</em></div>
+                <p class="footer-stub__reviews">Reviews: <strong>Google</strong> · Yelp · TripAdvisor</p>
+              </div>
+              <div>
+                <p class="footer-stub__heading">About</p>
+                <nav class="footer-stub__nav" aria-label="About">
+                  <a href="#">Contact</a>
+                  <a href="#">Media</a>
+                  <a href="#">FAQs</a>
+                </nav>
+                <div class="footer-stub__partner">
+                  <img src="assets/images/footer/citypass.png" alt="Atlanta CityPASS" width="120" height="71">
+                </div>
+              </div>
+              <div>
+                <div class="footer-stub__promo">Aflac Kickoff promo</div>
+              </div>
+            </div>
+          </div>
+          <div class="legal-stub legal-stub--with-logo">
+            <div class="legal-stub__ccfb">
+              <img src="assets/images/ccfb/ccfb-logo-01-on-black-transparent-web.png" alt="Capital of College Football" width="120" height="72">
+            </div>
+            <p>©2026 College Football Hall of Fame</p>
+            <div class="legal-stub__links">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Option G -->
+      <article class="option" id="option-g">
+        <div class="option__meta">
+          <span class="option__label">Option G</span>
+          <span class="option__title">Under Stay In The Know / social column</span>
+          <p class="option__why">Anchors CCFB in the primary engagement column (newsletter + social + reviews) — high visibility on every page without touching About / promo columns.</p>
+        </div>
+        <div class="option__preview" style="padding:0;">
+          <div class="footer-stub" aria-label="Footer mockup Option G">
+            <div class="footer-stub__grid">
+              <div>
+                <p class="footer-stub__title">Stay In The Know</p>
+                <p class="footer-stub__lede">Sign up for exclusive updates, discounts, and promotions.</p>
+                <div class="footer-stub__form"><span>Your email</span><em>Subscribe</em></div>
+                <p class="footer-stub__reviews">Reviews: <strong>Google</strong> · Yelp · TripAdvisor</p>
+                <div class="footer-stub__ccfb-know">
+                  <img src="assets/images/ccfb/ccfb-logo-01-on-black-web.png" alt="Capital of College Football" width="180" height="108">
+                </div>
+              </div>
+              <div>
+                <p class="footer-stub__heading">About</p>
+                <nav class="footer-stub__nav" aria-label="About">
+                  <a href="#">Contact</a>
+                  <a href="#">Media</a>
+                  <a href="#">Careers</a>
+                  <a href="#">FAQs</a>
+                </nav>
+                <div class="footer-stub__partner">
+                  <img src="assets/images/footer/citypass.png" alt="Atlanta CityPASS" width="120" height="71">
+                </div>
+              </div>
+              <div>
+                <div class="footer-stub__promo">Aflac Kickoff promo</div>
+              </div>
+            </div>
+          </div>
+          <div class="legal-stub">
+            <p>©2026 College Football Hall of Fame</p>
+            <div class="legal-stub__links">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Option H -->
+      <article class="option" id="option-h">
+        <div class="option__meta">
+          <span class="option__label">Option H</span>
+          <span class="option__title">Dedicated band above footer columns</span>
+          <p class="option__why">Full-width endorsement strip above the existing footer grid — clearest “ATL is the Capital of College Football” statement; highest visual weight of the footer options.</p>
+        </div>
+        <div class="option__preview" style="padding:0;">
+          <div class="footer-band" aria-label="CCFB endorsement band">
+            <p>Official campaign</p>
+            <img src="assets/images/ccfb/ccfb-logo-01-on-black-web.png" alt="Capital of College Football" width="200" height="120">
+          </div>
+          <div class="footer-stub">
+            <div class="footer-stub__grid">
+              <div>
+                <p class="footer-stub__title">Stay In The Know</p>
+                <div class="footer-stub__form"><span>Your email</span><em>Subscribe</em></div>
+                <p class="footer-stub__reviews">Reviews: <strong>Google</strong> · Yelp · TripAdvisor</p>
+              </div>
+              <div>
+                <p class="footer-stub__heading">About</p>
+                <nav class="footer-stub__nav" aria-label="About">
+                  <a href="#">Contact</a>
+                  <a href="#">Media</a>
+                  <a href="#">FAQs</a>
+                </nav>
+              </div>
+              <div>
+                <div class="footer-stub__promo">Aflac Kickoff promo</div>
+              </div>
+            </div>
+          </div>
+          <div class="legal-stub">
+            <p>©2026 College Football Hall of Fame</p>
+            <div class="legal-stub__links">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <p class="page-footer-note">
+      Source artwork: <code>CCFB_logo_041426A.ai</code> · Exported variants in
+      <code>assets/images/ccfb/</code> · Prototype chrome reference:
+      <a href="index.html">index.html</a> /
+      <a href="search.html">search.html</a>.
+      No changes to live footer review-link order on this pass.
+    </p>
+  </main>
+</body>
+</html>

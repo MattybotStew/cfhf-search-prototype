@@ -48,8 +48,9 @@ Skip only for pure Q&A with **zero** file or plan changes.
 | Home | https://mattybotstew.github.io/cfhf-search-prototype/ |
 | Search | https://mattybotstew.github.io/cfhf-search-prototype/search.html |
 | Sample | https://mattybotstew.github.io/cfhf-search-prototype/search.html?q=tebow |
+| CCFB logo options | https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html |
 
-Local: `python3 -m http.server 8080` from repo root.
+Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options.html`.
 
 ---
 
@@ -70,7 +71,12 @@ Local: `python3 -m http.server 8080` from repo root.
 
 > **2026-08-06 Pages deploy fix (Cline):** Pages silently stopped building this repo on 2026-07-17 (last deploy `68f871e`); pushes `06c8673`/`b9e4ffa` queued no build. Footer code was correct on `origin/master`. Fixed by toggling **Settings → Pages → Source** off/on (`master` / root), which re-queued a build; that first build's "Deploy to GitHub Pages" step hit a transient 10-min timeout, so a re-trigger empty commit (`6628a013`) was pushed → **deploy succeeded; footer is LIVE** (home + search, assets 200, Google Reviews first). If Pages stops deploying with no failed build, use the Settings → Pages source off/on toggle.
 
-**Handoff:** Client-ready. Review gaps verified on live Pages (Cursor). Empty `image` → runtime HOF placeholders (documented in README). Do **not** revert hours-bar to icon-only Option A. Footer matches cfbhall.com (newsletter, social, About, address/phone, CityPASS, Aflac promo, legal) with review icons **Google Reviews → Yelp → TripAdvisor**. Next: commit/push when asked; client feedback / Figma.
+**Handoff:** Client-ready search prototype + full footer LIVE. Standalone **CCFB logo placement** review board LIVE at https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html (+ `assets/images/ccfb/`, Logos 1–3; Logo #4 excluded). Empty `image` → runtime HOF placeholders (documented in README). Do **not** revert hours-bar to icon-only Option A. Footer review icons **Google Reviews → Yelp → TripAdvisor**. Next: client picks CCFB nav/footer options; optional wire-in; Figma as needed.
+
+### What CCFB logo options delivered (Cursor — 2026-08-06)
+- Standalone `ccfb-logo-options.html` (not wired into live chrome)
+- Exported: `ccfb-logo-01-on-black(-transparent)-web.png`, `ccfb-logo-02-crimson-block-web.png`, `ccfb-logo-03-on-white-web.png`
+- Nav Options A–D; Footer Options E–H (see JOURNAL)
 
 ### What the full footer delivered (Cursor/Grok — 2026-08-06)
 - Full live-style footer on both `index.html` and `search.html`
@@ -134,6 +140,7 @@ Local: `python3 -m http.server 8080` from repo root.
 /
   index.html
   search.html
+  ccfb-logo-options.html
   assets/css/tokens.css
   assets/css/search.css
   assets/css/home.css
@@ -142,6 +149,7 @@ Local: `python3 -m http.server 8080` from repo root.
   assets/images/logo.png
   assets/images/arrow.svg
   assets/images/footer/
+  assets/images/ccfb/
   data/search-index.json
   .nojekyll
   .clinerules
