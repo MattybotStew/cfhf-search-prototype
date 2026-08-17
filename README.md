@@ -71,6 +71,8 @@ https://mattybotstew.github.io/cfhf-search-prototype/
 - Home: https://mattybotstew.github.io/cfhf-search-prototype/
 - Search: https://mattybotstew.github.io/cfhf-search-prototype/search.html
 - Sample: https://mattybotstew.github.io/cfhf-search-prototype/search.html?q=touchdown
+- CCFB logo options: https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html
+- **Happenings wireframes** (client review): https://mattybotstew.github.io/cfhf-search-prototype/happenings-wireframes.html
 
 Published from `master` (root). After each push, wait a minute for Pages to rebuild.
 

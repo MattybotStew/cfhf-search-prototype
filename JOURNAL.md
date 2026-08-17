@@ -1,5 +1,16 @@
 # Journal — CFHF Search Prototype
 
+## 2026-08-17 — Cline: Happenings wireframe board (Nebo × CFHF Page Wishlist)
+
+- New standalone `happenings-wireframes.html` + `assets/css/wireframes.css` + `assets/js/wireframes.js` — client-shareable low-fi wireframes, desktop + mobile per template, reusing `tokens.css` brand chrome
+- **01 Full-Service / Transactional** (ticketed): above-the-fold Get Tickets + single Ventrata widget embed, optional sticky CTA, full-width-vs-sidebar toggle, optional Facebook Event embed, compact "More Upcoming Events" carousel (replaces larger related-events block)
+- **02 Lead Gen & RSVP** (non-ticketed): above-the-fold RSVP + name/email/attendees fields + newsletter capture, optional sticky CTA, full-width/sidebar toggle, optional FB embed, compact carousel
+- **03 Happenings listing**: denser compact cards (image, date, title, tag), filter chips, no sidebar; desktop 4-col / mobile 2-col
+- Segmented Desktop/Mobile toggle per wireframe (`wireframes.js`); all situational blocks labeled `Optional · Toggle`
+- Fixed nested-section bug during build (sections 1–3 are now siblings; divs balanced 270/270)
+- Verified local: page + css + js + tokens all **200** on `python3 -m http.server 8090`
+- Continuity files updated (.clinerules / JOURNAL / AGENTS); not yet committed/pushed
+
 ## 2026-08-06 — Cursor: Option H — CityPASS back under FAQ
 
 - `#option-h` on `ccfb-logo-options.html`: restored `.footer-stub__partner` with `assets/images/footer/citypass.png` immediately after About nav (under FAQs) — same proud-partner stub as Options F/G

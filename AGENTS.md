@@ -49,6 +49,7 @@ Skip only for pure Q&A with **zero** file or plan changes.
 | Search | https://mattybotstew.github.io/cfhf-search-prototype/search.html |
 | Sample | https://mattybotstew.github.io/cfhf-search-prototype/search.html?q=tebow |
 | CCFB logo options | https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html |
+| Happenings wireframes | https://mattybotstew.github.io/cfhf-search-prototype/happenings-wireframes.html |
 
 Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options.html`.
 
@@ -67,7 +68,14 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 | 7. Empty state | **DONE** |
 | 8. A11y + mobile polish | **DONE** |
 
-**Status:** Client-shareable prototype. Full funnel live + full live-matching site footer. Design feedback / Figma capture next — not blocked on missing build steps.
+**Status:** Client-shareable prototype. Full funnel live + full live-matching site footer. NEW: Happenings wireframe board (`happenings-wireframes.html`) — 2 event-detail templates + denser listing, desktop + mobile. Design feedback / Figma capture next — not blocked on missing build steps.
+
+### What the Happenings wireframes delivered (Cline — 2026-08-17)
+- `happenings-wireframes.html` + `assets/css/wireframes.css` + `assets/js/wireframes.js`
+- **01 Full-Service / Transactional** (ticketed): Get Tickets + single Ventrata widget, optional sticky CTA, full-width/sidebar toggle, optional FB embed, compact related carousel
+- **02 Lead Gen & RSVP** (non-ticketed): RSVP + form fields + newsletter capture, optional sticky CTA, full-width/sidebar toggle, optional FB embed, compact carousel
+- **03 Happenings listing**: denser compact cards + filter chips, no sidebar
+- Desktop + mobile variants each; segmented toggle; reuses tokens.css chrome
 
 > **2026-08-06 Pages deploy fix (Cline):** Pages silently stopped building this repo on 2026-07-17 (last deploy `68f871e`); pushes `06c8673`/`b9e4ffa` queued no build. Footer code was correct on `origin/master`. Fixed by toggling **Settings → Pages → Source** off/on (`master` / root), which re-queued a build; that first build's "Deploy to GitHub Pages" step hit a transient 10-min timeout, so a re-trigger empty commit (`6628a013`) was pushed → **deploy succeeded; footer is LIVE** (home + search, assets 200, Google Reviews first). If Pages stops deploying with no failed build, use the Settings → Pages source off/on toggle.
 
@@ -169,3 +177,8 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 - No React/Next, no Search & Filter Pro, no Umbraco runtime
 - Tokens: crimson `#b5202b`, white rail, `#C0C1C3`, `#888A8E`, black hours
 - Fonts: Kaneda + Neusa Next (Typekit `acw8nkk`) — **not Inter**; **no gold system**
+
+
+## Figma MCP
+
+Official remote server: `https://mcp.figma.com/mcp`. Read `FIGMA.md` before implementing from a Figma URL.
