@@ -918,6 +918,39 @@ body.wf-board {
   font-size: 0.78rem;
 }
 
+/* Standalone responsive page links */
+.wf-board__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.25rem 0 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid var(--cfhf-border);
+}
+
+.wf-board__links .wf-lbl {
+  align-self: center;
+}
+
+.wf-board__links a {
+  text-decoration: none;
+  font-family: var(--font-ui-compact);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--cfhf-crimson);
+  border-radius: 999px;
+  padding: 0.42rem 0.9rem;
+  transition: background 150ms ease;
+}
+
+.wf-board__links a:hover,
+.wf-board__links a:focus-visible {
+  background: var(--cfhf-crimson-hover);
+}
+
 @media (max-width: 900px) {
   .wf-listing__grid {
     grid-template-columns: repeat(2, 1fr);

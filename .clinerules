@@ -9,7 +9,7 @@
 **Last Updated:** 2026-08-17 (Cline — Happenings wireframes: 3 templates, desktop + mobile)
 **Active Agent:** **Cline (VS Code)**
 **Branch:** `master`
-**Status:** Steps 1–8 + full footer LIVE. CCFB options page on `master` (Option E Figma footer; Logo 3; Option H band logo-only + CityPASS under FAQ). Not wired into live chrome. Logo #4 excluded. NEW: standalone **Happenings wireframe board** (`happenings-wireframes.html`) — 2 detail templates (Full-Service/Transactional + Lead Gen & RSVP) + denser listing, each desktop + mobile.
+**Status:** Steps 1–8 + full footer LIVE. CCFB options page on `master` (Option E Figma footer; Logo 3; Option H band logo-only + CityPASS under FAQ). Not wired into live chrome. Logo #4 excluded. NEW: standalone **Happenings wireframe board** (`happenings-wireframes.html`) — 2 detail templates (Full-Service/Transactional + Lead Gen & RSVP) + denser listing, each desktop + mobile. PLUS each template as a **fully responsive standalone page** (`happenings-transactional.html`, `happenings-rsvp.html`, `happenings-listing.html`; real rail↔topbar collapse, responsive grids).
 
 ### Live
 - https://mattybotstew.github.io/cfhf-search-prototype/
@@ -34,6 +34,8 @@ Matt: “i want what is there now with the search functionality requested.”
 - **Template 02 — Lead Gen & RSVP** (non-ticketed): above-the-fold RSVP + name/email/attendees fields + newsletter capture, optional sticky CTA, full-width/sidebar toggle, optional FB embed, compact carousel
 - **Template 03 — Happenings listing**: denser compact cards (image, date, title, tag), filter chips, no sidebar; desktop (4-col) + mobile (2-col)
 - Each template has Desktop + Mobile variants via segmented toggle (JS); reuses tokens.css brand chrome (rail, hours bar, mobile topbar, footer)
+- PLUS responsive standalone pages: `happenings-transactional.html`, `happenings-rsvp.html`, `happenings-listing.html` + `assets/css/wireframe-pages.css` (real left-rail→mobile-topbar collapse at 900px; content/sidebar, conversion, carousel, listing grids reflow responsively; no manual toggle)
+- Board header now links to the three standalone pages; local serve 8096 verified all 200
 - Local server 8090 verified: page + css + js + tokens all 200
 
 ### Newly completed (2026-08-06 — Cursor: Option H restore CityPASS under FAQ)

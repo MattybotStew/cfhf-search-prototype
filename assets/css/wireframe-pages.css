@@ -1,0 +1,308 @@
+/**
+ * CFHF Happenings — standalone responsive wireframe pages
+ * Real responsive chrome (desktop left rail <-> mobile topbar) wrapping the
+ * schematic wireframe blocks from wireframes.css. Reuses tokens.css brand tokens.
+ */
+
+body.wf-page {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--cfhf-ink);
+  background: var(--cfhf-white);
+  line-height: 1.5;
+}
+
+/* Thin "wireframe" notice bar above the page */
+.wfp-banner {
+  background: var(--cfhf-ink);
+  color: #fff;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 0.45rem clamp(1.25rem, 4vw, 3rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: center;
+}
+
+.wfp-banner__tag {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--cfhf-crimson);
+  background: #fff;
+  border-radius: 999px;
+  padding: 0.08rem 0.5rem;
+}
+
+.wfp-banner a {
+  color: #fff;
+  text-underline-offset: 2px;
+}
+
+/* App shell: rail + main */
+.wf-page__shell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--cfhf-white);
+}
+
+/* Real sticky left rail (desktop) */
+.wf-page .wf-rail {
+  width: var(--rail-width);
+  flex: 0 0 var(--rail-width);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: var(--space-6) var(--space-5);
+  border-right: 1px solid var(--cfhf-border);
+  background: var(--cfhf-white);
+  gap: var(--space-4);
+}
+
+.wf-page .wf-rail__logo {
+  height: 2.6rem;
+}
+
+.wf-page .wf-rail__btn {
+  height: 1.95rem;
+}
+
+.wf-page .wf-rail__nav-item {
+  height: 1.2rem;
+}
+
+.wf-page__main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--cfhf-white);
+}
+
+/* Mobile topbar hidden on desktop, shown on mobile */
+.wf-page .wf-topbar {
+  display: none;
+}
+
+/* Hours bar spans full main width */
+.wf-page .wf-hours {
+  padding: var(--space-3) clamp(1.25rem, 4vw, 3rem);
+}
+
+/* Content column */
+.wf-page__content {
+  flex: 1;
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-10) clamp(1.25rem, 4vw, 3rem) var(--space-12);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Bring wireframe blocks to standalone scale */
+.wf-page .wf-hero {
+  padding: 0 0 var(--space-8);
+  border-bottom: 1px solid var(--cfhf-border);
+  margin-bottom: var(--space-8);
+}
+
+.wf-page .wf-hero__title {
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  margin: var(--space-2) 0 var(--space-3);
+}
+
+.wf-page .wf-hero__crumb {
+  font-size: 0.72rem;
+}
+
+.wf-page .wf-meta {
+  font-size: 0.78rem;
+}
+
+.wf-page .wf-conversion {
+  padding: var(--space-6) 0;
+  border-bottom: 1px dashed var(--cfhf-border);
+  margin-bottom: var(--space-8);
+}
+
+.wf-page .wf-conversion__grid {
+  gap: var(--space-6);
+}
+
+.wf-page .wf-sticky {
+  margin: 0 0 var(--space-8);
+  padding: var(--space-4) var(--space-5);
+}
+
+.wf-page .wf-sticky__price {
+  font-size: 1.15rem;
+}
+
+.wf-page .wf-content {
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: var(--space-8);
+  padding: 0;
+  margin-bottom: var(--space-12);
+}
+
+.wf-page .wf-content__col,
+.wf-page .wf-content__aside {
+  gap: var(--space-4);
+}
+
+.wf-page .wf-content .wf-block {
+  padding: var(--space-4) var(--space-5);
+  font-size: 0.78rem;
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.wf-page .wf-carousel {
+  padding: 0 0 var(--space-12);
+  border-top: 1px solid var(--cfhf-border);
+  padding-top: var(--space-8);
+}
+
+.wf-page .wf-carousel__title {
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+}
+
+.wf-page .wf-carousel__cards {
+  gap: var(--space-5);
+}
+
+.wf-page .wf-carousel__card-media {
+  height: 7rem;
+}
+
+.wf-page .wf-listing__grid {
+  padding: 0;
+  margin: 0 0 var(--space-10);
+}
+
+.wf-page .wf-listing__chips {
+  padding: var(--space-4) 0;
+  margin-bottom: var(--space-6);
+}
+
+.wf-page .wf-listing__media--compact {
+  height: 8rem;
+}
+
+.wf-page .wf-listing__title {
+  font-size: 0.8rem;
+}
+
+.wf-page .wf-listing__date {
+  font-size: 0.68rem;
+}
+
+/* Footer */
+.wf-page .wf-footer {
+  padding: var(--space-8) clamp(1.25rem, 4vw, 3rem);
+}
+
+.wf-page .wf-footer__grid {
+  gap: var(--space-5);
+}
+
+.wf-page .wf-footer__block {
+  min-height: 5.5rem;
+  font-size: 0.72rem;
+}
+
+/* ----- Responsive: collapse rail to mobile topbar ----- */
+@media (max-width: 900px) {
+  .wf-page .wf-rail {
+    display: none;
+  }
+
+  .wf-page .wf-topbar {
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .wf-page .wf-topbar__logo {
+    width: 6.5rem;
+    height: 1.9rem;
+  }
+
+  .wf-page__content {
+    padding: var(--space-8) var(--space-5) var(--space-10);
+  }
+
+  .wf-page .wf-hero {
+    padding: 0 0 var(--space-6);
+    margin-bottom: var(--space-6);
+  }
+
+  .wf-page .wf-hero__title {
+    font-size: clamp(1.75rem, 7vw, 2.4rem);
+  }
+
+  .wf-page .wf-conversion {
+    padding: var(--space-5) 0;
+    margin-bottom: var(--space-6);
+  }
+
+  .wf-page .wf-conversion__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .wf-page .wf-sticky {
+    margin-bottom: var(--space-6);
+  }
+
+  .wf-page .wf-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-10);
+  }
+
+  .wf-page .wf-content__aside {
+    order: 2;
+    border-top: 1px solid var(--cfhf-border);
+    padding-top: var(--space-5);
+  }
+
+  .wf-page .wf-carousel {
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-10);
+  }
+
+  .wf-page .wf-carousel__cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+
+  .wf-page .wf-listing__grid {
+    margin-bottom: var(--space-8);
+  }
+
+  .wf-page .wf-listing__media--compact {
+    height: 6.5rem;
+  }
+
+  .wf-page .wf-footer__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .wf-page .wf-footer__block {
+    min-height: 4.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wf-page .wf-carousel__cards {
+    grid-template-columns: 1fr;
+  }
+}

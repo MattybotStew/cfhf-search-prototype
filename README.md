@@ -73,6 +73,7 @@ https://mattybotstew.github.io/cfhf-search-prototype/
 - Sample: https://mattybotstew.github.io/cfhf-search-prototype/search.html?q=touchdown
 - CCFB logo options: https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html
 - **Happenings wireframes** (client review): https://mattybotstew.github.io/cfhf-search-prototype/happenings-wireframes.html
+- **Happenings standalone (responsive):** [transactional](https://mattybotstew.github.io/cfhf-search-prototype/happenings-transactional.html) · [rsvp](https://mattybotstew.github.io/cfhf-search-prototype/happenings-rsvp.html) · [listing](https://mattybotstew.github.io/cfhf-search-prototype/happenings-listing.html)
 
 Published from `master` (root). After each push, wait a minute for Pages to rebuild.
 

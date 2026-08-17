@@ -50,6 +50,9 @@ Skip only for pure Q&A with **zero** file or plan changes.
 | Sample | https://mattybotstew.github.io/cfhf-search-prototype/search.html?q=tebow |
 | CCFB logo options | https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html |
 | Happenings wireframes | https://mattybotstew.github.io/cfhf-search-prototype/happenings-wireframes.html |
+| Happenings — Transactional (resp.) | https://mattybotstew.github.io/cfhf-search-prototype/happenings-transactional.html |
+| Happenings — RSVP (resp.) | https://mattybotstew.github.io/cfhf-search-prototype/happenings-rsvp.html |
+| Happenings — Listing (resp.) | https://mattybotstew.github.io/cfhf-search-prototype/happenings-listing.html |
 
 Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options.html`.
 
@@ -76,6 +79,7 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 - **02 Lead Gen & RSVP** (non-ticketed): RSVP + form fields + newsletter capture, optional sticky CTA, full-width/sidebar toggle, optional FB embed, compact carousel
 - **03 Happenings listing**: denser compact cards + filter chips, no sidebar
 - Desktop + mobile variants each; segmented toggle; reuses tokens.css chrome
+- **Responsive standalone pages:** `happenings-transactional.html`, `happenings-rsvp.html`, `happenings-listing.html` + `assets/css/wireframe-pages.css` — real rail↔mobile-topbar collapse (≤900px), responsive grids, no toggle. Linked from the board header.
 
 > **2026-08-06 Pages deploy fix (Cline):** Pages silently stopped building this repo on 2026-07-17 (last deploy `68f871e`); pushes `06c8673`/`b9e4ffa` queued no build. Footer code was correct on `origin/master`. Fixed by toggling **Settings → Pages → Source** off/on (`master` / root), which re-queued a build; that first build's "Deploy to GitHub Pages" step hit a transient 10-min timeout, so a re-trigger empty commit (`6628a013`) was pushed → **deploy succeeded; footer is LIVE** (home + search, assets 200, Google Reviews first). If Pages stops deploying with no failed build, use the Settings → Pages source off/on toggle.
 

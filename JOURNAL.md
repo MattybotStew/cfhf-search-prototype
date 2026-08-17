@@ -1,5 +1,16 @@
 # Journal — CFHF Search Prototype
 
+## 2026-08-17 — Cline: responsive standalone wireframe pages
+
+- Added `assets/css/wireframe-pages.css` + three fully responsive standalone pages mirroring the board's wireframes:
+  - `happenings-transactional.html` (Full-Service / Ticketed)
+  - `happenings-rsvp.html` (Lead Gen & RSVP)
+  - `happenings-listing.html` (dense listing)
+- Each is a real responsive page (no manual toggle): sticky desktop left rail collapses to the mobile topbar at ≤900px; content/sidebar, above-the-fold conversion, related-carousel, and listing grids reflow at breakpoints (carousel 3→2→1 col, listing 4→2 col, footer 4→2 col)
+- Thin "Wireframe" banner on each page + "← Back to wireframe board" link; board header now links to the three standalone pages
+- Verified: divs/sections balanced on all pages; local serve 8096 → all pages + new CSS 200
+- Continuity files updated; not yet committed/pushed
+
 ## 2026-08-17 — Cline: Happenings wireframe board (Nebo × CFHF Page Wishlist)
 
 - New standalone `happenings-wireframes.html` + `assets/css/wireframes.css` + `assets/js/wireframes.js` — client-shareable low-fi wireframes, desktop + mobile per template, reusing `tokens.css` brand chrome
