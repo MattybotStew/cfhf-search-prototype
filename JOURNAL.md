@@ -1,5 +1,15 @@
 # Journal — CFHF Search Prototype
 
+## 2026-08-17 — Cline: fix horizontal overflow on wireframe pages
+
+- Symptom: "content pushing out of the frame" on the standalone wireframe pages (and board)
+- Root cause: `tokens.css` + wireframe CSS never set `box-sizing: border-box`; the fixed-width left rail (280 content + padding + border = 322px) overflowed the viewport, pushing the whole layout right (doc scrollW 1536 > clientW 1440)
+- Fix: added global `box-sizing: border-box` reset at top of `assets/css/wireframes.css` (applies to board + all standalone pages)
+- Verified with headless Chromium probe (ms-playwright headless shell) at 1440 & 390:
+  - transactional / rsvp / listing / board → `doc scrollW == clientW`, overflowX = no
+  - Only flagged element was the intentionally off-screen `.skip-link`
+- Temp probe files removed; committed fix
+
 ## 2026-08-17 — Cline: responsive standalone wireframe pages
 
 - Added `assets/css/wireframe-pages.css` + three fully responsive standalone pages mirroring the board's wireframes:

@@ -5,6 +5,13 @@
  * listing. Reuses tokens.css brand tokens; wireframe blocks stay schematic.
  */
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
 /* ----- Board chrome ----- */
 body.wf-board {
   margin: 0;
