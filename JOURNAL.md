@@ -1,5 +1,14 @@
 # Journal — CFHF Search Prototype
 
+## 2026-08-17 — Cline: Donate + Membership side by side in wireframe rail
+
+- Live site (`cfbhall.com`) shows Donate + Membership side by side under the full-width Tickets button in the left rail
+- Real prototype rail (`index.html`/`search.html`) already does this (`.rail-ctas__secondary { width: 47% }`) — verified side by side
+- Wireframe rail (`wireframes.css .wf-rail`) was stacked (column flex); changed to a 2-col grid so Tickets stays full-width (grid-column 1/-1) and the two outline buttons share a row
+- Verified via headless probe: Donate L=20 R=132 / Membership L=148 R=259 (same T) on the standalone transactional page
+- Applies to board + all standalone pages (shared `.wf-rail`); temp probe files removed
+- Not yet committed/pushed
+
 ## 2026-08-17 — Cline: fix horizontal overflow on wireframe pages
 
 - Symptom: "content pushing out of the frame" on the standalone wireframe pages (and board)

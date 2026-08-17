@@ -283,13 +283,15 @@ body.wf-board {
   flex: 0 0 150px;
   border-right: 1px solid var(--cfhf-border);
   background: #fff;
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  align-content: start;
   padding: 1rem;
 }
 
 .wf-rail__logo {
+  grid-column: 1 / -1;
   height: 2.1rem;
   border: 1px dashed #b9babe;
   border-radius: 5px;
@@ -316,6 +318,7 @@ body.wf-board {
 }
 
 .wf-rail__btn--tickets {
+  grid-column: 1 / -1;
   background: var(--cfhf-crimson);
   color: #fff;
 }
@@ -327,6 +330,7 @@ body.wf-board {
 }
 
 .wf-rail__nav {
+  grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
