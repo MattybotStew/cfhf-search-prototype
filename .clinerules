@@ -6,7 +6,7 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-08-17 (Cline — Happenings wireframes: 3 templates, desktop + mobile)
+**Last Updated:** 2026-08-26 (Cline — listing card category tags added; mobile chip parity fixed)
 **Active Agent:** **Cline (VS Code)**
 **Branch:** `master`
 **Status:** Steps 1–8 + full footer LIVE. CCFB options page on `master` (Option E Figma footer; Logo 3; Option H band logo-only + CityPASS under FAQ). Not wired into live chrome. Logo #4 excluded. NEW: standalone **Happenings wireframe board** (`happenings-wireframes.html`) — 2 detail templates (Full-Service/Transactional + Lead Gen & RSVP) + denser listing, each desktop + mobile. PLUS each template as a **fully responsive standalone page** (`happenings-transactional.html`, `happenings-rsvp.html`, `happenings-listing.html`; real rail↔topbar collapse, responsive grids).
@@ -27,6 +27,11 @@ Matt: “i want what is there now with the search functionality requested.”
 - Review Happenings wireframes board (`happenings-wireframes.html`) with client; iterate on modular/toggleable blocks
 - Review Option E Figma-mirrored footer stub + Logo 3 + Option H band; share with client when ready
 - Optional: wire chosen CCFB placements + chosen event templates into `index.html` / `search.html` after client picks
+
+### Newly completed (2026-08-26 — Cline: listing card tags + chip parity)
+- Added compact category tags (`.wf-tag--xs`) to all listing cards on `happenings-wireframes.html` (desktop + mobile frames) and `happenings-listing.html` — spec text now matches rendered UI
+- Added missing "Community" filter chip to the board's mobile listing row (now 6 chips, matching desktop)
+- Verified standalone pages carry full chrome; local serve 200s confirmed
 
 ### Newly completed (2026-08-17 — Cline: Happenings wireframe board)
 - New standalone `happenings-wireframes.html` (+ `assets/css/wireframes.css`, `assets/js/wireframes.js`) — client-shareable low-fi wireframes from the Nebo × CFHF Page Wishlist

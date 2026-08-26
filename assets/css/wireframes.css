@@ -570,6 +570,13 @@ body.wf-board {
   border: 1px solid var(--cfhf-crimson);
 }
 
+/* Compact card tag (listing cards) */
+.wf-tag--xs {
+  align-self: flex-start;
+  font-size: 0.46rem;
+  padding: 0.08rem 0.42rem;
+}
+
 /* Above-the-fold conversion */
 .wf-conversion {
   padding: 0.9rem 1.2rem;

@@ -1,5 +1,12 @@
 # Journal — CFHF Search Prototype
 
+## 2026-08-26 — Cline: Listing card category tags + mobile chip parity fix
+
+- **Fix 1 — listing cards now show category tags:** every `wf-listing__card` on the board (`happenings-wireframes.html`, desktop + mobile listing frames, 14 cards) and the standalone page (`happenings-listing.html`, 8 cards) got a compact pill tag matching its event type (Ticketed solid crimson; Free · RSVP / Exhibitions / Community outline). New `.wf-tag--xs` modifier in `assets/css/wireframes.css`. This closes the gap where the board's own spec text claimed "small category tag" but cards rendered without one.
+- **Fix 2 — chip parity:** mobile listing chips row on the board was missing "Community" (5 chips vs. desktop's 6); added it so both rows match (All · Upcoming · Free / RSVP · Ticketed · Exhibitions · Community).
+- Verified via local server (all pages + CSS 200). Tag mapping: Football Fest & Free Day → Free·RSVP, Gameday Kickoff Party → Ticketed, Ascension → Exhibitions, Community Film Night → Community, Legendary Saturday → Ticketed, Kids Game Day → Community, Hall of Fame Talks → Exhibitions, Members Appreciation → Free·RSVP.
+- Also verified standalone wireframe pages DO carry full chrome (rail/topbar/hours/footer present in markup) — earlier report of missing chrome was a false alarm (likely file:// load).
+
 ## 2026-08-17 — Cline: Donate + Membership side by side in wireframe rail
 
 - Live site (`cfbhall.com`) shows Donate + Membership side by side under the full-width Tickets button in the left rail
