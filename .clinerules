@@ -6,10 +6,10 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-08-26 (Cline — listing card category tags added; mobile chip parity fixed)
-**Active Agent:** **Cline (VS Code)**
+**Last Updated:** 2026-09-03 (Cursor — Happenings click-through flows)
+**Active Agent:** **Cursor**
 **Branch:** `master`
-**Status:** Steps 1–8 + full footer LIVE. CCFB options page on `master` (Option E Figma footer; Logo 3; Option H band logo-only + CityPASS under FAQ). Not wired into live chrome. Logo #4 excluded. NEW: standalone **Happenings wireframe board** (`happenings-wireframes.html`) — 2 detail templates (Full-Service/Transactional + Lead Gen & RSVP) + denser listing, each desktop + mobile. PLUS each template as a **fully responsive standalone page** (`happenings-transactional.html`, `happenings-rsvp.html`, `happenings-listing.html`; real rail↔topbar collapse, responsive grids).
+**Status:** Steps 1–8 + full footer LIVE. Standalone Happenings pages are now designed (live left rail, hours-bar search, mobile topbar) — not schematic wires. Board remains low-fi. CCFB options page on `master` (not wired into live chrome).
 
 ### Live
 - https://mattybotstew.github.io/cfhf-search-prototype/
@@ -24,9 +24,37 @@ Matt: “i want what is there now with the search functionality requested.”
 - Do **not** switch to icon-only click-expand
 
 ### In Progress / Next
-- Review Happenings wireframes board (`happenings-wireframes.html`) with client; iterate on modular/toggleable blocks
+- Share designed Happenings pages (`happenings-transactional.html`, `happenings-rsvp.html`, `happenings-listing.html`) + wireframe board with client
 - Review Option E Figma-mirrored footer stub + Logo 3 + Option H band; share with client when ready
 - Optional: wire chosen CCFB placements + chosen event templates into `index.html` / `search.html` after client picks
+
+### Newly completed (2026-09-03 — Cursor: Happenings click-through flows)
+- `data/happenings-events.json` + `assets/js/happenings.js`: listing filters sync to `?category=`, all 8 cards link to detail pages with `?event=`, detail pages hydrate from JSON, RSVP form → confirmation, Get Tickets scrolls to Ventrata when keys are placeholders, related events carousel is live-linked
+
+### Newly completed (2026-09-03 — Cursor: Happenings visual polish)
+- Full-bleed Kaneda hero (stroke title, gradient overlay), designed offer/Ventrata split, sticky bar, card hovers, FAQ polish, listing intro + filter chips
+- Module toolbar collapsed into `<details>`; prototype banner retained for review
+
+### Newly completed (2026-09-03 — Cursor: Ventrata Checkout snippet)
+- `happenings-transactional.html` loads `ventrata-checkout.min.js` (v3, env test) with placeholder `apiKey` / `productID`
+- Book Now + Get Tickets (hero, offer, sticky) use `ventrata-checkout` + product config
+
+### Newly completed (2026-09-03 — Cursor: hero buttons not full-width on desktop)
+- `.hp-hero__actions .btn` is `width: auto` on desktop (rail `.btn` is 100% for Tickets). Mobile hero CTAs still stack full-width.
+
+### Newly completed (2026-09-03 — Cursor: designed standalone Happenings)
+- Rebuilt the three standalone pages as designed comps using the live `site-rail` / hours-bar / mobile topbar / footer from `index.html` + `search.css`
+- Content still follows Nebo r2 (image hero, optional modules, RSVP form CTA, listing category order)
+- New `assets/css/happenings-pages.css`; pages no longer use schematic `wf-rail` chrome
+- Hours-bar search wired via `search.js`
+
+### Newly completed (2026-09-03 — Cursor: Nebo r2 Happenings)
+- Full-width image hero (short/medium/tall) + in-header CTAs on transactional + RSVP; date label is free-text (recurring ranges)
+- Transactional: offer copy above Get Tickets; Ventrata optional and stacked below; Add to Calendar off by default
+- RSVP: configurable fields; Save My Spot at bottom of form (submits this form; hero/sticky scroll to it); form embed / Facebook Event are alternatives, not side-by-side
+- Facebook Event moved to Location / Share sidebar; share icons Facebook · Instagram · X (configurable; no Pinterest)
+- FAQ accordion; sidebar off collapses main column to full width (module toolbar on board + standalone)
+- Listing: heading category nav matches chip order; note that filters are CMS-managed in Umbraco
 
 ### Newly completed (2026-08-26 — Cline: listing card tags + chip parity)
 - Added compact category tags (`.wf-tag--xs`) to all listing cards on `happenings-wireframes.html` (desktop + mobile frames) and `happenings-listing.html` — spec text now matches rendered UI

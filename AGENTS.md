@@ -71,10 +71,20 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 | 7. Empty state | **DONE** |
 | 8. A11y + mobile polish | **DONE** |
 
-**Status:** Client-shareable prototype. Full funnel live + full live-matching site footer. NEW: Happenings wireframe board (`happenings-wireframes.html`) — 2 event-detail templates + denser listing, desktop + mobile. Design feedback / Figma capture next — not blocked on missing build steps.
+**Status:** Client-shareable prototype. Full funnel live + full live-matching site footer. Happenings **standalone pages are designed** (live rail/hours/footer); board stays wireframe. Nebo r2 structure retained.
 
 ### What the Happenings wireframes delivered (Cline — 2026-08-17)
 - `happenings-wireframes.html` + `assets/css/wireframes.css` + `assets/js/wireframes.js`
+
+> **2026-09-03 click-through flows (Cursor):** `data/happenings-events.json` + `assets/js/happenings.js` — listing filters, `?event=` detail hydration, RSVP confirmation, related-event links, Ventrata scroll fallback.
+
+> **2026-09-03 Ventrata (Cursor):** transactional page uses official Checkout v3 button + script (test env; placeholder API key / product ID). Get Tickets CTAs share `ventrata-checkout`.
+
+> **2026-09-03 designed standalones (Cursor):** `happenings-transactional.html`, `happenings-rsvp.html`, `happenings-listing.html` now use the live `site-rail` chrome from `index.html`/`search.html` (`search.css` + `happenings-pages.css`). Wireframe board unchanged as low-fi.
+
+> **2026-09-03 Nebo r2 (Cursor):** transactional + RSVP gained full-width image hero (height + in-header CTAs), flexible date labels, offer/form copy above conversion CTAs, optional Ventrata/form-embed/calendar, FAQ accordion, Facebook Event in Location/Share, share icons Facebook · Instagram · X. Module toolbar shows desktop reflow when sidebar/widget is off. Listing heading nav matches chip order; categories documented as CMS-editable.
+
+> **2026-08-26 polish (Cline, commit `265e9eb`, LIVE):** listing cards now carry compact category tags (`.wf-tag--xs`) matching the board's spec text — 14 cards on the board + 8 on `happenings-listing.html`. Mobile chip row gained the missing "Community" chip (now 6 = desktop). Standalone pages verified to carry full chrome.
 - **01 Full-Service / Transactional** (ticketed): Get Tickets + single Ventrata widget, optional sticky CTA, full-width/sidebar toggle, optional FB embed, compact related carousel
 - **02 Lead Gen & RSVP** (non-ticketed): RSVP + form fields + newsletter capture, optional sticky CTA, full-width/sidebar toggle, optional FB embed, compact carousel
 - **03 Happenings listing**: denser compact cards + filter chips, no sidebar

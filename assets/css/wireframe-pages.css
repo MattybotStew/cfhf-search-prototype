@@ -103,11 +103,36 @@ body.wf-page {
   flex-direction: column;
 }
 
+.wf-page .wf-mods {
+  margin: 0;
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+.wf-page .wf-demo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 /* Bring wireframe blocks to standalone scale */
 .wf-page .wf-hero {
   padding: 0 0 var(--space-8);
   border-bottom: 1px solid var(--cfhf-border);
   margin-bottom: var(--space-8);
+}
+
+.wf-page .wf-hero--image {
+  margin: 0 0 var(--space-8);
+  padding: var(--space-10) clamp(1.25rem, 4vw, 3rem) var(--space-8);
+  min-height: 18rem;
+  border-bottom: 0;
+}
+
+.wf-page .wf-hero--text {
+  padding: var(--space-8) clamp(1.25rem, 4vw, 3rem) var(--space-6);
+  margin-bottom: 0;
 }
 
 .wf-page .wf-hero__title {
@@ -147,6 +172,27 @@ body.wf-page {
   gap: var(--space-8);
   padding: 0;
   margin-bottom: var(--space-12);
+}
+
+.wf-page .wf-demo[data-sidebar="off"] .wf-content {
+  grid-template-columns: 1fr;
+}
+
+.wf-page .wf-faq {
+  min-height: 0;
+  display: block;
+  align-items: stretch;
+  padding: 0;
+}
+
+.wf-page .wf-faq__q {
+  font-size: 0.78rem;
+  padding: var(--space-4) var(--space-5);
+}
+
+.wf-page .wf-faq__a {
+  font-size: 0.78rem;
+  padding: 0 var(--space-5) var(--space-4);
 }
 
 .wf-page .wf-content__col,

@@ -20,8 +20,10 @@
       Three modular wireframes for events on cfbhall.com: two detail-page templates
       (<strong>Full-Service / Transactional</strong> for high-impact ticketed events, and
       <strong>Lead Generation &amp; RSVP</strong> for non-ticketed / community events) plus a
-      denser <strong>Happenings listing</strong>. Every situational component — Facebook Event embed,
-      sticky CTA, and the location/share sidebar — is designed as an <em>optional, admin-toggleable block</em>.
+      denser <strong>Happenings listing</strong>. Updated for Nebo r2: full-width image hero (adjustable height + in-header CTAs),
+      flexible date labels, optional Ventrata / form-embed / calendar, FAQ accordion, Facebook Event in the
+      Location / Share sidebar, and share icons Facebook · Instagram · X. Use the module bar on each template
+      to see desktop reflow when optional blocks are off.
     </p>
     <ul class="wf-legend">
       <li class="wf-chip"><span class="wf-chip__dot"></span>Chrome (live-matching rail · hours bar · topbar · footer)</li>
@@ -30,7 +32,7 @@
     </ul>
 
     <div class="wf-board__links">
-      <span class="wf-lbl">View as responsive standalone page:</span>
+      <span class="wf-lbl">View as designed standalone page (live rail):</span>
       <a href="happenings-transactional.html">1 · Full-Service / Transactional</a>
       <a href="happenings-rsvp.html">2 · Lead Gen &amp; RSVP</a>
       <a href="happenings-listing.html">3 · Happenings Listing</a>
@@ -52,10 +54,32 @@
       fundraising programs, workshops). Goal: move the visitor to purchase fast — above the fold.
     </p>
     <p class="wf-section__desc">
-      Key requirements: prominent ticket-purchasing integration (single Ventrata product widget),
-      optional sticky CTA that follows on scroll, full-width content option (removes the default
-      location/share sidebar), optional Facebook Event embed, and a compact related-events carousel.
+      Key requirements: full-width image hero (height + in-header CTAs), flexible date labeling,
+      offer copy above Get Tickets, optional Ventrata directly below that section, optional Add to Calendar,
+      FAQ accordion, Facebook Event in the sidebar, configurable share icons. Toggle modules to watch the
+      desktop grid collapse to a single column when Ventrata or the sidebar is empty.
     </p>
+  </div>
+
+  <div class="wf-mods" role="group" aria-label="Optional modules">
+    <span class="wf-mods__lbl">Modules</span>
+    <label>Hero
+      <select data-mod-key="hero">
+        <option value="image" selected>Full-width image</option>
+        <option value="text">Text only</option>
+      </select>
+    </label>
+    <label>Height
+      <select data-mod-key="hero-h">
+        <option value="sm">Short</option>
+        <option value="md" selected>Medium</option>
+        <option value="lg">Tall</option>
+      </select>
+    </label>
+    <label><input type="checkbox" data-mod-key="ventrata" checked> Ventrata</label>
+    <label><input type="checkbox" data-mod-key="calendar"> Add to Calendar</label>
+    <label><input type="checkbox" data-mod-key="sidebar" checked> Location / Share sidebar</label>
+    <label><input type="checkbox" data-mod-key="fb" checked> Facebook Event</label>
   </div>
 
   <div class="wf-toggles" role="group" aria-label="Variant">
@@ -89,7 +113,7 @@
           </nav>
         </aside>
 
-        <div class="wf-main">
+        <div class="wf-main wf-demo" data-hero="image" data-hero-h="md" data-ventrata="on" data-calendar="off" data-sidebar="on" data-fb="on">
           <div class="wf-hours">
             <span>Open Today · 10AM–5PM</span>
             <span class="wf-hours__search">
@@ -98,30 +122,37 @@
             </span>
           </div>
 
-          <div class="wf-hero">
+          <div class="wf-hero wf-hero--image wf-hero--md">
+            <div class="wf-hero__crumb">Happenings / Gameday Kickoff Party</div>
+            <div class="wf-hero__title">Gameday Kickoff Party</div>
+            <div class="wf-hero__meta">
+              <span class="wf-meta">Every Saturday in October · 10AM–5PM</span>
+              <span class="wf-tag">Ticketed</span>
+            </div>
+            <div class="wf-hero__actions">
+              <span class="wf-btn">Get Tickets</span>
+              <span class="wf-btn wf-btn--outline">Learn more</span>
+            </div>
+          </div>
+          <div class="wf-hero wf-hero--text">
             <div class="wf-hero__crumb">Happenings / Gameday Kickoff Party</div>
             <div class="wf-hero__title">Gameday Kickoff Party</div>
             <div class="wf-hero__meta">
               <span class="wf-meta">Saturday, August 22 · 10AM–5PM</span>
               <span class="wf-tag">Ticketed</span>
             </div>
-            <div class="wf-block wf-block--white" style="margin-top:.7rem;">
-              Facebook Event embed — optional
-              <span class="wf-opt">Optional · Toggle</span>
-            </div>
           </div>
 
-          <div class="wf-conversion">
+          <div class="wf-conversion wf-conversion--stack">
             <div class="wf-conversion__grid">
               <div class="wf-conversion__col">
-                <span class="wf-label">Above-the-fold conversion</span>
+                <span class="wf-label">Above-the-fold · offer + CTA</span>
+                <p class="wf-copy">Join us before kickoff. General admission includes Hall access. Members save $4.</p>
                 <span class="wf-btn wf-btn--block">Get Tickets</span>
-                <div class="wf-field"></div>
-                <div class="wf-field"></div>
-                <span class="wf-btn wf-btn--outline wf-btn--block">Add to calendar</span>
+                <span class="wf-btn wf-btn--outline wf-btn--block" data-mod="calendar">Add to calendar</span>
               </div>
-              <div class="wf-block wf-block--tall wf-block--white">
-                Single Ventrata product widget embed
+              <div class="wf-block wf-block--tall wf-block--white" data-mod="ventrata">
+                Single Ventrata product widget — directly below ticketing
                 <span class="wf-opt">Optional · Embed</span>
               </div>
             </div>
@@ -134,21 +165,34 @@
           </div>
           <div class="wf-content">
             <div class="wf-content__col">
-              <div class="wf-block">Event Details — date / time / location</div>
+              <div class="wf-block">Event Details — flexible date / time / location</div>
               <div class="wf-block">What to Expect</div>
               <div class="wf-block">Agenda / Schedule</div>
               <div class="wf-block">Getting There — parking · transit · closures</div>
-              <div class="wf-block">FAQ</div>
+              <div class="wf-faq">
+                <div class="wf-faq__item is-open">
+                  <button type="button" class="wf-faq__q">What is included?</button>
+                  <div class="wf-faq__a">Admission plus Hall access. Accordion keeps longer FAQ compact.</div>
+                </div>
+                <div class="wf-faq__item">
+                  <button type="button" class="wf-faq__q">Is this recurring?</button>
+                  <div class="wf-faq__a">Date field accepts “Every Saturday in October” or a single window.</div>
+                </div>
+              </div>
             </div>
             <div class="wf-content__aside">
               <div class="wf-block wf-block--white">
                 Location / Share sidebar
                 <span class="wf-opt">Toggle · Sidebar</span>
               </div>
+              <div class="wf-block wf-block--white" data-mod="fb-sidebar">
+                Facebook Event
+                <span class="wf-opt">Optional</span>
+              </div>
               <div class="wf-share-row">
+                <span class="wf-share">Facebook</span>
+                <span class="wf-share">Instagram</span>
                 <span class="wf-share">X</span>
-                <span class="wf-share">f</span>
-                <span class="wf-share">p</span>
               </div>
             </div>
           </div>
@@ -216,7 +260,7 @@
         <span class="wf-canvas__label">Mobile · 390px</span>
       </div>
       <div class="wf-canvas__body">
-        <div class="wf-main">
+        <div class="wf-main wf-demo" data-hero="image" data-hero-h="md" data-ventrata="on" data-calendar="off" data-sidebar="on" data-fb="on">
           <div class="wf-topbar">
             <span class="wf-topbar__burger"></span>
             <span class="wf-topbar__logo"></span>
@@ -230,29 +274,35 @@
             </span>
           </div>
 
-          <div class="wf-hero">
+          <div class="wf-hero wf-hero--image wf-hero--md">
+            <div class="wf-hero__crumb">Happenings / Gameday Kickoff Party</div>
+            <div class="wf-hero__title">Gameday Kickoff Party</div>
+            <div class="wf-hero__meta">
+              <span class="wf-meta">Every Saturday in Oct · 10AM–5PM</span>
+              <span class="wf-tag">Ticketed</span>
+            </div>
+            <div class="wf-hero__actions">
+              <span class="wf-btn">Get Tickets</span>
+            </div>
+          </div>
+          <div class="wf-hero wf-hero--text">
             <div class="wf-hero__crumb">Happenings / Gameday Kickoff Party</div>
             <div class="wf-hero__title">Gameday Kickoff Party</div>
             <div class="wf-hero__meta">
               <span class="wf-meta">Sat, Aug 22 · 10AM–5PM</span>
               <span class="wf-tag">Ticketed</span>
             </div>
-            <div class="wf-block wf-block--white" style="margin-top:.7rem;">
-              Facebook Event embed — optional
-              <span class="wf-opt">Optional</span>
-            </div>
           </div>
 
           <div class="wf-conversion wf-conversion--stack">
             <div class="wf-conversion__grid">
               <div class="wf-conversion__col">
-                <span class="wf-label">Above-the-fold conversion</span>
+                <span class="wf-label">Offer + CTA</span>
+                <p class="wf-copy">Members save $4. Includes Hall access.</p>
                 <span class="wf-btn wf-btn--block">Get Tickets</span>
-                <div class="wf-field"></div>
-                <div class="wf-field"></div>
-                <span class="wf-btn wf-btn--outline wf-btn--block">Add to calendar</span>
+                <span class="wf-btn wf-btn--outline wf-btn--block" data-mod="calendar">Add to calendar</span>
               </div>
-              <div class="wf-block wf-block--tall wf-block--white">
+              <div class="wf-block wf-block--tall wf-block--white" data-mod="ventrata">
                 Ventrata widget embed
                 <span class="wf-opt">Optional</span>
               </div>
@@ -271,14 +321,29 @@
               <div class="wf-block">What to Expect</div>
               <div class="wf-block">Agenda / Schedule</div>
               <div class="wf-block">Getting There</div>
-              <div class="wf-block">FAQ</div>
+              <div class="wf-faq">
+                <div class="wf-faq__item is-open">
+                  <button type="button" class="wf-faq__q">What is included?</button>
+                  <div class="wf-faq__a">Admission plus Hall access.</div>
+                </div>
+                <div class="wf-faq__item">
+                  <button type="button" class="wf-faq__q">Parking?</button>
+                  <div class="wf-faq__a">See Getting There.</div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="wf-content wf-content--full" style="padding-top:0;">
-            <div class="wf-content__col">
+            <div class="wf-content__col wf-content__aside">
               <div class="wf-block wf-block--white">
-                Location / Share — below content on mobile (toggleable)
+                Location / Share — below content on mobile
                 <span class="wf-opt">Toggle</span>
+              </div>
+              <div class="wf-block wf-block--white" data-mod="fb-sidebar">Facebook Event</div>
+              <div class="wf-share-row">
+                <span class="wf-share">Facebook</span>
+                <span class="wf-share">Instagram</span>
+                <span class="wf-share">X</span>
               </div>
             </div>
           </div>
@@ -323,8 +388,9 @@
     </div>
   </div>
   <p class="wf-note">
-    Mobile: conversion stacks (Get Tickets + Ventrata widget), sticky CTA docks to the bottom edge,
-    and the location/share sidebar moves below content (or is removed via the full-width toggle).
+    Mobile: image hero + offer copy + Get Tickets stack; Ventrata (if on) sits below. Sticky CTA docks
+    to the bottom. Location / Share (including Facebook Event) moves under content and is removed when
+    the sidebar toggle is off. Calendar stays off unless enabled.
   </p>
 </section>
 
@@ -338,10 +404,37 @@
       RSVPs plus email newsletter sign-ups.
     </p>
     <p class="wf-section__desc">
-      Key requirements: above-the-fold engagement (direct RSVP / sign-up + dedicated form fields and
-      newsletter capture), optional sticky CTA, full-width content option, optional Facebook Event
-      embed, and a compact related-events carousel.
+      Key requirements: configurable RSVP fields / labels / button text; CTA at the bottom of the form;
+      Save My Spot submits this form (hero/sticky scroll to it). Form embed and Facebook Event are
+      alternatives — never two forms side by side. Facebook Event prefers the Location / Share sidebar.
     </p>
+  </div>
+
+  <div class="wf-mods" role="group" aria-label="Optional modules">
+    <span class="wf-mods__lbl">Modules</span>
+    <label>Hero
+      <select data-mod-key="hero">
+        <option value="image" selected>Full-width image</option>
+        <option value="text">Text only</option>
+      </select>
+    </label>
+    <label>Height
+      <select data-mod-key="hero-h">
+        <option value="sm">Short</option>
+        <option value="md" selected>Medium</option>
+        <option value="lg">Tall</option>
+      </select>
+    </label>
+    <label>RSVP module
+      <select data-mod-key="rsvp">
+        <option value="native" selected>Native form</option>
+        <option value="embed">Form embed (alt)</option>
+        <option value="fb">Facebook Event (alt)</option>
+      </select>
+    </label>
+    <label><input type="checkbox" data-mod-key="calendar"> Add to Calendar</label>
+    <label><input type="checkbox" data-mod-key="sidebar" checked> Location / Share sidebar</label>
+    <label><input type="checkbox" data-mod-key="fb" checked> Facebook Event (sidebar)</label>
   </div>
 
   <div class="wf-toggles" role="group" aria-label="Variant">
@@ -375,7 +468,7 @@
           </nav>
         </aside>
 
-        <div class="wf-main">
+        <div class="wf-main wf-demo" data-hero="image" data-hero-h="md" data-rsvp="native" data-calendar="off" data-sidebar="on" data-fb="on">
           <div class="wf-hours">
             <span>Open Today · 10AM–5PM</span>
             <span class="wf-hours__search">
@@ -384,24 +477,30 @@
             </span>
           </div>
 
-          <div class="wf-hero">
+          <div class="wf-hero wf-hero--image wf-hero--md">
             <div class="wf-hero__crumb">Happenings / Community Film Night</div>
             <div class="wf-hero__title">Community Film Night</div>
             <div class="wf-hero__meta">
               <span class="wf-meta">Friday, September 11 · 6–9PM</span>
               <span class="wf-tag wf-tag--outline">Free · RSVP</span>
             </div>
-            <div class="wf-block wf-block--white" style="margin-top:.7rem;">
-              Facebook Event embed — optional
-              <span class="wf-opt">Optional · Toggle</span>
+            <div class="wf-hero__actions">
+              <span class="wf-btn">Save My Spot</span>
+            </div>
+          </div>
+          <div class="wf-hero wf-hero--text">
+            <div class="wf-hero__crumb">Happenings / Community Film Night</div>
+            <div class="wf-hero__title">Community Film Night</div>
+            <div class="wf-hero__meta">
+              <span class="wf-meta">Friday, September 11 · 6–9PM</span>
+              <span class="wf-tag wf-tag--outline">Free · RSVP</span>
             </div>
           </div>
 
-          <div class="wf-conversion">
+          <div class="wf-conversion wf-conversion--stack">
             <div class="wf-conversion__grid">
-              <div class="wf-conversion__col">
-                <span class="wf-label">Above-the-fold engagement · RSVP + newsletter</span>
-                <span class="wf-btn wf-btn--block">RSVP — Save My Spot</span>
+              <div class="wf-conversion__col" data-mod="native-form">
+                <span class="wf-label">Configurable fields · CTA at bottom</span>
                 <span class="wf-label">Full name</span>
                 <div class="wf-field"></div>
                 <span class="wf-label">Email</span>
@@ -409,10 +508,17 @@
                 <span class="wf-label"># Attending</span>
                 <div class="wf-field"></div>
                 <span class="wf-label">☐ Send me Hall emails &amp; offers</span>
+                <span class="wf-btn wf-btn--block">Save My Spot</span>
+                <p class="wf-callout">Submits this form. Does not open a second step unless an embed is used instead.</p>
+                <span class="wf-btn wf-btn--outline wf-btn--block" data-mod="calendar">Add to calendar</span>
               </div>
-              <div class="wf-block wf-block--tall wf-block--white">
-                RSVP / sign-up form embed
-                <span class="wf-opt">Optional · Embed</span>
+              <div class="wf-block wf-block--tall wf-block--white" data-mod="form-embed">
+                External form embed — alternative, not beside the native form
+                <span class="wf-opt">Optional · Alternative</span>
+              </div>
+              <div class="wf-block wf-block--tall wf-block--white" data-mod="fb-alt">
+                Facebook Event — alternative to a form embed
+                <span class="wf-opt">Optional · Alternative</span>
               </div>
             </div>
           </div>
@@ -428,17 +534,30 @@
               <div class="wf-block">About the Program / Panelists</div>
               <div class="wf-block">Agenda / Schedule</div>
               <div class="wf-block">Getting There — parking · transit</div>
-              <div class="wf-block">FAQ</div>
+              <div class="wf-faq">
+                <div class="wf-faq__item is-open">
+                  <button type="button" class="wf-faq__q">Do I need a ticket?</button>
+                  <div class="wf-faq__a">No — RSVP only. Accordion holds longer copy.</div>
+                </div>
+                <div class="wf-faq__item">
+                  <button type="button" class="wf-faq__q">Can I bring guests?</button>
+                  <div class="wf-faq__a">Use or hide the configurable “# Attending” field.</div>
+                </div>
+              </div>
             </div>
             <div class="wf-content__aside">
               <div class="wf-block wf-block--white">
                 Location / Share sidebar
                 <span class="wf-opt">Toggle · Sidebar</span>
               </div>
+              <div class="wf-block wf-block--white" data-mod="fb-sidebar">
+                Facebook Event
+                <span class="wf-opt">Optional</span>
+              </div>
               <div class="wf-share-row">
+                <span class="wf-share">Facebook</span>
+                <span class="wf-share">Instagram</span>
                 <span class="wf-share">X</span>
-                <span class="wf-share">f</span>
-                <span class="wf-share">p</span>
               </div>
             </div>
           </div>
@@ -497,7 +616,7 @@
         <span class="wf-canvas__label">Mobile · 390px</span>
       </div>
       <div class="wf-canvas__body">
-        <div class="wf-main">
+        <div class="wf-main wf-demo" data-hero="image" data-hero-h="md" data-rsvp="native" data-calendar="off" data-sidebar="on" data-fb="on">
           <div class="wf-topbar">
             <span class="wf-topbar__burger"></span>
             <span class="wf-topbar__logo"></span>
@@ -511,35 +630,46 @@
             </span>
           </div>
 
-          <div class="wf-hero">
+          <div class="wf-hero wf-hero--image wf-hero--md">
             <div class="wf-hero__crumb">Happenings / Community Film Night</div>
             <div class="wf-hero__title">Community Film Night</div>
             <div class="wf-hero__meta">
               <span class="wf-meta">Fri, Sep 11 · 6–9PM</span>
               <span class="wf-tag wf-tag--outline">Free · RSVP</span>
             </div>
-            <div class="wf-block wf-block--white" style="margin-top:.7rem;">
-              Facebook Event embed — optional
-              <span class="wf-opt">Optional</span>
+            <div class="wf-hero__actions">
+              <span class="wf-btn">Save My Spot</span>
+            </div>
+          </div>
+          <div class="wf-hero wf-hero--text">
+            <div class="wf-hero__crumb">Happenings / Community Film Night</div>
+            <div class="wf-hero__title">Community Film Night</div>
+            <div class="wf-hero__meta">
+              <span class="wf-meta">Fri, Sep 11 · 6–9PM</span>
+              <span class="wf-tag wf-tag--outline">Free · RSVP</span>
             </div>
           </div>
 
           <div class="wf-conversion wf-conversion--stack">
             <div class="wf-conversion__grid">
-              <div class="wf-conversion__col">
-                <span class="wf-label">RSVP + newsletter capture</span>
-                <span class="wf-btn wf-btn--block">RSVP — Save My Spot</span>
+              <div class="wf-conversion__col" data-mod="native-form">
+                <span class="wf-label">Fields then CTA</span>
                 <span class="wf-label">Full name</span>
                 <div class="wf-field"></div>
                 <span class="wf-label">Email</span>
                 <div class="wf-field"></div>
                 <span class="wf-label"># Attending</span>
                 <div class="wf-field"></div>
-                <span class="wf-label">☐ Send me Hall emails &amp; offers</span>
+                <span class="wf-btn wf-btn--block">Save My Spot</span>
+                <span class="wf-btn wf-btn--outline wf-btn--block" data-mod="calendar">Add to calendar</span>
               </div>
-              <div class="wf-block wf-block--tall wf-block--white">
-                RSVP form embed
-                <span class="wf-opt">Optional</span>
+              <div class="wf-block wf-block--tall wf-block--white" data-mod="form-embed">
+                Form embed (alt)
+                <span class="wf-opt">Alternative</span>
+              </div>
+              <div class="wf-block wf-block--tall wf-block--white" data-mod="fb-alt">
+                Facebook Event (alt)
+                <span class="wf-opt">Alternative</span>
               </div>
             </div>
           </div>
@@ -556,14 +686,25 @@
               <div class="wf-block">About the Program / Panelists</div>
               <div class="wf-block">Agenda / Schedule</div>
               <div class="wf-block">Getting There</div>
-              <div class="wf-block">FAQ</div>
+              <div class="wf-faq">
+                <div class="wf-faq__item is-open">
+                  <button type="button" class="wf-faq__q">Do I need a ticket?</button>
+                  <div class="wf-faq__a">No — RSVP only.</div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="wf-content wf-content--full" style="padding-top:0;">
-            <div class="wf-content__col">
+            <div class="wf-content__col wf-content__aside">
               <div class="wf-block wf-block--white">
-                Location / Share — below content on mobile (toggleable)
+                Location / Share — below content on mobile
                 <span class="wf-opt">Toggle</span>
+              </div>
+              <div class="wf-block wf-block--white" data-mod="fb-sidebar">Facebook Event</div>
+              <div class="wf-share-row">
+                <span class="wf-share">Facebook</span>
+                <span class="wf-share">Instagram</span>
+                <span class="wf-share">X</span>
               </div>
             </div>
           </div>
@@ -608,8 +749,9 @@
     </div>
   </div>
   <p class="wf-note">
-    Mobile: RSVP + newsletter form fields stack above the fold, sticky RSVP docks to the bottom edge,
-    and the location/share sidebar moves below content (or is removed via the full-width toggle).
+    Mobile: form fields then Save My Spot (Hall pattern). Sticky / hero CTAs point at the same form.
+    Form embed and Facebook Event are alternatives, not duplicates. Sidebar (with share icons) drops
+    below content and is omitted when empty.
   </p>
 </section>
 
@@ -622,9 +764,9 @@
       cards</strong> so more fit per row and the page scrolls less. No location/share sidebar.
     </p>
     <p class="wf-section__desc">
-      Cards show only the essentials (compact image, date, title, small category tag) — excerpts are
-      trimmed and icons reduced. Filter chips let visitors narrow by type (Upcoming · Free/RSVP ·
-      Ticketed · Exhibitions) and keep the grid dense.
+      Cards show only the essentials (compact image, date, title, small category tag). Filter categories
+      are CMS-managed in Umbraco (create, edit, reorder). Heading text nav and chip row use the same
+      order: All · Upcoming · Free / RSVP · Ticketed · Exhibitions · Community.
     </p>
   </div>
 
@@ -671,7 +813,14 @@
           <div class="wf-hero">
             <div class="wf-hero__crumb">News &amp; Happenings</div>
             <div class="wf-hero__title">Happenings</div>
-            <div class="wf-meta">Upcoming · Exhibitions · Free Days · Community Events</div>
+            <div class="wf-listing__cats" aria-label="Category navigation">
+              <span>All</span>
+              <span>Upcoming</span>
+              <span>Free / RSVP</span>
+              <span>Ticketed</span>
+              <span>Exhibitions</span>
+              <span>Community</span>
+            </div>
           </div>
 
           <div class="wf-listing__chips">
@@ -790,6 +939,14 @@
           <div class="wf-hero">
             <div class="wf-hero__crumb">News &amp; Happenings</div>
             <div class="wf-hero__title">Happenings</div>
+            <div class="wf-listing__cats" aria-label="Category navigation">
+              <span>All</span>
+              <span>Upcoming</span>
+              <span>Free / RSVP</span>
+              <span>Ticketed</span>
+              <span>Exhibitions</span>
+              <span>Community</span>
+            </div>
           </div>
 
           <div class="wf-listing__chips">

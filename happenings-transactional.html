@@ -3,156 +3,267 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Transactional Event Wireframe · College Football Hall of Fame</title>
+  <title>Gameday Kickoff Party · Happenings · College Football Hall of Fame</title>
   <link rel="stylesheet" href="https://use.typekit.net/acw8nkk.css">
   <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/wireframes.css">
-  <link rel="stylesheet" href="assets/css/wireframe-pages.css">
+  <link rel="stylesheet" href="assets/css/search.css">
+  <link rel="stylesheet" href="assets/css/happenings-pages.css">
 </head>
-<body class="wf-page">
-  <div class="wfp-banner">
-    <span class="wfp-banner__tag">Wireframe</span>
-    <span><strong>Full-Service / Transactional</strong> — ticketed event detail</span>
-    <a href="happenings-wireframes.html">← Back to wireframe board</a>
+<body class="hp-page" data-hp-page="transactional">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="hp-banner">
+    <span class="hp-banner__tag">Design</span>
+    <span><strong>Full-Service / Transactional</strong> — try the flow: Listing → event → Get Tickets → Ventrata</span>
+    <a href="happenings-wireframes.html">← Wireframe board</a>
+    <a href="happenings-rsvp.html">RSVP page</a>
+    <a href="happenings-listing.html">Listing</a>
   </div>
+  <details class="hp-mods">
+    <summary>Optional modules — toggle layout blocks</summary>
+    <div class="hp-mods__body" role="group" aria-label="Optional modules">
+      <span class="hp-mods__lbl">Preview</span>
+    <label>Hero
+      <select data-mod-key="hero">
+        <option value="image" selected>Full-width image</option>
+        <option value="text">Text only</option>
+      </select>
+    </label>
+    <label>Height
+      <select data-mod-key="hero-h">
+        <option value="sm">Short</option>
+        <option value="md" selected>Medium</option>
+        <option value="lg">Tall</option>
+      </select>
+    </label>
+    <label><input type="checkbox" data-mod-key="ventrata" checked> Ventrata widget</label>
+    <label><input type="checkbox" data-mod-key="calendar"> Add to Calendar</label>
+    <label><input type="checkbox" data-mod-key="sidebar" checked> Location / Share sidebar</label>
+    <label><input type="checkbox" data-mod-key="fb" checked> Facebook Event</label>
+    </div>
+  </details>
 
-  <div class="wf-page__shell">
-    <aside class="wf-rail" aria-label="Site navigation">
-      <div class="wf-rail__logo">Logo</div>
-      <div class="wf-rail__btn wf-rail__btn--tickets">Tickets</div>
-      <div class="wf-rail__btn wf-rail__btn--outline">Donate</div>
-      <div class="wf-rail__btn wf-rail__btn--outline">Membership</div>
-      <nav class="wf-rail__nav">
-        <span class="wf-rail__nav-item">Hall of Fame</span>
-        <span class="wf-rail__nav-item">Experience</span>
-        <span class="wf-rail__nav-item">Visit</span>
-        <span class="wf-rail__nav-item">News &amp; Happenings</span>
-        <span class="wf-rail__nav-item">Venue Rental</span>
-        <span class="wf-rail__nav-item">CityPASS®</span>
-      </nav>
+  <div class="app-shell">
+    <aside class="site-rail" id="site-rail" aria-label="Site navigation">
+      <div class="rail-inner">
+        <a href="index.html" class="rail-logo">
+          <img src="assets/images/logo.png" alt="Chick-fil-A College Football Hall of Fame Atlanta" class="rail-logo__img" width="200" height="100">
+        </a>
+        <ul class="rail-ctas">
+          <li class="rail-ctas__primary"><a href="#" class="btn btn--tickets">Tickets</a></li>
+          <li class="rail-ctas__secondary"><a href="#" class="btn btn--outline btn--sm">Donate</a></li>
+          <li class="rail-ctas__secondary"><a href="#" class="btn btn--outline btn--sm">Membership</a></li>
+        </ul>
+        <nav aria-label="Primary">
+          <ul class="rail-nav">
+            <li class="rail-nav__item"><a href="#" class="rail-nav__link">Hall of Fame <img class="rail-nav__arrow" src="assets/images/arrow.svg" alt="" width="28" height="12" aria-hidden="true"></a></li>
+            <li class="rail-nav__item"><a href="#" class="rail-nav__link">Experience <img class="rail-nav__arrow" src="assets/images/arrow.svg" alt="" width="28" height="12" aria-hidden="true"></a></li>
+            <li class="rail-nav__item"><a href="#" class="rail-nav__link">Visit <img class="rail-nav__arrow" src="assets/images/arrow.svg" alt="" width="28" height="12" aria-hidden="true"></a></li>
+            <li class="rail-nav__item"><a href="happenings-listing.html" class="rail-nav__link">News &amp; Happenings <img class="rail-nav__arrow" src="assets/images/arrow.svg" alt="" width="28" height="12" aria-hidden="true"></a></li>
+            <li class="rail-nav__item"><a href="#" class="rail-nav__link rail-nav__link--plain">Venue Rental</a></li>
+            <li class="rail-nav__item"><a href="#" class="rail-nav__link rail-nav__link--plain">Save with CityPASS®</a></li>
+          </ul>
+        </nav>
+      </div>
     </aside>
 
-    <div class="wf-page__main">
-      <header class="wf-topbar">
-        <span class="wf-topbar__burger"></span>
-        <span class="wf-topbar__logo"></span>
-        <span class="wf-topbar__tickets">Tickets</span>
+    <div class="site-main">
+      <header class="hours-bar" role="complementary" aria-label="Hours and visitor information">
+        <p class="hours-bar__status"><strong>Open Today!</strong> 10:00 AM–5:00 PM</p>
+        <div class="hours-bar__end">
+          <a href="#" class="hours-bar__details">Important Details +</a>
+          <div class="search-bar-wrap" id="global-search">
+            <div class="search-bar search-bar--hours" role="search">
+              <label for="global-search-input" class="sr-only">Search</label>
+              <div class="search-bar__input-wrapper search-bar__input-wrapper--always-open">
+                <input type="search" id="global-search-input" class="search-bar__input" placeholder="Search…" autocomplete="off" role="combobox" aria-autocomplete="list" aria-controls="global-search-suggest" aria-haspopup="listbox" aria-expanded="false">
+              </div>
+              <button type="button" class="search-bar__trigger" aria-label="Submit search">
+                <svg class="search-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg>
+              </button>
+            </div>
+            <ul class="search-suggest" id="global-search-suggest" role="listbox" aria-label="Search suggestions" hidden></ul>
+          </div>
+        </div>
       </header>
 
-      <div class="wf-hours">
-        <span>Open Today · 10AM–5PM</span>
-        <span class="wf-hours__search">
-          <span class="wf-hours__search-input"></span>
-          <span class="wf-hours__search-btn"></span>
-        </span>
+      <header class="mobile-topbar" aria-label="Mobile site header">
+        <button type="button" class="mobile-topbar__menu rail-toggle" aria-expanded="false" aria-controls="site-rail" aria-label="Open menu">
+          <span class="mobile-topbar__burger" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+        <a href="index.html" class="mobile-topbar__logo">
+          <img src="assets/images/logo.png" alt="Chick-fil-A College Football Hall of Fame Atlanta" class="mobile-topbar__logo-img" width="120" height="60">
+        </a>
+        <a href="#" class="mobile-topbar__tickets">Tickets</a>
+      </header>
+
+      <div class="wf-demo" data-hero="image" data-hero-h="md" data-ventrata="on" data-calendar="off" data-sidebar="on" data-fb="on">
+        <section class="hp-hero hp-hero--image" style="background-image: url('https://www.cfbhall.com/media/bzegtofb/football-fest24-afternoon-22-3-2.jpg?width=1920&amp;format=webp')">
+          <div class="hp-hero__inner">
+            <p class="hp-crumb"><a href="happenings-listing.html">Happenings</a> / <span data-hp="crumb-event">Gameday Kickoff Party</span></p>
+            <h1 class="hp-hero__title">
+              <span class="hp-hero__title-line hp-hero__title-line--stroke" data-hp="title-stroke">Gameday</span>
+              <span class="hp-hero__title-line" data-hp="title-solid">Kickoff Party</span>
+            </h1>
+            <p class="hp-hero__subtitle" data-hp="hero-subtitle">Every Saturday in October</p>
+            <div class="hp-hero__meta">
+              <span class="hp-meta" data-hp="date-label">Every Saturday in October · 10AM–5PM</span>
+              <span class="hp-tag" data-hp="tag">Ticketed</span>
+            </div>
+            <div class="hp-hero__actions">
+              <button type="button" class="btn btn--tickets" ventrata-checkout data-scroll-tickets data-config='{"productID": "<PRODUCT_ID>", "lang": "en"}'>Get Tickets</button>
+              <a class="btn btn--outline" href="#details" data-scroll-to="details">Learn more</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="hp-hero hp-hero--text">
+          <div class="hp-hero__inner">
+            <p class="hp-crumb"><a href="happenings-listing.html">Happenings</a> / Gameday Kickoff Party</p>
+            <h1 class="hp-hero__title">Gameday Kickoff Party</h1>
+            <div class="hp-hero__meta">
+              <span class="hp-meta">Saturday, August 22 · 10AM–5PM</span>
+              <span class="hp-tag">Ticketed</span>
+            </div>
+          </div>
+        </section>
+
+        <main id="main" class="hp-wrap">
+          <section class="hp-offer" id="tickets">
+            <div class="hp-offer__copy">
+              <h2 data-hp="offer-title">Before kickoff at the Hall</h2>
+              <p class="hp-offer__price" data-hp="price">From $12</p>
+              <p data-hp="offer-copy">Join us for food, music, and full Hall access before the game. General admission includes museum entry all day. Members save $4 at checkout.</p>
+              <div class="hp-offer__actions">
+                <button type="button" class="btn btn--tickets" ventrata-checkout data-scroll-tickets data-config='{"productID": "<PRODUCT_ID>", "lang": "en"}'>Get Tickets</button>
+                <a class="btn btn--outline" data-mod="calendar" href="#">Add to calendar</a>
+              </div>
+            </div>
+            <div class="hp-widget" data-mod="ventrata">
+              <span class="hp-widget__kicker">Secure checkout</span>
+              <h2>Select tickets</h2>
+              <p>Powered by Ventrata Checkout. Choose your date and quantity, then complete purchase without leaving the page.</p>
+              <button type="button" class="btn btn--tickets" ventrata-checkout data-config='{"productID": "<PRODUCT_ID>", "lang": "en"}'>Book Now</button>
+            </div>
+          </section>
+
+          <div class="hp-sticky">
+            <div class="hp-sticky__info">
+              <span class="hp-sticky__label" data-hp="sticky-label">Gameday Kickoff Party</span>
+              <strong data-hp="sticky-meta">$12 · Saturdays in Oct</strong>
+            </div>
+            <button type="button" class="btn btn--tickets" ventrata-checkout data-scroll-tickets data-config='{"productID": "<PRODUCT_ID>", "lang": "en"}'>Get Tickets</button>
+          </div>
+
+          <div class="hp-layout">
+            <div id="details">
+              <section class="hp-section">
+                <h2>Event details</h2>
+                <p>Every Saturday in October, 10:00 AM–5:00 PM at the College Football Hall of Fame, 250 Marietta St. NW, Atlanta.</p>
+              </section>
+              <section class="hp-section">
+                <h2>What to expect</h2>
+                <p>Live music on the plaza, food vendors, and full access to the Hall exhibits. Come early — Saturday mornings fill quickly.</p>
+              </section>
+              <section class="hp-section">
+                <h2>Getting there</h2>
+                <p>Paid parking is available in nearby decks. MARTA: Dome/GWCC/Philips Arena/CNN station. Check game-day street closures before you leave.</p>
+              </section>
+              <section class="hp-section">
+                <h2>FAQ</h2>
+                <div class="hp-faq">
+                  <div class="wf-faq__item is-open">
+                    <button type="button" class="wf-faq__q">What is included with my ticket?</button>
+                    <div class="wf-faq__a">General admission plus Hall access during the event window.</div>
+                  </div>
+                  <div class="wf-faq__item">
+                    <button type="button" class="wf-faq__q">Is this event recurring?</button>
+                    <div class="wf-faq__a">Yes — every Saturday in October. The date field accepts range or recurring language.</div>
+                  </div>
+                  <div class="wf-faq__item">
+                    <button type="button" class="wf-faq__q">Where do I park?</button>
+                    <div class="wf-faq__a">Nearby paid decks; see Getting There for transit notes.</div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <aside class="hp-aside">
+              <div class="hp-card">
+                <h3>Location</h3>
+                <p>250 Marietta St. N.W.<br>Atlanta, GA 30313</p>
+                <p><a href="https://www.bing.com/maps?cp=33.760008~-84.406006" target="_blank" rel="noopener noreferrer">Get directions</a></p>
+              </div>
+              <div class="hp-card" data-mod="fb-sidebar">
+                <h3>Facebook Event</h3>
+                <p>Follow along and invite friends — optional sidebar embed.</p>
+              </div>
+              <div class="hp-card">
+                <h3>Share this event</h3>
+                <div class="hp-share">
+                  <a class="hp-share__link" href="#">Facebook</a>
+                  <a class="hp-share__link" href="#">Instagram</a>
+                  <a class="hp-share__link" href="#">X</a>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+          <section class="hp-related">
+            <div class="hp-related__head">
+              <h2>More upcoming events</h2>
+              <a href="happenings-listing.html">View all →</a>
+            </div>
+            <div class="hp-related__grid"><!-- filled by happenings.js --></div>
+          </section>
+        </main>
       </div>
 
-      <main id="main" class="wf-page__content">
-        <section class="wf-hero">
-          <div class="wf-hero__crumb">Happenings / Gameday Kickoff Party</div>
-          <div class="wf-hero__title">Gameday Kickoff Party</div>
-          <div class="wf-hero__meta">
-            <span class="wf-meta">Saturday, August 22 · 10AM–5PM</span>
-            <span class="wf-tag">Ticketed</span>
-          </div>
-          <div class="wf-block wf-block--white" style="margin-top:var(--space-4);">
-            Facebook Event embed — optional
-            <span class="wf-opt">Optional · Toggle</span>
-          </div>
-        </section>
-
-        <section class="wf-conversion">
-          <div class="wf-conversion__grid">
-            <div class="wf-conversion__col">
-              <span class="wf-label">Above-the-fold conversion</span>
-              <span class="wf-btn wf-btn--block">Get Tickets</span>
-              <div class="wf-field"></div>
-              <div class="wf-field"></div>
-              <span class="wf-btn wf-btn--outline wf-btn--block">Add to calendar</span>
-            </div>
-            <div class="wf-block wf-block--tall wf-block--white">
-              Single Ventrata product widget embed
-              <span class="wf-opt">Optional · Embed</span>
+      <footer class="site-footer" aria-label="Site footer">
+        <div class="site-footer__inner">
+          <div class="site-footer__col site-footer__col--know">
+            <div class="site-footer__signup">
+              <p class="site-footer__title">Stay In The Know</p>
+              <p class="site-footer__lede">Sign up for exclusive updates, discounts, and promotions. You can unsubscribe at any time.</p>
+              <form class="site-footer__form" action="#" method="post" novalidate>
+                <label class="sr-only" for="footer-email-tx">Email Address</label>
+                <input type="email" id="footer-email-tx" name="email" class="site-footer__email" placeholder="Your email" required autocomplete="email">
+                <button type="submit" class="site-footer__subscribe" aria-label="Subscribe"><span>Subscribe</span></button>
+              </form>
             </div>
           </div>
-        </section>
-
-        <section class="wf-sticky">
-          <span class="wf-sticky__price">$12 · Sat, Aug 22</span>
-          <span class="wf-btn">Get Tickets</span>
-          <span class="wf-opt">Optional · Sticky CTA</span>
-        </section>
-        <section class="wf-content">
-          <div class="wf-content__col">
-            <div class="wf-block">Event Details — date / time / location</div>
-            <div class="wf-block">What to Expect</div>
-            <div class="wf-block">Agenda / Schedule</div>
-            <div class="wf-block">Getting There — parking · transit · closures</div>
-            <div class="wf-block">FAQ</div>
-          </div>
-          <div class="wf-content__aside">
-            <div class="wf-block wf-block--white">
-              Location / Share sidebar
-              <span class="wf-opt">Toggle · Sidebar</span>
-            </div>
-            <div class="wf-share-row">
-              <span class="wf-share">X</span>
-              <span class="wf-share">f</span>
-              <span class="wf-share">p</span>
+          <div class="site-footer__col site-footer__col--links">
+            <nav class="site-footer__about" aria-label="About">
+              <p class="site-footer__heading">About</p>
+              <ul class="site-footer__nav">
+                <li><a href="https://www.cfbhall.com/contact/">Contact</a></li>
+                <li><a href="https://www.cfbhall.com/faq/">FAQs</a></li>
+              </ul>
+            </nav>
+            <div class="site-footer__contact">
+              <p class="site-footer__heading">Address</p>
+              <p class="site-footer__address">250 Marietta St. N.W.<span>Atlanta, GA 30313</span></p>
+              <a class="site-footer__phone" href="tel:4048804800">[404] 880-4800</a>
             </div>
           </div>
-        </section>
-
-        <section class="wf-carousel">
-          <div class="wf-carousel__head">
-            <span class="wf-carousel__title">More Upcoming Events</span>
-            <span class="wf-carousel__viewall">View all →</span>
+          <div class="site-footer__col site-footer__col--promo">
+            <a class="site-footer__promo" href="https://aflackickoffgame.com/tickets" target="_blank" rel="noopener noreferrer">
+              <img src="assets/images/footer/aflac-kickoff.jpg" alt="Aflac Kickoff Game" width="300" height="300">
+            </a>
           </div>
-          <div class="wf-carousel__cards">
-            <div class="wf-carousel__card">
-              <div class="wf-carousel__card-media"></div>
-              <div class="wf-carousel__card-body">
-                <span class="wf-listing__date">Sep 05</span>
-                <span class="wf-listing__title">Event title</span>
-              </div>
-            </div>
-            <div class="wf-carousel__card">
-              <div class="wf-carousel__card-media"></div>
-              <div class="wf-carousel__card-body">
-                <span class="wf-listing__date">Sep 12</span>
-                <span class="wf-listing__title">Event title</span>
-              </div>
-            </div>
-            <div class="wf-carousel__card">
-              <div class="wf-carousel__card-media"></div>
-              <div class="wf-carousel__card-body">
-                <span class="wf-listing__date">Sep 19</span>
-                <span class="wf-listing__title">Event title</span>
-              </div>
-            </div>
-          </div>
-          <div class="wf-carousel__controls">
-            <span class="wf-carousel__btn">‹</span>
-            <span class="wf-carousel__dots">
-              <span class="wf-carousel__dot wf-carousel__dot--active"></span>
-              <span class="wf-carousel__dot"></span>
-              <span class="wf-carousel__dot"></span>
-            </span>
-            <span class="wf-carousel__btn">›</span>
-          </div>
-        </section>
-      </main>
-
-      <footer class="wf-footer">
-        <div class="wf-footer__grid">
-          <span class="wf-footer__block">Stay In The Know</span>
-          <span class="wf-footer__block">About / Contact</span>
-          <span class="wf-footer__block">Address / Phone</span>
-          <span class="wf-footer__block">Promo</span>
         </div>
-        <div class="wf-footer__legal">©2026 College Football Hall of Fame</div>
       </footer>
+      <div class="site-footer-legal">
+        <p class="site-footer-legal__copy">&copy;2026 College Football Hall of Fame, All Rights Reserved</p>
+      </div>
     </div>
   </div>
+  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+  <script src="assets/js/search.js" defer></script>
+  <script src="assets/js/wireframes.js" defer></script>
+  <script src="assets/js/happenings.js" defer></script>
+  <script
+    src="https://cdn.checkout.ventrata.com/v3/production/ventrata-checkout.min.js"
+    type="module"
+    data-config='{"apiKey": "<YOUR_SANDBOX_API_KEY>", "env": "test"}'>
+  </script>
 </body>
 </html>

@@ -1,5 +1,43 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-03 — Cursor: Happenings click-through flows
+
+- Added shared event index (`data/happenings-events.json`) and `assets/js/happenings.js`.
+- **Listing:** category nav + chips filter cards (URL `?category=`), empty state, every card links to transactional or RSVP detail with `?event=`.
+- **Detail:** hero/offer/sticky copy hydrates per event; wrong template redirects; related events link to other details.
+- **RSVP:** form submit hides form and shows confirmation panel + toast.
+- **Transactional:** Get Tickets scrolls to Ventrata block when sandbox keys are still placeholders.
+
+## 2026-09-03 — Cursor: Happenings visual polish pass
+
+- Elevated standalone pages from functional comps to Hall-branded design: home-style hero (stroke Kaneda line + gradient), offer/checkout split panel, sticky conversion bar, sticky sidebar cards, FAQ accordion styling, event card hover/zoom, listing category nav + chips.
+- Collapsible module `<details>` keeps review toggles available without dominating the page.
+
+## 2026-09-03 — Cursor: Ventrata Checkout v3 on transactional page
+
+- Replaced the fake widget with the official Checkout snippet: `ventrata-checkout` button + `cdn.checkout.ventrata.com/v3/production/ventrata-checkout.min.js` (`env: test`).
+- Hero / offer / sticky Get Tickets and the widget Book Now share the same product config. Keys are still placeholders (`<PRODUCT_ID>`, `<YOUR_SANDBOX_API_KEY>`).
+
+## 2026-09-03 — Cursor: hero CTAs hug content on desktop
+
+- Rail `.btn` is `width: 100%` (Tickets block). Hero actions inherited that and spanned the full image. Desktop now uses auto-width; ≤900px they still stack full-width.
+
+## 2026-09-03 — Cursor: designed standalone Happenings pages
+
+- Promoted the three standalone wires to designed pages that reuse the live left rail (logo, Tickets / Donate / Membership, primary nav), hours-bar search, mobile hamburger topbar, and site footer from the search prototype.
+- New stylesheet `assets/css/happenings-pages.css`. Module toggles remain for Nebo r2 reflow. Board (`happenings-wireframes.html`) stays schematic.
+- Local 8080: transactional / rsvp / listing + new CSS **200**.
+
+## 2026-09-03 — Cursor: Nebo r2 Happenings template updates
+
+- Applied consolidated Nebo feedback to the wireframe board and all three standalone pages.
+- **Hero:** full-width image header (adjustable short/medium/tall) with supporting CTAs; text-only hero remains a toggle. Date/event label is free-text (e.g. “Every Saturday in October”).
+- **Transactional:** brief offer copy above Get Tickets; Ventrata optional and placed directly below; space reflows when the widget is off. Add to Calendar optional (off by default).
+- **RSVP:** field count/labels/button text called out as CMS-configurable; Save My Spot sits at the bottom of the form and submits it (hero/sticky CTAs scroll to the same form). Form embed and Facebook Event are mutually exclusive alternatives — not a second form beside the native one.
+- **Social / sidebar:** Facebook Event lives in Location / Share; share set is Facebook, Instagram, X (alpha, configurable, no Pinterest). Toggling the sidebar off collapses desktop content to one column.
+- **FAQ:** accordion. **Listing:** heading category nav matches chip order (All · Upcoming · Free / RSVP · Ticketed · Exhibitions · Community); copy confirms Umbraco-managed categories.
+- Module toolbar on board + standalone pages demonstrates reflow. Local 8080: all Happenings pages + CSS/JS **200**.
+
 ## 2026-08-26 — Cline: Listing card category tags + mobile chip parity fix
 
 - **Fix 1 — listing cards now show category tags:** every `wf-listing__card` on the board (`happenings-wireframes.html`, desktop + mobile listing frames, 14 cards) and the standalone page (`happenings-listing.html`, 8 cards) got a compact pill tag matching its event type (Ticketed solid crimson; Free · RSVP / Exhibitions / Community outline). New `.wf-tag--xs` modifier in `assets/css/wireframes.css`. This closes the gap where the board's own spec text claimed "small category tag" but cards rendered without one.

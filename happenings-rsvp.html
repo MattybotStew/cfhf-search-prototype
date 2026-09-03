@@ -3,151 +3,265 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RSVP Event Wireframe · College Football Hall of Fame</title>
+  <title>Community Film Night · Happenings · College Football Hall of Fame</title>
   <link rel="stylesheet" href="https://use.typekit.net/acw8nkk.css">
   <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/wireframes.css">
-  <link rel="stylesheet" href="assets/css/wireframe-pages.css">
+  <link rel="stylesheet" href="assets/css/search.css">
+  <link rel="stylesheet" href="assets/css/happenings-pages.css">
 </head>
-<body class="wf-page">
-  <div class="wfp-banner">
-    <span class="wfp-banner__tag">Wireframe</span>
-    <span><strong>Lead Generation &amp; RSVP</strong> — non-ticketed event detail</span>
-    <a href="happenings-wireframes.html">← Back to wireframe board</a>
+<body class="hp-page" data-hp-page="rsvp">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="hp-banner">
+    <span class="hp-banner__tag">Design</span>
+    <span><strong>Lead Generation &amp; RSVP</strong> — try the flow: Listing → event → form → confirmation</span>
+    <a href="happenings-wireframes.html">← Wireframe board</a>
+    <a href="happenings-transactional.html">Transactional page</a>
+    <a href="happenings-listing.html">Listing</a>
   </div>
+  <details class="hp-mods">
+    <summary>Optional modules — toggle layout blocks</summary>
+    <div class="hp-mods__body" role="group" aria-label="Optional modules">
+      <span class="hp-mods__lbl">Preview</span>
+    <label>Hero
+      <select data-mod-key="hero">
+        <option value="image" selected>Full-width image</option>
+        <option value="text">Text only</option>
+      </select>
+    </label>
+    <label>Height
+      <select data-mod-key="hero-h">
+        <option value="sm">Short</option>
+        <option value="md" selected>Medium</option>
+        <option value="lg">Tall</option>
+      </select>
+    </label>
+    <label>RSVP module
+      <select data-mod-key="rsvp">
+        <option value="native" selected>Native form</option>
+        <option value="embed">Form embed (alt)</option>
+        <option value="fb">Facebook Event (alt)</option>
+      </select>
+    </label>
+    <label><input type="checkbox" data-mod-key="calendar"> Add to Calendar</label>
+    <label><input type="checkbox" data-mod-key="sidebar" checked> Location / Share sidebar</label>
+    <label><input type="checkbox" data-mod-key="fb" checked> Facebook Event (sidebar)</label>
+    </div>
+  </details>
 
-  <div class="wf-page__shell">
-    <aside class="wf-rail" aria-label="Site navigation">
-      <div class="wf-rail__logo">Logo</div>
-      <div class="wf-rail__btn wf-rail__btn--tickets">Tickets</div>
-      <div class="wf-rail__btn wf-rail__btn--outline">Donate</div>
-      <div class="wf-rail__btn wf-rail__btn--outline">Membership</div>
-      <nav class="wf-rail__nav">
-        <span class="wf-rail__nav-item">Hall of Fame</span>
-        <span class="wf-rail__nav-item">Experience</span>
-        <span class="wf-rail__nav-item">Visit</span>
-        <span class="wf-rail__nav-item">News &amp; Happenings</span>
-        <span class="wf-rail__nav-item">Venue Rental</span>
-        <span class="wf-rail__nav-item">CityPASS®</span>
-      </nav>
+  <div class="app-shell">
+    <aside class="site-rail" id="site-rail" aria-label="Site navigation">
+      <div class="rail-inner">
+        <a href="index.html" class="rail-logo">
+          <img src="assets/images/logo.png" alt="Chick-fil-A College Football Hall of Fame Atlanta" class="rail-logo__img" width="200" height="100">
+        </a>
+        <ul class="rail-ctas">
+          <li class="rail-ctas__primary"><a href="#" class="btn btn--tickets">Tickets</a></li>
+          <li class="rail-ctas__secondary"><a href="#" class="btn btn--outline btn--sm">Donate</a></li>
+          <li class="rail-ctas__secondary"><a href="#" class="btn btn--outline btn--sm">Membership</a></li>
+        </ul>
+        <nav aria-label="Primary">
+          <ul class="rail-nav">
+            <li class="rail-nav__item"><a href="#" class="rail-nav__link">Hall of Fame <img class="rail-nav__arrow" src="assets/images/arrow.svg" alt="" width="28" height="12" aria-hidden="true"></a></li>
+            <li class="rail-nav__item"><a href="#" class="rail-nav__link">Experience <img class="rail-nav__arrow" src="assets/images/arrow.svg" alt="" width="28" height="12" aria-hidden="true"></a></li>
+            <li class="rail-nav__item"><a href="#" class="rail-nav__link">Visit <img class="rail-nav__arrow" src="assets/images/arrow.svg" alt="" width="28" height="12" aria-hidden="true"></a></li>
+            <li class="rail-nav__item"><a href="happenings-listing.html" class="rail-nav__link">News &amp; Happenings <img class="rail-nav__arrow" src="assets/images/arrow.svg" alt="" width="28" height="12" aria-hidden="true"></a></li>
+            <li class="rail-nav__item"><a href="#" class="rail-nav__link rail-nav__link--plain">Venue Rental</a></li>
+            <li class="rail-nav__item"><a href="#" class="rail-nav__link rail-nav__link--plain">Save with CityPASS®</a></li>
+          </ul>
+        </nav>
+      </div>
     </aside>
 
-    <div class="wf-page__main">
-      <header class="wf-topbar">
-        <span class="wf-topbar__burger"></span>
-        <span class="wf-topbar__logo"></span>
-        <span class="wf-topbar__tickets">Tickets</span>
+    <div class="site-main">
+      <header class="hours-bar" role="complementary" aria-label="Hours and visitor information">
+        <p class="hours-bar__status"><strong>Open Today!</strong> 10:00 AM–5:00 PM</p>
+        <div class="hours-bar__end">
+          <a href="#" class="hours-bar__details">Important Details +</a>
+          <div class="search-bar-wrap" id="global-search">
+            <div class="search-bar search-bar--hours" role="search">
+              <label for="global-search-input" class="sr-only">Search</label>
+              <div class="search-bar__input-wrapper search-bar__input-wrapper--always-open">
+                <input type="search" id="global-search-input" class="search-bar__input" placeholder="Search…" autocomplete="off" role="combobox" aria-autocomplete="list" aria-controls="global-search-suggest" aria-haspopup="listbox" aria-expanded="false">
+              </div>
+              <button type="button" class="search-bar__trigger" aria-label="Submit search">
+                <svg class="search-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg>
+              </button>
+            </div>
+            <ul class="search-suggest" id="global-search-suggest" role="listbox" aria-label="Search suggestions" hidden></ul>
+          </div>
+        </div>
       </header>
 
-      <div class="wf-hours">
-        <span>Open Today · 10AM–5PM</span>
-        <span class="wf-hours__search">
-          <span class="wf-hours__search-input"></span>
-          <span class="wf-hours__search-btn"></span>
-        </span>
+      <header class="mobile-topbar" aria-label="Mobile site header">
+        <button type="button" class="mobile-topbar__menu rail-toggle" aria-expanded="false" aria-controls="site-rail" aria-label="Open menu">
+          <span class="mobile-topbar__burger" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+        <a href="index.html" class="mobile-topbar__logo">
+          <img src="assets/images/logo.png" alt="Chick-fil-A College Football Hall of Fame Atlanta" class="mobile-topbar__logo-img" width="120" height="60">
+        </a>
+        <a href="#" class="mobile-topbar__tickets">Tickets</a>
+      </header>
+
+      <div class="wf-demo" data-hero="image" data-hero-h="md" data-rsvp="native" data-calendar="off" data-sidebar="on" data-fb="on">
+        <section class="hp-hero hp-hero--image" style="background-image: url('https://www.cfbhall.com/media/qavbhkxx/4-17-23-aerials-3.jpg?width=1920&amp;format=webp')">
+          <div class="hp-hero__inner">
+            <p class="hp-crumb"><a href="happenings-listing.html">Happenings</a> / <span data-hp="crumb-event">Community Film Night</span></p>
+            <h1 class="hp-hero__title">
+              <span class="hp-hero__title-line hp-hero__title-line--stroke" data-hp="title-stroke">Community</span>
+              <span class="hp-hero__title-line" data-hp="title-solid">Film Night</span>
+            </h1>
+            <p class="hp-hero__subtitle" data-hp="hero-subtitle">Free screening + panel talk</p>
+            <div class="hp-hero__meta">
+              <span class="hp-meta" data-hp="date-label">Friday, September 11 · 6–9PM</span>
+              <span class="hp-tag hp-tag--outline" data-hp="tag">Free · RSVP</span>
+            </div>
+            <div class="hp-hero__actions">
+              <a class="btn btn--tickets" href="#rsvp-form" data-scroll-to="rsvp-form">Save My Spot</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="hp-hero hp-hero--text">
+          <div class="hp-hero__inner">
+            <p class="hp-crumb"><a href="happenings-listing.html">Happenings</a> / Community Film Night</p>
+            <h1 class="hp-hero__title">Community Film Night</h1>
+            <div class="hp-hero__meta">
+              <span class="hp-meta">Friday, September 11 · 6–9PM</span>
+              <span class="hp-tag hp-tag--outline">Free · RSVP</span>
+            </div>
+          </div>
+        </section>
+
+        <main id="main" class="hp-wrap">
+          <section class="hp-offer" id="rsvp-form">
+            <form class="hp-form hp-offer__copy" data-mod="native-form" action="#" method="post">
+              <h2 data-hp="offer-title">Reserve your seat</h2>
+              <p data-hp="offer-copy">Free admission — RSVP helps us plan seating. Fields, labels, and button text are editable in the CMS.</p>
+              <label for="rsvp-name">Full name</label>
+              <input id="rsvp-name" name="name" type="text" autocomplete="name" required>
+              <label for="rsvp-email">Email</label>
+              <input id="rsvp-email" name="email" type="email" autocomplete="email" required>
+              <label for="rsvp-n"># Attending</label>
+              <select id="rsvp-n" name="attending">
+                <option>1</option><option>2</option><option>3</option><option>4+</option>
+              </select>
+              <label class="hp-check"><input type="checkbox" name="newsletter"> Send me Hall emails &amp; offers</label>
+              <button class="btn btn--tickets" type="submit">Save My Spot</button>
+              <p class="hp-callout">Hero and sticky CTAs scroll here and submit this same form.</p>
+              <a class="btn btn--outline" data-mod="calendar" href="#">Add to calendar</a>
+            </form>
+            <div class="hp-widget" data-mod="form-embed">
+              <span class="hp-widget__kicker">Alternative module</span>
+              <h2>External RSVP form</h2>
+              <p>Swap in a marketing form embed instead of the native fields — never shown beside them.</p>
+            </div>
+            <div class="hp-widget" data-mod="fb-alt">
+              <span class="hp-widget__kicker">Alternative module</span>
+              <h2>Facebook Event</h2>
+              <p>Use when traffic already comes from a boosted post and a second form isn’t needed.</p>
+            </div>
+          </section>
+
+          <section class="hp-confirm" hidden>
+            <h2>You&apos;re on the list</h2>
+            <p>Thanks, <strong data-hp="confirm-name">Guest</strong> — your RSVP for <strong data-hp="confirm-event">Community Film Night</strong> is confirmed.</p>
+            <p>We&apos;ll send a reminder email before the event. Add it to your calendar or browse more happenings below.</p>
+            <a class="btn btn--tickets" href="happenings-listing.html">Browse more events</a>
+          </section>
+
+          <div class="hp-sticky">
+            <div class="hp-sticky__info">
+              <span class="hp-sticky__label" data-hp="sticky-label">Community Film Night</span>
+              <strong data-hp="sticky-meta">Free · Fri, Sep 11</strong>
+            </div>
+            <a class="btn btn--tickets" href="#rsvp-form" data-scroll-to="rsvp-form">Save My Spot</a>
+          </div>
+
+          <div class="hp-layout">
+            <div>
+              <section class="hp-section">
+                <h2>About the program</h2>
+                <p>A free community screening in the Hall theater, followed by a short conversation with guest panelists.</p>
+              </section>
+              <section class="hp-section">
+                <h2>Getting there</h2>
+                <p>250 Marietta St. NW. Evening parking is typically available in nearby decks.</p>
+              </section>
+              <section class="hp-section">
+                <h2>FAQ</h2>
+                <div class="hp-faq">
+                  <div class="wf-faq__item is-open">
+                    <button type="button" class="wf-faq__q">Do I need a ticket?</button>
+                    <div class="wf-faq__a">No — RSVP only. The accordion keeps longer answers compact.</div>
+                  </div>
+                  <div class="wf-faq__item">
+                    <button type="button" class="wf-faq__q">Can I bring guests?</button>
+                    <div class="wf-faq__a">Use the configurable “# Attending” field, or hide it in the CMS.</div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <aside class="hp-aside">
+              <div class="hp-card">
+                <h3>Location</h3>
+                <p>250 Marietta St. N.W.<br>Atlanta, GA 30313</p>
+              </div>
+              <div class="hp-card" data-mod="fb-sidebar">
+                <h3>Facebook Event</h3>
+                <p>Preferred in this column — not as a second form.</p>
+              </div>
+              <div class="hp-card">
+                <h3>Share this event</h3>
+                <div class="hp-share">
+                  <a class="hp-share__link" href="#">Facebook</a>
+                  <a class="hp-share__link" href="#">Instagram</a>
+                  <a class="hp-share__link" href="#">X</a>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+          <section class="hp-related">
+            <div class="hp-related__head">
+              <h2>More upcoming events</h2>
+              <a href="happenings-listing.html">View all →</a>
+            </div>
+            <div class="hp-related__grid"><!-- filled by happenings.js --></div>
+          </section>
+        </main>
       </div>
 
-      <main id="main" class="wf-page__content">
-        <section class="wf-hero">
-          <div class="wf-hero__crumb">Happenings / Community Film Night</div>
-          <div class="wf-hero__title">Community Film Night</div>
-          <div class="wf-hero__meta">
-            <span class="wf-meta">Friday, September 11 · 6–9PM</span>
-            <span class="wf-tag wf-tag--outline">Free · RSVP</span>
-          </div>
-          <div class="wf-block wf-block--white" style="margin-top:var(--space-4);">
-            Facebook Event embed — optional
-            <span class="wf-opt">Optional · Toggle</span>
-          </div>
-        </section>
-
-        <section class="wf-conversion">
-          <div class="wf-conversion__grid">
-            <div class="wf-conversion__col">
-              <span class="wf-label">Above-the-fold engagement · RSVP + newsletter</span>
-              <span class="wf-btn wf-btn--block">RSVP — Save My Spot</span>
-              <span class="wf-label">Full name</span>
-              <div class="wf-field"></div>
-              <span class="wf-label">Email</span>
-              <div class="wf-field"></div>
-              <span class="wf-label"># Attending</span>
-              <div class="wf-field"></div>
-              <span class="wf-label">☐ Send me Hall emails &amp; offers</span>
-            </div>
-            <div class="wf-block wf-block--tall wf-block--white">
-              RSVP / sign-up form embed
-              <span class="wf-opt">Optional · Embed</span>
+      <footer class="site-footer" aria-label="Site footer">
+        <div class="site-footer__inner">
+          <div class="site-footer__col site-footer__col--know">
+            <div class="site-footer__signup">
+              <p class="site-footer__title">Stay In The Know</p>
+              <form class="site-footer__form" action="#" method="post" novalidate>
+                <label class="sr-only" for="footer-email-rsvp">Email Address</label>
+                <input type="email" id="footer-email-rsvp" name="email" class="site-footer__email" placeholder="Your email" required>
+                <button type="submit" class="site-footer__subscribe" aria-label="Subscribe"><span>Subscribe</span></button>
+              </form>
             </div>
           </div>
-        </section>
-
-        <section class="wf-sticky">
-          <span class="wf-sticky__price">Free · Fri, Sep 11</span>
-          <span class="wf-btn">RSVP</span>
-          <span class="wf-opt">Optional · Sticky CTA</span>
-        </section>
-        <section class="wf-content">
-          <div class="wf-content__col">
-            <div class="wf-block">Event Details — date / time / location</div>
-            <div class="wf-block">About the Program / Panelists</div>
-            <div class="wf-block">Agenda / Schedule</div>
-            <div class="wf-block">Getting There — parking · transit</div>
-            <div class="wf-block">FAQ</div>
+          <div class="site-footer__col site-footer__col--links">
+            <p class="site-footer__heading">Address</p>
+            <p class="site-footer__address">250 Marietta St. N.W.<span>Atlanta, GA 30313</span></p>
           </div>
-          <div class="wf-content__aside">
-            <div class="wf-block wf-block--white">
-              Location / Share sidebar
-              <span class="wf-opt">Toggle · Sidebar</span>
-            </div>
-            <div class="wf-share-row">
-              <span class="wf-share">X</span>
-              <span class="wf-share">f</span>
-              <span class="wf-share">p</span>
-            </div>
+          <div class="site-footer__col site-footer__col--promo">
+            <a class="site-footer__promo" href="https://aflackickoffgame.com/tickets" target="_blank" rel="noopener noreferrer">
+              <img src="assets/images/footer/aflac-kickoff.jpg" alt="Aflac Kickoff Game" width="300" height="300">
+            </a>
           </div>
-        </section>
-
-        <section class="wf-carousel">
-          <div class="wf-carousel__head">
-            <span class="wf-carousel__title">More Upcoming Events</span>
-            <span class="wf-carousel__viewall">View all →</span>
-          </div>
-          <div class="wf-carousel__cards">
-            <div class="wf-carousel__card">
-              <div class="wf-carousel__card-media"></div>
-              <div class="wf-carousel__card-body"><span class="wf-listing__title">Event title</span></div>
-            </div>
-            <div class="wf-carousel__card">
-              <div class="wf-carousel__card-media"></div>
-              <div class="wf-carousel__card-body"><span class="wf-listing__title">Event title</span></div>
-            </div>
-            <div class="wf-carousel__card">
-              <div class="wf-carousel__card-media"></div>
-              <div class="wf-carousel__card-body"><span class="wf-listing__title">Event title</span></div>
-            </div>
-          </div>
-          <div class="wf-carousel__controls">
-            <span class="wf-carousel__btn">‹</span>
-            <span class="wf-carousel__dots">
-              <span class="wf-carousel__dot wf-carousel__dot--active"></span>
-              <span class="wf-carousel__dot"></span>
-              <span class="wf-carousel__dot"></span>
-            </span>
-            <span class="wf-carousel__btn">›</span>
-          </div>
-        </section>
-      </main>
-
-      <footer class="wf-footer">
-        <div class="wf-footer__grid">
-          <span class="wf-footer__block">Stay In The Know</span>
-          <span class="wf-footer__block">About / Contact</span>
-          <span class="wf-footer__block">Address / Phone</span>
-          <span class="wf-footer__block">Promo</span>
         </div>
-        <div class="wf-footer__legal">©2026 College Football Hall of Fame</div>
       </footer>
+      <div class="site-footer-legal">
+        <p class="site-footer-legal__copy">&copy;2026 College Football Hall of Fame, All Rights Reserved</p>
+      </div>
     </div>
   </div>
+  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+  <script src="assets/js/search.js" defer></script>
+  <script src="assets/js/wireframes.js" defer></script>
+  <script src="assets/js/happenings.js" defer></script>
 </body>
 </html>
