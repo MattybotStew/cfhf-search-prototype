@@ -1,0 +1,16 @@
+{
+  "outputDir": "src/figma",
+  "tokens": { "enabled": true },
+  "assets": {
+    "enabled": true,
+    "formats": ["svg", "png"],
+    "scale": 2,
+    "nodeIds": [],
+    "filter": []
+  },
+  "components": {
+    "enabled": true,
+    "frames": [],
+    "filter": []
+  }
+}

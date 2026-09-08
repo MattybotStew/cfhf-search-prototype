@@ -79,4 +79,38 @@
     });
   });
 
+  document.querySelectorAll(".wf-listing").forEach(function (listing) {
+    var chips = listing.querySelectorAll(".wf-listing__chips [data-wf-filter]");
+    var cards = listing.querySelectorAll("[data-wf-cats]");
+    var empty = listing.querySelector(".wf-listing-empty");
+    var cats = listing.querySelectorAll(".wf-listing__cats [data-wf-filter]");
+
+    function apply(id) {
+      chips.forEach(function (c) {
+        c.classList.toggle("wf-chip-tag--active", c.getAttribute("data-wf-filter") === id);
+      });
+      cats.forEach(function (c) {
+        c.classList.toggle("is-active", c.getAttribute("data-wf-filter") === id);
+      });
+      var shown = 0;
+      cards.forEach(function (card) {
+        var match = id === "all" || (card.getAttribute("data-wf-cats") || "").split(/\s+/).indexOf(id) !== -1;
+        card.hidden = !match;
+        if (match) shown += 1;
+      });
+      if (empty) empty.classList.toggle("is-visible", shown === 0);
+    }
+
+    chips.forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        apply(chip.getAttribute("data-wf-filter"));
+      });
+    });
+    cats.forEach(function (cat) {
+      cat.addEventListener("click", function () {
+        apply(cat.getAttribute("data-wf-filter"));
+      });
+    });
+  });
+
 })();

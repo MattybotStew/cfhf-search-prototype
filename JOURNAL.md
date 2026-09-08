@@ -1,5 +1,62 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-08 — Cursor: Commit + push Happenings to master
+
+- Merged `cursor/happenings-designed-pages-click-throughs` → `master` and pushed for GitHub Pages.
+- Includes outline, listing hero, chip filters, full footer, nav links, screens/, FigJam flow notes, retired wireframe board.
+
+## 2026-09-08 — Cursor: Happenings pages use homepage footer
+
+- Listing, transactional, and RSVP now include Join the Legacy band + full site footer (social, reviews, About, CityPASS, Aflac, legal) matching `index.html`.
+- Source of truth: `partials/site-footer-legacy.html`; `home.css` linked for legacy styles.
+
+## 2026-09-08 — Cursor: Global News & Happenings nav → listing
+
+- `index.html` + `search.html` rail link and home “View All” now point to `happenings-listing.html` (Happenings pages already did).
+
+## 2026-09-08 — Cursor: Listing image hero + chips only
+
+- `happenings-listing.html`: full-bleed hero (Hall / Happenings stroke title) above filter chips; removed duplicate text nav earlier.
+- Regenerated `screens/01` and `02` with matching hero for Figma import.
+
+## 2026-09-08 — Cursor: Listing filters — chips only
+
+- Removed duplicate `.hp-cats` text nav from `happenings-listing.html`; single chip row remains.
+
+## 2026-09-08 — Cursor: Visitor flow reflects filters + CMS decisions
+
+- Updated [`happenings.html`](happenings.html): visitor flow, 6 listing filters table, editor/CMS decisions.
+- [`screens/visitor-flow.mmd`](screens/visitor-flow.mmd) + FigJam regen on existing board (visitor + CMS subgraphs).
+- [`screens/index.html`](screens/index.html): filter/prototype notes (Exhibitions/Community can mix paths).
+
+## 2026-09-08 — Cursor: Clarify “Tap an event card” = listing action
+
+- Not a separate screen; prototype links from `01`/`02` listing frames to ticketed or RSVP detail in Figma. Note added to `screens/index.html`.
+
+## 2026-09-08 — Cursor: Happenings outline, Figma screens, board retired
+
+- Client agenda is `happenings.html` (listing, ticketed, RSVP). No toggle board.
+- Module bars removed from designed detail pages; default layout is baked in.
+- `happenings-wireframes.html` redirects to the outline.
+- Static html.to.design screens: `screens/01`–`09` desktop + mobile, plus `screens/index.html`.
+- Visitor flowchart remains in FigJam: https://www.figma.com/board/YOXkU2QjDrRMFnO0CBgoF8
+
+## 2026-09-08 — Cursor: Real Happenings content, widgets, and user paths
+
+- Event JSON now includes venue, body copy, agendas, FAQs, ticket SKUs/dates, and calendar times.
+- **RSVP:** native form (and embed iframe) → confirmation + ICS + related events. Verified Film Night RSVP as Jordan Ellis.
+- **Tickets:** Ventrata Checkout v3 snippet remains; date/qty/member picker completes a prototype purchase when sandbox keys are placeholders.
+- **Sidebar:** Google Maps embed, Facebook page/events plugin, real share URLs. Board desktop frames got the same working forms.
+
+## 2026-09-08 — Cursor: Wireframe board shows designed Happenings flows
+
+- Updated `happenings-wireframes.html` (+ `wireframes.css` / `wireframes.js`) so the low-fi board matches the requested standalone work: two-line hero, offer/price + Ventrata Checkout v3, sticky event name, RSVP confirmation module, related-event cards, listing filters and `?event=` card links, eight cards on mobile.
+
+## 2026-09-08 — Cursor: Happenings-only focus
+
+- Matt: concentrate only on Happenings. Search prototype and CCFB logo options are parked.
+- Active work: listing / transactional / RSVP standalones + wireframe board; click-throughs already in `happenings.js` + `happenings-events.json`.
+
 ## 2026-09-03 — Cursor: Happenings click-through flows
 
 - Added shared event index (`data/happenings-events.json`) and `assets/js/happenings.js`.

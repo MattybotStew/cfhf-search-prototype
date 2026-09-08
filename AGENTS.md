@@ -49,10 +49,12 @@ Skip only for pure Q&A with **zero** file or plan changes.
 | Search | https://mattybotstew.github.io/cfhf-search-prototype/search.html |
 | Sample | https://mattybotstew.github.io/cfhf-search-prototype/search.html?q=tebow |
 | CCFB logo options | https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html |
-| Happenings wireframes | https://mattybotstew.github.io/cfhf-search-prototype/happenings-wireframes.html |
-| Happenings — Transactional (resp.) | https://mattybotstew.github.io/cfhf-search-prototype/happenings-transactional.html |
-| Happenings — RSVP (resp.) | https://mattybotstew.github.io/cfhf-search-prototype/happenings-rsvp.html |
-| Happenings — Listing (resp.) | https://mattybotstew.github.io/cfhf-search-prototype/happenings-listing.html |
+| Happenings outline | https://mattybotstew.github.io/cfhf-search-prototype/happenings.html |
+| Happenings — Listing | https://mattybotstew.github.io/cfhf-search-prototype/happenings-listing.html |
+| Happenings — Transactional | https://mattybotstew.github.io/cfhf-search-prototype/happenings-transactional.html |
+| Happenings — RSVP | https://mattybotstew.github.io/cfhf-search-prototype/happenings-rsvp.html |
+| Figma import screens | `screens/index.html` (local) |
+| Happenings — RSVP form embed | `happenings-form-embed.html` (iframe on RSVP alt module) |
 
 Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options.html`.
 
@@ -71,10 +73,16 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 | 7. Empty state | **DONE** |
 | 8. A11y + mobile polish | **DONE** |
 
-**Status:** Client-shareable prototype. Full funnel live + full live-matching site footer. Happenings **standalone pages are designed** (live rail/hours/footer); board stays wireframe. Nebo r2 structure retained.
+**Status:** Search prototype is complete and **parked**. Active track is **Happenings only**. Client outline is `happenings.html` (three funnel links). Wireframe board URL redirects there. Figma visitor flow in FigJam; static `screens/` HTML for html.to.design. Standalones have no module toggles. Nebo r2 structure retained.
+
+### What the Happenings outline + Figma screens delivered (Cursor — 2026-09-08)
+- `happenings.html` — headlines and links to listing / ticketed / RSVP (no board, no toggles)
+- `happenings-wireframes.html` redirects to the outline
+- FigJam: https://www.figma.com/board/YOXkU2QjDrRMFnO0CBgoF8
+- `screens/` — 18 baked HTML files (9 nodes × desktop 1440 / mobile 390) + `screens/index.html` import notes
 
 ### What the Happenings wireframes delivered (Cline — 2026-08-17)
-- `happenings-wireframes.html` + `assets/css/wireframes.css` + `assets/js/wireframes.js`
+- Retired as a client board; `assets/css/wireframes.css` + `assets/js/wireframes.js` remain unused by the outline. Historical note: former `happenings-wireframes.html` canvas.
 
 > **2026-09-03 click-through flows (Cursor):** `data/happenings-events.json` + `assets/js/happenings.js` — listing filters, `?event=` detail hydration, RSVP confirmation, related-event links, Ventrata scroll fallback.
 
@@ -95,7 +103,12 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 
 > **2026-08-06 CCFB options 404 (Cursor):** `/ccfb-logo-options.html` 404 while home 200; Actions for `6fad3bf` stuck **queued**. Empty re-trigger `a4c5a77` → deploy success → **page LIVE (200)**. No Pages Settings toggle needed.
 
-**Handoff:** Client-ready search prototype + full footer LIVE. Standalone **CCFB logo placement** review board at https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html (+ `assets/images/ccfb/`, Logos 1–3; Logo #4 excluded). Option E from Figma Footer `446:2457`; Logo 3 from Figma `449:2992`; Option H band logo-only (no “Official campaign”) + CityPASS under FAQ — all on `master`. Empty `image` → runtime HOF placeholders (documented in README). Do **not** revert hours-bar to icon-only Option A. Footer review icons **Google Reviews → Yelp → TripAdvisor**. Next: client picks nav/footer options; optional wire-in.
+**Handoff:** **Happenings only.** Search + CCFB parked. **LIVE on Pages:** `happenings.html` outline + listing / transactional / RSVP click-throughs. Next: Figma html.to.design import; optional Ventrata keys. Do **not** revert hours-bar to icon-only Option A.
+
+### What the Happenings polish delivered (Cursor — 2026-09-08)
+- Listing image hero; chip-only filters; full homepage footer on all Happenings pages
+- Global nav: News & Happenings → `happenings-listing.html`
+- Visitor flow on outline + FigJam; `screens/` static import set; pushed to `master`
 
 ### What CCFB logo options delivered (Cursor — 2026-08-06)
 - Standalone `ccfb-logo-options.html` (not wired into live chrome)

@@ -6,10 +6,17 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-09-03 (Cursor — Happenings click-through flows)
+**Last Updated:** 2026-09-08 (Cursor — commit + push Happenings to master)
 **Active Agent:** **Cursor**
-**Branch:** `master`
-**Status:** Steps 1–8 + full footer LIVE. Standalone Happenings pages are now designed (live left rail, hours-bar search, mobile topbar) — not schematic wires. Board remains low-fi. CCFB options page on `master` (not wired into live chrome).
+**Branch:** `master` (merged from `cursor/happenings-designed-pages-click-throughs`)
+**Focus:** **Happenings only.**
+**Status:** Happenings client outline + listing/ticketed/RSVP click-throughs **pushed to `master`**. Listing: image hero, chip filters only, homepage footer. Nav News & Happenings → listing globally. Module toggles removed. Wireframe board redirects to outline. FigJam visitor flow + `screens/` for html.to.design.
+
+### Live (after push — verify Pages build)
+- https://mattybotstew.github.io/cfhf-search-prototype/happenings.html
+- https://mattybotstew.github.io/cfhf-search-prototype/happenings-listing.html
+- https://mattybotstew.github.io/cfhf-search-prototype/happenings-transactional.html
+- https://mattybotstew.github.io/cfhf-search-prototype/happenings-rsvp.html
 
 ### Live
 - https://mattybotstew.github.io/cfhf-search-prototype/
@@ -23,10 +30,29 @@ Matt: “i want what is there now with the search functionality requested.”
 - Functionality: live predictive dropdown (HOF portrait + team badge vs general icon/label)
 - Do **not** switch to icon-only click-expand
 
-### In Progress / Next
-- Share designed Happenings pages (`happenings-transactional.html`, `happenings-rsvp.html`, `happenings-listing.html`) + wireframe board with client
-- Review Option E Figma-mirrored footer stub + Logo 3 + Option H band; share with client when ready
-- Optional: wire chosen CCFB placements + chosen event templates into `index.html` / `search.html` after client picks
+### In Progress / Next (Happenings)
+- html.to.design import of `screens/` into Figma; prototype links
+- Real Ventrata sandbox `apiKey` / `productID` (picker works without them)
+- Do **not** pick up CCFB / search unless Matt asks
+
+### Newly completed (2026-09-08 — Cursor: polish + deploy)
+- Listing image hero; single chip filter row (removed duplicate text nav)
+- Full homepage footer + Join the Legacy on all Happenings pages (`partials/site-footer-legacy.html`)
+- Global rail News & Happenings + home View All → `happenings-listing.html`
+- Pushed to GitHub Pages (`master`)
+- `happenings.html` agenda + three funnel links
+- Removed `.hp-mods` from transactional + RSVP (baked image hero, Ventrata, sidebar, native RSVP)
+- `happenings-wireframes.html` meta-refresh → outline
+- 18 files in `screens/` + import notes; generator `screens/generate_screens.py`
+- FigJam: https://www.figma.com/board/YOXkU2QjDrRMFnO0CBgoF8
+
+### Newly completed (2026-09-08 — Cursor: real content + widgets + user paths)
+- Expanded `happenings-events.json` (venue, details, agenda, FAQs, ticket dates/prices, ICS)
+- Native RSVP + `happenings-form-embed.html` iframe; ticket date/qty/member → confirmation; Google Maps + Facebook page plugin; share + `.ics` download
+- Wireframe board desktop frames: working ticket + RSVP forms, map/FB embeds
+
+### Newly completed (2026-09-08 — Cursor: wireframe board catch-up)
+- `happenings-wireframes.html` now mirrors designed-page asks: stroke/solid hero, offer + price + Ventrata Checkout v3, sticky with event name, RSVP confirmation toggle, named related events, listing chips/heading filters, 8 mobile cards, cards link to `?event=` templates
 
 ### Newly completed (2026-09-03 — Cursor: Happenings click-through flows)
 - `data/happenings-events.json` + `assets/js/happenings.js`: listing filters sync to `?category=`, all 8 cards link to detail pages with `?event=`, detail pages hydrate from JSON, RSVP form → confirmation, Get Tickets scrolls to Ventrata when keys are placeholders, related events carousel is live-linked

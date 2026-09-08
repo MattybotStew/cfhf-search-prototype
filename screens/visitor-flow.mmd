@@ -1,0 +1,39 @@
+flowchart TD
+  subgraph visitorFlow ["Visitor flow"]
+    listing(["Happenings listing"])
+    filterOpt["Optional filter browse only"]
+    tapCard["Tap event card on listing"]
+    pathPick{"Template set at publish"}
+    txDetail["Event detail Get Tickets"]
+    checkout["Choose date and quantity"]
+    tixDone["Purchase confirmation"]
+    rsvpDetail["Event detail Save My Spot"]
+    form["Name email attending"]
+    rsvpDone["You are on the list"]
+    more["More upcoming events"]
+
+    listing --> filterOpt
+    filterOpt --> listing
+    listing --> tapCard
+    tapCard --> pathPick
+    pathPick -->|"Ticketed"| txDetail
+    pathPick -->|"RSVP"| rsvpDetail
+    txDetail --> checkout
+    checkout --> tixDone
+    rsvpDetail --> form
+    form --> rsvpDone
+    tixDone --> more
+    rsvpDone --> more
+    more --> listing
+  end
+
+  subgraph cmsPublish ["CMS at publish per event"]
+    pickTemplate{"Pick template"}
+    assignCats["Assign listing categories"]
+    txOpts["Ticketed options"]
+    rsvpOpts["RSVP module one only"]
+    pickTemplate -->|"Ticketed"| txOpts
+    pickTemplate -->|"RSVP"| rsvpOpts
+    assignCats -.-> listing
+    pickTemplate -.-> pathPick
+  end

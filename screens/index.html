@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happenings Figma screens · html.to.design</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; padding: 0 20px; line-height: 1.5; }
+    h1 { font-size: 22px; }
+    code { background: #f4f4f5; padding: 1px 5px; }
+    table { border-collapse: collapse; width: 100%; font-size: 14px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    .warn { background: #fff8f0; padding: 12px 16px; }
+  </style>
+</head>
+<body>
+  <h1>Import order (html.to.design)</h1>
+  <p>This index is <strong>not</strong> for Figma. Capture each screen file separately.</p>
+  <p><strong>Tap an event card</strong> is not its own frame — it is the listing (<code>01</code> or <code>02</code> after filter). In Figma, prototype-link each card by event type: ticketed cards → <code>03</code>; RSVP cards → <code>06</code>.</p>
+  <p><strong>Filters</strong> (All, Upcoming, Free / RSVP, Ticketed, Exhibitions, Community) are browse-only. Exhibitions and Community can show a mix of ticketed and RSVP cards. Only the event’s published template decides the detail path.</p>
+  <div class="warn">
+    <p><strong>How you import</strong></p>
+    <ol>
+      <li>Serve the repo with a local server, not <code>file://</code> (example: <code>python3 -m http.server 8080</code> from repo root).</li>
+      <li>Open each HTML, then capture at <strong>1440</strong> (<code>*-d.html</code>) or <strong>390</strong> (<code>*-m.html</code>) — one viewport per file.</li>
+      <li>Sticky bars, Ventrata, Maps, and Facebook iframes are drawn as static UI here on purpose.</li>
+      <li>Kaneda + Neusa (Typekit) often do not embed on import. Swap to Hall Figma text styles after import.</li>
+    </ol>
+  </div>
+  <table>
+    <thead><tr><th>Flow node</th><th>Desktop 1440</th><th>Mobile 390</th></tr></thead>
+    <tbody>
+      <tr><td>Happenings listing</td><td><a href="01-listing-d.html">01-listing-d.html</a></td><td><a href="01-listing-m.html">01-listing-m.html</a></td></tr>
+      <tr><td>Filter by category</td><td><a href="02-listing-filter-d.html">02-listing-filter-d.html</a></td><td><a href="02-listing-filter-m.html">02-listing-filter-m.html</a></td></tr>
+      <tr><td>Event detail: Get Tickets</td><td><a href="03-ticketed-d.html">03-ticketed-d.html</a></td><td><a href="03-ticketed-m.html">03-ticketed-m.html</a></td></tr>
+      <tr><td>Choose date and quantity</td><td><a href="04-checkout-d.html">04-checkout-d.html</a></td><td><a href="04-checkout-m.html">04-checkout-m.html</a></td></tr>
+      <tr><td>Purchase confirmation</td><td><a href="05-ticket-confirm-d.html">05-ticket-confirm-d.html</a></td><td><a href="05-ticket-confirm-m.html">05-ticket-confirm-m.html</a></td></tr>
+      <tr><td>Event detail: Save My Spot</td><td><a href="06-rsvp-d.html">06-rsvp-d.html</a></td><td><a href="06-rsvp-m.html">06-rsvp-m.html</a></td></tr>
+      <tr><td>Name, email, attending</td><td><a href="07-rsvp-form-d.html">07-rsvp-form-d.html</a></td><td><a href="07-rsvp-form-m.html">07-rsvp-form-m.html</a></td></tr>
+      <tr><td>You’re on the list</td><td><a href="08-rsvp-confirm-d.html">08-rsvp-confirm-d.html</a></td><td><a href="08-rsvp-confirm-m.html">08-rsvp-confirm-m.html</a></td></tr>
+      <tr><td>More upcoming events</td><td><a href="09-related-d.html">09-related-d.html</a></td><td><a href="09-related-m.html">09-related-m.html</a></td></tr>
+    </tbody>
+  </table>
+  <p>Regenerate screens: <code>python3 screens/generate_screens.py</code></p>
+  <p><a href="../happenings.html">← Happenings outline</a></p>
+</body>
+</html>

@@ -1,4 +1,16 @@
 {
+  "venue": {
+    "name": "Chick-fil-A College Football Hall of Fame",
+    "address": "250 Marietta St. N.W.",
+    "cityLine": "Atlanta, GA 30313",
+    "phone": "404-880-4800",
+    "phoneHref": "tel:4048804800",
+    "mapsQuery": "College Football Hall of Fame, 250 Marietta Street NW, Atlanta, GA 30313",
+    "mapsLink": "https://www.google.com/maps/search/?api=1&query=College+Football+Hall+of+Fame+250+Marietta+Street+NW+Atlanta",
+    "facebookPage": "https://www.facebook.com/CollegeFootballHOF",
+    "instagram": "https://www.instagram.com/cfbhall/",
+    "x": "https://x.com/CFBHall"
+  },
   "categories": [
     { "id": "all", "label": "All" },
     { "id": "upcoming", "label": "Upcoming" },
@@ -23,9 +35,19 @@
       "image": "https://www.cfbhall.com/media/qavbhkxx/4-17-23-aerials-3.jpg?width=1920&format=webp",
       "thumb": "https://www.cfbhall.com/media/qavbhkxx/4-17-23-aerials-3.jpg?width=800&format=webp",
       "offerTitle": "Save your free day pass",
-      "offerCopy": "RSVP helps us plan capacity for games, giveaways, and exhibit access. One form — fields and button text are CMS-configurable.",
+      "offerCopy": "RSVP helps us plan capacity for games, giveaways, and exhibit access. One household RSVP covers your group.",
       "stickyLabel": "Football Fest & Free Day",
-      "stickyMeta": "Free · Sat, Aug 22"
+      "stickyMeta": "Free · Sat, Aug 22",
+      "details": "A full day of free Hall admission, family games on the plaza, and rotating exhibit access. Arrive before 11 AM for the shortest lines at the skills zone.",
+      "expect": "Face-painting, inflatable games, and volunteer-led tours of the Hall. Food trucks on Marietta Street (pay separately).",
+      "agenda": ["10:00 AM — Doors & free admission", "11:00 AM — Skills zone opens", "1:00 PM — Family photo ops", "4:30 PM — Last entry"],
+      "gettingThere": "250 Marietta St. NW. Weekend parking is usually available in nearby decks. MARTA: Dome / GWCC / Philips Arena / CNN Center.",
+      "faqs": [
+        { "q": "Do I need a ticket?", "a": "No — this day is free with RSVP. We use the count to staff games and exhibits." },
+        { "q": "Can I bring guests?", "a": "Yes. Use # Attending for everyone in your party, including kids." }
+      ],
+      "facebookEventUrl": "https://www.facebook.com/CollegeFootballHOF/events",
+      "calendar": { "start": "2026-08-22T10:00:00", "end": "2026-08-22T17:00:00" }
     },
     {
       "id": "gameday-kickoff",
@@ -45,7 +67,29 @@
       "offerTitle": "Before kickoff at the Hall",
       "offerCopy": "Join us for food, music, and full Hall access before the game. General admission includes museum entry all day. Members save $4 at checkout.",
       "stickyLabel": "Gameday Kickoff Party",
-      "stickyMeta": "$12 · Saturdays in Oct"
+      "stickyMeta": "$12 · Saturdays in Oct",
+      "details": "Every Saturday in October, 10:00 AM–5:00 PM at the Hall. Ticket includes plaza programming plus museum admission the same day.",
+      "expect": "Live music on the plaza, food vendors, and full access to the Hall exhibits. Saturday mornings fill quickly — come early.",
+      "agenda": ["10:00 AM — Plaza opens / check-in", "11:00 AM — Live music", "12:00 PM — Hall exhibits at your pace", "4:30 PM — Last entry"],
+      "gettingThere": "Paid parking in nearby decks. MARTA: Dome/GWCC/Philips Arena/CNN. Check Falcons or campus game-day street closures before you leave.",
+      "faqs": [
+        { "q": "What is included with my ticket?", "a": "General admission plus Hall access during the event window. Food and merch are extra." },
+        { "q": "Is this event recurring?", "a": "Yes — every Saturday in October. Pick a date at checkout." },
+        { "q": "Where do I park?", "a": "Nearby paid decks; see Getting There for transit notes." }
+      ],
+      "facebookEventUrl": "https://www.facebook.com/CollegeFootballHOF/events",
+      "calendar": { "start": "2026-10-03T10:00:00", "end": "2026-10-03T17:00:00", "rrule": "FREQ=WEEKLY;BYDAY=SA;UNTIL=20261031T170000" },
+      "tickets": {
+        "unitPrice": 12,
+        "memberPrice": 8,
+        "dates": [
+          { "value": "2026-10-03", "label": "Sat, Oct 3" },
+          { "value": "2026-10-10", "label": "Sat, Oct 10" },
+          { "value": "2026-10-17", "label": "Sat, Oct 17" },
+          { "value": "2026-10-24", "label": "Sat, Oct 24" },
+          { "value": "2026-10-31", "label": "Sat, Oct 31" }
+        ]
+      }
     },
     {
       "id": "ascension",
@@ -65,7 +109,27 @@
       "offerTitle": "Experience the exhibition",
       "offerCopy": "Timed entry tickets include full Hall access. Add the exhibition to your visit at checkout.",
       "stickyLabel": "Ascension: Rise of the QB",
-      "stickyMeta": "From $24 · Sep 05"
+      "stickyMeta": "From $24 · Sep 05",
+      "details": "A special exhibition on the modern quarterback — film, artifacts, and interactive throws. Opens September 5 during regular museum hours.",
+      "expect": "Allow 45–60 minutes in the gallery plus time for the rest of the Hall. Photography is welcome without flash.",
+      "agenda": ["Timed entry every 15 minutes", "Last gallery entry 45 minutes before close"],
+      "gettingThere": "Same as a regular Hall visit: 250 Marietta St. NW. Combine with general admission.",
+      "faqs": [
+        { "q": "Is the exhibition extra?", "a": "Exhibition access is bundled with timed Hall admission at checkout." },
+        { "q": "Are tickets dated?", "a": "Yes — choose a visit date so we can manage gallery capacity." }
+      ],
+      "facebookEventUrl": "https://www.facebook.com/CollegeFootballHOF/events",
+      "calendar": { "start": "2026-09-05T10:00:00", "end": "2026-09-05T17:00:00" },
+      "tickets": {
+        "unitPrice": 24,
+        "memberPrice": 20,
+        "dates": [
+          { "value": "2026-09-12", "label": "Sat, Sep 12" },
+          { "value": "2026-09-19", "label": "Sat, Sep 19" },
+          { "value": "2026-09-26", "label": "Sat, Sep 26" },
+          { "value": "2026-10-03", "label": "Sat, Oct 3" }
+        ]
+      }
     },
     {
       "id": "community-film-night",
@@ -82,9 +146,19 @@
       "image": "https://www.cfbhall.com/media/qavbhkxx/4-17-23-aerials-3.jpg?width=1920&format=webp",
       "thumb": "https://www.cfbhall.com/media/qavbhkxx/4-17-23-aerials-3.jpg?width=800&format=webp",
       "offerTitle": "Reserve your seat",
-      "offerCopy": "Free admission — RSVP helps us plan seating in the Hall theater. Fields, labels, and button text are editable in the CMS.",
+      "offerCopy": "Free admission — RSVP helps us plan seating in the Hall theater. Doors at 5:45 PM.",
       "stickyLabel": "Community Film Night",
-      "stickyMeta": "Free · Fri, Sep 11"
+      "stickyMeta": "Free · Fri, Sep 11",
+      "details": "A free community screening in the Hall theater, followed by a short conversation with guest panelists.",
+      "expect": "Theater seating is first-come for RSVPs. Light refreshments in the lobby. The Hall exhibits close at 5 PM; film night is a separate evening program.",
+      "agenda": ["5:45 PM — Doors", "6:15 PM — Welcome", "6:30 PM — Screening", "8:00 PM — Panel + Q&A"],
+      "gettingThere": "250 Marietta St. NW. Evening parking is typically available in nearby decks.",
+      "faqs": [
+        { "q": "Do I need a ticket?", "a": "No — RSVP only. We hold a seat count for the theater." },
+        { "q": "Can I bring guests?", "a": "Yes. Include them in # Attending, up to 4+." }
+      ],
+      "facebookEventUrl": "https://www.facebook.com/CollegeFootballHOF/events",
+      "calendar": { "start": "2026-09-11T18:00:00", "end": "2026-09-11T21:00:00" }
     },
     {
       "id": "legendary-saturday",
@@ -104,7 +178,22 @@
       "offerTitle": "Meet the legends",
       "offerCopy": "Autographs, photos, and insider stories from College Football Hall of Famers. Limited capacity — purchase early.",
       "stickyLabel": "Legendary Saturday",
-      "stickyMeta": "$18 · Sep 19"
+      "stickyMeta": "$18 · Sep 19",
+      "details": "A ticketed afternoon with inductee appearances, a moderated conversation, and a signing line. Hall admission is included.",
+      "expect": "Bring a small item to sign. Professional photos are available for purchase. Lines move in timed groups.",
+      "agenda": ["11:00 AM — Check-in", "11:30 AM — Conversation", "1:00 PM — Autograph groups", "3:30 PM — Last call"],
+      "gettingThere": "250 Marietta St. NW. Allow extra time — this program often sells out the plaza.",
+      "faqs": [
+        { "q": "Are autographs guaranteed?", "a": "We run timed groups so as many guests as possible meet the legends. Time is limited." },
+        { "q": "Is Hall admission included?", "a": "Yes — your ticket covers the program and same-day museum access." }
+      ],
+      "facebookEventUrl": "https://www.facebook.com/CollegeFootballHOF/events",
+      "calendar": { "start": "2026-09-19T11:00:00", "end": "2026-09-19T16:00:00" },
+      "tickets": {
+        "unitPrice": 18,
+        "memberPrice": 14,
+        "dates": [{ "value": "2026-09-19", "label": "Sat, Sep 19" }]
+      }
     },
     {
       "id": "kids-game-day",
@@ -121,9 +210,19 @@
       "image": "https://www.cfbhall.com/media/xrkhvd0e/aprilrandom25-p3-9.jpg?width=1920&format=webp",
       "thumb": "https://www.cfbhall.com/media/xrkhvd0e/aprilrandom25-p3-9.jpg?width=800&format=webp",
       "offerTitle": "RSVP for Kids Game Day",
-      "offerCopy": "Free for kids 12 and under with a paid adult. Tell us how many are in your group so we can staff the skills zone.",
+      "offerCopy": "Free for kids 12 and under with a paid adult Hall ticket. Tell us how many are in your group so we can staff the skills zone.",
       "stickyLabel": "Kids Game Day",
-      "stickyMeta": "Free · Sep 26"
+      "stickyMeta": "Free · Sep 26",
+      "details": "Youth-focused stations on the plaza: throwing, agility, and flag-football games led by Hall educators.",
+      "expect": "Kids 12 and under need an accompanying adult. Closed-toe shoes recommended. Water stations on site.",
+      "agenda": ["10:00 AM — Check-in", "10:15 AM — Skills rotations", "12:00 PM — Family scrimmage", "1:45 PM — Wrap"],
+      "gettingThere": "Plaza entrance on Marietta Street. Strollers OK; limited storage inside.",
+      "faqs": [
+        { "q": "Is this free?", "a": "The kids program is free with RSVP. Adults need regular Hall admission unless they are members." },
+        { "q": "What ages?", "a": "Best for ages 5–12. Younger kids are welcome with a parent in the play area." }
+      ],
+      "facebookEventUrl": "https://www.facebook.com/CollegeFootballHOF/events",
+      "calendar": { "start": "2026-09-26T10:00:00", "end": "2026-09-26T14:00:00" }
     },
     {
       "id": "hof-talks",
@@ -142,7 +241,17 @@
       "offerTitle": "Reserve a seat",
       "offerCopy": "Intimate Q&A with inductees and historians. RSVP required — seating is limited in the theater.",
       "stickyLabel": "Hall of Fame Talks",
-      "stickyMeta": "Free · Oct 03"
+      "stickyMeta": "Free · Oct 03",
+      "details": "An evening conversation tying the current exhibition to living history. Theater seating only.",
+      "expect": "Doors 6:30 PM. Talks run about 70 minutes with Q&A. Books and exhibit access after the program.",
+      "agenda": ["6:30 PM — Doors", "7:00 PM — Conversation", "8:15 PM — Audience Q&A"],
+      "gettingThere": "Use the evening theater entrance. Nearby decks are the easiest parking after 6 PM.",
+      "faqs": [
+        { "q": "Is this ticketed?", "a": "No — free with RSVP. Unclaimed seats may be released 10 minutes after start." },
+        { "q": "Will it be recorded?", "a": "Clips may appear on Hall channels. The live Q&A is in-person only." }
+      ],
+      "facebookEventUrl": "https://www.facebook.com/CollegeFootballHOF/events",
+      "calendar": { "start": "2026-10-03T19:00:00", "end": "2026-10-03T21:00:00" }
     },
     {
       "id": "members-appreciation",
@@ -161,7 +270,17 @@
       "offerTitle": "Confirm your visit",
       "offerCopy": "Annual thank-you for members: early exhibit access, refreshments, and a behind-the-scenes tour. RSVP with your membership email.",
       "stickyLabel": "Members Appreciation",
-      "stickyMeta": "Free · Oct 10"
+      "stickyMeta": "Free · Oct 10",
+      "details": "Members-only twilight hours with a curator walk-through and a toast in the lobby.",
+      "expect": "Bring your membership card or the email on the account. Guests of members: note them in # Attending (max 2 guests).",
+      "agenda": ["5:00 PM — Member check-in", "5:20 PM — Curator tour", "6:30 PM — Reception"],
+      "gettingThere": "After-hours entrance on Marietta Street. Staff will scan membership at the door.",
+      "faqs": [
+        { "q": "Who can attend?", "a": "Current members plus up to two guests listed on your RSVP." },
+        { "q": "What if my membership lapsed?", "a": "Renew online before the event; bring the confirmation email." }
+      ],
+      "facebookEventUrl": "https://www.facebook.com/CollegeFootballHOF/events",
+      "calendar": { "start": "2026-10-10T17:00:00", "end": "2026-10-10T20:00:00" }
     }
   ]
 }

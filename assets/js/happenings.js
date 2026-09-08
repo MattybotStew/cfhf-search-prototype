@@ -1,5 +1,5 @@
 /**
- * Happenings — click-through flows (listing filters, detail hydration, RSVP confirm)
+ * Happenings — listing filters, detail hydration, RSVP, tickets, calendar, share, maps
  */
 (function () {
   "use strict";
@@ -7,6 +7,8 @@
   var INDEX = null;
   var DEFAULT_TX = "gameday-kickoff";
   var DEFAULT_RSVP = "community-film-night";
+  var RSVP_KEY = "cfhf-hp-rsvp";
+  var TIX_KEY = "cfhf-hp-tickets";
 
   function qs(sel, root) {
     return (root || document).querySelector(sel);
@@ -39,6 +41,29 @@
     return INDEX.events.find(function (e) { return e.id === id; }) || null;
   }
 
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function venue() {
+    return (INDEX && INDEX.venue) || {};
+  }
+
+  function mapsEmbedSrc() {
+    var q = venue().mapsQuery || "College Football Hall of Fame Atlanta";
+    return "https://maps.google.com/maps?q=" + encodeURIComponent(q) + "&output=embed";
+  }
+
+  function fbPageEmbedSrc() {
+    var href = venue().facebookPage || "https://www.facebook.com/CollegeFootballHOF";
+    return "https://www.facebook.com/plugins/page.php?href=" + encodeURIComponent(href) +
+      "&tabs=events&width=340&height=130&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false";
+  }
+
   function loadIndex() {
     return fetch("data/happenings-events.json")
       .then(function (r) {
@@ -68,13 +93,18 @@
     }, 3200);
   }
 
+  function setText(sel, text) {
+    qsa(sel).forEach(function (el) {
+      el.textContent = text;
+    });
+  }
+
   /* ----- Listing ----- */
   function initListing() {
     var grid = qs(".hp-listing__grid");
     if (!grid || !INDEX) return;
 
     var cards = qsa(".hp-card-event", grid);
-    var catNav = qs(".hp-cats");
     var chips = qs(".hp-chips");
     var empty = qs(".hp-listing-empty");
 
@@ -87,13 +117,6 @@
     });
 
     function setActiveCategory(catId) {
-      if (catNav) {
-        qsa("a", catNav).forEach(function (a) {
-          var match = a.getAttribute("data-category") === catId;
-          a.classList.toggle("is-active", match);
-          a.setAttribute("aria-current", match ? "true" : "false");
-        });
-      }
       if (chips) {
         qsa("button", chips).forEach(function (btn) {
           var match = btn.getAttribute("data-category") === catId;
@@ -124,7 +147,6 @@
       });
     }
 
-    bindFilter(catNav, "a[data-category]");
     bindFilter(chips, "button[data-category]");
 
     var initial = getParam("category") || "all";
@@ -132,12 +154,6 @@
   }
 
   /* ----- Detail hydration ----- */
-  function setText(sel, text) {
-    qsa(sel).forEach(function (el) {
-      el.textContent = text;
-    });
-  }
-
   function hydrateDetail(ev) {
     document.title = ev.title + " · Happenings · College Football Hall of Fame";
 
@@ -150,28 +166,80 @@
     setText("[data-hp='offer-copy']", ev.offerCopy);
     setText("[data-hp='sticky-label']", ev.stickyLabel);
     setText("[data-hp='sticky-meta']", ev.stickyMeta);
+    setText("[data-hp='details']", ev.details || "");
+    setText("[data-hp='expect']", ev.expect || "");
+    setText("[data-hp='getting']", ev.gettingThere || "");
 
     if (ev.price) setText("[data-hp='price']", ev.price);
 
-    var tagEls = qsa("[data-hp='tag']");
-    tagEls.forEach(function (el) {
+    var v = venue();
+    setText("[data-hp='address']", v.address || "");
+    setText("[data-hp='city']", v.cityLine || "");
+
+    qsa("[data-hp='tag']").forEach(function (el) {
       el.textContent = ev.tag;
       el.classList.toggle("hp-tag--outline", !!ev.tagOutline);
+      el.classList.toggle("wf-tag--outline", !!ev.tagOutline);
     });
 
     qsa(".hp-hero--image").forEach(function (hero) {
       hero.style.backgroundImage = "url('" + ev.image.replace(/'/g, "%27") + "')";
     });
 
-    qsa("[data-hp='share-url']").forEach(function (a) {
-      a.href = window.location.href;
+    var agenda = qs("[data-hp='agenda']");
+    if (agenda && ev.agenda && ev.agenda.length) {
+      agenda.innerHTML = ev.agenda.map(function (item) {
+        return "<li>" + esc(item) + "</li>";
+      }).join("");
+    }
+
+    var faq = qs("[data-hp='faq']");
+    if (faq && ev.faqs && ev.faqs.length) {
+      faq.innerHTML = ev.faqs.map(function (item, i) {
+        return (
+          '<div class="wf-faq__item' + (i === 0 ? " is-open" : "") + '">' +
+            '<button type="button" class="wf-faq__q">' + esc(item.q) + "</button>" +
+            '<div class="wf-faq__a">' + esc(item.a) + "</div>" +
+          "</div>"
+        );
+      }).join("");
+      if (window.bindHappeningsFaq) window.bindHappeningsFaq(faq);
+    }
+
+    qsa("[data-hp='map']").forEach(function (iframe) {
+      iframe.src = mapsEmbedSrc();
     });
+    qsa("[data-hp='directions']").forEach(function (a) {
+      a.href = v.mapsLink || "#";
+    });
+    qsa("[data-hp='fb-embed']").forEach(function (iframe) {
+      iframe.src = fbPageEmbedSrc();
+    });
+    qsa("[data-hp='fb-link']").forEach(function (a) {
+      a.href = ev.facebookEventUrl || v.facebookPage || "#";
+    });
+
+    var pageUrl = window.location.href.split("#")[0];
+    qsa("[data-hp='share-fb']").forEach(function (a) {
+      a.href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl);
+    });
+    qsa("[data-hp='share-x']").forEach(function (a) {
+      a.href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(ev.title) + "&url=" + encodeURIComponent(pageUrl);
+    });
+    qsa("[data-hp='share-ig']").forEach(function (a) {
+      a.href = v.instagram || "#";
+    });
+
+    var embed = qs("[data-hp='form-embed']");
+    if (embed) {
+      embed.src = "happenings-form-embed.html?event=" + encodeURIComponent(ev.id);
+    }
 
     renderRelated(ev);
   }
 
   function renderRelated(current) {
-    var grid = qs(".hp-related__grid");
+    var grid = qs(".hp-related__grid") || qs("[data-hp='related']");
     if (!grid || !INDEX) return;
 
     var related = INDEX.events
@@ -179,14 +247,26 @@
       .slice(0, 3);
 
     grid.innerHTML = related.map(function (ev) {
-      var tagClass = ev.tagOutline ? " hp-tag--outline" : "";
+      var tagClass = ev.tagOutline ? " hp-tag--outline wf-tag--outline" : "";
+      var isWf = grid.classList.contains("wf-carousel__cards");
+      if (isWf) {
+        return (
+          '<a class="wf-carousel__card" href="' + eventUrl(ev) + '">' +
+            '<div class="wf-carousel__card-media"></div>' +
+            '<div class="wf-carousel__card-body">' +
+              '<span class="wf-listing__date">' + esc(ev.dateShort) + "</span>" +
+              '<span class="wf-listing__title">' + esc(ev.title) + "</span>" +
+              '<span class="wf-tag wf-tag--xs' + tagClass + '">' + esc(ev.tag) + "</span>" +
+            "</div></a>"
+        );
+      }
       return (
         '<a class="hp-card-event" href="' + eventUrl(ev) + '">' +
-          '<div class="hp-card-event__media"><img src="' + ev.thumb + '" alt=""></div>' +
+          '<div class="hp-card-event__media"><img src="' + esc(ev.thumb) + '" alt=""></div>' +
           '<div class="hp-card-event__body">' +
-            '<span class="hp-card-event__date">' + ev.dateShort + "</span>" +
-            '<span class="hp-card-event__title">' + ev.title + "</span>" +
-            '<span class="hp-tag' + tagClass + '">' + ev.tag + "</span>" +
+            '<span class="hp-card-event__date">' + esc(ev.dateShort) + "</span>" +
+            '<span class="hp-card-event__title">' + esc(ev.title) + "</span>" +
+            '<span class="hp-tag' + tagClass + '">' + esc(ev.tag) + "</span>" +
           "</div></a>"
       );
     }).join("");
@@ -204,72 +284,194 @@
 
     hydrateDetail(ev);
     initRsvpForm(ev);
+    initTicketPicker(ev);
     initTicketFlow();
-    initShare();
-    initCalendar();
+    initCalendar(ev);
+    initNewsletter();
   }
 
-  /* ----- RSVP submit → confirmation ----- */
   function initRsvpForm(ev) {
-    var form = qs(".hp-form[data-mod='native-form']");
-    var confirm = qs(".hp-confirm");
-    if (!form) return;
+    qsa("form[data-mod='native-form']").forEach(function (form) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var nameInput = qs("[name='name']", form) || qs("#rsvp-name", form);
+        var emailInput = qs("[name='email']", form);
+        var nInput = qs("[name='attending']", form);
+        var news = qs("[name='newsletter']", form);
+        var name = (nameInput && nameInput.value.trim()) || "Guest";
+        var record = {
+          eventId: ev.id,
+          title: ev.title,
+          name: name,
+          email: emailInput ? emailInput.value : "",
+          attending: nInput ? nInput.value : "1",
+          newsletter: !!(news && news.checked),
+          at: new Date().toISOString()
+        };
+        try { sessionStorage.setItem(RSVP_KEY, JSON.stringify(record)); } catch (err) {}
+
+        form.hidden = true;
+        var confirm = qs(".hp-confirm") || qs(".wf-confirm-live", form.closest(".wf-demo") || document);
+        if (confirm) {
+          confirm.hidden = false;
+          confirm.removeAttribute("hidden");
+          confirm.classList.add("is-visible");
+          var who = qs("[data-hp='confirm-name']", confirm);
+          if (who) who.textContent = name;
+          var evt = qs("[data-hp='confirm-event']", confirm);
+          if (evt) evt.textContent = ev.title;
+          confirm.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+        var demo = form.closest(".wf-demo");
+        if (demo) demo.setAttribute("data-confirm", "on");
+        toast("RSVP saved — you're on the list!");
+      });
+    });
+  }
+
+  function ventrataPlaceholders() {
+    var ventrataScript = qs('script[src*="ventrata-checkout"]');
+    var config = (ventrataScript && ventrataScript.getAttribute("data-config")) || "";
+    return config.indexOf("<YOUR") !== -1 || config.indexOf("<PRODUCT") !== -1;
+  }
+
+  function initTicketPicker(ev) {
+    var form = qs(".hp-ticket-form") || qs(".wf-live-tickets");
+    if (!form || !ev.tickets) return;
+
+    var dateSel = qs("[name='ticket-date']", form);
+    var qtySel = qs("[name='ticket-qty']", form);
+    var member = qs("[name='ticket-member']", form);
+    var totalEl = qs("[data-hp='ticket-total']", form);
+
+    if (dateSel && ev.tickets.dates) {
+      dateSel.innerHTML = ev.tickets.dates.map(function (d) {
+        return '<option value="' + esc(d.value) + '">' + esc(d.label) + "</option>";
+      }).join("");
+    }
+
+    function priceEach() {
+      return member && member.checked ? ev.tickets.memberPrice : ev.tickets.unitPrice;
+    }
+
+    function qty() {
+      return parseInt((qtySel && qtySel.value) || "1", 10) || 1;
+    }
+
+    function refresh() {
+      if (totalEl) totalEl.textContent = "$" + (priceEach() * qty());
+    }
+
+    [dateSel, qtySel, member].forEach(function (el) {
+      if (el) el.addEventListener("change", refresh);
+    });
+    refresh();
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var name = (qs("#rsvp-name", form) || {}).value || "Guest";
+      var dateLabel = dateSel && dateSel.options[dateSel.selectedIndex]
+        ? dateSel.options[dateSel.selectedIndex].text
+        : ev.dateLabel;
+      var record = {
+        eventId: ev.id,
+        title: ev.title,
+        date: dateSel ? dateSel.value : "",
+        dateLabel: dateLabel,
+        qty: qty(),
+        member: !!(member && member.checked),
+        total: priceEach() * qty(),
+        at: new Date().toISOString()
+      };
+      try { sessionStorage.setItem(TIX_KEY, JSON.stringify(record)); } catch (err) {}
+
       form.hidden = true;
+      var confirm = qs(".hp-tix-confirm") || qs(".wf-tix-confirm");
       if (confirm) {
         confirm.hidden = false;
-        var who = qs("[data-hp='confirm-name']", confirm);
-        if (who) who.textContent = name.trim() || "Guest";
-        var evt = qs("[data-hp='confirm-event']", confirm);
-        if (evt) evt.textContent = ev.title;
+        setText("[data-hp='tix-title']", ev.title);
+        setText("[data-hp='tix-date']", dateLabel);
+        setText("[data-hp='tix-qty']", String(record.qty));
+        setText("[data-hp='tix-total']", "$" + record.total);
         confirm.scrollIntoView({ behavior: "smooth", block: "start" });
       }
-      toast("RSVP saved — you're on the list!");
+      toast("Tickets reserved — confirmation is on this page.");
     });
   }
 
-  /* ----- Ticket CTAs → scroll to checkout when Ventrata placeholders ----- */
   function initTicketFlow() {
-    var ventrataScript = qs('script[src*="ventrata-checkout"]');
-    var config = ventrataScript && ventrataScript.getAttribute("data-config") || "";
-    var placeholders = config.indexOf("<YOUR") !== -1;
-    if (!placeholders) return;
-
+    if (!ventrataPlaceholders()) return;
     qsa("[ventrata-checkout], [data-scroll-tickets]").forEach(function (btn) {
       btn.addEventListener("click", function (e) {
         e.preventDefault();
-        var target = qs("#tickets");
+        var target = qs("#tickets") || qs(".hp-ticket-form") || qs(".wf-live-tickets");
         if (target) {
           target.scrollIntoView({ behavior: "smooth", block: "start" });
-          toast("Prototype: Ventrata opens here when API keys are wired.");
+          toast("Ventrata opens with sandbox keys. Use Select tickets below to complete the prototype path.");
         }
       });
     });
   }
 
-  function initShare() {
-    qsa(".hp-share__link").forEach(function (a) {
+  function icsStamp(iso) {
+    return iso.replace(/[-:]/g, "").replace(/\.\d+/, "").slice(0, 15);
+  }
+
+  function downloadIcs(ev) {
+    var cal = ev.calendar;
+    if (!cal) return;
+    var v = venue();
+    var uid = ev.id + "@cfbhall.com";
+    var stamp = icsStamp(new Date().toISOString());
+    var lines = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//CFHF//Happenings Prototype//EN",
+      "BEGIN:VEVENT",
+      "UID:" + uid,
+      "DTSTAMP:" + stamp,
+      "DTSTART:" + icsStamp(cal.start),
+      "DTEND:" + icsStamp(cal.end),
+      "SUMMARY:" + ev.title.replace(/,/g, "\\,"),
+      "LOCATION:" + ((v.address || "") + ", " + (v.cityLine || "")).replace(/,/g, "\\,"),
+      "DESCRIPTION:" + (ev.offerCopy || "").replace(/,/g, "\\,").replace(/\n/g, "\\n")
+    ];
+    if (cal.rrule) lines.push("RRULE:" + cal.rrule);
+    lines.push("END:VEVENT", "END:VCALENDAR");
+    var blob = new Blob([lines.join("\r\n")], { type: "text/calendar;charset=utf-8" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = ev.id + ".ics";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  function initCalendar(ev) {
+    qsa("[data-mod='calendar'], [data-hp='calendar']").forEach(function (a) {
+      if (a.getAttribute("data-cal-bound")) return;
+      a.setAttribute("data-cal-bound", "1");
       a.addEventListener("click", function (e) {
         e.preventDefault();
-        var platform = a.textContent.trim();
-        var url = window.location.href;
-        if (navigator.share && platform === "Share") {
-          navigator.share({ title: document.title, url: url });
+        var id = a.getAttribute("data-event-id");
+        var event = (id && findEvent(id)) || ev;
+        if (event && event.calendar) {
+          downloadIcs(event);
+          toast("Calendar file downloaded");
+        }
+      });
+    });
+  }
+
+  function initNewsletter() {
+    qsa(".site-footer__form").forEach(function (form) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var input = qs("input[type='email']", form);
+        if (input && !input.checkValidity()) {
+          input.reportValidity();
           return;
         }
-        toast("Share on " + platform + " (prototype)");
-      });
-    });
-  }
-
-  function initCalendar() {
-    qsa("[data-mod='calendar']").forEach(function (a) {
-      a.addEventListener("click", function (e) {
-        e.preventDefault();
-        toast("Add to Calendar — optional module (prototype)");
+        toast("You’re subscribed — prototype only (no email is sent).");
+        form.reset();
       });
     });
   }
@@ -287,16 +489,54 @@
     });
   }
 
-  /* ----- Boot ----- */
+  function initBoard() {
+    var tx = findEvent(DEFAULT_TX);
+    var rsvp = findEvent(DEFAULT_RSVP);
+    if (tx) {
+      initTicketPicker(tx);
+      initTicketFlow();
+    }
+    initCalendar(tx || rsvp);
+    if (rsvp) initRsvpForm(rsvp);
+    qsa("[data-hp='map']").forEach(function (iframe) { iframe.src = mapsEmbedSrc(); });
+    qsa("[data-hp='fb-embed']").forEach(function (iframe) { iframe.src = fbPageEmbedSrc(); });
+    initNewsletter();
+  }
+
+  window.bindHappeningsFaq = function (root) {
+    qsa(".wf-faq__q", root || document).forEach(function (btn) {
+      if (btn.getAttribute("data-hp-faq-bound")) return;
+      btn.setAttribute("data-hp-faq-bound", "1");
+      btn.addEventListener("click", function () {
+        var item = btn.closest(".wf-faq__item");
+        if (!item) return;
+        var open = !item.classList.contains("is-open");
+        var list = item.parentElement;
+        if (list) {
+          qsa(".wf-faq__item", list).forEach(function (el) {
+            el.classList.remove("is-open");
+          });
+        }
+        item.classList.toggle("is-open", open);
+      });
+    });
+  };
+
   document.addEventListener("DOMContentLoaded", function () {
-    var body = document.body;
-    var page = body.getAttribute("data-hp-page");
+    var page = document.body.getAttribute("data-hp-page");
 
     loadIndex()
       .then(function () {
         if (page === "listing") initListing();
         else if (page === "transactional") initDetailPage("transactional");
         else if (page === "rsvp") initDetailPage("rsvp");
+        else if (page === "embed") {
+          var ev = findEvent(getParam("event") || DEFAULT_RSVP);
+          if (ev) {
+            hydrateDetail(ev);
+            initRsvpForm(ev);
+          }
+        } else if (page === "board") initBoard();
         initScrollLinks();
       })
       .catch(function () {

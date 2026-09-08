@@ -1121,24 +1121,47 @@
   }
 
   /* Footer newsletter (prototype — no Umbraco POST) */
-  var footerSignup = document.getElementById("footer-signup");
-  if (footerSignup) {
-    footerSignup.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var email = footerSignup.querySelector('input[type="email"]');
-      var btn = footerSignup.querySelector('button[type="submit"]');
-      if (!email || !email.value.trim()) {
-        if (email) email.focus();
-        return;
-      }
-      footerSignup.classList.add("is-success");
-      if (btn) {
-        btn.setAttribute("aria-label", "Subscribed");
-        var label = btn.querySelector("span");
-        if (label) label.textContent = "Subscribed";
-      }
-      email.disabled = true;
-      email.value = "";
+  function initFooterForms(root) {
+    var scope = root || document;
+    scope.querySelectorAll(".site-footer__form").forEach(function (footerSignup) {
+      if (footerSignup.dataset.footerBound === "true") return;
+      footerSignup.dataset.footerBound = "true";
+      footerSignup.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var email = footerSignup.querySelector('input[type="email"]');
+        var btn = footerSignup.querySelector('button[type="submit"]');
+        if (!email || !email.value.trim()) {
+          if (email) email.focus();
+          return;
+        }
+        footerSignup.classList.add("is-success");
+        if (btn) {
+          btn.setAttribute("aria-label", "Subscribed");
+          var label = btn.querySelector("span");
+          if (label) label.textContent = "Subscribed";
+        }
+        email.disabled = true;
+        email.value = "";
+      });
     });
+  }
+
+  var footerMount = document.getElementById("site-footer-mount");
+  if (footerMount && footerMount.getAttribute("data-partial")) {
+    fetch(footerMount.getAttribute("data-partial"))
+      .then(function (r) {
+        if (!r.ok) throw new Error("footer partial");
+        return r.text();
+      })
+      .then(function (html) {
+        footerMount.insertAdjacentHTML("beforebegin", html);
+        footerMount.remove();
+        initFooterForms();
+      })
+      .catch(function () {
+        footerMount.removeAttribute("hidden");
+      });
+  } else {
+    initFooterForms();
   }
 })();

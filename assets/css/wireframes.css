@@ -537,6 +537,92 @@ body.wf-board {
   margin: 0 0 0.35rem;
 }
 
+.wf-hero__title-line {
+  display: block;
+}
+
+.wf-hero__title-line--stroke {
+  color: transparent;
+  -webkit-text-stroke: 1px currentColor;
+}
+
+.wf-hero--image .wf-hero__title-line--stroke {
+  -webkit-text-stroke-color: #fff;
+}
+
+.wf-hero__subtitle {
+  margin: 0 0 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--cfhf-muted);
+}
+
+.wf-hero--image .wf-hero__subtitle {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.wf-offer-price {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  color: var(--cfhf-crimson);
+}
+
+.wf-confirm {
+  display: none;
+  padding: 0.9rem 1.2rem;
+  border-bottom: 1px dashed var(--cfhf-border);
+  background: #fff8f8;
+}
+
+.wf-demo[data-confirm="on"] .wf-confirm {
+  display: block;
+}
+
+.wf-demo[data-confirm="on"] .wf-conversion {
+  display: none;
+}
+
+.wf-listing-empty {
+  display: none;
+  margin: 0.6rem 1.2rem 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px dashed var(--cfhf-border);
+  border-radius: 6px;
+  font-size: 0.72rem;
+  color: var(--cfhf-muted);
+}
+
+.wf-listing-empty.is-visible {
+  display: block;
+}
+
+.wf-listing__cats span.is-active {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.wf-listing__card {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.wf-sticky__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.wf-sticky__label {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--cfhf-muted);
+}
+
 .wf-hero__meta {
   display: flex;
   align-items: center;
@@ -639,8 +725,47 @@ body.wf-board {
   border: 1px solid var(--cfhf-ink);
 }
 
-.wf-btn--block {
-  width: 100%;
+.wf-live-tickets,
+.wf-live-rsvp {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.75rem 1.2rem 1rem;
+}
+
+.wf-live-tickets input,
+.wf-live-tickets select,
+.wf-live-rsvp input,
+.wf-live-rsvp select {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  border: 1px solid var(--cfhf-border);
+  border-radius: 4px;
+  padding: 0.35rem 0.45rem;
+  background: #fff;
+}
+
+.wf-tix-confirm {
+  display: none;
+  padding: 0.75rem 1.2rem 1rem;
+  background: #fff8f8;
+}
+
+.wf-tix-confirm:not([hidden]) {
+  display: block;
+}
+
+.wf-board .hp-map {
+  height: 110px;
+  margin: 0.4rem 0;
+}
+
+.wf-board .hp-fb {
+  height: 120px;
+}
+
+.wf-board .hp-embed-frame {
+  min-height: 16rem;
 }
 
 /* Sticky CTA */
@@ -747,6 +872,8 @@ body.wf-board {
   border-radius: 6px;
   background: var(--cfhf-surface);
   overflow: hidden;
+  text-decoration: none;
+  color: inherit;
 }
 
 .wf-carousel__card-media {
@@ -817,6 +944,7 @@ body.wf-board {
   border-radius: 999px;
   padding: 0.24rem 0.7rem;
   background: #fff;
+  cursor: pointer;
 }
 
 .wf-chip-tag--active {
@@ -841,6 +969,10 @@ body.wf-board {
   border-radius: 6px;
   background: var(--cfhf-surface);
   overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  display: block;
 }
 
 .wf-listing__media {
@@ -1178,6 +1310,7 @@ body.wf-board {
 
 .wf-listing__cats span {
   color: var(--cfhf-crimson);
+  cursor: pointer;
 }
 
 .wf-listing__cats span + span::before {

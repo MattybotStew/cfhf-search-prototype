@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/acw8nkk.css">
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/search.css">
+  <link rel="stylesheet" href="assets/css/home.css">
   <link rel="stylesheet" href="assets/css/happenings-pages.css">
 </head>
 <body class="hp-page" data-hp-page="rsvp">
@@ -14,39 +15,10 @@
   <div class="hp-banner">
     <span class="hp-banner__tag">Design</span>
     <span><strong>Lead Generation &amp; RSVP</strong> — try the flow: Listing → event → form → confirmation</span>
-    <a href="happenings-wireframes.html">← Wireframe board</a>
+    <a href="happenings.html">← Outline</a>
     <a href="happenings-transactional.html">Transactional page</a>
     <a href="happenings-listing.html">Listing</a>
   </div>
-  <details class="hp-mods">
-    <summary>Optional modules — toggle layout blocks</summary>
-    <div class="hp-mods__body" role="group" aria-label="Optional modules">
-      <span class="hp-mods__lbl">Preview</span>
-    <label>Hero
-      <select data-mod-key="hero">
-        <option value="image" selected>Full-width image</option>
-        <option value="text">Text only</option>
-      </select>
-    </label>
-    <label>Height
-      <select data-mod-key="hero-h">
-        <option value="sm">Short</option>
-        <option value="md" selected>Medium</option>
-        <option value="lg">Tall</option>
-      </select>
-    </label>
-    <label>RSVP module
-      <select data-mod-key="rsvp">
-        <option value="native" selected>Native form</option>
-        <option value="embed">Form embed (alt)</option>
-        <option value="fb">Facebook Event (alt)</option>
-      </select>
-    </label>
-    <label><input type="checkbox" data-mod-key="calendar"> Add to Calendar</label>
-    <label><input type="checkbox" data-mod-key="sidebar" checked> Location / Share sidebar</label>
-    <label><input type="checkbox" data-mod-key="fb" checked> Facebook Event (sidebar)</label>
-    </div>
-  </details>
 
   <div class="app-shell">
     <aside class="site-rail" id="site-rail" aria-label="Site navigation">
@@ -148,25 +120,25 @@
               <label class="hp-check"><input type="checkbox" name="newsletter"> Send me Hall emails &amp; offers</label>
               <button class="btn btn--tickets" type="submit">Save My Spot</button>
               <p class="hp-callout">Hero and sticky CTAs scroll here and submit this same form.</p>
-              <a class="btn btn--outline" data-mod="calendar" href="#">Add to calendar</a>
+                <a class="btn btn--outline" data-mod="calendar" data-hp="calendar" href="#">Add to calendar</a>
             </form>
             <div class="hp-widget" data-mod="form-embed">
-              <span class="hp-widget__kicker">Alternative module</span>
-              <h2>External RSVP form</h2>
-              <p>Swap in a marketing form embed instead of the native fields — never shown beside them.</p>
+              <span class="hp-widget__kicker">Form embed</span>
+              <iframe class="hp-embed-frame" data-hp="form-embed" title="RSVP form embed"></iframe>
             </div>
             <div class="hp-widget" data-mod="fb-alt">
-              <span class="hp-widget__kicker">Alternative module</span>
-              <h2>Facebook Event</h2>
-              <p>Use when traffic already comes from a boosted post and a second form isn’t needed.</p>
+              <span class="hp-widget__kicker">Facebook Event</span>
+              <iframe class="hp-fb hp-fb--tall" data-hp="fb-embed" title="Facebook events" loading="lazy" scrolling="no"></iframe>
+              <p><a data-hp="fb-link" href="https://www.facebook.com/CollegeFootballHOF/events" target="_blank" rel="noopener noreferrer">RSVP on Facebook</a></p>
             </div>
           </section>
 
           <section class="hp-confirm" hidden>
             <h2>You&apos;re on the list</h2>
             <p>Thanks, <strong data-hp="confirm-name">Guest</strong> — your RSVP for <strong data-hp="confirm-event">Community Film Night</strong> is confirmed.</p>
-            <p>We&apos;ll send a reminder email before the event. Add it to your calendar or browse more happenings below.</p>
+            <p>We&apos;ll send a reminder email before the event.</p>
             <a class="btn btn--tickets" href="happenings-listing.html">Browse more events</a>
+            <a class="btn btn--outline" href="#" data-hp="calendar">Add to calendar</a>
           </section>
 
           <div class="hp-sticky">
@@ -181,41 +153,43 @@
             <div>
               <section class="hp-section">
                 <h2>About the program</h2>
-                <p>A free community screening in the Hall theater, followed by a short conversation with guest panelists.</p>
+                <p data-hp="details"></p>
+              </section>
+              <section class="hp-section">
+                <h2>What to expect</h2>
+                <p data-hp="expect"></p>
+              </section>
+              <section class="hp-section">
+                <h2>Agenda</h2>
+                <ul class="hp-agenda" data-hp="agenda"></ul>
               </section>
               <section class="hp-section">
                 <h2>Getting there</h2>
-                <p>250 Marietta St. NW. Evening parking is typically available in nearby decks.</p>
+                <p data-hp="getting"></p>
               </section>
               <section class="hp-section">
                 <h2>FAQ</h2>
-                <div class="hp-faq">
-                  <div class="wf-faq__item is-open">
-                    <button type="button" class="wf-faq__q">Do I need a ticket?</button>
-                    <div class="wf-faq__a">No — RSVP only. The accordion keeps longer answers compact.</div>
-                  </div>
-                  <div class="wf-faq__item">
-                    <button type="button" class="wf-faq__q">Can I bring guests?</button>
-                    <div class="wf-faq__a">Use the configurable “# Attending” field, or hide it in the CMS.</div>
-                  </div>
-                </div>
+                <div class="hp-faq" data-hp="faq"></div>
               </section>
             </div>
             <aside class="hp-aside">
               <div class="hp-card">
                 <h3>Location</h3>
-                <p>250 Marietta St. N.W.<br>Atlanta, GA 30313</p>
+                <p><span data-hp="address"></span><br><span data-hp="city"></span></p>
+                <iframe class="hp-map" data-hp="map" title="Map of the College Football Hall of Fame" loading="lazy"></iframe>
+                <p><a data-hp="directions" href="#" target="_blank" rel="noopener noreferrer">Get directions</a></p>
               </div>
               <div class="hp-card" data-mod="fb-sidebar">
                 <h3>Facebook Event</h3>
-                <p>Preferred in this column — not as a second form.</p>
+                <iframe class="hp-fb" data-hp="fb-embed" title="Facebook events" loading="lazy" scrolling="no"></iframe>
+                <p><a data-hp="fb-link" href="https://www.facebook.com/CollegeFootballHOF/events" target="_blank" rel="noopener noreferrer">Open events on Facebook</a></p>
               </div>
               <div class="hp-card">
                 <h3>Share this event</h3>
                 <div class="hp-share">
-                  <a class="hp-share__link" href="#">Facebook</a>
-                  <a class="hp-share__link" href="#">Instagram</a>
-                  <a class="hp-share__link" href="#">X</a>
+                  <a class="hp-share__link" data-hp="share-fb" href="#" target="_blank" rel="noopener noreferrer">Facebook</a>
+                  <a class="hp-share__link" data-hp="share-ig" href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+                  <a class="hp-share__link" data-hp="share-x" href="#" target="_blank" rel="noopener noreferrer">X</a>
                 </div>
               </div>
             </aside>
@@ -231,32 +205,112 @@
         </main>
       </div>
 
+            <section class="home-legacy" aria-labelledby="legacy-title">
+        <div class="home-legacy__inner">
+          <div class="home-legacy__copy">
+            <h2 id="legacy-title" class="home-legacy__title">
+              <span class="home-legacy__title-stroke">Join the Legacy</span>
+              Unleash Exclusive Benefits
+            </h2>
+            <p class="home-legacy__body">
+              Join the legacy of the College Football Hall of Fame and unleash a world of exclusive benefits, engagement, and more.
+            </p>
+            <a href="#" class="btn btn--outline btn--sm">Join the Legacy Today</a>
+          </div>
+          <blockquote class="home-legacy__quote">
+            <p>
+              “None of us are here on our own. We're here because there are so many people that influenced us and inspired us, lead us and encouraged us and picked us up when we were down.”
+            </p>
+            <footer>— Tim Tebow · Class of 2023</footer>
+          </blockquote>
+        </div>
+      </section>
+
       <footer class="site-footer" aria-label="Site footer">
         <div class="site-footer__inner">
           <div class="site-footer__col site-footer__col--know">
             <div class="site-footer__signup">
               <p class="site-footer__title">Stay In The Know</p>
-              <form class="site-footer__form" action="#" method="post" novalidate>
-                <label class="sr-only" for="footer-email-rsvp">Email Address</label>
-                <input type="email" id="footer-email-rsvp" name="email" class="site-footer__email" placeholder="Your email" required>
-                <button type="submit" class="site-footer__subscribe" aria-label="Subscribe"><span>Subscribe</span></button>
+              <p class="site-footer__lede">Sign up for exclusive updates, discounts, and promotions. You can unsubscribe at any time.</p>
+              <form class="site-footer__form" id="footer-signup" action="#" method="post" novalidate>
+                <label class="sr-only" for="footer-email">Email Address</label>
+                <input type="email" id="footer-email" name="email" class="site-footer__email" placeholder="Your email" required autocomplete="email">
+                <button type="submit" class="site-footer__subscribe" aria-label="Subscribe">
+                  <span>Subscribe</span>
+                  <svg class="site-footer__subscribe-arrow" xmlns="http://www.w3.org/2000/svg" width="30" height="16" viewBox="0 0 30 16" aria-hidden="true" focusable="false">
+                    <path fill="#fff" d="M1.04 7.25c8.77-.26 17.56-.06 26.31.61a.74.74 0 0 0 .68-.43.74.74 0 0 0-.33-.98C24.44 4.7 21.22 2.64 17.97.6c-.65-.41-1.43.51-.77.95 1.75 1.17 3.49 2.35 5.23 3.53 1.74 1.18 3.56 2.25 5.33 3.4l.28-.92c-4.91.42-10.19 1.04-14.57 3.48-.93.52-.07 1.97.88 1.6 2.23-.87 4.37-1.91 6.66-2.62 2.31-.76 4.71-1.24 7.14-1.42a.75.75 0 0 0 .44-.85.75.75 0 0 0-.16-.55C25.01 6.49 23.32 5.23 21.57 4.08c-1.76-1.15-3.52-2.3-5.28-3.47L17.2 1.55c3.29 2.06 6.6 4.08 9.86 6.18l.49-1.08C18.73 5.48 9.8 5.36.94 6.27a.75.75 0 0 0 .1.98z"/>
+                  </svg>
+                </button>
               </form>
             </div>
+
+            <div class="site-footer__social-block">
+              <ul class="site-footer__social" aria-label="Social media">
+                <li><a class="site-footer__social-link site-footer__social-link--facebook" href="https://www.facebook.com/cfbhall/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                <li><a class="site-footer__social-link site-footer__social-link--instagram" href="https://www.instagram.com/cfbhall/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                <li><a class="site-footer__social-link site-footer__social-link--x" href="https://twitter.com/CFBHall" target="_blank" rel="noopener noreferrer">X</a></li>
+                <li><a class="site-footer__social-link site-footer__social-link--youtube" href="https://www.youtube.com/user/cfbhallatl" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+                <li><a class="site-footer__social-link site-footer__social-link--tiktok" href="https://www.tiktok.com/@cfbhall_official" target="_blank" rel="noopener noreferrer">TikTok</a></li>
+                <li><a class="site-footer__social-link site-footer__social-link--linkedin" href="https://www.linkedin.com/company/atlanta-hall-management" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+              </ul>
+
+              <div class="site-footer__reviews">
+                <p class="site-footer__reviews-label">See what people have to say about the Hall of Fame:</p>
+                <ul class="site-footer__review-icons" aria-label="Review sites">
+                  <li><a class="site-footer__social-link site-footer__social-link--google" href="https://www.google.com/search?q=chick-fil-a+college+football+hall+of+fame+atlanta+reviews" target="_blank" rel="noopener noreferrer">Google Reviews</a></li>
+                  <li><a class="site-footer__social-link site-footer__social-link--yelp" href="https://www.yelp.com/biz/chick-fil-a-college-football-hall-of-fame-atlanta-2" target="_blank" rel="noopener noreferrer">Yelp</a></li>
+                  <li><a class="site-footer__social-link site-footer__social-link--tripadvisor" href="https://www.tripadvisor.com/Attraction_Review-g60898-d7092286-Reviews-College_Football_Hall_of_Fame-Atlanta_Georgia.html" target="_blank" rel="noopener noreferrer">TripAdvisor</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
+
           <div class="site-footer__col site-footer__col--links">
-            <p class="site-footer__heading">Address</p>
-            <p class="site-footer__address">250 Marietta St. N.W.<span>Atlanta, GA 30313</span></p>
+            <nav class="site-footer__about" aria-label="About">
+              <p class="site-footer__heading">About</p>
+              <ul class="site-footer__nav">
+                <li><a href="https://www.cfbhall.com/contact/">Contact</a></li>
+                <li><a href="https://www.cfbhall.com/media-press/">Media</a></li>
+                <li><a href="https://www.cfbhall.com/employees/">Employees</a></li>
+                <li><a href="https://www.cfbhall.com/careers/">Careers</a></li>
+                <li><a href="https://www.cfbhall.com/faq/">FAQs</a></li>
+                <li><a href="https://www.cfbhall.com/brick-locator/">Brick Locator</a></li>
+              </ul>
+            </nav>
+
+            <div class="site-footer__contact">
+              <p class="site-footer__heading">Address</p>
+              <a class="site-footer__address" href="https://www.bing.com/maps?osid=bccacb51-f6eb-4b65-8678-c5ba1b899f2a&amp;cp=33.760008~-84.406006&amp;lvl=16&amp;v=2&amp;sV=2&amp;form=S00027" target="_blank" rel="noopener noreferrer">
+                250 Marietta St. N.W.
+                <span>Atlanta, GA 30313</span>
+              </a>
+              <p class="site-footer__heading site-footer__heading--spaced">Phone</p>
+              <a class="site-footer__phone" href="tel:4048804800">[404] 880-4800</a>
+
+              <a class="site-footer__partner" href="https://www.citypass.com/atlanta?mv_source=cfbhall&amp;campaign=footer" target="_blank" rel="noopener noreferrer">
+                <img src="assets/images/footer/citypass.png" alt="Atlanta CityPASS — Proud Partner" width="171" height="101">
+              </a>
+            </div>
           </div>
+
           <div class="site-footer__col site-footer__col--promo">
             <a class="site-footer__promo" href="https://aflackickoffgame.com/tickets" target="_blank" rel="noopener noreferrer">
-              <img src="assets/images/footer/aflac-kickoff.jpg" alt="Aflac Kickoff Game" width="300" height="300">
+              <img src="assets/images/footer/aflac-kickoff.jpg" alt="Aflac Kickoff Game — tickets on sale 08.29.26 | 3:30 PM ET" width="300" height="300">
             </a>
           </div>
         </div>
       </footer>
+
       <div class="site-footer-legal">
         <p class="site-footer-legal__copy">&copy;2026 College Football Hall of Fame, All Rights Reserved</p>
+        <nav aria-label="Legal">
+          <ul class="site-footer-legal__links">
+            <li><a href="https://www.cfbhall.com/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="https://www.cfbhall.com/terms-conditions/">Terms &amp; Conditions</a></li>
+          </ul>
+        </nav>
       </div>
+
     </div>
   </div>
   <div class="nav-backdrop" id="nav-backdrop" hidden></div>

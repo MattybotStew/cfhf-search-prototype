@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSVP form embed</title>
+  <link rel="stylesheet" href="https://use.typekit.net/acw8nkk.css">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/happenings-pages.css">
+  <style>
+    body { margin: 0; background: #fff; padding: 0.75rem 1rem 1rem; }
+    .hp-banner, .hp-mods { display: none; }
+  </style>
+</head>
+<body class="hp-page" data-hp-page="embed">
+  <form class="hp-form" data-mod="native-form" action="#" method="post">
+    <span class="hp-widget__kicker">Form embed</span>
+    <h2 data-hp="offer-title">Reserve your seat</h2>
+    <p data-hp="offer-copy"></p>
+    <label for="embed-name">Full name</label>
+    <input id="embed-name" name="name" type="text" autocomplete="name" required>
+    <label for="embed-email">Email</label>
+    <input id="embed-email" name="email" type="email" autocomplete="email" required>
+    <label for="embed-n"># Attending</label>
+    <select id="embed-n" name="attending">
+      <option>1</option><option>2</option><option>3</option><option>4+</option>
+    </select>
+    <label class="hp-check"><input type="checkbox" name="newsletter"> Send me Hall emails</label>
+    <button class="btn btn--tickets" type="submit">Save My Spot</button>
+  </form>
+  <section class="hp-confirm" hidden>
+    <h2>You’re on the list</h2>
+    <p>Thanks, <strong data-hp="confirm-name">Guest</strong> — RSVP for <strong data-hp="confirm-event">this event</strong> is confirmed.</p>
+  </section>
+  <script src="assets/js/happenings.js" defer></script>
+</body>
+</html>

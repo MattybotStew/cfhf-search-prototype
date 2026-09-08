@@ -72,8 +72,9 @@ https://mattybotstew.github.io/cfhf-search-prototype/
 - Search: https://mattybotstew.github.io/cfhf-search-prototype/search.html
 - Sample: https://mattybotstew.github.io/cfhf-search-prototype/search.html?q=touchdown
 - CCFB logo options: https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html
-- **Happenings wireframes** (client review): https://mattybotstew.github.io/cfhf-search-prototype/happenings-wireframes.html
-- **Happenings standalone (responsive):** [transactional](https://mattybotstew.github.io/cfhf-search-prototype/happenings-transactional.html) · [rsvp](https://mattybotstew.github.io/cfhf-search-prototype/happenings-rsvp.html) · [listing](https://mattybotstew.github.io/cfhf-search-prototype/happenings-listing.html)
+- **Happenings outline:** https://mattybotstew.github.io/cfhf-search-prototype/happenings.html
+- **Happenings funnel:** [listing](https://mattybotstew.github.io/cfhf-search-prototype/happenings-listing.html) · [ticketed](https://mattybotstew.github.io/cfhf-search-prototype/happenings-transactional.html) · [RSVP](https://mattybotstew.github.io/cfhf-search-prototype/happenings-rsvp.html)
+- **Figma import screens:** `screens/index.html` (serve locally; not for Pages as the client agenda)
 
 Published from `master` (root). After each push, wait a minute for Pages to rebuild.
 
