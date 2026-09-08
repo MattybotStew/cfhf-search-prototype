@@ -6,11 +6,11 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-09-08 (Cursor — image hero only)
+**Last Updated:** 2026-09-08 (Cursor — client polish pushed)
 **Active Agent:** **Cursor**
-**Branch:** `master` (uncommitted polish)
+**Branch:** `master` @ `3811a42`
 **Focus:** **Happenings only.** Search + CCFB parked.
-**Status:** Client-mode polish **done locally** — banner hidden, single Ventrata ticket path, sandbox copy stripped, error states, chip touch targets, FAQ ARIA, post-confirm cleanup. **Not yet pushed.** Manual: html.to.design + FigJam wiring.
+**Status:** Client polish **LIVE on Pages** — image hero only, banner hidden (`?dev=1` restores), Ventrata ticket path, no sandbox copy. Next: html.to.design + FigJam wiring; optional Ventrata keys.
 
 ### Live — Happenings (verified 200)
 - https://mattybotstew.github.io/cfhf-search-prototype/happenings.html — client outline
@@ -32,7 +32,6 @@ Matt: “i want what is there now with the search functionality requested.”
 - Do **not** switch to icon-only click-expand
 
 ### In Progress / Next (Happenings — Sep 11 deadline Fri)
-- **Commit + push** client polish to `master` when Matt asks
 - html.to.design import of `screens/` into Figma; FigJam prototype links
 - Real Ventrata sandbox `apiKey` / `productID` when available
 - Do **not** pick up CCFB / search unless Matt asks

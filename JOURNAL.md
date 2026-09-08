@@ -1,5 +1,9 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-08 — Cursor: Client polish pushed to Pages (`3811a42`)
+
+- Pushed client-mode Happenings polish + image-hero-only detail pages to `master`.
+
 ## 2026-09-08 — Cursor: Image hero only (no text fallback)
 
 - Removed `.hp-hero--text` sections and `data-hero` toggle from transactional + RSVP standalones.
