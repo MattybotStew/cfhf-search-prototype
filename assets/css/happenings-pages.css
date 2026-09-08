@@ -3,13 +3,13 @@
  * Live rail chrome (search.css) + Hall brand treatment (Kaneda hero, crimson CTAs)
  */
 
-/* ----- Prototype chrome (collapsible) ----- */
+/* ----- Prototype chrome (hidden for client review; ?dev=1 restores) ----- */
 .hp-banner {
+  display: none;
   background: var(--cfhf-ink);
   color: #fff;
   font-size: 0.75rem;
   padding: 0.45rem clamp(1.25rem, 4vw, 3rem);
-  display: flex;
   flex-wrap: wrap;
   gap: 0.5rem 1rem;
   align-items: center;
@@ -288,13 +288,15 @@
   color: var(--cfhf-black);
 }
 
-.hp-page .wf-demo[data-hero="text"] .hp-hero--image { display: none; }
-.hp-page .wf-demo[data-hero="image"] .hp-hero--text { display: none; }
 .hp-page .wf-demo[data-hero-h="sm"] .hp-hero--image { min-height: 14rem; }
 .hp-page .wf-demo[data-hero-h="md"] .hp-hero--image { min-height: clamp(18rem, 38vw, 28rem); }
 .hp-page .wf-demo[data-hero-h="lg"] .hp-hero--image { min-height: clamp(24rem, 50vw, 36rem); }
 
 /* Module reflow */
+.hp-page .wf-demo[data-ventrata="on"] .hp-ticket-form {
+  display: none;
+}
+
 .hp-page .wf-demo[data-ventrata="off"] [data-mod="ventrata"],
 .hp-page .wf-demo[data-calendar="off"] [data-mod="calendar"],
 .hp-page .wf-demo[data-sidebar="off"] .hp-aside,
@@ -878,11 +880,24 @@
 /* Listing filters — chips only */
 .hp-chips {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.5rem;
   margin: var(--space-6) 0 var(--space-8);
   padding-bottom: var(--space-6);
   border-bottom: 1px solid var(--cfhf-border);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.hp-chips::-webkit-scrollbar {
+  height: 3px;
+}
+
+.hp-chips::-webkit-scrollbar-thumb {
+  background: var(--cfhf-border);
+  border-radius: 999px;
 }
 
 .hp-chips button,
@@ -890,7 +905,9 @@
   appearance: none;
   border: 2px solid var(--cfhf-border);
   background: #fff;
-  padding: 0.45rem 1rem;
+  flex-shrink: 0;
+  min-height: 2.75rem;
+  padding: 0.65rem 1.1rem;
   font-family: var(--font-ui-compact);
   font-size: 0.72rem;
   font-weight: 700;
@@ -898,7 +915,14 @@
   text-transform: uppercase;
   color: var(--cfhf-ink);
   cursor: pointer;
+  scroll-snap-align: start;
+  white-space: nowrap;
   transition: background var(--duration-fast), border-color var(--duration-fast), color var(--duration-fast);
+}
+
+.hp-chips button:focus-visible {
+  outline: 2px solid var(--cfhf-crimson);
+  outline-offset: 2px;
 }
 
 .hp-chips button:hover {
@@ -911,6 +935,38 @@
   background: var(--cfhf-crimson);
   border-color: var(--cfhf-crimson);
   color: #fff;
+}
+
+/* Post-conversion: hide duplicate CTAs */
+.hp-page .wf-demo[data-converted="on"] .hp-sticky,
+.hp-page .wf-demo[data-converted="on"] .hp-hero__actions,
+.hp-page .wf-demo[data-converted="on"] .hp-offer {
+  display: none;
+}
+
+/* Invalid event slug */
+.hp-event-not-found {
+  max-width: 36rem;
+  margin: var(--space-10) auto var(--space-12);
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+}
+
+.hp-event-not-found h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  text-transform: uppercase;
+  margin: 0 0 var(--space-4);
+}
+
+.hp-event-not-found p {
+  color: var(--cfhf-muted);
+  margin: 0 0 var(--space-6);
+  line-height: 1.5;
+}
+
+body.hp-dev .hp-banner {
+  display: flex;
 }
 
 .hp-note {

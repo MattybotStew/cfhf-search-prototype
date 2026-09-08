@@ -74,7 +74,13 @@
         <a href="#" class="mobile-topbar__tickets">Tickets</a>
       </header>
 
-      <div class="wf-demo" data-hero="image" data-hero-h="md" data-rsvp="native" data-calendar="off" data-sidebar="on" data-fb="on">
+      <div class="hp-event-not-found" hidden>
+        <h1>Event not found</h1>
+        <p>We couldn&apos;t find that event. It may have ended or the link may be incorrect.</p>
+        <a class="btn btn--tickets" href="happenings-listing.html">Back to all happenings</a>
+      </div>
+
+      <div class="wf-demo" data-hero-h="md" data-rsvp="native" data-calendar="off" data-sidebar="on" data-fb="on">
         <section class="hp-hero hp-hero--image" style="background-image: url('https://www.cfbhall.com/media/qavbhkxx/4-17-23-aerials-3.jpg?width=1920&amp;format=webp')">
           <div class="hp-hero__inner">
             <p class="hp-crumb"><a href="happenings-listing.html">Happenings</a> / <span data-hp="crumb-event">Community Film Night</span></p>
@@ -88,18 +94,7 @@
               <span class="hp-tag hp-tag--outline" data-hp="tag">Free · RSVP</span>
             </div>
             <div class="hp-hero__actions">
-              <a class="btn btn--tickets" href="#rsvp-form" data-scroll-to="rsvp-form">Save My Spot</a>
-            </div>
-          </div>
-        </section>
-
-        <section class="hp-hero hp-hero--text">
-          <div class="hp-hero__inner">
-            <p class="hp-crumb"><a href="happenings-listing.html">Happenings</a> / Community Film Night</p>
-            <h1 class="hp-hero__title">Community Film Night</h1>
-            <div class="hp-hero__meta">
-              <span class="hp-meta">Friday, September 11 · 6–9PM</span>
-              <span class="hp-tag hp-tag--outline">Free · RSVP</span>
+              <a class="btn btn--tickets" href="#rsvp-form" data-scroll-to="rsvp-form" data-hp="cta-rsvp">Save My Spot</a>
             </div>
           </div>
         </section>
@@ -108,7 +103,7 @@
           <section class="hp-offer" id="rsvp-form">
             <form class="hp-form hp-offer__copy" data-mod="native-form" action="#" method="post">
               <h2 data-hp="offer-title">Reserve your seat</h2>
-              <p data-hp="offer-copy">Free admission — RSVP helps us plan seating. Fields, labels, and button text are editable in the CMS.</p>
+              <p data-hp="offer-copy">Free admission — RSVP helps us plan seating in the Hall theater. Doors at 5:45 PM.</p>
               <label for="rsvp-name">Full name</label>
               <input id="rsvp-name" name="name" type="text" autocomplete="name" required>
               <label for="rsvp-email">Email</label>
@@ -118,8 +113,7 @@
                 <option>1</option><option>2</option><option>3</option><option>4+</option>
               </select>
               <label class="hp-check"><input type="checkbox" name="newsletter"> Send me Hall emails &amp; offers</label>
-              <button class="btn btn--tickets" type="submit">Save My Spot</button>
-              <p class="hp-callout">Hero and sticky CTAs scroll here and submit this same form.</p>
+              <button class="btn btn--tickets" type="submit" data-hp="cta-rsvp">Save My Spot</button>
                 <a class="btn btn--outline" data-mod="calendar" data-hp="calendar" href="#">Add to calendar</a>
             </form>
             <div class="hp-widget" data-mod="form-embed">
@@ -146,7 +140,7 @@
               <span class="hp-sticky__label" data-hp="sticky-label">Community Film Night</span>
               <strong data-hp="sticky-meta">Free · Fri, Sep 11</strong>
             </div>
-            <a class="btn btn--tickets" href="#rsvp-form" data-scroll-to="rsvp-form">Save My Spot</a>
+            <a class="btn btn--tickets" href="#rsvp-form" data-scroll-to="rsvp-form" data-hp="cta-rsvp">Save My Spot</a>
           </div>
 
           <div class="hp-layout">
@@ -190,6 +184,7 @@
                   <a class="hp-share__link" data-hp="share-fb" href="#" target="_blank" rel="noopener noreferrer">Facebook</a>
                   <a class="hp-share__link" data-hp="share-ig" href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
                   <a class="hp-share__link" data-hp="share-x" href="#" target="_blank" rel="noopener noreferrer">X</a>
+                  <a class="hp-share__link" data-hp="calendar" href="#">Add to calendar</a>
                 </div>
               </div>
             </aside>

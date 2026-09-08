@@ -93,10 +93,31 @@
     }, 3200);
   }
 
-  function setText(sel, text) {
-    qsa(sel).forEach(function (el) {
-      el.textContent = text;
-    });
+  function scrollBehavior() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+  }
+
+  function scrollToEl(el) {
+    if (el) el.scrollIntoView({ behavior: scrollBehavior(), block: "start" });
+  }
+
+  function markConverted(demo) {
+    if (demo) demo.setAttribute("data-converted", "on");
+  }
+
+  function showEventNotFound() {
+    var demo = qs(".wf-demo");
+    if (demo) demo.hidden = true;
+    var nf = qs(".hp-event-not-found");
+    if (nf) {
+      nf.hidden = false;
+      nf.removeAttribute("hidden");
+    }
+    document.title = "Event not found · Happenings · College Football Hall of Fame";
+  }
+
+  function initDevMode() {
+    if (getParam("dev") === "1") document.body.classList.add("hp-dev");
   }
 
   /* ----- Listing ----- */
@@ -172,6 +193,12 @@
 
     if (ev.price) setText("[data-hp='price']", ev.price);
 
+    if (ev.template === "transactional") {
+      setText("[data-hp='cta-tickets']", ev.buttonLabel || "Get Tickets");
+    } else {
+      setText("[data-hp='cta-rsvp']", ev.buttonLabel || "Save My Spot");
+    }
+
     var v = venue();
     setText("[data-hp='address']", v.address || "");
     setText("[data-hp='city']", v.cityLine || "");
@@ -196,10 +223,12 @@
     var faq = qs("[data-hp='faq']");
     if (faq && ev.faqs && ev.faqs.length) {
       faq.innerHTML = ev.faqs.map(function (item, i) {
+        var aid = "faq-a-" + ev.id + "-" + i;
+        var open = i === 0;
         return (
-          '<div class="wf-faq__item' + (i === 0 ? " is-open" : "") + '">' +
-            '<button type="button" class="wf-faq__q">' + esc(item.q) + "</button>" +
-            '<div class="wf-faq__a">' + esc(item.a) + "</div>" +
+          '<div class="wf-faq__item' + (open ? " is-open" : "") + '">' +
+            '<button type="button" class="wf-faq__q" aria-expanded="' + open + '" aria-controls="' + aid + '">' + esc(item.q) + "</button>" +
+            '<div class="wf-faq__a" id="' + aid + '">' + esc(item.a) + "</div>" +
           "</div>"
         );
       }).join("");
@@ -262,7 +291,7 @@
       }
       return (
         '<a class="hp-card-event" href="' + eventUrl(ev) + '">' +
-          '<div class="hp-card-event__media"><img src="' + esc(ev.thumb) + '" alt=""></div>' +
+          '<div class="hp-card-event__media"><img src="' + esc(ev.thumb) + '" alt="' + esc(ev.title) + '"></div>' +
           '<div class="hp-card-event__body">' +
             '<span class="hp-card-event__date">' + esc(ev.dateShort) + "</span>" +
             '<span class="hp-card-event__title">' + esc(ev.title) + "</span>" +
@@ -273,9 +302,14 @@
   }
 
   function initDetailPage(template) {
-    var id = getParam("event") || (template === "transactional" ? DEFAULT_TX : DEFAULT_RSVP);
+    var paramId = getParam("event");
+    var id = paramId || (template === "transactional" ? DEFAULT_TX : DEFAULT_RSVP);
     var ev = findEvent(id);
-    if (!ev) return;
+
+    if (!ev) {
+      if (paramId) showEventNotFound();
+      return;
+    }
 
     if (ev.template !== template) {
       window.location.replace(eventUrl(ev));
@@ -320,22 +354,19 @@
           if (who) who.textContent = name;
           var evt = qs("[data-hp='confirm-event']", confirm);
           if (evt) evt.textContent = ev.title;
-          confirm.scrollIntoView({ behavior: "smooth", block: "start" });
+          scrollToEl(confirm);
         }
         var demo = form.closest(".wf-demo");
-        if (demo) demo.setAttribute("data-confirm", "on");
+        markConverted(demo);
         toast("RSVP saved — you're on the list!");
       });
     });
   }
 
-  function ventrataPlaceholders() {
-    var ventrataScript = qs('script[src*="ventrata-checkout"]');
-    var config = (ventrataScript && ventrataScript.getAttribute("data-config")) || "";
-    return config.indexOf("<YOUR") !== -1 || config.indexOf("<PRODUCT") !== -1;
-  }
-
   function initTicketPicker(ev) {
+    var demo = qs(".wf-demo");
+    if (demo && demo.getAttribute("data-ventrata") === "on") return;
+
     var form = qs(".hp-ticket-form") || qs(".wf-live-tickets");
     if (!form || !ev.tickets) return;
 
@@ -388,25 +419,28 @@
       var confirm = qs(".hp-tix-confirm") || qs(".wf-tix-confirm");
       if (confirm) {
         confirm.hidden = false;
+        confirm.removeAttribute("hidden");
         setText("[data-hp='tix-title']", ev.title);
         setText("[data-hp='tix-date']", dateLabel);
         setText("[data-hp='tix-qty']", String(record.qty));
         setText("[data-hp='tix-total']", "$" + record.total);
-        confirm.scrollIntoView({ behavior: "smooth", block: "start" });
+        scrollToEl(confirm);
       }
+      markConverted(qs(".wf-demo"));
       toast("Tickets reserved — confirmation is on this page.");
     });
   }
 
   function initTicketFlow() {
-    if (!ventrataPlaceholders()) return;
-    qsa("[ventrata-checkout], [data-scroll-tickets]").forEach(function (btn) {
+    var demo = qs(".wf-demo");
+    if (!demo || demo.getAttribute("data-ventrata") !== "on") return;
+
+    qsa("[data-scroll-tickets]").forEach(function (btn) {
       btn.addEventListener("click", function (e) {
-        e.preventDefault();
-        var target = qs("#tickets") || qs(".hp-ticket-form") || qs(".wf-live-tickets");
-        if (target) {
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
-          toast("Ventrata opens with sandbox keys. Use Select tickets below to complete the prototype path.");
+        var widget = qs('.hp-widget[data-mod="ventrata"]');
+        if (widget) {
+          e.preventDefault();
+          scrollToEl(widget);
         }
       });
     });
@@ -483,7 +517,7 @@
         var target = document.getElementById(id);
         if (target) {
           e.preventDefault();
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          scrollToEl(target);
         }
       });
     });
@@ -507,6 +541,9 @@
     qsa(".wf-faq__q", root || document).forEach(function (btn) {
       if (btn.getAttribute("data-hp-faq-bound")) return;
       btn.setAttribute("data-hp-faq-bound", "1");
+      if (!btn.hasAttribute("aria-expanded")) {
+        btn.setAttribute("aria-expanded", btn.closest(".wf-faq__item").classList.contains("is-open") ? "true" : "false");
+      }
       btn.addEventListener("click", function () {
         var item = btn.closest(".wf-faq__item");
         if (!item) return;
@@ -515,14 +552,18 @@
         if (list) {
           qsa(".wf-faq__item", list).forEach(function (el) {
             el.classList.remove("is-open");
+            var q = qs(".wf-faq__q", el);
+            if (q) q.setAttribute("aria-expanded", "false");
           });
         }
         item.classList.toggle("is-open", open);
+        btn.setAttribute("aria-expanded", String(open));
       });
     });
   };
 
   document.addEventListener("DOMContentLoaded", function () {
+    initDevMode();
     var page = document.body.getAttribute("data-hp-page");
 
     loadIndex()

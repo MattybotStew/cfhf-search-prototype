@@ -5,6 +5,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 LOGO = "../assets/images/logo.png"
 CSS = "figma-screens.css"
+IMG_LISTING = "https://www.cfbhall.com/media/qavbhkxx/4-17-23-aerials-3.jpg?width=1920&format=webp"
+IMG_TICKETED = "https://www.cfbhall.com/media/bzegtofb/football-fest24-afternoon-22-3-2.jpg?width=1920&format=webp"
+IMG_RSVP = IMG_LISTING
 
 CARDS_ALL = [
     ("Aug 22", "Football Fest & Free Day", "Free · RSVP", True),
@@ -90,7 +93,7 @@ def write(name, html):
 
 
 def listing_hero():
-    return """<div class="listing-hero">
+    return f"""<div class="listing-hero" style="background-image: linear-gradient(90deg, rgba(0,0,0,.78), rgba(0,0,0,.35)), url('{IMG_LISTING}')">
       <p class="crumb" style="color:#ccc">News &amp; Happenings</p>
       <h1><span class="stroke">Hall</span><br>Happenings</h1>
       <p>Programs, exhibitions, and events at the Hall.</p>
@@ -111,7 +114,7 @@ def listing(filter_on=False, mobile=False):
 
 
 def ticketed(mobile=False):
-    inner = """<div class="hero">
+    inner = f"""<div class="hero" style="background-image: linear-gradient(90deg, rgba(0,0,0,.78), rgba(0,0,0,.35)), url('{IMG_TICKETED}')">
       <p class="crumb" style="color:#ccc">Happenings / Gameday Kickoff Party</p>
       <h1>Gameday<br>Kickoff Party</h1>
       <p>Every Saturday in October · 10AM–5PM</p>
@@ -171,7 +174,7 @@ def tix_confirm(mobile=False):
 
 def rsvp(filled=False, mobile=False):
     n, e = ("Jordan Ellis", "jordan@example.com") if filled else ("", "")
-    inner = f"""<div class="hero">
+    inner = f"""<div class="hero" style="background-image: linear-gradient(90deg, rgba(0,0,0,.78), rgba(0,0,0,.35)), url('{IMG_RSVP}')">
       <p class="crumb" style="color:#ccc">Happenings / Community Film Night</p>
       <h1>Community<br>Film Night</h1>
       <p>Friday, September 11 · 6–9PM</p>

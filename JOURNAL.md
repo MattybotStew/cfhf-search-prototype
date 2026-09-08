@@ -1,5 +1,25 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-08 — Cursor: Image hero only (no text fallback)
+
+- Removed `.hp-hero--text` sections and `data-hero` toggle from transactional + RSVP standalones.
+- CMS outline updated: image hero height (short / medium / tall) via `data-hero-h` only.
+- Regenerated Figma import screens (`screens/generate_screens.py`) with photo backgrounds on listing + detail frames.
+
+## 2026-09-08 — Cursor: Happenings client polish (P0–P2)
+
+- **P0:** Hidden `.hp-banner` (CSS; `?dev=1` restores); Ventrata-only ticket path on transactional; stripped sandbox/placeholder copy; text-hero h1→h2 on detail pages.
+- **P1:** Listing chips min-height 44px + horizontal scroll; `?event=bad-slug` not-found state; FAQ `aria-expanded`; `data-converted` hides sticky/hero/offer after RSVP/ticket confirm.
+- **P2:** Optional `buttonLabel` in JSON + hydration; Add to calendar in share sidebar; client-ready listing empty-state copy.
+- Files: `happenings-pages.css`, `happenings.js`, transactional/rsvp/listing HTML, `happenings-events.json`. Not committed/pushed yet.
+
+## 2026-09-08 — Cursor: Full Happenings UX audit + agent sync
+
+- Audited live Pages funnel (listing, transactional, RSVP, outline): IA, filters, conversion paths, a11y, chrome parity, Nebo r2 alignment.
+- **Verdict:** structurally ready for Sep 11; needs **client-mode polish** before Nebo review (hide `.hp-banner`, single ticket path, remove sandbox/internal copy, duplicate `<h1>`).
+- Verified Nebo checklist: offer copy above CTA (data-driven); six filter slugs + edge cases; event share F/I/X vs footer five networks.
+- Deploy confirmed: `master` @ `6ba0932`, Happenings URLs 200. Next: P0 polish sprint or html.to.design import (scope TBD).
+
 ## 2026-09-08 — Cursor: Commit + push Happenings to master
 
 - Merged `cursor/happenings-designed-pages-click-throughs` → `master` and pushed for GitHub Pages.

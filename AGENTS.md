@@ -73,7 +73,7 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 | 7. Empty state | **DONE** |
 | 8. A11y + mobile polish | **DONE** |
 
-**Status:** Search prototype is complete and **parked**. Active track is **Happenings only**. Client outline is `happenings.html` (three funnel links). Wireframe board URL redirects there. Figma visitor flow in FigJam; static `screens/` HTML for html.to.design. Standalones have no module toggles. Nebo r2 structure retained.
+**Status:** Search prototype is complete and **parked**. Active track is **Happenings only** — funnel LIVE on Pages (`6ba0932`) with **client polish done locally** (not yet pushed). Sep 11: commit/push + optional Figma import.
 
 ### What the Happenings outline + Figma screens delivered (Cursor — 2026-09-08)
 - `happenings.html` — headlines and links to listing / ticketed / RSVP (no board, no toggles)
@@ -103,7 +103,17 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 
 > **2026-08-06 CCFB options 404 (Cursor):** `/ccfb-logo-options.html` 404 while home 200; Actions for `6fad3bf` stuck **queued**. Empty re-trigger `a4c5a77` → deploy success → **page LIVE (200)**. No Pages Settings toggle needed.
 
-**Handoff:** **Happenings only.** Search + CCFB parked. **LIVE on Pages:** `happenings.html` outline + listing / transactional / RSVP click-throughs. Next: Figma html.to.design import; optional Ventrata keys. Do **not** revert hours-bar to icon-only Option A.
+**Handoff:** **Happenings only.** Search + CCFB parked. **LIVE on Pages** (pre-polish `6ba0932`); **local polish ready to push.** Start demo at `happenings-listing.html`. Next: commit/push, html.to.design import, optional Ventrata keys. Dev banner: append `?dev=1`.
+
+> **2026-09-08 image hero (Cursor):** Detail pages use full-bleed image hero only (`hp-hero--image`); height via `data-hero-h` (sm/md/lg). No text-only hero variant.
+
+### What the Happenings client polish delivered (Cursor — 2026-09-08)
+- Banner hidden; Ventrata-only ticket path; sandbox copy removed; not-found state; 44px chips; FAQ ARIA; post-confirm CTA cleanup; `buttonLabel` + share calendar
+
+### What the Happenings UX audit found (Cursor — 2026-09-08)
+- Structure + click-throughs ready; prototype scaffolding visible (`.hp-banner`, Ventrata sandbox copy, triple ticket path on transactional)
+- Offer copy data-driven; filters work; event share F/I/X correct; chips below 44px vs search pills
+- P0–P2 prioritized fix list in `.clinerules` → **In Progress / Next**
 
 ### What the Happenings polish delivered (Cursor — 2026-09-08)
 - Listing image hero; chip-only filters; full homepage footer on all Happenings pages

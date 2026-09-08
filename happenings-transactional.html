@@ -74,7 +74,13 @@
         <a href="#" class="mobile-topbar__tickets">Tickets</a>
       </header>
 
-      <div class="wf-demo" data-hero="image" data-hero-h="md" data-ventrata="on" data-calendar="off" data-sidebar="on" data-fb="on">
+      <div class="hp-event-not-found" hidden>
+        <h1>Event not found</h1>
+        <p>We couldn&apos;t find that event. It may have ended or the link may be incorrect.</p>
+        <a class="btn btn--tickets" href="happenings-listing.html">Back to all happenings</a>
+      </div>
+
+      <div class="wf-demo" data-hero-h="md" data-ventrata="on" data-calendar="off" data-sidebar="on" data-fb="on">
         <section class="hp-hero hp-hero--image" style="background-image: url('https://www.cfbhall.com/media/bzegtofb/football-fest24-afternoon-22-3-2.jpg?width=1920&amp;format=webp')">
           <div class="hp-hero__inner">
             <p class="hp-crumb"><a href="happenings-listing.html">Happenings</a> / <span data-hp="crumb-event">Gameday Kickoff Party</span></p>
@@ -88,19 +94,8 @@
               <span class="hp-tag" data-hp="tag">Ticketed</span>
             </div>
             <div class="hp-hero__actions">
-              <button type="button" class="btn btn--tickets" ventrata-checkout data-scroll-tickets data-config='{"productID": "<PRODUCT_ID>", "lang": "en"}'>Get Tickets</button>
+              <button type="button" class="btn btn--tickets" data-scroll-tickets data-hp="cta-tickets">Get Tickets</button>
               <a class="btn btn--outline" href="#details" data-scroll-to="details">Learn more</a>
-            </div>
-          </div>
-        </section>
-
-        <section class="hp-hero hp-hero--text">
-          <div class="hp-hero__inner">
-            <p class="hp-crumb"><a href="happenings-listing.html">Happenings</a> / Gameday Kickoff Party</p>
-            <h1 class="hp-hero__title">Gameday Kickoff Party</h1>
-            <div class="hp-hero__meta">
-              <span class="hp-meta">Saturday, August 22 · 10AM–5PM</span>
-              <span class="hp-tag">Ticketed</span>
             </div>
           </div>
         </section>
@@ -112,15 +107,13 @@
               <p class="hp-offer__price" data-hp="price">From $12</p>
               <p data-hp="offer-copy">Join us for food, music, and full Hall access before the game. General admission includes museum entry all day. Members save $4 at checkout.</p>
               <div class="hp-offer__actions">
-                <button type="button" class="btn btn--tickets" ventrata-checkout data-scroll-tickets data-config='{"productID": "<PRODUCT_ID>", "lang": "en"}'>Get Tickets</button>
+                <button type="button" class="btn btn--tickets" data-scroll-tickets data-hp="cta-tickets">Get Tickets</button>
                 <a class="btn btn--outline" data-mod="calendar" data-hp="calendar" href="#">Add to calendar</a>
               </div>
             </div>
-            <div class="hp-widget" data-mod="ventrata">
-              <span class="hp-widget__kicker">Ventrata Checkout v3</span>
+            <div class="hp-widget" data-mod="ventrata" id="ventrata-checkout">
               <h2>Select tickets</h2>
-              <p>Official checkout widget (test env). Sandbox keys are still placeholders — Book Now will scroll here until keys are wired.</p>
-              <button type="button" class="btn btn--tickets" ventrata-checkout data-config='{"productID": "<PRODUCT_ID>", "lang": "en"}'>Book Now</button>
+              <p>Choose your date and quantity below to complete checkout.</p>
             </div>
             <form class="hp-ticket-form hp-form" action="#" method="post">
               <span class="hp-widget__kicker">Complete the path</span>
@@ -143,7 +136,7 @@
               <strong data-hp="tix-qty">1</strong> ticket(s) for
               <strong data-hp="tix-title">Gameday Kickoff Party</strong>
               on <strong data-hp="tix-date">Saturday</strong> —
-              <strong data-hp="tix-total">$12</strong> (prototype confirmation; Ventrata would email receipts in production).
+              <strong data-hp="tix-total">$12</strong>. A receipt will be emailed to you.
             </p>
             <a class="btn btn--tickets" href="happenings-listing.html">Browse more events</a>
             <a class="btn btn--outline" href="#" data-hp="calendar">Add to calendar</a>
@@ -154,7 +147,7 @@
               <span class="hp-sticky__label" data-hp="sticky-label">Gameday Kickoff Party</span>
               <strong data-hp="sticky-meta">$12 · Saturdays in Oct</strong>
             </div>
-            <button type="button" class="btn btn--tickets" ventrata-checkout data-scroll-tickets data-config='{"productID": "<PRODUCT_ID>", "lang": "en"}'>Get Tickets</button>
+                <button type="button" class="btn btn--tickets" data-scroll-tickets data-hp="cta-tickets">Get Tickets</button>
           </div>
 
           <div class="hp-layout">
@@ -198,6 +191,7 @@
                   <a class="hp-share__link" data-hp="share-fb" href="#" target="_blank" rel="noopener noreferrer">Facebook</a>
                   <a class="hp-share__link" data-hp="share-ig" href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
                   <a class="hp-share__link" data-hp="share-x" href="#" target="_blank" rel="noopener noreferrer">X</a>
+                  <a class="hp-share__link" data-hp="calendar" href="#">Add to calendar</a>
                 </div>
               </div>
             </aside>
@@ -328,7 +322,7 @@
   <script
     src="https://cdn.checkout.ventrata.com/v3/production/ventrata-checkout.min.js"
     type="module"
-    data-config='{"apiKey": "<YOUR_SANDBOX_API_KEY>", "env": "test"}'>
+    data-config='{"env": "test"}'>
   </script>
 </body>
 </html>

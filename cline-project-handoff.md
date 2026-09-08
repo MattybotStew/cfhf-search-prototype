@@ -12,7 +12,21 @@
 
 CloudMellow is building a **client-shareable search UX prototype** for the Chick-fil-A College Football Hall of Fame. It is **not** a full site rebuild and **not** production Umbraco. The prototype must **behave properly** (real typeahead, real category filtering, real empty state, real cards), look **on-brand** (crimson / athletic type / live chrome), and be easy to demo in a browser and later capture into Figma. Umbraco is mimicked with a local Examine-shaped JSON index. **No Search & Filter Pro.**
 
-**Build Steps 1–8 are complete** as of 2026-07-17. Focus is client feedback / design polish, not greenfield scaffolding.
+**Search Steps 1–8 are complete** as of 2026-07-17 (parked). **Active track: Happenings only** (2026-09-08). Funnel is LIVE on GitHub Pages — start client demos at `happenings-listing.html`. Full UX audit done; P0 client-mode polish pending before Sep 11 review.
+
+### Happenings (LIVE — master @ `6ba0932`)
+| Page | URL |
+|---|---|
+| Outline | https://mattybotstew.github.io/cfhf-search-prototype/happenings.html |
+| Listing | https://mattybotstew.github.io/cfhf-search-prototype/happenings-listing.html |
+| Ticketed | https://mattybotstew.github.io/cfhf-search-prototype/happenings-transactional.html?event=gameday-kickoff |
+| RSVP | https://mattybotstew.github.io/cfhf-search-prototype/happenings-rsvp.html?event=community-film-night |
+
+**Key files:** `data/happenings-events.json`, `assets/js/happenings.js`, `assets/css/happenings-pages.css`, `partials/site-footer-legacy.html`, `screens/` (Figma import), FigJam board in `.clinerules`.
+
+**Do not:** revert hours-bar to icon-only; pick up search/CCFB unless asked; rebuild wireframe toggle board.
+
+**Next:** Commit + push client polish (see `.clinerules`). Dev banner: `?dev=1` on any Happenings page.
 
 ---
 

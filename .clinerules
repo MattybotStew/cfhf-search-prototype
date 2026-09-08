@@ -6,17 +6,18 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-09-08 (Cursor — commit + push Happenings to master)
+**Last Updated:** 2026-09-08 (Cursor — image hero only)
 **Active Agent:** **Cursor**
-**Branch:** `master` (merged from `cursor/happenings-designed-pages-click-throughs`)
-**Focus:** **Happenings only.**
-**Status:** Happenings client outline + listing/ticketed/RSVP click-throughs **pushed to `master`**. Listing: image hero, chip filters only, homepage footer. Nav News & Happenings → listing globally. Module toggles removed. Wireframe board redirects to outline. FigJam visitor flow + `screens/` for html.to.design.
+**Branch:** `master` (uncommitted polish)
+**Focus:** **Happenings only.** Search + CCFB parked.
+**Status:** Client-mode polish **done locally** — banner hidden, single Ventrata ticket path, sandbox copy stripped, error states, chip touch targets, FAQ ARIA, post-confirm cleanup. **Not yet pushed.** Manual: html.to.design + FigJam wiring.
 
-### Live (after push — verify Pages build)
-- https://mattybotstew.github.io/cfhf-search-prototype/happenings.html
-- https://mattybotstew.github.io/cfhf-search-prototype/happenings-listing.html
-- https://mattybotstew.github.io/cfhf-search-prototype/happenings-transactional.html
-- https://mattybotstew.github.io/cfhf-search-prototype/happenings-rsvp.html
+### Live — Happenings (verified 200)
+- https://mattybotstew.github.io/cfhf-search-prototype/happenings.html — client outline
+- https://mattybotstew.github.io/cfhf-search-prototype/happenings-listing.html — start client demo here
+- https://mattybotstew.github.io/cfhf-search-prototype/happenings-transactional.html?event=gameday-kickoff
+- https://mattybotstew.github.io/cfhf-search-prototype/happenings-rsvp.html?event=community-film-night
+- https://mattybotstew.github.io/cfhf-search-prototype/happenings-wireframes.html → redirects to outline
 
 ### Live
 - https://mattybotstew.github.io/cfhf-search-prototype/
@@ -30,10 +31,25 @@ Matt: “i want what is there now with the search functionality requested.”
 - Functionality: live predictive dropdown (HOF portrait + team badge vs general icon/label)
 - Do **not** switch to icon-only click-expand
 
-### In Progress / Next (Happenings)
-- html.to.design import of `screens/` into Figma; prototype links
-- Real Ventrata sandbox `apiKey` / `productID` (picker works without them)
+### In Progress / Next (Happenings — Sep 11 deadline Fri)
+- **Commit + push** client polish to `master` when Matt asks
+- html.to.design import of `screens/` into Figma; FigJam prototype links
+- Real Ventrata sandbox `apiKey` / `productID` when available
 - Do **not** pick up CCFB / search unless Matt asks
+
+### Newly completed (2026-09-08 — Cursor: image hero only)
+- Removed `.hp-hero--text` fallback from transactional + RSVP; `data-hero-h` (sm/md/lg) controls image hero height only
+- Regenerated `screens/` with photo backgrounds on listing + detail import frames
+
+### Newly completed (2026-09-08 — Cursor: client polish P0–P2)
+- Hidden `.hp-banner` (restore with `?dev=1`); Ventrata-only ticket path; stripped sandbox/prototype copy
+- Duplicate hero h1 fixed; invalid `?event=` not-found state; chips ≥44px + horizontal scroll
+- FAQ `aria-expanded`; post-confirmation `data-converted` hides sticky/hero/offer CTAs
+- Optional `buttonLabel` in JSON; calendar link in share sidebar; listing empty-state copy
+
+### Newly completed (2026-09-08 — Cursor: full UX audit)
+- Audited listing → ticketed/RSVP → conversion on live Pages; prioritized P0–P2 fix list for client presentation
+- Deploy re-verified: `master` @ `6ba0932`, all Happenings URLs 200
 
 ### Newly completed (2026-09-08 — Cursor: polish + deploy)
 - Listing image hero; single chip filter row (removed duplicate text nav)
