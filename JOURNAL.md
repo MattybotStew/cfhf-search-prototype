@@ -1,5 +1,9 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-08 — Cursor: Fix missing setText in happenings.js
+
+- Added `setText()` helper — was called by `hydrateDetail` but never defined, breaking JSON hydration, `buttonLabel`, RSVP submit bind, FAQ ARIA, and related carousel on detail pages.
+
 ## 2026-09-08 — Cursor: Client polish pushed to Pages (`3811a42`)
 
 - Pushed client-mode Happenings polish + image-hero-only detail pages to `master`.

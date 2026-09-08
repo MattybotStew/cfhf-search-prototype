@@ -6,11 +6,11 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-09-08 (Cursor — client polish pushed)
+**Last Updated:** 2026-09-08 (Cursor — setText fix pushed)
 **Active Agent:** **Cursor**
-**Branch:** `master` @ `3811a42`
+**Branch:** `master` (pending push — setText fix)
 **Focus:** **Happenings only.** Search + CCFB parked.
-**Status:** Client polish **LIVE on Pages** — image hero only, banner hidden (`?dev=1` restores), Ventrata ticket path, no sandbox copy. Next: html.to.design + FigJam wiring; optional Ventrata keys.
+**Status:** Client polish LIVE; **setText** helper restored in `happenings.js` (fixes JSON hydration, buttonLabel, RSVP bind, FAQ ARIA). Next: html.to.design + FigJam wiring; optional Ventrata keys.
 
 ### Live — Happenings (verified 200)
 - https://mattybotstew.github.io/cfhf-search-prototype/happenings.html — client outline
@@ -35,6 +35,9 @@ Matt: “i want what is there now with the search functionality requested.”
 - html.to.design import of `screens/` into Figma; FigJam prototype links
 - Real Ventrata sandbox `apiKey` / `productID` when available
 - Do **not** pick up CCFB / search unless Matt asks
+
+### Newly completed (2026-09-08 — Cursor: setText hydration fix)
+- Added missing `setText()` in `assets/js/happenings.js` — restores JSON hydration (buttonLabel, RSVP bind, FAQ ARIA, related carousel)
 
 ### Newly completed (2026-09-08 — Cursor: image hero only)
 - Removed `.hp-hero--text` fallback from transactional + RSVP; `data-hero-h` (sm/md/lg) controls image hero height only

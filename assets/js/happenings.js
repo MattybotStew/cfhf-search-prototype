@@ -18,6 +18,12 @@
     return Array.prototype.slice.call((root || document).querySelectorAll(sel));
   }
 
+  function setText(sel, text) {
+    qsa(sel).forEach(function (el) {
+      el.textContent = text == null ? "" : String(text);
+    });
+  }
+
   function getParam(name) {
     return new URLSearchParams(window.location.search).get(name);
   }
