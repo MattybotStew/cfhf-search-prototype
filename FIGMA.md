@@ -51,12 +51,13 @@ Use this when capturing **HTML → Figma** with the html.to.design plugin (Matt�
    - **Listing (validated):** `http://127.0.0.1:8080/happenings-listing-import.html`
    - **Full flow:** `screens/01-listing-d.html` (1440) … `09-related-m.html` (390) — index at `screens/index.html`
 3. Heroes and cards must be **`<img>`** with `width`/`height` — live pages use `assets/images/happenings/`; import screens use `screens/img/` via generator
-4. After editing markup or images, regenerate:
+4. Hero **layout:** photo + shade `position:absolute; inset:0`; copy in flex column (`justify-content: flex-end`). Do **not** use CSS grid stack or in-flow img height — title drops below photo
+5. After editing markup or images, regenerate:
    ```bash
    python3 scripts/generate_figma_import.py
    python3 screens/generate_screens.py
    ```
-5. Kaneda/Neusa (Typekit) may not embed — swap to Hall Figma text styles after import
+6. Kaneda/Neusa (Typekit) may not embed — swap to Hall Figma text styles after import
 
 **Do not regress:** no CSS background heroes on import targets; no MCP asset upload as a substitute for re-import when frames are empty.
 

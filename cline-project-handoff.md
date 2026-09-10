@@ -12,7 +12,14 @@
 
 CloudMellow is building a **client-shareable search UX prototype** for the Chick-fil-A College Football Hall of Fame. It is **not** a full site rebuild and **not** production Umbraco. The prototype must **behave properly** (real typeahead, real category filtering, real empty state, real cards), look **on-brand** (crimson / athletic type / live chrome), and be easy to demo in a browser and later capture into Figma. Umbraco is mimicked with a local Examine-shaped JSON index. **No Search & Filter Pro.**
 
-**Search Steps 1–8 are complete** as of 2026-07-17 (parked). **Active track: Happenings only** (2026-09-08). Funnel is LIVE on GitHub Pages — start client demos at `happenings-listing.html`. Client polish shipped; Sep 11 focus is Figma import + optional Ventrata keys.
+**Search Steps 1–8 are complete** as of 2026-07-17 (parked). **Active track: Happenings only** (2026-09-10). Funnel LIVE on Pages — start at `happenings-listing.html`. **Handoff from Cursor:** hero overlay fix + Figma import docs are on disk; **commit/push pending** (`master` @ `9cc04b7` on origin).
+
+### Cold start checklist
+1. Read `.clinerules` → **Current Session State** + **Decision LOCKED — Figma import**
+2. `git pull` on `master`
+3. Check for uncommitted hero fix: `git status` (expect changes in `happenings-pages.css`, `figma-screens.css`, import page, agent docs)
+4. Serve locally: `python3 -m http.server 8080` — verify listing hero title overlays photo
+5. Do **not** pick up search/CCFB unless Matt asks
 
 ### Happenings (LIVE)
 | Page | URL |
@@ -28,13 +35,14 @@ CloudMellow is building a **client-shareable search UX prototype** for the Chick
 
 1. `python3 -m http.server 8080` from repo root (never `file://`)
 2. Capture **`http://127.0.0.1:8080/happenings-listing-import.html`** for listing, or `screens/01`–`09` per `screens/index.html`
-3. Photos must be **`<img>`** tags with local JPEGs — html.to.design **drops CSS `background-image`**
-4. Regenerate: `python3 scripts/generate_figma_import.py && python3 screens/generate_screens.py`
-5. Figma file: Wireframes 2 userflow `553:1219` — full rules in `.clinerules` and `FIGMA.md`
+3. Photos = **`<img>`** + local JPEGs (`assets/images/happenings/`, `screens/img/`). html.to.design **drops CSS `background-image`**
+4. Hero layout = **absolute** photo/shade + flex copy at bottom — **not** in-flow img height or grid stack (breaks overlay + Figma)
+5. Regenerate: `python3 scripts/generate_figma_import.py && python3 screens/generate_screens.py`
+6. Figma target: Wireframes 2 userflow [553:1219](https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football---Global-Banner?node-id=553-1219) — see `FIGMA.md`
 
-**Do not:** revert hours-bar to icon-only; use CSS background heroes on import targets; pick up search/CCFB unless asked.
+**Do not:** revert hours-bar to icon-only; CSS background heroes; grid-stack heroes; pick up search/CCFB unless asked.
 
-**Next:** html.to.design screens onto Figma userflow `553:1219`; optional Ventrata keys. Dev banner: `?dev=1`.
+**Next for Matt:** html.to.design full flow into Figma; commit/push hero fix when ready; optional Ventrata keys. Dev banner: `?dev=1`.
 
 ---
 

@@ -1,5 +1,15 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-10 — Cursor: Agent handoff (Matt switching editors)
+
+- Updated `.clinerules`, `AGENTS.md`, `cline-project-handoff.md`, `FIGMA.md` for Cline/Grok cold start.
+- **Uncommitted local:** hero overlay fix + import generator — on `master` @ `9cc04b7`; commit/push when Matt asks.
+
+## 2026-09-10 — Cursor: Restore hero overlay layout with img tags
+
+- Grid stack let in-flow `<img>` push title below photo; reverted to flex + `position:absolute` photo/shade (matches pre-import hero design).
+- Removed inline `.hp-hero__photo` height override from `happenings-listing-import.html` generator.
+
 ## 2026-09-10 — Cursor: Merged Figma import fix to master
 
 - Merged `cursor/fix-happenings-settext-hydration` → `master` and pushed. Hero JPEGs, `<img>` heroes, import page, absolute-URL screens, setText fix now on Pages.

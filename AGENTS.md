@@ -106,13 +106,13 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 
 > **2026-08-06 CCFB options 404 (Cursor):** `/ccfb-logo-options.html` 404 while home 200; Actions for `6fad3bf` stuck **queued**. Empty re-trigger `a4c5a77` → deploy success → **page LIVE (200)**. No Pages Settings toggle needed.
 
-**Handoff:** **Happenings only.** Search + CCFB parked. **LIVE on Pages:** start at `happenings-listing.html`. Heroes + cards use local JPEGs (`assets/images/happenings/`). **Figma import:** localhost + absolute URLs only (see below). Optional Ventrata keys. Dev banner: `?dev=1`.
+**Handoff:** **Happenings only.** Search + CCFB parked. **LIVE on Pages:** start at `happenings-listing.html`. **Local uncommitted:** hero overlay fix (`happenings-pages.css` — flex + absolute `<img>`, not grid stack). **Figma import:** localhost + absolute URLs (see below). Next agent: verify listing hero → commit/push if Matt asks → html.to.design `screens/01`–`09`. Dev banner: `?dev=1`.
 
 > **2026-09-08 image hero (Cursor):** Detail pages use full-bleed image hero only (`hp-hero--image`); height via `data-hero-h` (sm/md/lg). No text-only hero variant.
 
 ### What the Figma html.to.design import fix delivered (Cursor — 2026-09-10)
 - **Root cause:** html.to.design does not capture CSS `background-image`; remote cfbhall.com WebP and Pages 404s leave empty `Image (...)` frames in Figma
-- **Live pages:** heroes are `<img class="hp-hero__photo">` + `.hp-hero__shade` (grid stack in `happenings-pages.css`); `happenings.js` hydrates `img.src` from JSON — not `backgroundImage`
+- **Live pages:** heroes are `<img class="hp-hero__photo">` + `.hp-hero__shade` (absolute overlay + flex copy in `happenings-pages.css`); `happenings.js` hydrates `img.src` from JSON — not `backgroundImage`
 - **Assets:** `assets/images/happenings/hero-{listing,ticketed,exhibit}.jpg`; import screens mirror via `screens/img/` with absolute `http://127.0.0.1:8080/...` URLs in generated HTML
 - **Import page:** `happenings-listing-import.html` — validated listing capture for html.to.design
 - **Generators:** `scripts/generate_figma_import.py`, `screens/generate_screens.py` — run both after image/markup changes

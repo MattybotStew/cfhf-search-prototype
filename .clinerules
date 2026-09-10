@@ -6,11 +6,19 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-09-10 (Cursor — merged Figma import fix to master)
-**Active Agent:** **Cursor**
-**Branch:** `master`
+**Last Updated:** 2026-09-10 (Cursor — handoff to next agent)
+**Active Agent:** **Handoff** — Matt switching editors (Cline / Grok / etc.)
+**Branch:** `master` @ `9cc04b7` on origin (**local uncommitted** — see below)
 **Focus:** **Happenings only.** Search + CCFB parked.
-**Status:** Figma html.to.design import **working** from localhost; hero JPEGs on Pages after deploy. **setText** helper in `happenings.js`. See **Decision LOCKED — Figma import** below. Next: html.to.design screens onto userflow; optional Ventrata keys.
+**Status:** Figma import works from localhost. Hero overlay fix is **local only** (not pushed). Verify listing hero, then commit/push if Matt asks.
+
+### Pick up here (next agent)
+1. `git pull` → confirm on `master`
+2. **Uncommitted on disk** (hero overlay fix): `assets/css/happenings-pages.css`, `screens/figma-screens.css`, `happenings-listing-import.html`, `scripts/generate_figma_import.py`, agent docs
+3. **Verify:** `python3 -m http.server 8080` → http://127.0.0.1:8080/happenings-listing.html — title **Hall / Happenings** must overlay photo (not sit below on black). Hard-refresh if CSS cached.
+4. **Do not** revert hero to CSS `background-image` or CSS grid stack on `<img>` — breaks layout or Figma capture (see Decision LOCKED).
+5. **Matt’s next task:** html.to.design `screens/01`–`09` onto Figma userflow [553:1219](https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football---Global-Banner?node-id=553-1219); optional Ventrata keys
+6. Commit + push when Matt asks (exclude `.cursor/`, MCP configs, `screenshots/`, PDF)
 
 ### Live — Happenings (verified 200)
 - https://mattybotstew.github.io/cfhf-search-prototype/happenings.html — client outline
@@ -35,7 +43,7 @@ Matt: “i want what is there now with the search functionality requested.”
 **Problem:** html.to.design drops CSS `background-image` and often leaves empty `Image (...)` frames when `src` 404s (GitHub Pages before merge, remote cfbhall.com WebP, or `file://`).
 
 **Rules (do not regress):**
-1. Heroes + card photos = **`<img>` tags** with `width`/`height`; shade via `.hp-hero__shade` (CSS grid stack in `happenings-pages.css` / `screens/figma-screens.css`) — **not** `background-image`
+1. Heroes + card photos = **`<img>` tags** with `width`/`height`; photo + shade **position:absolute** overlay; copy in flex column (`justify-content: flex-end`) — **not** `background-image` or in-flow img height
 2. Live pages + JSON: local JPEGs in `assets/images/happenings/` (`hero-listing.jpg`, `hero-ticketed.jpg`, `hero-exhibit.jpg`); `happenings.js` sets hero `img.src` from `ev.image`
 3. **Import capture = localhost only:** `python3 -m http.server 8080` from repo root; never `file://`
 4. Import URLs use **absolute** `http://127.0.0.1:8080/...` so the plugin can fetch images:
@@ -50,6 +58,11 @@ Matt: “i want what is there now with the search functionality requested.”
 - Prototype-link cards: ticketed → 03, RSVP → 06; then wire FigJam if needed
 - Real Ventrata sandbox `apiKey` / `productID` when available
 - Do **not** pick up CCFB / search unless Matt asks
+
+### Newly completed (2026-09-10 — Cursor: hero overlay layout — local, not pushed)
+- Grid stack let in-flow `<img>` push **Hall / Happenings** below photo; fixed with flex + `position:absolute` photo/shade (matches old design, keeps `<img>` for html.to.design)
+- Removed inline `.hp-hero__photo { height:416px }` from import page generator
+- Files: `happenings-pages.css`, `figma-screens.css`, `generate_figma_import.py`, `happenings-listing-import.html`
 
 ### Newly completed (2026-09-10 — Cursor: Figma import fix — end-to-end)
 - **Root cause:** html.to.design ignores CSS backgrounds; empty Figma frames = failed `img` src at capture

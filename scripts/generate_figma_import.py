@@ -48,7 +48,6 @@ def listing_import():
   <link rel="stylesheet" href="{BASE}/assets/css/happenings-pages.css">
   <style>
     .hp-import-note {{ background:#fff3cd; padding:12px 16px; font:14px system-ui,sans-serif; border-bottom:1px solid #e6c200; }}
-    .hp-hero__photo {{ width:100%; height:416px; object-fit:cover; display:block; }}
   </style>
 </head>
 <body class="hp-page" data-hp-page="listing">
