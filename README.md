@@ -74,7 +74,7 @@ https://mattybotstew.github.io/cfhf-search-prototype/
 - CCFB logo options: https://mattybotstew.github.io/cfhf-search-prototype/ccfb-logo-options.html
 - **Happenings outline:** https://mattybotstew.github.io/cfhf-search-prototype/happenings.html
 - **Happenings funnel:** [listing](https://mattybotstew.github.io/cfhf-search-prototype/happenings-listing.html) · [ticketed](https://mattybotstew.github.io/cfhf-search-prototype/happenings-transactional.html) · [RSVP](https://mattybotstew.github.io/cfhf-search-prototype/happenings-rsvp.html)
-- **Figma import screens:** `screens/index.html` (serve locally; not for Pages as the client agenda)
+- **Figma import (html.to.design):** serve locally (`python3 -m http.server 8080`) → `happenings-listing-import.html` or `screens/index.html`. Photos must be `<img>` tags with local JPEGs — the plugin drops CSS backgrounds. See `FIGMA.md`.
 
 Published from `master` (root). After each push, wait a minute for Pages to rebuild.
 

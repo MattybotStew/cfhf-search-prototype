@@ -12,9 +12,9 @@
 
 CloudMellow is building a **client-shareable search UX prototype** for the Chick-fil-A College Football Hall of Fame. It is **not** a full site rebuild and **not** production Umbraco. The prototype must **behave properly** (real typeahead, real category filtering, real empty state, real cards), look **on-brand** (crimson / athletic type / live chrome), and be easy to demo in a browser and later capture into Figma. Umbraco is mimicked with a local Examine-shaped JSON index. **No Search & Filter Pro.**
 
-**Search Steps 1–8 are complete** as of 2026-07-17 (parked). **Active track: Happenings only** (2026-09-08). Funnel is LIVE on GitHub Pages — start client demos at `happenings-listing.html`. Full UX audit done; P0 client-mode polish pending before Sep 11 review.
+**Search Steps 1–8 are complete** as of 2026-07-17 (parked). **Active track: Happenings only** (2026-09-08). Funnel is LIVE on GitHub Pages — start client demos at `happenings-listing.html`. Client polish shipped; Sep 11 focus is Figma import + optional Ventrata keys.
 
-### Happenings (LIVE — master @ `6ba0932`)
+### Happenings (LIVE)
 | Page | URL |
 |---|---|
 | Outline | https://mattybotstew.github.io/cfhf-search-prototype/happenings.html |
@@ -22,11 +22,19 @@ CloudMellow is building a **client-shareable search UX prototype** for the Chick
 | Ticketed | https://mattybotstew.github.io/cfhf-search-prototype/happenings-transactional.html?event=gameday-kickoff |
 | RSVP | https://mattybotstew.github.io/cfhf-search-prototype/happenings-rsvp.html?event=community-film-night |
 
-**Key files:** `data/happenings-events.json`, `assets/js/happenings.js`, `assets/css/happenings-pages.css`, `partials/site-footer-legacy.html`, `screens/` (Figma import), FigJam board in `.clinerules`.
+**Key files:** `data/happenings-events.json`, `assets/js/happenings.js`, `assets/css/happenings-pages.css`, `assets/images/happenings/*.jpg`, `partials/site-footer-legacy.html`, `screens/` + `happenings-listing-import.html`, FigJam board in `.clinerules`.
 
-**Do not:** revert hours-bar to icon-only; pick up search/CCFB unless asked; rebuild wireframe toggle board.
+### Figma import (html.to.design) — LOCKED 2026-09-10
 
-**Next:** Commit + push client polish (see `.clinerules`). Dev banner: `?dev=1` on any Happenings page.
+1. `python3 -m http.server 8080` from repo root (never `file://`)
+2. Capture **`http://127.0.0.1:8080/happenings-listing-import.html`** for listing, or `screens/01`–`09` per `screens/index.html`
+3. Photos must be **`<img>`** tags with local JPEGs — html.to.design **drops CSS `background-image`**
+4. Regenerate: `python3 scripts/generate_figma_import.py && python3 screens/generate_screens.py`
+5. Figma file: Wireframes 2 userflow `553:1219` — full rules in `.clinerules` and `FIGMA.md`
+
+**Do not:** revert hours-bar to icon-only; use CSS background heroes on import targets; pick up search/CCFB unless asked.
+
+**Next:** Merge `cursor/fix-happenings-settext-hydration` → `master` + push when Matt asks. Dev banner: `?dev=1`.
 
 ---
 

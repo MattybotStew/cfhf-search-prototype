@@ -1,5 +1,21 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-10 — Cursor: Figma import fix in agent docs
+
+- Documented html.to.design image capture fix across `.clinerules` (Decision LOCKED), `AGENTS.md`, `FIGMA.md`, `cline-project-handoff.md`, `README.md`.
+- Covers: `<img>` heroes, local JPEGs, absolute localhost URLs, generators, import URLs, empty-frame diagnosis.
+
+## 2026-09-10 — Cursor: Merge Happenings hero + Figma import fix to master
+
+- Branch `cursor/fix-happenings-settext-hydration`: setText fix, local hero JPEGs, `<img>` heroes, import page, absolute-URL screens (merge + push when Matt asks).
+- Figma import confirmed working from `happenings-listing-import.html` on localhost.
+
+## 2026-09-10 — Cursor: html.to.design empty images diagnosis
+
+- Figma frame `617:2317`: all card `Image (...)` nodes had **empty fills** — plugin could not load src (GitHub Pages 404 for `assets/images/happenings/`).
+- Added `happenings-listing-import.html` + absolute URLs in `screens/` generator; hero grid layout + width/height on imgs.
+- Import from `http://127.0.0.1:8080/happenings-listing-import.html` only until master deploy.
+
 ## 2026-09-10 — Cursor: Hero `<img>` tags + Figma listing fill
 
 - Root cause: html.to.design drops CSS `background-image`; solid `#1a1a1a` + gradient pseudo layers hid any manual fill.

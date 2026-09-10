@@ -54,9 +54,12 @@ Skip only for pure Q&A with **zero** file or plan changes.
 | Happenings — Transactional | https://mattybotstew.github.io/cfhf-search-prototype/happenings-transactional.html |
 | Happenings — RSVP | https://mattybotstew.github.io/cfhf-search-prototype/happenings-rsvp.html |
 | Figma import screens | `screens/index.html` (local) |
+| Figma listing import (html.to.design) | `happenings-listing-import.html` (localhost only) |
 | Happenings — RSVP form embed | `happenings-form-embed.html` (iframe on RSVP alt module) |
 
 Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options.html`.
+
+**Figma import (html.to.design):** serve at 8080 → capture `http://127.0.0.1:8080/happenings-listing-import.html` or `screens/01-listing-d.html` (1440) / `01-listing-m.html` (390). See `FIGMA.md` and `.clinerules` → **Decision LOCKED — Figma html.to.design import**.
 
 ---
 
@@ -103,9 +106,18 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 
 > **2026-08-06 CCFB options 404 (Cursor):** `/ccfb-logo-options.html` 404 while home 200; Actions for `6fad3bf` stuck **queued**. Empty re-trigger `a4c5a77` → deploy success → **page LIVE (200)**. No Pages Settings toggle needed.
 
-**Handoff:** **Happenings only.** Search + CCFB parked. **LIVE on Pages** (`3811a42`): start demo at `happenings-listing.html`. Heroes use local `<img>` JPEGs (`assets/images/happenings/`). Re-import listing via html.to.design for full Figma capture. Optional Ventrata keys. Dev banner: `?dev=1`.
+**Handoff:** **Happenings only.** Search + CCFB parked. **LIVE on Pages:** start at `happenings-listing.html`. Heroes + cards use local JPEGs (`assets/images/happenings/`). **Figma import:** localhost + absolute URLs only (see below). Optional Ventrata keys. Dev banner: `?dev=1`.
 
 > **2026-09-08 image hero (Cursor):** Detail pages use full-bleed image hero only (`hp-hero--image`); height via `data-hero-h` (sm/md/lg). No text-only hero variant.
+
+### What the Figma html.to.design import fix delivered (Cursor — 2026-09-10)
+- **Root cause:** html.to.design does not capture CSS `background-image`; remote cfbhall.com WebP and Pages 404s leave empty `Image (...)` frames in Figma
+- **Live pages:** heroes are `<img class="hp-hero__photo">` + `.hp-hero__shade` (grid stack in `happenings-pages.css`); `happenings.js` hydrates `img.src` from JSON — not `backgroundImage`
+- **Assets:** `assets/images/happenings/hero-{listing,ticketed,exhibit}.jpg`; import screens mirror via `screens/img/` with absolute `http://127.0.0.1:8080/...` URLs in generated HTML
+- **Import page:** `happenings-listing-import.html` — validated listing capture for html.to.design
+- **Generators:** `scripts/generate_figma_import.py`, `screens/generate_screens.py` — run both after image/markup changes
+- **Figma target:** Wireframes 2 userflow `553:1219` in file `jcbtHK67Ih9BsBxFQK7F7l`; import via plugin, not MCP screenshot capture
+- **Also fixed:** `setText` helper in `happenings.js` for detail hydration (branch `cursor/fix-happenings-settext-hydration`)
 
 ### What the Happenings client polish delivered (Cursor — 2026-09-08)
 - Banner hidden; Ventrata-only ticket path; sandbox copy removed; not-found state; 44px chips; FAQ ARIA; post-confirm CTA cleanup; `buttonLabel` + share calendar
@@ -183,6 +195,7 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 | 3 | Filter sidebar | **Right** sticky on `/search` |
 | 4 | Categories | **One** bucket `general-tickets` |
 | 5 | Logo | Official `assets/images/logo.png` |
+| 6 | Figma import | Localhost + `<img>` JPEGs; no CSS hero backgrounds for capture targets |
 
 ### File map
 
@@ -191,22 +204,35 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
   index.html
   search.html
   ccfb-logo-options.html
+  happenings.html
+  happenings-listing.html
+  happenings-listing-import.html   ← html.to.design listing capture
+  happenings-transactional.html
+  happenings-rsvp.html
   assets/css/tokens.css
   assets/css/search.css
   assets/css/home.css
+  assets/css/happenings-pages.css
   assets/js/search.js
   assets/js/home.js
+  assets/js/happenings.js
   assets/images/logo.png
+  assets/images/happenings/        ← hero + card JPEGs (live + Pages)
   assets/images/arrow.svg
   assets/images/footer/
   assets/images/ccfb/
   data/search-index.json
+  data/happenings-events.json
+  screens/                         ← 01–09 import frames + generate_screens.py
+  screens/img/                     ← JPEG copies for import generator
+  scripts/generate_figma_import.py
   .nojekyll
   .clinerules
   cline-project-handoff.md
   AGENTS.md
   JOURNAL.md
   README.md
+  FIGMA.md
 ```
 
 ### Tech stack

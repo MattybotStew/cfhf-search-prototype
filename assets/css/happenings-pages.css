@@ -115,9 +115,9 @@
 
 .hp-hero--image {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-areas: "stack";
+  align-items: end;
   min-height: clamp(18rem, 42vw, 32rem);
   padding: calc(var(--hours-bar-height) + var(--space-10)) clamp(1.25rem, 4vw, 3rem) var(--space-10);
   color: #fff;
@@ -126,9 +126,9 @@
 }
 
 .hp-hero__photo {
-  position: absolute;
-  inset: 0;
+  grid-area: stack;
   width: 100%;
+  min-height: clamp(18rem, 42vw, 32rem);
   height: 100%;
   object-fit: cover;
   display: block;
@@ -136,8 +136,8 @@
 }
 
 .hp-hero__shade {
-  position: absolute;
-  inset: 0;
+  grid-area: stack;
+  align-self: stretch;
   pointer-events: none;
   background: linear-gradient(
     90deg,
@@ -156,9 +156,11 @@
 }
 
 .hp-hero__inner {
+  grid-area: stack;
   position: relative;
   z-index: 1;
   max-width: 42rem;
+  align-self: end;
 }
 
 .hp-crumb {

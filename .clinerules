@@ -6,11 +6,11 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-09-10 (Cursor — hero img tags + Figma fill)
+**Last Updated:** 2026-09-10 (Cursor — Figma import fix documented in agent files)
 **Active Agent:** **Cursor**
-**Branch:** `cursor/fix-happenings-settext-hydration`
+**Branch:** `cursor/fix-happenings-settext-hydration` (merge to `master` + push when Matt asks)
 **Focus:** **Happenings only.** Search + CCFB parked.
-**Status:** Live Happenings heroes use `<img class="hp-hero__photo">` + local JPEGs in `assets/images/happenings/`. Figma listing hero (`583:2280`) patched with hero-listing.jpg. Re-import listing for full plugin capture.
+**Status:** Figma html.to.design import **working** from localhost. See **Decision LOCKED — Figma import** below. Merge to `master` so Pages serves hero JPEGs too.
 
 ### Live — Happenings (verified 200)
 - https://mattybotstew.github.io/cfhf-search-prototype/happenings.html — client outline
@@ -31,22 +31,32 @@ Matt: “i want what is there now with the search functionality requested.”
 - Functionality: live predictive dropdown (HOF portrait + team badge vs general icon/label)
 - Do **not** switch to icon-only click-expand
 
+### Decision LOCKED — Figma html.to.design import (2026-09-10)
+**Problem:** html.to.design drops CSS `background-image` and often leaves empty `Image (...)` frames when `src` 404s (GitHub Pages before merge, remote cfbhall.com WebP, or `file://`).
+
+**Rules (do not regress):**
+1. Heroes + card photos = **`<img>` tags** with `width`/`height`; shade via `.hp-hero__shade` (CSS grid stack in `happenings-pages.css` / `screens/figma-screens.css`) — **not** `background-image`
+2. Live pages + JSON: local JPEGs in `assets/images/happenings/` (`hero-listing.jpg`, `hero-ticketed.jpg`, `hero-exhibit.jpg`); `happenings.js` sets hero `img.src` from `ev.image`
+3. **Import capture = localhost only:** `python3 -m http.server 8080` from repo root; never `file://`
+4. Import URLs use **absolute** `http://127.0.0.1:8080/...` so the plugin can fetch images:
+   - **Listing (validated):** `http://127.0.0.1:8080/happenings-listing-import.html`
+   - **Full flow:** `screens/01-listing-d.html` … `09-related-m.html` — see `screens/index.html`
+5. Regenerate after edits: `python3 scripts/generate_figma_import.py` && `python3 screens/generate_screens.py`
+6. Figma target: **Wireframes 2** userflow [553:1219](https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football---Global-Banner?node-id=553-1219) — Matt imports via html.to.design plugin (not MCP capture)
+7. Empty card images in Figma = broken src at capture time → re-import from localhost, do not patch with MCP upload
+
 ### In Progress / Next (Happenings — Sep 11 deadline Fri)
 - Matt: html.to.design each `screens/*-d.html` (1440) and `*-m.html` (390) onto [userflow](https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football---Global-Banner?node-id=553-1219)
 - Prototype-link cards: ticketed → 03, RSVP → 06; then wire FigJam if needed
 - Real Ventrata sandbox `apiKey` / `productID` when available
 - Do **not** pick up CCFB / search unless Matt asks
 
-### Newly completed (2026-09-10 — Cursor: hero img tags + Figma fill)
-- Live listing/ticketed/RSVP: `<img class="hp-hero__photo">` + `.hp-hero__shade` (no CSS background-image)
-- Local JPEGs in `assets/images/happenings/`; JSON + listing cards updated
-- `happenings.js` sets hero photo src from `ev.image`
-- Figma import hero `583:2280` filled with hero-listing.jpg; duplicate placeholder hidden
-
-### Newly completed (2026-09-10 — Cursor: local photos for html.to.design)
-- Plugin missed heroes because they were CSS `background-image` + remote cfbhall.com WebP
-- Added `screens/img/` (logo + 3 JPEGs); heroes and cards use `<img src="img/…">`
-- Re-import from `http://127.0.0.1:8080/screens/01-listing-d.html` (etc.)
+### Newly completed (2026-09-10 — Cursor: Figma import fix — end-to-end)
+- **Root cause:** html.to.design ignores CSS backgrounds; empty Figma frames = failed `img` src at capture
+- Live pages: `<img class="hp-hero__photo">` + `.hp-hero__shade`; JPEGs in `assets/images/happenings/`; JSON + cards + JS hydration
+- Import-only page: `happenings-listing-import.html` (absolute localhost URLs — **user-validated**)
+- `screens/generate_screens.py`: all heroes/cards/related use `http://127.0.0.1:8080/...`; `scripts/generate_figma_import.py` regenerates import page
+- Agent docs: Decision LOCKED in `.clinerules`; `FIGMA.md` html.to.design section; `AGENTS.md` + handoff updated
 
 ### Newly completed (2026-09-10 — Cursor: Figma import handoff)
 - Confirmed userflow lives on **Wireframes 2** section `553:1219` (College Football — Global Banner)
