@@ -103,7 +103,7 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 
 > **2026-08-06 CCFB options 404 (Cursor):** `/ccfb-logo-options.html` 404 while home 200; Actions for `6fad3bf` stuck **queued**. Empty re-trigger `a4c5a77` → deploy success → **page LIVE (200)**. No Pages Settings toggle needed.
 
-**Handoff:** **Happenings only.** Search + CCFB parked. **LIVE on Pages** (`3811a42`): start demo at `happenings-listing.html`. Next: html.to.design import; optional Ventrata keys. Dev banner: `?dev=1`.
+**Handoff:** **Happenings only.** Search + CCFB parked. **LIVE on Pages** (`3811a42`): start demo at `happenings-listing.html`. Matt importing `screens/` via html.to.design onto Figma userflow (`553:1219`). Optional Ventrata keys. Dev banner: `?dev=1`.
 
 > **2026-09-08 image hero (Cursor):** Detail pages use full-bleed image hero only (`hp-hero--image`); height via `data-hero-h` (sm/md/lg). No text-only hero variant.
 

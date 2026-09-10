@@ -6,11 +6,11 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-09-08 (Cursor — client polish pushed)
+**Last Updated:** 2026-09-10 (Cursor — userflow check vs prototype)
 **Active Agent:** **Cursor**
-**Branch:** `master` @ `3811a42`
+**Branch:** `cursor/fix-happenings-settext-hydration` (no tracking)
 **Focus:** **Happenings only.** Search + CCFB parked.
-**Status:** Client polish **LIVE on Pages** — image hero only, banner hidden (`?dev=1` restores), Ventrata ticket path, no sandbox copy. Next: html.to.design + FigJam wiring; optional Ventrata keys.
+**Status:** Userflow **logic still matches** prototype (listing → filter optional → tap → ticketed or RSVP → confirm → related → listing). Left-column boxes read bottom-up. Matt importing `screens/` via html.to.design onto `553:1219`.
 
 ### Live — Happenings (verified 200)
 - https://mattybotstew.github.io/cfhf-search-prototype/happenings.html — client outline
@@ -32,9 +32,21 @@ Matt: “i want what is there now with the search functionality requested.”
 - Do **not** switch to icon-only click-expand
 
 ### In Progress / Next (Happenings — Sep 11 deadline Fri)
-- html.to.design import of `screens/` into Figma; FigJam prototype links
+- Matt: html.to.design each `screens/*-d.html` (1440) and `*-m.html` (390) onto [userflow](https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football---Global-Banner?node-id=553-1219)
+- Prototype-link cards: ticketed → 03, RSVP → 06; then wire FigJam if needed
 - Real Ventrata sandbox `apiKey` / `productID` when available
 - Do **not** pick up CCFB / search unless Matt asks
+
+### Newly completed (2026-09-10 — Cursor: Figma import handoff)
+- Confirmed userflow lives on **Wireframes 2** section `553:1219` (College Football — Global Banner)
+- Added empty section **Happenings prototype screens** (`582:136`) with named 01–09 desktop/mobile frames for drop targets
+- Matt will import via html.to.design plugin (not MCP capture)
+
+### Newly completed (2026-09-09 — Cursor: page screenshots)
+- Captured full-page desktop (1440) + mobile (390) PNGs of live HTML pages into `screenshots/`
+- Includes home, search (browse + tebow), CCFB options, Happenings outline/listing/ticketed/RSVP, form embed, `screens/index`
+- Skipped `happenings-wireframes.html` (redirects to outline) and `screens/*-d.html`/`*-m.html` (already viewport-specific import frames)
+- `partials/site-footer-legacy.html` is a fragment, not a page
 
 ### Newly completed (2026-09-08 — Cursor: image hero only)
 - Removed `.hp-hero--text` fallback from transactional + RSVP; `data-hero-h` (sm/md/lg) controls image hero height only

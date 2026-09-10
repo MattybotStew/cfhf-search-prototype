@@ -1,5 +1,22 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-10 — Cursor: Userflow still matches prototype
+
+- Checked Figma `553:1219` against `happenings.html` + `screens/visitor-flow.mmd` + listing/detail JS.
+- Branches still right: two visitor paths (ticketed vs RSVP), filters browse-only, template chosen at publish, related events loop back to listing.
+- Left-column flowchart still reads **bottom-up** (tap card at top, listing at bottom). Nested Visitor + CMS panels on the right are the clearer diagram.
+
+## 2026-09-10 — Cursor: html.to.design handoff (Matt importing)
+
+- Userflow page: Figma **Wireframes 2** section [553:1219](https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football---Global-Banner?node-id=553-1219).
+- Created **Happenings prototype screens** section with named 01–09 desktop/mobile frames as drop targets.
+- Matt will copy screens with the html.to.design plugin. MCP capture script removed from `screens/` generator.
+
+## 2026-09-09 — Cursor: Desktop + mobile screenshots of HTML pages
+
+- Saved full-page PNGs at 1440×900 and 390×844 in `screenshots/` for the live prototype pages (home, search, CCFB, Happenings funnel, form embed, screens index).
+- Wireframes URL redirects to the outline; `screens/01`–`09` remain separate d/m HTML frames (not re-shot).
+
 ## 2026-09-08 — Cursor: Client polish pushed to Pages (`3811a42`)
 
 - Pushed client-mode Happenings polish + image-hero-only detail pages to `master`.
