@@ -1,9 +1,12 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-10 — Cursor: Hero overlay fix pushed (`0eb9aae`)
+
+- Committed + pushed flex/absolute hero layout, import page cleanup, agent handoff docs to `master`.
+
 ## 2026-09-10 — Cursor: Agent handoff (Matt switching editors)
 
 - Updated `.clinerules`, `AGENTS.md`, `cline-project-handoff.md`, `FIGMA.md` for Cline/Grok cold start.
-- **Uncommitted local:** hero overlay fix + import generator — on `master` @ `9cc04b7`; commit/push when Matt asks.
 
 ## 2026-09-10 — Cursor: Restore hero overlay layout with img tags
 
