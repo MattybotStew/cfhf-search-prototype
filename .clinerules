@@ -6,11 +6,11 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-09-10 (Cursor — userflow check vs prototype)
+**Last Updated:** 2026-09-10 (Cursor — local imgs for html.to.design)
 **Active Agent:** **Cursor**
-**Branch:** `cursor/fix-happenings-settext-hydration` (no tracking)
+**Branch:** `cursor/fix-happenings-settext-hydration`
 **Focus:** **Happenings only.** Search + CCFB parked.
-**Status:** Userflow **logic still matches** prototype (listing → filter optional → tap → ticketed or RSVP → confirm → related → listing). Left-column boxes read bottom-up. Matt importing `screens/` via html.to.design onto `553:1219`.
+**Status:** Import screens now use local `<img>` JPEGs in `screens/img/` so html.to.design can capture photos. Re-import from local server.
 
 ### Live — Happenings (verified 200)
 - https://mattybotstew.github.io/cfhf-search-prototype/happenings.html — client outline
@@ -36,6 +36,11 @@ Matt: “i want what is there now with the search functionality requested.”
 - Prototype-link cards: ticketed → 03, RSVP → 06; then wire FigJam if needed
 - Real Ventrata sandbox `apiKey` / `productID` when available
 - Do **not** pick up CCFB / search unless Matt asks
+
+### Newly completed (2026-09-10 — Cursor: local photos for html.to.design)
+- Plugin missed heroes because they were CSS `background-image` + remote cfbhall.com WebP
+- Added `screens/img/` (logo + 3 JPEGs); heroes and cards use `<img src="img/…">`
+- Re-import from `http://127.0.0.1:8080/screens/01-listing-d.html` (etc.)
 
 ### Newly completed (2026-09-10 — Cursor: Figma import handoff)
 - Confirmed userflow lives on **Wireframes 2** section `553:1219` (College Football — Global Banner)

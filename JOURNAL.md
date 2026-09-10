@@ -1,5 +1,10 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-10 — Cursor: Local images for html.to.design
+
+- html.to.design on `583:136` imported gray heroes — CSS backgrounds and remote Hall WebP URLs were dropped.
+- Local JPEGs in `screens/img/` plus `<img>` tags for heroes, cards, and logo. Re-capture from the local server.
+
 ## 2026-09-10 — Cursor: Userflow still matches prototype
 
 - Checked Figma `553:1219` against `happenings.html` + `screens/visitor-flow.mmd` + listing/detail JS.

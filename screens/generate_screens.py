@@ -3,11 +3,13 @@
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-LOGO = "../assets/images/logo.png"
+LOGO = "img/logo.png"
 CSS = "figma-screens.css"
-IMG_LISTING = "https://www.cfbhall.com/media/qavbhkxx/4-17-23-aerials-3.jpg?width=1920&format=webp"
-IMG_TICKETED = "https://www.cfbhall.com/media/bzegtofb/football-fest24-afternoon-22-3-2.jpg?width=1920&format=webp"
+# Local JPEGs — html.to.design skips CSS backgrounds and remote/CORS photos
+IMG_LISTING = "img/hero-listing.jpg"
+IMG_TICKETED = "img/hero-ticketed.jpg"
 IMG_RSVP = IMG_LISTING
+CARD_IMGS = ("img/hero-listing.jpg", "img/hero-ticketed.jpg", "img/hero-exhibit.jpg")
 
 CARDS_ALL = [
     ("Aug 22", "Football Fest & Free Day", "Free · RSVP", True),
@@ -51,15 +53,27 @@ def chips(active):
 
 def cards(items):
     html = ['<div class="grid">']
-    for date, title, tag, outline in items:
+    for i, (date, title, tag, outline) in enumerate(items):
         tc = " tag--out" if outline else ""
+        src = CARD_IMGS[i % len(CARD_IMGS)]
         html.append(
-            f'<div class="card"><div class="ph"></div><div class="body">'
+            f'<div class="card"><div class="ph"><img src="{src}" alt=""></div><div class="body">'
             f'<div class="date">{date}</div><div class="title">{title}</div>'
             f'<span class="tag{tc}">{tag}</span></div></div>'
         )
     html.append("</div>")
     return "".join(html)
+
+
+def photo_hero(src, body, listing=False):
+    cls = "listing-hero" if listing else "hero"
+    return (
+        f'<div class="{cls}">'
+        f'<img class="hero-photo" src="{src}" alt="">'
+        f'<div class="hero-shade"></div>'
+        f'<div class="hero-copy">{body}</div>'
+        f"</div>"
+    )
 
 
 def wrap(slug, title, inner, mobile=False):
@@ -93,11 +107,13 @@ def write(name, html):
 
 
 def listing_hero():
-    return f"""<div class="listing-hero" style="background-image: linear-gradient(90deg, rgba(0,0,0,.78), rgba(0,0,0,.35)), url('{IMG_LISTING}')">
-      <p class="crumb" style="color:#ccc">News &amp; Happenings</p>
+    return photo_hero(
+        IMG_LISTING,
+        """<p class="crumb" style="color:#ccc">News &amp; Happenings</p>
       <h1><span class="stroke">Hall</span><br>Happenings</h1>
-      <p>Programs, exhibitions, and events at the Hall.</p>
-    </div>"""
+      <p>Programs, exhibitions, and events at the Hall.</p>""",
+        listing=True,
+    )
 
 
 def listing(filter_on=False, mobile=False):
@@ -114,13 +130,14 @@ def listing(filter_on=False, mobile=False):
 
 
 def ticketed(mobile=False):
-    inner = f"""<div class="hero" style="background-image: linear-gradient(90deg, rgba(0,0,0,.78), rgba(0,0,0,.35)), url('{IMG_TICKETED}')">
-      <p class="crumb" style="color:#ccc">Happenings / Gameday Kickoff Party</p>
+    inner = photo_hero(
+        IMG_TICKETED,
+        """<p class="crumb" style="color:#ccc">Happenings / Gameday Kickoff Party</p>
       <h1>Gameday<br>Kickoff Party</h1>
       <p>Every Saturday in October · 10AM–5PM</p>
       <span class="tag">Ticketed</span>
-      <p style="margin-top:16px"><span class="btn">Get Tickets</span></p>
-    </div>
+      <p style="margin-top:16px"><span class="btn">Get Tickets</span></p>""",
+    ) + """
     <div class="split">
       <div>
         <h2>Before kickoff at the Hall</h2>
@@ -165,22 +182,23 @@ def tix_confirm(mobile=False):
     </div>
     <div class="pad"><h2>More upcoming events</h2></div>
     <div class="related">
-      <div class="card"><div class="ph"></div><div class="body"><div class="title">Football Fest</div></div></div>
-      <div class="card"><div class="ph"></div><div class="body"><div class="title">Film Night</div></div></div>
-      <div class="card"><div class="ph"></div><div class="body"><div class="title">Legendary Saturday</div></div></div>
+      <div class="card"><div class="ph"><img src="img/hero-listing.jpg" alt=""></div><div class="body"><div class="title">Football Fest</div></div></div>
+      <div class="card"><div class="ph"><img src="img/hero-exhibit.jpg" alt=""></div><div class="body"><div class="title">Film Night</div></div></div>
+      <div class="card"><div class="ph"><img src="img/hero-ticketed.jpg" alt=""></div><div class="body"><div class="title">Legendary Saturday</div></div></div>
     </div>"""
     write(f"05-ticket-confirm-{'m' if mobile else 'd'}.html", wrap("05-ticket-confirm", "Purchase confirmation", inner, mobile))
 
 
 def rsvp(filled=False, mobile=False):
     n, e = ("Jordan Ellis", "jordan@example.com") if filled else ("", "")
-    inner = f"""<div class="hero" style="background-image: linear-gradient(90deg, rgba(0,0,0,.78), rgba(0,0,0,.35)), url('{IMG_RSVP}')">
-      <p class="crumb" style="color:#ccc">Happenings / Community Film Night</p>
+    inner = photo_hero(
+        IMG_RSVP,
+        """<p class="crumb" style="color:#ccc">Happenings / Community Film Night</p>
       <h1>Community<br>Film Night</h1>
       <p>Friday, September 11 · 6–9PM</p>
       <span class="tag tag--out">Free · RSVP</span>
-      <p style="margin-top:16px"><span class="btn">Save My Spot</span></p>
-    </div>
+      <p style="margin-top:16px"><span class="btn">Save My Spot</span></p>""",
+    ) + f"""
     <div class="split">
       <div class="panel">
         <h2>Reserve your seat</h2>
@@ -218,9 +236,9 @@ def related(mobile=False):
       <h1>More upcoming events</h1>
     </div>
     <div class="related">
-      <div class="card"><div class="ph"></div><div class="body"><div class="date">Aug 22</div><div class="title">Football Fest &amp; Free Day</div></div></div>
-      <div class="card"><div class="ph"></div><div class="body"><div class="date">Saturdays in Oct</div><div class="title">Gameday Kickoff Party</div></div></div>
-      <div class="card"><div class="ph"></div><div class="body"><div class="date">Sep 11</div><div class="title">Community Film Night</div></div></div>
+      <div class="card"><div class="ph"><img src="img/hero-listing.jpg" alt=""></div><div class="body"><div class="date">Aug 22</div><div class="title">Football Fest &amp; Free Day</div></div></div>
+      <div class="card"><div class="ph"><img src="img/hero-ticketed.jpg" alt=""></div><div class="body"><div class="date">Saturdays in Oct</div><div class="title">Gameday Kickoff Party</div></div></div>
+      <div class="card"><div class="ph"><img src="img/hero-exhibit.jpg" alt=""></div><div class="body"><div class="date">Sep 11</div><div class="title">Community Film Night</div></div></div>
     </div>"""
     write(f"09-related-{'m' if mobile else 'd'}.html", wrap("09-related", "More upcoming events", inner, mobile))
 
