@@ -215,8 +215,8 @@
       el.classList.toggle("wf-tag--outline", !!ev.tagOutline);
     });
 
-    qsa(".hp-hero--image").forEach(function (hero) {
-      hero.style.backgroundImage = "url('" + ev.image.replace(/'/g, "%27") + "')";
+    qsa("[data-hp='hero-photo'], .hp-hero__photo").forEach(function (img) {
+      if (ev.image) img.src = ev.image;
     });
 
     var agenda = qs("[data-hp='agenda']");

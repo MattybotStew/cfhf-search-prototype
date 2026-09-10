@@ -6,11 +6,11 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-09-10 (Cursor — local imgs for html.to.design)
+**Last Updated:** 2026-09-10 (Cursor — hero img tags + Figma fill)
 **Active Agent:** **Cursor**
 **Branch:** `cursor/fix-happenings-settext-hydration`
 **Focus:** **Happenings only.** Search + CCFB parked.
-**Status:** Import screens now use local `<img>` JPEGs in `screens/img/` so html.to.design can capture photos. Re-import from local server.
+**Status:** Live Happenings heroes use `<img class="hp-hero__photo">` + local JPEGs in `assets/images/happenings/`. Figma listing hero (`583:2280`) patched with hero-listing.jpg. Re-import listing for full plugin capture.
 
 ### Live — Happenings (verified 200)
 - https://mattybotstew.github.io/cfhf-search-prototype/happenings.html — client outline
@@ -36,6 +36,12 @@ Matt: “i want what is there now with the search functionality requested.”
 - Prototype-link cards: ticketed → 03, RSVP → 06; then wire FigJam if needed
 - Real Ventrata sandbox `apiKey` / `productID` when available
 - Do **not** pick up CCFB / search unless Matt asks
+
+### Newly completed (2026-09-10 — Cursor: hero img tags + Figma fill)
+- Live listing/ticketed/RSVP: `<img class="hp-hero__photo">` + `.hp-hero__shade` (no CSS background-image)
+- Local JPEGs in `assets/images/happenings/`; JSON + listing cards updated
+- `happenings.js` sets hero photo src from `ev.image`
+- Figma import hero `583:2280` filled with hero-listing.jpg; duplicate placeholder hidden
 
 ### Newly completed (2026-09-10 — Cursor: local photos for html.to.design)
 - Plugin missed heroes because they were CSS `background-image` + remote cfbhall.com WebP

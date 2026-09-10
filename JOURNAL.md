@@ -1,5 +1,11 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-10 — Cursor: Hero `<img>` tags + Figma listing fill
+
+- Root cause: html.to.design drops CSS `background-image`; solid `#1a1a1a` + gradient pseudo layers hid any manual fill.
+- Live pages: `hp-hero__photo` + `hp-hero__shade`; JPEGs in `assets/images/happenings/`; JSON + cards + JS hydration updated.
+- Figma Wireframes 2 listing hero `583:2280` uploaded hero-listing.jpg; hidden duplicate placeholder `583:2002`.
+
 ## 2026-09-10 — Cursor: Local images for html.to.design
 
 - html.to.design on `583:136` imported gray heroes — CSS backgrounds and remote Hall WebP URLs were dropped.
