@@ -21,6 +21,8 @@ body {
   padding: 24px 20px;
 }
 .rail img { width: 200px; height: auto; display: block; margin: 0 auto 20px; }
+.card .ph { height: 110px; overflow: hidden; background: #c8c9cd; padding: 0; }
+.card .ph img { width: 100%; height: 110px; object-fit: cover; display: block; }
 .rail .tix { background: #b5202b; color: #fff; text-align: center; padding: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; font-size: 13px; margin-bottom: 8px; }
 .rail .row { display: flex; gap: 8px; margin-bottom: 16px; }
 .rail .row span { flex: 1; border: 1px solid #1a1a1a; text-align: center; padding: 8px 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
@@ -37,18 +39,34 @@ h2 { font-family: "kaneda-gothic", Impact, sans-serif; text-transform: uppercase
 .chip.is-on { background: #b5202b; color: #fff; border-color: #b5202b; }
 .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .card { border: 1px solid #d0d1d4; }
-.card .ph { height: 110px; background: #c8c9cd; }
 .card .body { padding: 10px 12px 14px; }
 .card .date { font-size: 12px; color: #888; }
 .card .title { font-weight: 700; text-transform: uppercase; font-size: 13px; margin: 4px 0; }
 .tag { display: inline-block; background: #b5202b; color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; }
 .tag--out { background: #fff; color: #b5202b; border: 1px solid #b5202b; }
 .hero, .listing-hero {
-  background-size: cover;
-  background-position: center;
+  position: relative;
+  display: grid;
+  grid-template-areas: "stack";
+  align-items: end;
+  overflow: hidden;
   background-color: #1a1a1a;
   color: #fff;
 }
+.hero-photo {
+  grid-area: stack;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  object-fit: cover;
+  display: block;
+}
+.hero-shade {
+  grid-area: stack;
+  align-self: stretch;
+  background: linear-gradient(90deg, rgba(0,0,0,.78), rgba(0,0,0,.35));
+}
+.hero-copy { grid-area: stack; position: relative; z-index: 1; align-self: end; }
 .hero { padding: 48px 40px 32px; min-height: 280px; }
 .hero h1 { color: #fff; font-size: 56px; }
 .listing-hero {

@@ -21,8 +21,11 @@
   <div class="warn">
     <p><strong>How you import</strong></p>
     <ol>
+      <li><strong>Do not import from GitHub Pages</strong> until <code>assets/images/happenings/</code> is on <code>master</code> — images 404 there today and html.to.design leaves empty frames.</li>
+      <li>Preferred live capture: <a href="../happenings-listing-import.html">happenings-listing-import.html</a> (absolute localhost image URLs).</li>
       <li>Serve the repo with a local server, not <code>file://</code> (example: <code>python3 -m http.server 8080</code> from repo root).</li>
       <li>Open each HTML, then capture at <strong>1440</strong> (<code>*-d.html</code>) or <strong>390</strong> (<code>*-m.html</code>) — one viewport per file.</li>
+      <li>Photos are local <code>&lt;img&gt;</code> files under <code>screens/img/</code> (not CSS backgrounds or cfbhall.com URLs — the plugin drops those).</li>
       <li>Sticky bars, Ventrata, Maps, and Facebook iframes are drawn as static UI here on purpose.</li>
       <li>Kaneda + Neusa (Typekit) often do not embed on import. Swap to Hall Figma text styles after import.</li>
     </ol>

@@ -1,5 +1,48 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-10 — Cursor: Merged Figma import fix to master
+
+- Merged `cursor/fix-happenings-settext-hydration` → `master` and pushed. Hero JPEGs, `<img>` heroes, import page, absolute-URL screens, setText fix now on Pages.
+
+## 2026-09-10 — Cursor: Figma import fix in agent docs
+
+- Documented html.to.design image capture fix across `.clinerules` (Decision LOCKED), `AGENTS.md`, `FIGMA.md`, `cline-project-handoff.md`, `README.md`.
+- Covers: `<img>` heroes, local JPEGs, absolute localhost URLs, generators, import URLs, empty-frame diagnosis.
+
+## 2026-09-10 — Cursor: html.to.design empty images diagnosis
+
+- Figma frame `617:2317`: all card `Image (...)` nodes had **empty fills** — plugin could not load src (GitHub Pages 404 for `assets/images/happenings/`).
+- Added `happenings-listing-import.html` + absolute URLs in `screens/` generator; hero grid layout + width/height on imgs.
+- Import from `http://127.0.0.1:8080/happenings-listing-import.html` only until master deploy.
+
+## 2026-09-10 — Cursor: Hero `<img>` tags + Figma listing fill
+
+- Root cause: html.to.design drops CSS `background-image`; solid `#1a1a1a` + gradient pseudo layers hid any manual fill.
+- Live pages: `hp-hero__photo` + `hp-hero__shade`; JPEGs in `assets/images/happenings/`; JSON + cards + JS hydration updated.
+- Figma Wireframes 2 listing hero `583:2280` uploaded hero-listing.jpg; hidden duplicate placeholder `583:2002`.
+
+## 2026-09-10 — Cursor: Local images for html.to.design
+
+- html.to.design on `583:136` imported gray heroes — CSS backgrounds and remote Hall WebP URLs were dropped.
+- Local JPEGs in `screens/img/` plus `<img>` tags for heroes, cards, and logo. Re-capture from the local server.
+
+## 2026-09-10 — Cursor: Userflow still matches prototype
+
+- Checked Figma `553:1219` against `happenings.html` + `screens/visitor-flow.mmd` + listing/detail JS.
+- Branches still right: two visitor paths (ticketed vs RSVP), filters browse-only, template chosen at publish, related events loop back to listing.
+- Left-column flowchart still reads **bottom-up** (tap card at top, listing at bottom). Nested Visitor + CMS panels on the right are the clearer diagram.
+
+## 2026-09-10 — Cursor: html.to.design handoff (Matt importing)
+
+- Userflow page: Figma **Wireframes 2** section [553:1219](https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football---Global-Banner?node-id=553-1219).
+- Created **Happenings prototype screens** section with named 01–09 desktop/mobile frames as drop targets.
+- Matt will copy screens with the html.to.design plugin. MCP capture script removed from `screens/` generator.
+
+## 2026-09-09 — Cursor: Desktop + mobile screenshots of HTML pages
+
+- Saved full-page PNGs at 1440×900 and 390×844 in `screenshots/` for the live prototype pages (home, search, CCFB, Happenings funnel, form embed, screens index).
+- Wireframes URL redirects to the outline; `screens/01`–`09` remain separate d/m HTML frames (not re-shot).
+
 ## 2026-09-08 — Cursor: Fix missing setText in happenings.js
 
 - Added `setText()` helper — was called by `hydrateDetail` but never defined, breaking JSON hydration, `buttonLabel`, RSVP submit bind, FAQ ARIA, and related carousel on detail pages.
