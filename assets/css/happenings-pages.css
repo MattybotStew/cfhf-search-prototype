@@ -1532,6 +1532,24 @@ body.hp-dev .hp-banner {
     opacity: 1;
     transform: none;
     pointer-events: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+    padding: var(--space-4);
+  }
+
+  .hp-sticky__info {
+    min-width: 0;
+  }
+
+  .hp-sticky strong {
+    font-size: 1.15rem;
+    line-height: 1.15;
+  }
+
+  .hp-sticky .btn {
+    width: 100%;
+    min-width: 0;
   }
 
   .hp-offer {

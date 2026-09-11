@@ -6,11 +6,11 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-09-11 (Cursor — hero options tier visibility)
+**Last Updated:** 2026-09-11 (Cursor — mobile sticky bar)
 **Active Agent:** Cursor
-**Branch:** `master` (local uncommitted: hero-options sparse specimens + btn fix)
+**Branch:** `master` (local uncommitted: mobile sticky stack fix)
 **Focus:** **Happenings only.** Search + CCFB parked.
-**Status:** Pushed `d8c86fe` + `633e2d1`. Hero options: added `search.css`; sparse sm/md/lg specimens so tier floors are visible.
+**Status:** Mobile sticky bar stacks info + full-width CTA (no overlap). Prior push `a41a4c3`.
 
 ### Pick up here (next agent)
 1. Verify: http://127.0.0.1:8080/happenings-listing.html at ~390px — **Filter** dropdown opens/closes, no horizontal chips

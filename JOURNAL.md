@@ -1,5 +1,9 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-11 — Cursor: Mobile sticky bar layout
+
+- ≤900px: `.hp-sticky` stacks info + full-width CTA vertically so long labels and “Reserve My Passes” no longer overlap.
+
 ## 2026-09-11 — Cursor: Hero options tier visibility
 
 - Hero options page used identical full copy on sm/md/lg, so all three exceeded the 14/18/24rem floors and looked the same (~410px).
