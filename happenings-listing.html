@@ -96,6 +96,23 @@
           <button type="button" data-category="exhibitions" aria-pressed="false">Exhibitions</button>
           <button type="button" data-category="community" aria-pressed="false">Community</button>
         </div>
+        <div class="hp-filter-dropdown">
+          <span class="hp-filter-dropdown__label" id="hp-filter-label">Filter</span>
+          <div class="hp-filter-dropdown__wrap">
+            <button type="button" class="hp-filter-dropdown__trigger" id="hp-filter-trigger" aria-labelledby="hp-filter-label hp-filter-value" aria-haspopup="listbox" aria-expanded="false" aria-controls="hp-filter-menu">
+              <span class="hp-filter-dropdown__value" id="hp-filter-value">All</span>
+              <span class="hp-filter-dropdown__chevron" aria-hidden="true"></span>
+            </button>
+            <ul class="hp-filter-dropdown__menu" id="hp-filter-menu" role="listbox" aria-labelledby="hp-filter-label" hidden>
+              <li><button type="button" role="option" data-category="all" aria-selected="true">All</button></li>
+              <li><button type="button" role="option" data-category="upcoming" aria-selected="false">Upcoming</button></li>
+              <li><button type="button" role="option" data-category="free-rsvp" aria-selected="false">Free / RSVP</button></li>
+              <li><button type="button" role="option" data-category="ticketed" aria-selected="false">Ticketed</button></li>
+              <li><button type="button" role="option" data-category="exhibitions" aria-selected="false">Exhibitions</button></li>
+              <li><button type="button" role="option" data-category="community" aria-selected="false">Community</button></li>
+            </ul>
+          </div>
+        </div>
 
         <div class="hp-listing-empty" hidden>
           <h2>No events in this category</h2>

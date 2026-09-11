@@ -358,7 +358,8 @@
   padding-top: var(--space-8);
 }
 
-.hp-wrap--listing .hp-chips {
+.hp-wrap--listing .hp-chips,
+.hp-wrap--listing .hp-filter-dropdown {
   margin-top: 0;
 }
 
@@ -946,7 +947,271 @@
   color: #fff;
 }
 
+.hp-filter-dropdown {
+  display: none;
+  margin: var(--space-6) 0 var(--space-8);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--cfhf-border);
+}
+
+.hp-filter-dropdown__label {
+  display: block;
+  font-family: var(--font-ui-compact);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--cfhf-muted);
+  margin-bottom: var(--space-2);
+}
+
+.hp-filter-dropdown__wrap {
+  position: relative;
+}
+
+.hp-filter-dropdown__trigger {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: 2.75rem;
+  border: 2px solid var(--cfhf-border);
+  padding: 0 0.85rem;
+  font-family: var(--font-ui-compact);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cfhf-ink);
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+}
+
+.hp-filter-dropdown__value {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hp-filter-dropdown__chevron {
+  flex-shrink: 0;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-right: 2px solid var(--cfhf-ink);
+  border-bottom: 2px solid var(--cfhf-ink);
+  transform: rotate(45deg) translateY(-1px);
+  transition: transform var(--duration-fast);
+}
+
+.hp-filter-dropdown.is-open .hp-filter-dropdown__chevron {
+  transform: rotate(-135deg) translateY(1px);
+}
+
+.hp-filter-dropdown__trigger:focus-visible {
+  outline: none;
+  border-color: var(--cfhf-crimson);
+  box-shadow: 0 0 0 4px rgba(181, 32, 43, 0.15);
+}
+
+.hp-filter-dropdown.is-open .hp-filter-dropdown__trigger {
+  border-color: var(--cfhf-crimson);
+}
+
+.hp-filter-dropdown__menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 20;
+  margin: 0;
+  padding: 0.35rem 0;
+  list-style: none;
+  background: #fff;
+  border: 2px solid var(--cfhf-border);
+  box-shadow: var(--shadow-md);
+}
+
+.hp-filter-dropdown__menu[hidden] {
+  display: none;
+}
+
+.hp-filter-dropdown__menu li {
+  margin: 0;
+}
+
+.hp-filter-dropdown__menu button {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.85rem;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-ui-compact);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cfhf-ink);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--duration-fast), color var(--duration-fast);
+}
+
+.hp-filter-dropdown__menu button:hover,
+.hp-filter-dropdown__menu button:focus-visible {
+  background: var(--cfhf-surface);
+  color: var(--cfhf-crimson);
+  outline: none;
+}
+
+.hp-filter-dropdown__menu button.is-active,
+.hp-filter-dropdown__menu button[aria-selected="true"] {
+  background: var(--cfhf-crimson);
+  color: #fff;
+}
+
+.hp-filter-dropdown__menu button.is-active:hover,
+.hp-filter-dropdown__menu button.is-active:focus-visible,
+.hp-filter-dropdown__menu button[aria-selected="true"]:hover,
+.hp-filter-dropdown__menu button[aria-selected="true"]:focus-visible {
+  background: #8b1a20;
+  color: #fff;
+}
+
 /* Post-conversion: hide duplicate CTAs */
+/* ----- Focus-visible (global polish) -----
+.hp-page a:focus-visible {
+  outline: 2px solid var(--cfhf-crimson);
+  outline-offset: 2px;
+}
+
+.hp-page .btn:focus-visible,
+.hp-page [role="button"]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(181, 32, 43, 0.15);
+}
+
+.hp-page input:focus-visible,
+.hp-page select:focus-visible,
+.hp-page textarea:focus-visible {
+  outline: none;
+  border-color: var(--cfhf-crimson);
+  box-shadow: 0 0 0 3px rgba(181, 32, 43, 0.12);
+}
+
+.hp-page .hp-share__link:focus-visible {
+  outline: 2px solid var(--cfhf-crimson);
+  outline-offset: 2px;
+}
+
+/* ----- Confirmation panel transitions -----
+ * Confirmations slide up + fade in instead of instant switch.
+ */
+.hp-confirm,
+.hp-tix-confirm:not([hidden]) {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+}
+
+.hp-confirm.is-visible,
+.hp-tix-confirm.is-visible:not([hidden]) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ----- Sticky bar entrance -----
+ * Sticky bar fades/slides in when user scrolls past hero.
+ */
+.hp-sticky {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+
+@media (max-width: 900px) {
+  .hp-sticky {
+    /* mobile sticky stays at bottom — no entrance needed */
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hp-sticky.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ----- Card stagger animation -----
+ * Cards fade up with staggered delay on scroll into view.
+ */
+.hp-card-event {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out), box-shadow 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
+}
+
+.hp-card-event.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ----- Image loading shimmer -----
+ * Placeholder pulse while images load.
+ */
+.hp-hero__photo,
+.hp-card-event img {
+  background-color: var(--cfhf-surface-alt);
+}
+
+/* Stagger delays for card grid */
+.hp-card-event[data-stagger="0"] { transition-delay: 0ms; }
+.hp-card-event[data-stagger="1"] { transition-delay: 60ms; }
+.hp-card-event[data-stagger="2"] { transition-delay: 120ms; }
+.hp-card-event[data-stagger="3"] { transition-delay: 180ms; }
+.hp-card-event[data-stagger="4"] { transition-delay: 240ms; }
+.hp-card-event[data-stagger="5"] { transition-delay: 300ms; }
+.hp-card-event[data-stagger="6"] { transition-delay: 360ms; }
+.hp-card-event[data-stagger="7"] { transition-delay: 420ms; }
+
+/* ----- Hero image error fallback -----
+ * When hero image fails, fall back to crimson gradient.
+ */
+.hp-page .hp-hero--image {
+  /* Crimson gradient fallback if all images fail */
+  background: linear-gradient(135deg, #8b1a20 0%, var(--cfhf-crimson) 50%, #6e1520 100%);
+}
+
+.hp-page .hp-hero--image.has-photo {
+  /* Override gradient when photo loads */
+  background: none;
+}
+
+/* ----- Related events "View all" link -----
+ */
+.hp-related__view-all {
+  font-family: var(--font-ui-compact);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cfhf-crimson);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.hp-related__view-all:hover {
+  color: #8b1a20;
+}
+
+/* ----- Post-conversion: hide duplicate CTAs -----
 .hp-page .wf-demo[data-converted="on"] .hp-sticky,
 .hp-page .wf-demo[data-converted="on"] .hp-hero__actions,
 .hp-page .wf-demo[data-converted="on"] .hp-offer {
@@ -1062,6 +1327,14 @@ body.hp-dev .hp-banner {
 }
 
 @media (max-width: 900px) {
+  .hp-chips {
+    display: none;
+  }
+
+  .hp-filter-dropdown {
+    display: block;
+  }
+
   .hp-hero__actions {
     flex-direction: column;
     align-items: stretch;

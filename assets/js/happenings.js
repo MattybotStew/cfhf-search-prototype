@@ -133,6 +133,11 @@
 
     var cards = qsa(".hp-card-event", grid);
     var chips = qs(".hp-chips");
+    var filterDropdown = qs(".hp-filter-dropdown");
+    var filterTrigger = filterDropdown ? qs(".hp-filter-dropdown__trigger", filterDropdown) : null;
+    var filterMenu = filterDropdown ? qs(".hp-filter-dropdown__menu", filterDropdown) : null;
+    var filterValue = filterDropdown ? qs(".hp-filter-dropdown__value", filterDropdown) : null;
+    var filterOptions = filterMenu ? qsa("button[data-category]", filterMenu) : [];
     var empty = qs(".hp-listing-empty");
 
     cards.forEach(function (card) {
@@ -151,6 +156,17 @@
           btn.setAttribute("aria-pressed", String(match));
         });
       }
+      if (filterOptions.length) {
+        filterOptions.forEach(function (opt) {
+          var match = opt.getAttribute("data-category") === catId;
+          opt.classList.toggle("is-active", match);
+          opt.setAttribute("aria-selected", String(match));
+        });
+        var activeOpt = filterOptions.find(function (opt) {
+          return opt.getAttribute("data-category") === catId;
+        });
+        if (filterValue && activeOpt) filterValue.textContent = activeOpt.textContent;
+      }
       setParam("category", catId === "all" ? "" : catId);
 
       var visible = 0;
@@ -164,6 +180,30 @@
       if (empty) empty.hidden = visible > 0;
     }
 
+    function triggerCardStagger() {
+      // Add stagger data attributes for animation delays
+      var idx = 0;
+      cards.forEach(function (card) {
+        card.setAttribute("data-stagger", String(idx % 8));
+        idx++;
+      });
+      // Use IntersectionObserver to trigger entrance animations
+      if (!window.HappeningsStaggerObserver && window.IntersectionObserver) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: "40px" });
+        cards.forEach(function (card) {
+          if (!card.hidden) observer.observe(card);
+        });
+        window.HappeningsStaggerObserver = observer;
+      }
+    }
+
     function bindFilter(el, selector) {
       if (!el) return;
       qsa(selector, el).forEach(function (node) {
@@ -174,10 +214,49 @@
       });
     }
 
+    function closeFilterMenu() {
+      if (!filterDropdown || !filterMenu || !filterTrigger) return;
+      filterMenu.hidden = true;
+      filterTrigger.setAttribute("aria-expanded", "false");
+      filterDropdown.classList.remove("is-open");
+    }
+
+    function openFilterMenu() {
+      if (!filterDropdown || !filterMenu || !filterTrigger) return;
+      filterMenu.hidden = false;
+      filterTrigger.setAttribute("aria-expanded", "true");
+      filterDropdown.classList.add("is-open");
+    }
+
     bindFilter(chips, "button[data-category]");
+    if (filterTrigger && filterMenu) {
+      filterTrigger.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (filterMenu.hidden) openFilterMenu();
+        else closeFilterMenu();
+      });
+
+      filterOptions.forEach(function (opt) {
+        opt.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          setActiveCategory(opt.getAttribute("data-category"));
+          closeFilterMenu();
+        });
+      });
+
+      document.addEventListener("click", function (e) {
+        if (!filterDropdown.contains(e.target)) closeFilterMenu();
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeFilterMenu();
+      });
+    }
 
     var initial = getParam("category") || "all";
     setActiveCategory(initial);
+    triggerCardStagger();
   }
 
   /* ----- Detail hydration ----- */
@@ -304,7 +383,8 @@
             '<span class="hp-tag' + tagClass + '">' + esc(ev.tag) + "</span>" +
           "</div></a>"
       );
-    }).join("");
+    }).join("") +
+      '<p class="hp-related__view-all"><a href="happenings-listing.html">View all upcoming events</a></p>';
   }
 
   function initDetailPage(template) {
@@ -353,18 +433,20 @@
         form.hidden = true;
         var confirm = qs(".hp-confirm") || qs(".wf-confirm-live", form.closest(".wf-demo") || document);
         if (confirm) {
-          confirm.hidden = false;
           confirm.removeAttribute("hidden");
-          confirm.classList.add("is-visible");
           var who = qs("[data-hp='confirm-name']", confirm);
           if (who) who.textContent = name;
           var evt = qs("[data-hp='confirm-event']", confirm);
           if (evt) evt.textContent = ev.title;
+          // Trigger CSS transition
+          requestAnimationFrame(function () {
+            confirm.classList.add("is-visible");
+          });
           scrollToEl(confirm);
         }
         var demo = form.closest(".wf-demo");
         markConverted(demo);
-        toast("RSVP saved — you're on the list!");
+        toast("You're registered — we'll send a confirmation to your email.");
       });
     });
   }
@@ -424,16 +506,18 @@
       form.hidden = true;
       var confirm = qs(".hp-tix-confirm") || qs(".wf-tix-confirm");
       if (confirm) {
-        confirm.hidden = false;
         confirm.removeAttribute("hidden");
         setText("[data-hp='tix-title']", ev.title);
         setText("[data-hp='tix-date']", dateLabel);
         setText("[data-hp='tix-qty']", String(record.qty));
         setText("[data-hp='tix-total']", "$" + record.total);
+        requestAnimationFrame(function () {
+          confirm.classList.add("is-visible");
+        });
         scrollToEl(confirm);
       }
       markConverted(qs(".wf-demo"));
-      toast("Tickets reserved — confirmation is on this page.");
+      toast("Tickets reserved — you can view your booking below.");
     });
   }
 

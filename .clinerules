@@ -6,17 +6,17 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-09-10 (Cursor — hero overlay fix pushed)
-**Active Agent:** **Handoff** — Matt switching editors (Cline / Grok / etc.)
-**Branch:** `master` @ `0eb9aae` (pushed)
+**Last Updated:** 2026-09-11 (Cursor — mobile listing filter dropdown)
+**Active Agent:** Cursor
+**Branch:** `polish/p0-sprint` (committing mobile listing filter dropdown)
 **Focus:** **Happenings only.** Search + CCFB parked.
-**Status:** Hero overlay + Figma import docs LIVE on Pages after deploy. **setText** in `happenings.js`. Next: html.to.design `screens/01`–`09` onto userflow; optional Ventrata keys.
+**Status:** Listing filters: desktop chips; mobile ≤900px styled **Filter** dropdown (trigger + panel). Same 6 slugs + `?category=`.
 
 ### Pick up here (next agent)
-1. `git pull` → `master` @ `0eb9aae`
-2. **Verify:** http://127.0.0.1:8080/happenings-listing.html — **Hall / Happenings** overlays photo (flex + absolute `<img>`, not grid stack)
-3. **Do not** revert hero to CSS `background-image` or in-flow img height (see Decision LOCKED — Figma import)
-4. **Matt’s next task:** html.to.design `screens/01`–`09` → Figma [553:1219](https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football---Global-Banner?node-id=553-1219)
+1. Verify: http://127.0.0.1:8080/happenings-listing.html at ~390px — **Filter** dropdown opens/closes, no horizontal chips
+2. Desktop ≥901px still chip row
+3. **Do not** revert hero to CSS `background-image`
+4. **Matt’s next task:** html.to.design `screens/01`–`09` → Figma [553:1219](https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football---Global-Banner?node-id=553-1219) (re-import `01-listing-m` / `02-listing-filter-m`)
 
 ### Live — Happenings (verified 200)
 - https://mattybotstew.github.io/cfhf-search-prototype/happenings.html — client outline
@@ -56,6 +56,11 @@ Matt: “i want what is there now with the search functionality requested.”
 - Prototype-link cards: ticketed → 03, RSVP → 06; then wire FigJam if needed
 - Real Ventrata sandbox `apiKey` / `productID` when available
 - Do **not** pick up CCFB / search unless Matt asks
+
+### Newly completed (2026-09-11 — Cursor: mobile listing filter dropdown)
+- Replaced overflowing mobile chip row with styled **Filter** dropdown (trigger + options panel, ≤900px); desktop chips unchanged
+- `happenings.js` keeps chips, dropdown, and `?category=` in sync; closes on outside click / Escape
+- Regenerated `screens/01-listing-m.html` (closed) + `02-listing-filter-m.html` (open with Ticketed active)
 
 ### Newly completed (2026-09-10 — Cursor: hero overlay layout — local, not pushed)
 - Grid stack let in-flow `<img>` push **Hall / Happenings** below photo; fixed with flex + `position:absolute` photo/shade (matches old design, keeps `<img>` for html.to.design)

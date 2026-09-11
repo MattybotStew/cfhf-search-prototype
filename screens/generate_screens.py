@@ -53,6 +53,24 @@ def chips(active):
     return '<div class="chips">' + "".join(bits) + "</div>"
 
 
+def filter_dropdown(active, open_menu=False):
+    menu = ""
+    if open_menu:
+        menu_items = []
+        for c in CHIPS:
+            on = " is-active" if c == active else ""
+            menu_items.append(f'<li><button type="button" class="filter-dropdown__option{on}">{c}</button></li>')
+        menu = '<ul class="filter-dropdown__menu">' + "".join(menu_items) + "</ul>"
+    open_cls = " is-open" if open_menu else ""
+    return (
+        f'<div class="filter-dropdown{open_cls}"><span class="filter-dropdown__label">Filter</span>'
+        '<div class="filter-dropdown__wrap">'
+        f'<button type="button" class="filter-dropdown__trigger"><span>{active}</span>'
+        '<span class="filter-dropdown__chevron" aria-hidden="true"></span></button>'
+        f"{menu}</div></div>"
+    )
+
+
 def cards(items):
     html = ['<div class="grid">']
     for i, (date, title, tag, outline) in enumerate(items):
@@ -121,9 +139,10 @@ def listing_hero():
 def listing(filter_on=False, mobile=False):
     active = "Ticketed" if filter_on else "All"
     items = CARDS_TICKETED if filter_on else CARDS_ALL
+    control = filter_dropdown(active, filter_on and mobile) if mobile else chips(active)
     inner = f"""{listing_hero()}
     <div class="pad" style="padding-top:24px">
-      {chips(active)}
+      {control}
       {cards(items)}
     </div>"""
     slug = "02-listing-filter" if filter_on else "01-listing"

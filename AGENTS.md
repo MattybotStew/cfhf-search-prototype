@@ -76,7 +76,7 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 | 7. Empty state | **DONE** |
 | 8. A11y + mobile polish | **DONE** |
 
-**Status:** Search prototype is complete and **parked**. Active track is **Happenings only** — funnel **LIVE on Pages** with client polish shipped. **2026-09-08:** fixed missing `setText()` in `happenings.js` (JSON hydration / buttonLabel / RSVP). Sep 11: optional Figma import + Ventrata keys.
+**Status:** Search prototype is complete and **parked**. Active track is **Happenings only**. Sep 11: mobile listing filter is a styled dropdown on `polish/p0-sprint`. Pages still has chip-scroll until merged to `master`. Next: html.to.design `screens/01`–`09`; optional Ventrata keys.
 
 ### What the Happenings outline + Figma screens delivered (Cursor — 2026-09-08)
 - `happenings.html` — headlines and links to listing / ticketed / RSVP (no board, no toggles)
@@ -106,7 +106,9 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 
 > **2026-08-06 CCFB options 404 (Cursor):** `/ccfb-logo-options.html` 404 while home 200; Actions for `6fad3bf` stuck **queued**. Empty re-trigger `a4c5a77` → deploy success → **page LIVE (200)**. No Pages Settings toggle needed.
 
-**Handoff:** **Happenings only.** Search + CCFB parked. **LIVE on Pages:** start at `happenings-listing.html` (`master` @ `0eb9aae`). Hero overlay = flex + absolute `<img>`. **Figma import:** localhost + absolute URLs (see below). Next: html.to.design `screens/01`–`09`. Dev banner: `?dev=1`.
+**Handoff:** **Happenings only.** Search + CCFB parked. Listing **mobile filters** = styled dropdown on `polish/p0-sprint`. Merge to `master` for Pages deploy. Hero overlay = flex + absolute `<img>`. **Figma import:** localhost + absolute URLs. Next: html.to.design `screens/01`–`09` (re-import `*-m` listing). Dev banner: `?dev=1`.
+
+> **2026-09-11 mobile listing filter (Cursor):** ≤900px uses styled **Filter** dropdown (trigger + panel); desktop keeps chips. Same six slugs + `?category=` in `happenings.js`. Figma `01-listing-m` / `02-listing-filter-m` regenerated.
 
 > **2026-09-08 image hero (Cursor):** Detail pages use full-bleed image hero only (`hp-hero--image`); height via `data-hero-h` (sm/md/lg). No text-only hero variant.
 
