@@ -323,14 +323,35 @@
   grid-template-columns: 1fr;
 }
 
-.hp-page .wf-demo[data-rsvp="native"] .hp-offer,
 .hp-page .wf-demo[data-rsvp="embed"] .hp-offer,
 .hp-page .wf-demo[data-rsvp="fb"] .hp-offer {
   grid-template-columns: 1fr;
 }
 
-.hp-page .wf-demo[data-rsvp="native"] .hp-offer {
-  max-width: 36rem;
+.hp-page .wf-demo[data-rsvp="native"] .hp-offer--rsvp {
+  grid-template-columns: minmax(0, 1fr) minmax(17rem, 22rem);
+  max-width: none;
+  align-items: start;
+}
+
+.hp-offer__intro h2 {
+  margin-bottom: var(--space-3);
+}
+
+.hp-offer__form {
+  background: #fff;
+  border: 2px solid var(--cfhf-border);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.hp-offer__form label:first-of-type {
+  margin-top: 0;
+}
+
+.hp-offer__form .hp-offer__actions {
+  max-width: none;
+  margin-top: var(--space-4);
 }
 
 .hp-page .wf-demo[data-rsvp="embed"] .hp-widget,
@@ -387,6 +408,7 @@
   box-shadow: var(--shadow-sm);
 }
 
+.hp-offer__intro h2,
 .hp-offer__copy h2,
 .hp-section h2,
 .hp-related h2,
@@ -418,6 +440,35 @@
   line-height: 1.55;
   color: var(--cfhf-body);
   max-width: 38rem;
+}
+
+.hp-offer__date {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--cfhf-crimson);
+  margin: 0 0 var(--space-3);
+}
+
+.hp-offer__deadline {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--cfhf-ink);
+}
+
+.hp-offer__host {
+  font-size: 0.92rem;
+  color: var(--cfhf-muted);
+  margin-bottom: var(--space-5);
+}
+
+.hp-form__hint {
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--cfhf-muted);
 }
 
 .hp-offer__actions {
@@ -489,25 +540,135 @@
   display: block;
 }
 
-.hp-map,
-.hp-fb {
+.hp-map {
   display: block;
   width: 100%;
   border: 0;
   margin: var(--space-3) 0;
   background: var(--cfhf-surface);
-}
-
-.hp-map {
   height: 160px;
 }
 
-.hp-fb {
-  height: 130px;
+/* Fake Facebook event card (prototype — no live embed) */
+.hp-fb-mock-wrap {
+  margin: var(--space-3) 0;
 }
 
-.hp-fb--tall {
-  height: 280px;
+.hp-fb-mock {
+  display: block;
+  border: 1px solid #dddfe2;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.34;
+  transition: box-shadow 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+}
+
+.hp-fb-mock:hover {
+  border-color: #bcc0c4;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.hp-fb-mock__head {
+  display: flex;
+  gap: 0.55rem;
+  padding: 0.65rem 0.75rem;
+  align-items: center;
+}
+
+.hp-fb-mock__avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #fff;
+  border: 1px solid #e4e6eb;
+}
+
+.hp-fb-mock__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0.2rem;
+}
+
+.hp-fb-mock__page strong {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #050505;
+  line-height: 1.25;
+}
+
+.hp-fb-mock__page span {
+  display: block;
+  font-size: 0.75rem;
+  color: #65676b;
+}
+
+.hp-fb-mock__cover {
+  aspect-ratio: 1.91 / 1;
+  background: #f0f2f5;
+  overflow: hidden;
+}
+
+.hp-fb-mock__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hp-fb-mock__details {
+  padding: 0.65rem 0.75rem;
+  background: #f0f2f5;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.hp-fb-mock__details time {
+  font-size: 0.75rem;
+  color: #65676b;
+}
+
+.hp-fb-mock__details strong {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #050505;
+  line-height: 1.25;
+}
+
+.hp-fb-mock__details span {
+  font-size: 0.75rem;
+  color: #65676b;
+}
+
+.hp-fb-mock__cta {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.65rem 0.75rem 0.75rem;
+  border-top: 1px solid #e4e6eb;
+}
+
+.hp-fb-mock__pill {
+  flex: 1;
+  text-align: center;
+  padding: 0.45rem 0;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  background: #e4e6eb;
+  color: #050505;
+}
+
+.hp-fb-mock__pill--active {
+  background: #1877f2;
+  color: #fff;
 }
 
 .hp-embed-frame {
@@ -1150,15 +1311,15 @@
 }
 
 /* ----- Card stagger animation -----
- * Cards fade up with staggered delay on scroll into view.
+ * Listing cards fade up on scroll into view. Related carousel cards stay visible.
  */
-.hp-card-event {
+.hp-listing__grid .hp-card-event {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out), box-shadow 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
 }
 
-.hp-card-event.is-visible {
+.hp-listing__grid .hp-card-event.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1171,15 +1332,15 @@
   background-color: var(--cfhf-surface-alt);
 }
 
-/* Stagger delays for card grid */
-.hp-card-event[data-stagger="0"] { transition-delay: 0ms; }
-.hp-card-event[data-stagger="1"] { transition-delay: 60ms; }
-.hp-card-event[data-stagger="2"] { transition-delay: 120ms; }
-.hp-card-event[data-stagger="3"] { transition-delay: 180ms; }
-.hp-card-event[data-stagger="4"] { transition-delay: 240ms; }
-.hp-card-event[data-stagger="5"] { transition-delay: 300ms; }
-.hp-card-event[data-stagger="6"] { transition-delay: 360ms; }
-.hp-card-event[data-stagger="7"] { transition-delay: 420ms; }
+/* Stagger delays for listing card grid */
+.hp-listing__grid .hp-card-event[data-stagger="0"] { transition-delay: 0ms; }
+.hp-listing__grid .hp-card-event[data-stagger="1"] { transition-delay: 60ms; }
+.hp-listing__grid .hp-card-event[data-stagger="2"] { transition-delay: 120ms; }
+.hp-listing__grid .hp-card-event[data-stagger="3"] { transition-delay: 180ms; }
+.hp-listing__grid .hp-card-event[data-stagger="4"] { transition-delay: 240ms; }
+.hp-listing__grid .hp-card-event[data-stagger="5"] { transition-delay: 300ms; }
+.hp-listing__grid .hp-card-event[data-stagger="6"] { transition-delay: 360ms; }
+.hp-listing__grid .hp-card-event[data-stagger="7"] { transition-delay: 420ms; }
 
 /* ----- Hero image error fallback -----
  * When hero image fails, fall back to crimson gradient.
@@ -1321,7 +1482,8 @@ body.hp-dev .hp-banner {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .hp-offer {
+  .hp-offer,
+  .hp-page .wf-demo[data-rsvp="native"] .hp-offer--rsvp {
     grid-template-columns: 1fr;
   }
 }

@@ -6,11 +6,11 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-09-11 (Cursor — mobile listing filter dropdown)
+**Last Updated:** 2026-09-11 (Cursor — fake Facebook event card)
 **Active Agent:** Cursor
-**Branch:** `master` @ `2d2850b` (pushed)
+**Branch:** `master` (local uncommitted: football-fest RSVP + split offer + related fix)
 **Focus:** **Happenings only.** Search + CCFB parked.
-**Status:** Listing filters: desktop chips; mobile ≤900px styled **Filter** dropdown (trigger + panel). Same 6 slugs + `?category=`. LIVE on Pages after deploy.
+**Status:** Related carousel on detail pages now shows 3 cards (CSS stagger scoped to listing). Football Fest RSVP content + split offer layout local, not pushed.
 
 ### Pick up here (next agent)
 1. Verify: http://127.0.0.1:8080/happenings-listing.html at ~390px — **Filter** dropdown opens/closes, no horizontal chips
@@ -56,6 +56,16 @@ Matt: “i want what is there now with the search functionality requested.”
 - Prototype-link cards: ticketed → 03, RSVP → 06; then wire FigJam if needed
 - Real Ventrata sandbox `apiKey` / `productID` when available
 - Do **not** pick up CCFB / search unless Matt asks
+
+### Newly completed (2026-09-11 — Cursor: fake Facebook event card)
+- Sidebar/offer Facebook module uses static `.hp-fb-mock` graphic (logo, hero, date, Interested/Going) instead of empty iframe
+
+### Newly completed (2026-09-11 — Cursor: related events visibility)
+- Scoped card stagger animation to `.hp-listing__grid` — related carousel cards no longer stuck at `opacity: 0`
+
+### Newly completed (2026-09-11 — Cursor: Football Fest UX audit fixes)
+- `football-fest` JSON: date/year, Reserve My Passes CTA, party cap 6, deadline, rain plan, accessibility, full address, MARTA, expanded FAQs
+- RSVP template: offer date/deadline/host, section reorder, hide empty agenda, deduped related “View all”
 
 ### Newly completed (2026-09-11 — Cursor: mobile listing filter dropdown)
 - Replaced overflowing mobile chip row with styled **Filter** dropdown (trigger + options panel, ≤900px); desktop chips unchanged

@@ -1,5 +1,23 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-11 — Cursor: Fake Facebook event card
+
+- Replaced empty Facebook iframe embed with a prototype `.hp-fb-mock` card (page avatar, cover, date/title/venue, Interested/Going pills) hydrated from event JSON on RSVP + transactional detail pages.
+
+## 2026-09-11 — Cursor: Related events visibility fix
+
+- “More upcoming events” on detail pages was empty because listing stagger CSS set `opacity: 0` on all `.hp-card-event` elements; scoped animation to `.hp-listing__grid` only so related carousel cards render visible (3 cards from JSON).
+
+## 2026-09-11 — Cursor: RSVP offer split layout (desktop)
+
+- Native RSVP `.hp-offer` now uses intro + form card columns (full content width) instead of a narrow 576px left-floating block.
+
+## 2026-09-11 — Cursor: Football Fest UX audit fixes
+
+- Addressed P0–P2 from Free Day Pass page review on `happenings-rsvp.html?event=football-fest`.
+- Content: year in date, visitor-focused RSVP copy, party cap, deadline/scarcity, rain plan, accessibility, organizer phone, full address + MARTA, 5 FAQs.
+- Template: prominent offer date, section reorder (expect → agenda → about → rain → a11y → getting there → FAQ), hide empty agenda, one “View all” link.
+
 ## 2026-09-11 — Cursor: Mobile listing filters as styled dropdown (`5468dd7`)
 
 - Happenings listing at ≤900px now uses a labeled **Filter** dropdown (trigger button + options panel) instead of the clipped horizontal chip row or native `<select>`.

@@ -108,6 +108,8 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 
 **Handoff:** **Happenings only.** Search + CCFB parked. Listing **mobile filters** = styled dropdown on `master` @ `2d2850b`. Hero overlay = flex + absolute `<img>`. **Figma import:** localhost + absolute URLs. Next: html.to.design `screens/01`–`09` (re-import `*-m` listing). Dev banner: `?dev=1`.
 
+> **2026-09-11 Football Fest UX audit (Cursor):** `football-fest` RSVP content + template fixes — date/year, Reserve My Passes, party cap, rain/a11y sections, expanded FAQs. Local only until push.
+
 > **2026-09-11 mobile listing filter (Cursor):** ≤900px uses styled **Filter** dropdown (trigger + panel); desktop keeps chips. Same six slugs + `?category=` in `happenings.js`. Figma `01-listing-m` / `02-listing-filter-m` regenerated.
 
 > **2026-09-08 image hero (Cursor):** Detail pages use full-bleed image hero only (`hp-hero--image`); height via `data-hero-h` (sm/md/lg). No text-only hero variant.

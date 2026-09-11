@@ -70,6 +70,45 @@
       "&tabs=events&width=340&height=130&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false";
   }
 
+  function fbMockHtml(ev) {
+    var v = venue();
+    var pageName = v.name || "Chick-fil-A College Football Hall of Fame";
+    var href = ev.facebookEventUrl || v.facebookPage || "#";
+    var date = ev.dateLabel || ev.dateShort || "";
+    var title = ev.title || "";
+    var venueLine = [v.address, v.cityLine].filter(Boolean).join(", ") || "Atlanta, GA";
+    var img = ev.image || ev.thumb || "";
+    var dateShort = date.split("·")[0].trim() || date;
+
+    return (
+      '<a class="hp-fb-mock" href="' + esc(href) + '" target="_blank" rel="noopener noreferrer" aria-label="View ' + esc(title) + ' on Facebook">' +
+        '<div class="hp-fb-mock__head">' +
+          '<span class="hp-fb-mock__avatar"><img src="assets/images/logo.png" alt=""></span>' +
+          '<div class="hp-fb-mock__page">' +
+            "<strong>" + esc(pageName) + "</strong>" +
+            "<span>Event · " + esc(dateShort) + "</span>" +
+          "</div>" +
+        "</div>" +
+        '<div class="hp-fb-mock__cover"><img src="' + esc(img) + '" alt=""></div>' +
+        '<div class="hp-fb-mock__details">' +
+          "<time>" + esc(date) + "</time>" +
+          "<strong>" + esc(title) + "</strong>" +
+          "<span>" + esc(venueLine) + "</span>" +
+        "</div>" +
+        '<div class="hp-fb-mock__cta" aria-hidden="true">' +
+          '<span class="hp-fb-mock__pill">Interested</span>' +
+          '<span class="hp-fb-mock__pill hp-fb-mock__pill--active">Going</span>' +
+        "</div>" +
+      "</a>"
+    );
+  }
+
+  function renderFbMock(ev) {
+    qsa("[data-hp='fb-mock']").forEach(function (el) {
+      el.innerHTML = fbMockHtml(ev);
+    });
+  }
+
   function loadIndex() {
     return fetch("data/happenings-events.json")
       .then(function (r) {
@@ -269,7 +308,15 @@
     setText("[data-hp='hero-subtitle']", ev.heroSubtitle || "");
     setText("[data-hp='date-label']", ev.dateLabel);
     setText("[data-hp='offer-title']", ev.offerTitle);
+    setText("[data-hp='offer-date']", ev.offerDate || ev.dateLabel || "");
     setText("[data-hp='offer-copy']", ev.offerCopy);
+    setText("[data-hp='rsvp-deadline']", ev.rsvpDeadline || "");
+    setText("[data-hp='organizer']", ev.organizer || "");
+    setText("[data-hp='rain-plan']", ev.rainPlan || "");
+    setText("[data-hp='accessibility']", ev.accessibility || "");
+    qsa("[data-hp='offer-date'], [data-hp='rsvp-deadline'], [data-hp='organizer']").forEach(function (el) {
+      el.hidden = !el.textContent.trim();
+    });
     setText("[data-hp='sticky-label']", ev.stickyLabel);
     setText("[data-hp='sticky-meta']", ev.stickyMeta);
     setText("[data-hp='details']", ev.details || "");
@@ -299,10 +346,27 @@
     });
 
     var agenda = qs("[data-hp='agenda']");
+    var agendaSection = qs("[data-hp-section='agenda']");
     if (agenda && ev.agenda && ev.agenda.length) {
       agenda.innerHTML = ev.agenda.map(function (item) {
         return "<li>" + esc(item) + "</li>";
       }).join("");
+      if (agendaSection) agendaSection.hidden = false;
+    } else if (agendaSection) {
+      agendaSection.hidden = true;
+    }
+
+    toggleOptionalSection("rain", ev.rainPlan);
+    toggleOptionalSection("accessibility", ev.accessibility);
+
+    var partyHint = qs("[data-hp='party-hint']");
+    var attending = qs("[name='attending']");
+    var maxParty = ev.maxPartySize || 6;
+    if (partyHint) partyHint.textContent = "(max " + maxParty + " per RSVP)";
+    if (attending && attending.tagName === "SELECT") {
+      var opts = [];
+      for (var n = 1; n <= maxParty; n++) opts.push('<option value="' + n + '">' + n + "</option>");
+      attending.innerHTML = opts.join("");
     }
 
     var faq = qs("[data-hp='faq']");
@@ -326,9 +390,7 @@
     qsa("[data-hp='directions']").forEach(function (a) {
       a.href = v.mapsLink || "#";
     });
-    qsa("[data-hp='fb-embed']").forEach(function (iframe) {
-      iframe.src = fbPageEmbedSrc();
-    });
+    renderFbMock(ev);
     qsa("[data-hp='fb-link']").forEach(function (a) {
       a.href = ev.facebookEventUrl || v.facebookPage || "#";
     });
@@ -383,8 +445,17 @@
             '<span class="hp-tag' + tagClass + '">' + esc(ev.tag) + "</span>" +
           "</div></a>"
       );
-    }).join("") +
-      '<p class="hp-related__view-all"><a href="happenings-listing.html">View all upcoming events</a></p>';
+    }).join("");
+  }
+
+  function toggleOptionalSection(name, value) {
+    var section = qs("[data-hp-section='" + name + "']");
+    if (!section) return;
+    if (value) {
+      section.hidden = false;
+    } else {
+      section.hidden = true;
+    }
   }
 
   function initDetailPage(template) {

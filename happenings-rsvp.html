@@ -96,27 +96,34 @@
               <span class="hp-tag hp-tag--outline" data-hp="tag">Free · RSVP</span>
             </div>
             <div class="hp-hero__actions">
-              <a class="btn btn--tickets" href="#rsvp-form" data-scroll-to="rsvp-form" data-hp="cta-rsvp">Save My Spot</a>
+              <a class="btn btn--tickets" href="#rsvp-form" data-scroll-to="rsvp-form" data-hp="cta-rsvp">Reserve My Passes</a>
             </div>
           </div>
         </section>
 
         <main id="main" class="hp-wrap">
-          <section class="hp-offer" id="rsvp-form">
-            <form class="hp-form hp-offer__copy" data-mod="native-form" action="#" method="post">
+          <section class="hp-offer hp-offer--rsvp" id="rsvp-form">
+            <div class="hp-offer__intro">
               <h2 data-hp="offer-title">Reserve your seat</h2>
+              <p class="hp-offer__date" data-hp="offer-date"></p>
               <p data-hp="offer-copy">Free admission — RSVP helps us plan seating in the Hall theater. Doors at 5:45 PM.</p>
+              <p class="hp-offer__deadline" data-hp="rsvp-deadline"></p>
+              <p class="hp-offer__host" data-hp="organizer"></p>
+            </div>
+            <form class="hp-form hp-offer__form" data-mod="native-form" action="#" method="post">
               <label for="rsvp-name">Full name</label>
               <input id="rsvp-name" name="name" type="text" autocomplete="name" required>
               <label for="rsvp-email">Email</label>
               <input id="rsvp-email" name="email" type="email" autocomplete="email" required>
-              <label for="rsvp-n"># Attending</label>
+              <label for="rsvp-n"># Attending <span class="hp-form__hint" data-hp="party-hint">(max 6 per RSVP)</span></label>
               <select id="rsvp-n" name="attending">
-                <option>1</option><option>2</option><option>3</option><option>4+</option>
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
               </select>
               <label class="hp-check"><input type="checkbox" name="newsletter"> Send me Hall emails &amp; offers</label>
-              <button class="btn btn--tickets" type="submit" data-hp="cta-rsvp">Save My Spot</button>
+              <div class="hp-offer__actions">
+                <button class="btn btn--tickets" type="submit" data-hp="cta-rsvp">Reserve My Passes</button>
                 <a class="btn btn--outline" data-mod="calendar" data-hp="calendar" href="#">Add to calendar</a>
+              </div>
             </form>
             <div class="hp-widget" data-mod="form-embed">
               <span class="hp-widget__kicker">Form embed</span>
@@ -124,7 +131,7 @@
             </div>
             <div class="hp-widget" data-mod="fb-alt">
               <span class="hp-widget__kicker">Facebook Event</span>
-              <iframe class="hp-fb hp-fb--tall" data-hp="fb-embed" title="Facebook events" loading="lazy" scrolling="no"></iframe>
+              <div class="hp-fb-mock-wrap hp-fb-mock-wrap--tall" data-hp="fb-mock"></div>
               <p><a data-hp="fb-link" href="https://www.facebook.com/CollegeFootballHOF/events" target="_blank" rel="noopener noreferrer">RSVP on Facebook</a></p>
             </div>
           </section>
@@ -142,22 +149,30 @@
               <span class="hp-sticky__label" data-hp="sticky-label">Community Film Night</span>
               <strong data-hp="sticky-meta">Free · Fri, Sep 11</strong>
             </div>
-            <a class="btn btn--tickets" href="#rsvp-form" data-scroll-to="rsvp-form" data-hp="cta-rsvp">Save My Spot</a>
+            <a class="btn btn--tickets" href="#rsvp-form" data-scroll-to="rsvp-form" data-hp="cta-rsvp">Reserve My Passes</a>
           </div>
 
           <div class="hp-layout">
             <div>
               <section class="hp-section">
-                <h2>About the program</h2>
-                <p data-hp="details"></p>
-              </section>
-              <section class="hp-section">
                 <h2>What to expect</h2>
                 <p data-hp="expect"></p>
               </section>
-              <section class="hp-section">
+              <section class="hp-section" data-hp-section="agenda">
                 <h2>Agenda</h2>
                 <ul class="hp-agenda" data-hp="agenda"></ul>
+              </section>
+              <section class="hp-section">
+                <h2>About the program</h2>
+                <p data-hp="details"></p>
+              </section>
+              <section class="hp-section" data-hp-section="rain" hidden>
+                <h2>Rain plan</h2>
+                <p data-hp="rain-plan"></p>
+              </section>
+              <section class="hp-section" data-hp-section="accessibility" hidden>
+                <h2>Accessibility</h2>
+                <p data-hp="accessibility"></p>
               </section>
               <section class="hp-section">
                 <h2>Getting there</h2>
@@ -177,7 +192,7 @@
               </div>
               <div class="hp-card" data-mod="fb-sidebar">
                 <h3>Facebook Event</h3>
-                <iframe class="hp-fb" data-hp="fb-embed" title="Facebook events" loading="lazy" scrolling="no"></iframe>
+                <div class="hp-fb-mock-wrap" data-hp="fb-mock"></div>
                 <p><a data-hp="fb-link" href="https://www.facebook.com/CollegeFootballHOF/events" target="_blank" rel="noopener noreferrer">Open events on Facebook</a></p>
               </div>
               <div class="hp-card">
