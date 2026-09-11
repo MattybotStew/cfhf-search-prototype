@@ -1,10 +1,11 @@
 # Journal — CFHF Search Prototype
 
-## 2026-09-11 — Cursor: Mobile listing filters as styled dropdown
+## 2026-09-11 — Cursor: Mobile listing filters as styled dropdown (`5468dd7`)
 
 - Happenings listing at ≤900px now uses a labeled **Filter** dropdown (trigger button + options panel) instead of the clipped horizontal chip row or native `<select>`.
 - Desktop keeps chips. Same `?category=` + card show/hide in `happenings.js`; menu closes on pick, outside click, or Escape.
 - Figma mobile listing frames: `01-listing-m` closed dropdown; `02-listing-filter-m` open with Ticketed active.
+- Pushed to `origin/polish/p0-sprint`; merge to `master` for GitHub Pages deploy.
 
 ## 2026-09-10 — Cursor: Hero overlay fix pushed (`0eb9aae`)
 

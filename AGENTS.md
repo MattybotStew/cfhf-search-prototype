@@ -76,7 +76,7 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 | 7. Empty state | **DONE** |
 | 8. A11y + mobile polish | **DONE** |
 
-**Status:** Search prototype is complete and **parked**. Active track is **Happenings only**. Sep 11: mobile listing filter is a styled dropdown on `polish/p0-sprint`. Pages still has chip-scroll until merged to `master`. Next: html.to.design `screens/01`–`09`; optional Ventrata keys.
+**Status:** Search prototype is complete and **parked**. Active track is **Happenings only**. Sep 11: mobile listing filter dropdown pushed on `polish/p0-sprint` @ `5468dd7`. Pages still has chip-scroll until merged to `master`. Next: html.to.design `screens/01`–`09`; optional Ventrata keys.
 
 ### What the Happenings outline + Figma screens delivered (Cursor — 2026-09-08)
 - `happenings.html` — headlines and links to listing / ticketed / RSVP (no board, no toggles)
