@@ -56,6 +56,7 @@ Skip only for pure Q&A with **zero** file or plan changes.
 | Figma import screens | `screens/index.html` (local) |
 | Figma listing import (html.to.design) | `happenings-listing-import.html` (localhost only) |
 | Happenings — RSVP form embed | `happenings-form-embed.html` (iframe on RSVP alt module) |
+| Happenings — Hero height options | https://mattybotstew.github.io/cfhf-search-prototype/happenings-hero-options.html |
 
 Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options.html`.
 
@@ -112,7 +113,9 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 
 > **2026-09-11 mobile listing filter (Cursor):** ≤900px uses styled **Filter** dropdown (trigger + panel); desktop keeps chips. Same six slugs + `?category=` in `happenings.js`. Figma `01-listing-m` / `02-listing-filter-m` regenerated.
 
-> **2026-09-08 image hero (Cursor):** Detail pages use full-bleed image hero only (`hp-hero--image`); height via `data-hero-h` (sm/md/lg). No text-only hero variant.
+> **2026-09-11 flexible hero height (Cursor):** Detail + listing heroes grow with content (title, subtitle, meta, CTAs). `data-hero-h` / JSON `heroHeight` (sm/md/lg) sets **minimum** photo floor only — not fixed viewport height.
+
+> **2026-09-08 image hero (Cursor):** Detail pages use full-bleed image hero only (`hp-hero--image`); no text-only hero variant.
 
 ### What the Figma html.to.design import fix delivered (Cursor — 2026-09-10)
 - **Root cause:** html.to.design does not capture CSS `background-image`; remote cfbhall.com WebP and Pages 404s leave empty `Image (...)` frames in Figma

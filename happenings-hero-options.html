@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happenings Hero Height Options · College Football Hall of Fame</title>
+  <link rel="stylesheet" href="https://use.typekit.net/acw8nkk.css">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/happenings-pages.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+      color: var(--cfhf-body);
+      background: var(--cfhf-surface);
+    }
+
+    .hero-options {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: var(--space-8) var(--space-5) var(--space-12);
+    }
+
+    .hero-options__header {
+      margin-bottom: var(--space-10);
+      padding-bottom: var(--space-6);
+      border-bottom: 2px solid var(--cfhf-border);
+    }
+
+    .hero-options__eyebrow {
+      margin: 0 0 var(--space-2);
+      font-family: var(--font-ui-compact);
+      font-size: var(--fs-caption);
+      font-weight: var(--fw-bold);
+      letter-spacing: var(--ls-wide);
+      text-transform: uppercase;
+      color: var(--cfhf-crimson);
+    }
+
+    .hero-options__header h1 {
+      margin: 0 0 var(--space-3);
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: var(--fw-bold);
+      line-height: var(--lh-tight);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .hero-options__header p {
+      margin: 0 0 var(--space-3);
+      max-width: 42rem;
+      color: var(--cfhf-ink);
+    }
+
+    .hero-options__header p:last-child { margin-bottom: 0; }
+
+    .hero-options__header a {
+      color: var(--cfhf-crimson);
+      font-weight: var(--fw-bold);
+    }
+
+    .hero-options__section {
+      margin-bottom: var(--space-12);
+    }
+
+    .hero-options__section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin: 0 0 var(--space-2);
+      padding-bottom: var(--space-2);
+      border-bottom: 3px solid var(--cfhf-crimson);
+      display: inline-block;
+    }
+
+    .hero-options__label {
+      display: block;
+      margin: 0 0 var(--space-3);
+      font-family: var(--font-ui-compact);
+      font-size: 0.78rem;
+      font-weight: var(--fw-bold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cfhf-muted);
+    }
+
+    .hero-options__label code {
+      font-family: ui-monospace, monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--cfhf-ink);
+    }
+
+    .hero-options__specimen {
+      border: 1px solid var(--cfhf-border);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      background: #1a1a1a;
+    }
+
+    /* Standalone page — no hours bar above heroes */
+    .hero-options .hp-hero--image {
+      padding-top: var(--space-10);
+    }
+
+    .hero-options__note {
+      margin-top: var(--space-10);
+      padding: var(--space-5);
+      background: var(--cfhf-white);
+      border: 1px solid var(--cfhf-border);
+      font-size: 0.92rem;
+      color: var(--cfhf-ink);
+    }
+
+    .hero-options__note ul {
+      margin: var(--space-3) 0 0;
+      padding-left: 1.2em;
+    }
+
+    .hero-options__note li { margin-bottom: 0.35rem; }
+  </style>
+</head>
+<body class="hp-page">
+  <main class="hero-options">
+    <header class="hero-options__header">
+      <p class="hero-options__eyebrow">Happenings · CMS reference</p>
+      <h1>Image hero height options</h1>
+      <p>
+        Short, medium, and tall set a <strong>minimum photo floor</strong> only.
+        Actual hero height grows with breadcrumb, title lines, subtitle, meta, and CTAs.
+      </p>
+      <p><a href="happenings.html">← Happenings outline</a> · <a href="happenings-listing.html">Listing</a> · <a href="happenings-rsvp.html?event=football-fest">RSVP sample</a></p>
+    </header>
+
+    <section class="hero-options__section" aria-labelledby="short-heading">
+      <h2 id="short-heading">Short</h2>
+      <span class="hero-options__label"><code>data-hero-h="sm"</code> · min-height 14rem</span>
+      <div class="hero-options__specimen">
+        <div class="wf-demo" data-hero-h="sm">
+          <section class="hp-hero hp-hero--image">
+            <img class="hp-hero__photo" src="assets/images/happenings/hero-listing.jpg" alt="" width="1112" height="416">
+            <div class="hp-hero__shade" aria-hidden="true"></div>
+            <div class="hp-hero__inner">
+              <p class="hp-crumb">Happenings / Community Film Night</p>
+              <h1 class="hp-hero__title">
+                <span class="hp-hero__title-line hp-hero__title-line--stroke">Community</span>
+                <span class="hp-hero__title-line">Film Night</span>
+              </h1>
+              <p class="hp-hero__subtitle">Free screening + panel talk</p>
+              <div class="hp-hero__meta">
+                <span class="hp-meta">Friday, September 11 · 6–9PM</span>
+                <span class="hp-tag hp-tag--outline">Free · RSVP</span>
+              </div>
+              <div class="hp-hero__actions">
+                <a class="btn btn--tickets" href="#">Save My Spot</a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero-options__section" aria-labelledby="medium-heading">
+      <h2 id="medium-heading">Medium</h2>
+      <span class="hero-options__label"><code>data-hero-h="md"</code> · min-height 18rem (default)</span>
+      <div class="hero-options__specimen">
+        <div class="wf-demo" data-hero-h="md">
+          <section class="hp-hero hp-hero--image">
+            <img class="hp-hero__photo" src="assets/images/happenings/hero-ticketed.jpg" alt="" width="1112" height="416">
+            <div class="hp-hero__shade" aria-hidden="true"></div>
+            <div class="hp-hero__inner">
+              <p class="hp-crumb">Happenings / Gameday Kickoff Party</p>
+              <h1 class="hp-hero__title">
+                <span class="hp-hero__title-line hp-hero__title-line--stroke">Gameday</span>
+                <span class="hp-hero__title-line">Kickoff Party</span>
+              </h1>
+              <p class="hp-hero__subtitle">Every Saturday in October</p>
+              <div class="hp-hero__meta">
+                <span class="hp-meta">Every Saturday in October · 10AM–5PM</span>
+                <span class="hp-tag">Ticketed</span>
+              </div>
+              <div class="hp-hero__actions">
+                <a class="btn btn--tickets" href="#">Get Tickets</a>
+                <a class="btn btn--outline" href="#">Learn more</a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero-options__section" aria-labelledby="tall-heading">
+      <h2 id="tall-heading">Tall</h2>
+      <span class="hero-options__label"><code>data-hero-h="lg"</code> · min-height 24rem</span>
+      <div class="hero-options__specimen">
+        <div class="wf-demo" data-hero-h="lg">
+          <section class="hp-hero hp-hero--image">
+            <img class="hp-hero__photo" src="assets/images/happenings/hero-listing.jpg" alt="" width="1112" height="416">
+            <div class="hp-hero__shade" aria-hidden="true"></div>
+            <div class="hp-hero__inner">
+              <p class="hp-crumb">Happenings / Football Fest &amp; Free Day</p>
+              <h1 class="hp-hero__title">
+                <span class="hp-hero__title-line hp-hero__title-line--stroke">Football Fest</span>
+                <span class="hp-hero__title-line">&amp; Free Day</span>
+              </h1>
+              <p class="hp-hero__subtitle">Family activities on the plaza + full museum access</p>
+              <div class="hp-hero__meta">
+                <span class="hp-meta">Saturday, August 22, 2026 · 10 AM–5 PM</span>
+                <span class="hp-tag hp-tag--outline">Free · RSVP</span>
+              </div>
+              <div class="hp-hero__actions">
+                <a class="btn btn--tickets" href="#">Reserve My Passes</a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero-options__section" aria-labelledby="listing-heading">
+      <h2 id="listing-heading">Listing hero</h2>
+      <span class="hero-options__label">No tier — content-driven · min-height 14rem</span>
+      <div class="hero-options__specimen">
+        <section class="hp-hero hp-hero--image hp-hero--listing">
+          <img class="hp-hero__photo" src="assets/images/happenings/hero-listing.jpg" alt="" width="1112" height="416">
+          <div class="hp-hero__shade" aria-hidden="true"></div>
+          <div class="hp-hero__inner">
+            <p class="hp-crumb">News &amp; Happenings</p>
+            <h1 class="hp-hero__title">
+              <span class="hp-hero__title-line hp-hero__title-line--stroke">Hall</span>
+              <span class="hp-hero__title-line">Happenings</span>
+            </h1>
+            <p class="hp-hero__subtitle">Programs, exhibitions, and events at the College Football Hall of Fame.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <aside class="hero-options__note">
+      <strong>CMS mapping</strong>
+      <ul>
+        <li>Short → <code>heroHeight: "sm"</code> (14rem floor)</li>
+        <li>Medium → <code>heroHeight: "md"</code> (18rem floor, default)</li>
+        <li>Tall → <code>heroHeight: "lg"</code> (24rem floor)</li>
+        <li>When copy + CTAs need more room, the hero grows above the floor automatically.</li>
+      </ul>
+    </aside>
+  </main>
+</body>
+</html>

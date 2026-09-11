@@ -118,7 +118,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: clamp(18rem, 42vw, 32rem);
+  min-height: 16rem;
   padding: calc(var(--hours-bar-height) + var(--space-10)) clamp(1.25rem, 4vw, 3rem) var(--space-10);
   color: #fff;
   background-color: #1a1a1a;
@@ -297,9 +297,10 @@
   color: var(--cfhf-black);
 }
 
+/* Hero height tiers = minimum photo floor; content + padding sets actual height */
 .hp-page .wf-demo[data-hero-h="sm"] .hp-hero--image { min-height: 14rem; }
-.hp-page .wf-demo[data-hero-h="md"] .hp-hero--image { min-height: clamp(18rem, 38vw, 28rem); }
-.hp-page .wf-demo[data-hero-h="lg"] .hp-hero--image { min-height: clamp(24rem, 50vw, 36rem); }
+.hp-page .wf-demo[data-hero-h="md"] .hp-hero--image { min-height: 18rem; }
+.hp-page .wf-demo[data-hero-h="lg"] .hp-hero--image { min-height: 24rem; }
 
 /* Module reflow */
 .hp-page .wf-demo[data-ventrata="on"] .hp-ticket-form {
@@ -372,7 +373,7 @@
 }
 
 .hp-hero--listing {
-  min-height: clamp(16rem, 32vw, 26rem);
+  min-height: 14rem;
 }
 
 .hp-wrap--listing {
@@ -402,7 +403,7 @@
   gap: var(--space-8);
   align-items: start;
   padding: var(--space-8);
-  margin-bottom: var(--space-10);
+  margin-bottom: var(--space-6);
   background: var(--cfhf-surface);
   border: 1px solid var(--cfhf-border);
   box-shadow: var(--shadow-sm);
@@ -703,12 +704,38 @@
   justify-content: space-between;
   gap: var(--space-4);
   padding: var(--space-4) var(--space-6);
-  margin-bottom: var(--space-10);
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid var(--cfhf-border);
   border-left: 4px solid var(--cfhf-crimson);
   box-shadow: var(--shadow-md);
   backdrop-filter: blur(8px);
+}
+
+@media (min-width: 901px) {
+  .hp-sticky {
+    position: fixed;
+    bottom: 0;
+    left: var(--rail-width);
+    right: 0;
+    z-index: 35;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(100%);
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  }
+
+  .hp-sticky.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hp-sticky {
+    left: var(--rail-width-xl);
+  }
 }
 
 .hp-sticky__info {
@@ -744,6 +771,8 @@
   grid-template-columns: minmax(0, 1fr) 300px;
   gap: var(--space-12);
   margin-bottom: var(--space-12);
+  padding-top: var(--space-8);
+  border-top: 2px dashed color-mix(in srgb, var(--cfhf-border) 85%, var(--cfhf-crimson));
 }
 
 .hp-section + .hp-section {
@@ -1288,28 +1317,6 @@
   transform: translateY(0);
 }
 
-/* ----- Sticky bar entrance -----
- * Sticky bar fades/slides in when user scrolls past hero.
- */
-.hp-sticky {
-  opacity: 0;
-  transform: translateY(-8px);
-  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
-}
-
-@media (max-width: 900px) {
-  .hp-sticky {
-    /* mobile sticky stays at bottom — no entrance needed */
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.hp-sticky.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* ----- Card stagger animation -----
  * Listing cards fade up on scroll into view. Related carousel cards stay visible.
  */
@@ -1522,6 +1529,9 @@ body.hp-dev .hp-banner {
     z-index: 30;
     margin-bottom: var(--space-8);
     border-left-width: 4px;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
   }
 
   .hp-offer {

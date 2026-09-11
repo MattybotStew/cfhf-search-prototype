@@ -1,5 +1,27 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-11 — Cursor: Hero height options page
+
+- Added `happenings-hero-options.html` — standalone reference showing short / medium / tall detail heroes + listing hero with CMS notes.
+
+## 2026-09-11 — Cursor: Flexible Happenings hero heights
+
+- Removed viewport `clamp()` min-heights on `.hp-hero--image` and listing hero; height now follows content + padding.
+- `data-hero-h` / JSON `heroHeight` (sm/md/lg) = minimum photo floor only (14/18/24rem).
+- Sample events: football-fest `lg`, community-film-night `sm`, gameday-kickoff `md`.
+
+## 2026-09-11 — Cursor: Smooth anchor scrolling
+
+- Global `scroll-behavior: smooth` in `tokens.css` (respects reduced motion); happenings.js delegates all same-page `#` links and scroll CTAs through `scrollToEl`.
+
+## 2026-09-11 — Cursor: Sticky conversion bar fix
+
+- Wired `initStickyBar()` (hero IntersectionObserver) so desktop bar slides in fixed at bottom after scroll; removed in-flow opacity trap and layout gap.
+
+## 2026-09-11 — Cursor: Dashed divider after RSVP offer
+
+- Added dashed top border on `.hp-layout` to separate the conversion band from body content (What to expect, etc.) on detail pages.
+
 ## 2026-09-11 — Cursor: Fake Facebook event card
 
 - Replaced empty Facebook iframe embed with a prototype `.hp-fb-mock` card (page avatar, cover, date/title/venue, Interested/Going pills) hydrated from event JSON on RSVP + transactional detail pages.

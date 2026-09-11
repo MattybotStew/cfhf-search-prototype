@@ -302,6 +302,14 @@
   function hydrateDetail(ev) {
     document.title = ev.title + " · Happenings · College Football Hall of Fame";
 
+    var demo = qs(".wf-demo");
+    if (demo) {
+      var heroH = ev.heroHeight || "md";
+      if (heroH === "sm" || heroH === "md" || heroH === "lg") {
+        demo.setAttribute("data-hero-h", heroH);
+      }
+    }
+
     setText("[data-hp='crumb-event']", ev.title);
     setText("[data-hp='title-stroke']", ev.titleStroke);
     setText("[data-hp='title-solid']", ev.titleSolid);
@@ -458,6 +466,32 @@
     }
   }
 
+  function initStickyBar() {
+    var sticky = qs(".hp-sticky");
+    var hero = qs(".hp-hero");
+    if (!sticky || !hero) return;
+
+    var demo = qs(".wf-demo");
+    if (demo && demo.getAttribute("data-converted") === "on") return;
+
+    function setVisible(show) {
+      sticky.classList.toggle("is-visible", show);
+    }
+
+    if (window.matchMedia("(max-width: 900px)").matches) {
+      setVisible(true);
+      return;
+    }
+
+    function update() {
+      setVisible(hero.getBoundingClientRect().bottom <= 0);
+    }
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+  }
+
   function initDetailPage(template) {
     var paramId = getParam("event");
     var id = paramId || (template === "transactional" ? DEFAULT_TX : DEFAULT_RSVP);
@@ -476,9 +510,9 @@
     hydrateDetail(ev);
     initRsvpForm(ev);
     initTicketPicker(ev);
-    initTicketFlow();
     initCalendar(ev);
     initNewsletter();
+    initStickyBar();
   }
 
   function initRsvpForm(ev) {
@@ -592,21 +626,6 @@
     });
   }
 
-  function initTicketFlow() {
-    var demo = qs(".wf-demo");
-    if (!demo || demo.getAttribute("data-ventrata") !== "on") return;
-
-    qsa("[data-scroll-tickets]").forEach(function (btn) {
-      btn.addEventListener("click", function (e) {
-        var widget = qs('.hp-widget[data-mod="ventrata"]');
-        if (widget) {
-          e.preventDefault();
-          scrollToEl(widget);
-        }
-      });
-    });
-  }
-
   function icsStamp(iso) {
     return iso.replace(/[-:]/g, "").replace(/\.\d+/, "").slice(0, 15);
   }
@@ -671,31 +690,56 @@
     });
   }
 
+  function scrollToHash(target, hash) {
+    scrollToEl(target);
+    if (hash && history.replaceState) {
+      history.replaceState(null, "", hash);
+    }
+  }
+
   function initScrollLinks() {
-    qsa("[data-scroll-to]").forEach(function (btn) {
-      btn.addEventListener("click", function (e) {
-        var id = btn.getAttribute("data-scroll-to");
-        var target = document.getElementById(id);
+    if (initScrollLinks._bound) return;
+    initScrollLinks._bound = true;
+
+    document.addEventListener("click", function (e) {
+      var ticketsBtn = e.target.closest("[data-scroll-tickets]");
+      if (ticketsBtn) {
+        var demo = qs(".wf-demo");
+        var target = (demo && demo.getAttribute("data-ventrata") === "on")
+          ? (qs('.hp-widget[data-mod="ventrata"]') || document.getElementById("tickets"))
+          : document.getElementById("tickets");
         if (target) {
           e.preventDefault();
-          scrollToEl(target);
+          scrollToHash(target, target.id ? "#" + target.id : "");
         }
-      });
+        return;
+      }
+
+      var link = e.target.closest("a[href^='#']");
+      if (!link) return;
+
+      var hash = link.getAttribute("href");
+      if (!hash || hash === "#") return;
+
+      var id = decodeURIComponent(hash.slice(1));
+      var target = document.getElementById(id);
+      if (!target) return;
+
+      e.preventDefault();
+      scrollToHash(target, hash);
     });
   }
 
   function initBoard() {
     var tx = findEvent(DEFAULT_TX);
     var rsvp = findEvent(DEFAULT_RSVP);
-    if (tx) {
-      initTicketPicker(tx);
-      initTicketFlow();
-    }
+    if (tx) initTicketPicker(tx);
     initCalendar(tx || rsvp);
     if (rsvp) initRsvpForm(rsvp);
     qsa("[data-hp='map']").forEach(function (iframe) { iframe.src = mapsEmbedSrc(); });
     qsa("[data-hp='fb-embed']").forEach(function (iframe) { iframe.src = fbPageEmbedSrc(); });
     initNewsletter();
+    initScrollLinks();
   }
 
   window.bindHappeningsFaq = function (root) {

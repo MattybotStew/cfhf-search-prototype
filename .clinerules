@@ -6,7 +6,7 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-09-11 (Cursor — fake Facebook event card)
+**Last Updated:** 2026-09-11 (Cursor — hero options page)
 **Active Agent:** Cursor
 **Branch:** `master` (local uncommitted: football-fest RSVP + split offer + related fix)
 **Focus:** **Happenings only.** Search + CCFB parked.
@@ -100,7 +100,7 @@ Matt: “i want what is there now with the search functionality requested.”
 - Added missing `setText()` in `assets/js/happenings.js` — restores JSON hydration (buttonLabel, RSVP bind, FAQ ARIA, related carousel)
 
 ### Newly completed (2026-09-08 — Cursor: image hero only)
-- Removed `.hp-hero--text` fallback from transactional + RSVP; `data-hero-h` (sm/md/lg) controls image hero height only
+- Removed `.hp-hero--text` fallback from transactional + RSVP; `data-hero-h` / JSON `heroHeight` (sm/md/lg) sets minimum photo floor — hero grows with content
 - Regenerated `screens/` with photo backgrounds on listing + detail import frames
 
 ### Newly completed (2026-09-08 — Cursor: client polish P0–P2)
