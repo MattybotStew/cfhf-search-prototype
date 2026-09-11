@@ -8,9 +8,9 @@
 
 **Last Updated:** 2026-09-11 (Cursor — mobile listing filter dropdown)
 **Active Agent:** Cursor
-**Branch:** `polish/p0-sprint` @ `5468dd7` (pushed)
+**Branch:** `master` @ `2d2850b` (pushed)
 **Focus:** **Happenings only.** Search + CCFB parked.
-**Status:** Listing filters: desktop chips; mobile ≤900px styled **Filter** dropdown (trigger + panel). Same 6 slugs + `?category=`. Merge to `master` for Pages deploy.
+**Status:** Listing filters: desktop chips; mobile ≤900px styled **Filter** dropdown (trigger + panel). Same 6 slugs + `?category=`. LIVE on Pages after deploy.
 
 ### Pick up here (next agent)
 1. Verify: http://127.0.0.1:8080/happenings-listing.html at ~390px — **Filter** dropdown opens/closes, no horizontal chips

@@ -76,7 +76,7 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 | 7. Empty state | **DONE** |
 | 8. A11y + mobile polish | **DONE** |
 
-**Status:** Search prototype is complete and **parked**. Active track is **Happenings only**. Sep 11: mobile listing filter dropdown pushed on `polish/p0-sprint` @ `5468dd7`. Pages still has chip-scroll until merged to `master`. Next: html.to.design `screens/01`–`09`; optional Ventrata keys.
+**Status:** Search prototype is complete and **parked**. Active track is **Happenings only**. Sep 11: mobile listing filter dropdown merged to `master` @ `2d2850b`. Pages deploy pending. Next: html.to.design `screens/01`–`09`; optional Ventrata keys.
 
 ### What the Happenings outline + Figma screens delivered (Cursor — 2026-09-08)
 - `happenings.html` — headlines and links to listing / ticketed / RSVP (no board, no toggles)
@@ -106,7 +106,7 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 
 > **2026-08-06 CCFB options 404 (Cursor):** `/ccfb-logo-options.html` 404 while home 200; Actions for `6fad3bf` stuck **queued**. Empty re-trigger `a4c5a77` → deploy success → **page LIVE (200)**. No Pages Settings toggle needed.
 
-**Handoff:** **Happenings only.** Search + CCFB parked. Listing **mobile filters** = styled dropdown on `polish/p0-sprint`. Merge to `master` for Pages deploy. Hero overlay = flex + absolute `<img>`. **Figma import:** localhost + absolute URLs. Next: html.to.design `screens/01`–`09` (re-import `*-m` listing). Dev banner: `?dev=1`.
+**Handoff:** **Happenings only.** Search + CCFB parked. Listing **mobile filters** = styled dropdown on `master` @ `2d2850b`. Hero overlay = flex + absolute `<img>`. **Figma import:** localhost + absolute URLs. Next: html.to.design `screens/01`–`09` (re-import `*-m` listing). Dev banner: `?dev=1`.
 
 > **2026-09-11 mobile listing filter (Cursor):** ≤900px uses styled **Filter** dropdown (trigger + panel); desktop keeps chips. Same six slugs + `?category=` in `happenings.js`. Figma `01-listing-m` / `02-listing-filter-m` regenerated.
 
