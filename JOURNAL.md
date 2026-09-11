@@ -1,5 +1,14 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-11 — Cursor: Hero options tier visibility
+
+- Hero options page used identical full copy on sm/md/lg, so all three exceeded the 14/18/24rem floors and looked the same (~410px).
+- Specimens now use sparse → fuller copy so tiers render ~224 / ~288 / ~413px; added full-copy collapse example + live px readout.
+
+## 2026-09-11 — Cursor: Hero options page button styles
+
+- `happenings-hero-options.html` now loads `search.css` so `.btn` / `.btn--tickets` CTAs render as crimson buttons (page only had `happenings-pages.css`, which only overrides hero button sizing).
+
 ## 2026-09-11 — Cursor: Hero height options page
 
 - Added `happenings-hero-options.html` — standalone reference showing short / medium / tall detail heroes + listing hero with CMS notes.

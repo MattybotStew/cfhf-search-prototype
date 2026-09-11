@@ -6,11 +6,11 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-09-11 (Cursor — hero options page)
+**Last Updated:** 2026-09-11 (Cursor — hero options tier visibility)
 **Active Agent:** Cursor
-**Branch:** `master` (local uncommitted: football-fest RSVP + split offer + related fix)
+**Branch:** `master` (local uncommitted: hero-options sparse specimens + btn fix)
 **Focus:** **Happenings only.** Search + CCFB parked.
-**Status:** Related carousel on detail pages now shows 3 cards (CSS stagger scoped to listing). Football Fest RSVP content + split offer layout local, not pushed.
+**Status:** Pushed `d8c86fe` + `633e2d1`. Hero options: added `search.css`; sparse sm/md/lg specimens so tier floors are visible.
 
 ### Pick up here (next agent)
 1. Verify: http://127.0.0.1:8080/happenings-listing.html at ~390px — **Filter** dropdown opens/closes, no horizontal chips

@@ -6,6 +6,7 @@
   <title>Happenings Hero Height Options · College Football Hall of Fame</title>
   <link rel="stylesheet" href="https://use.typekit.net/acw8nkk.css">
   <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/search.css">
   <link rel="stylesheet" href="assets/css/happenings-pages.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; }
@@ -98,6 +99,17 @@
       color: var(--cfhf-ink);
     }
 
+    .hero-options__measured {
+      font-weight: var(--fw-bold);
+      color: var(--cfhf-crimson);
+      letter-spacing: 0.04em;
+    }
+
+    .hero-options__section--compare {
+      padding-top: var(--space-6);
+      border-top: 2px dashed var(--cfhf-border);
+    }
+
     .hero-options__specimen {
       border: 1px solid var(--cfhf-border);
       box-shadow: var(--shadow-sm);
@@ -134,33 +146,24 @@
       <h1>Image hero height options</h1>
       <p>
         Short, medium, and tall set a <strong>minimum photo floor</strong> only.
-        Actual hero height grows with breadcrumb, title lines, subtitle, meta, and CTAs.
+        When title, subtitle, meta, and CTAs need more room, the hero grows past that floor — and all tiers can look the same.
       </p>
       <p><a href="happenings.html">← Happenings outline</a> · <a href="happenings-listing.html">Listing</a> · <a href="happenings-rsvp.html?event=football-fest">RSVP sample</a></p>
     </header>
 
     <section class="hero-options__section" aria-labelledby="short-heading">
       <h2 id="short-heading">Short</h2>
-      <span class="hero-options__label"><code>data-hero-h="sm"</code> · min-height 14rem</span>
-      <div class="hero-options__specimen">
+      <span class="hero-options__label" data-hero-label><code>data-hero-h="sm"</code> · min-height 14rem · sparse copy</span>
+      <div class="hero-options__specimen" data-hero-specimen>
         <div class="wf-demo" data-hero-h="sm">
           <section class="hp-hero hp-hero--image">
             <img class="hp-hero__photo" src="assets/images/happenings/hero-listing.jpg" alt="" width="1112" height="416">
             <div class="hp-hero__shade" aria-hidden="true"></div>
             <div class="hp-hero__inner">
-              <p class="hp-crumb">Happenings / Community Film Night</p>
+              <p class="hp-crumb">Happenings / Film Night</p>
               <h1 class="hp-hero__title">
-                <span class="hp-hero__title-line hp-hero__title-line--stroke">Community</span>
                 <span class="hp-hero__title-line">Film Night</span>
               </h1>
-              <p class="hp-hero__subtitle">Free screening + panel talk</p>
-              <div class="hp-hero__meta">
-                <span class="hp-meta">Friday, September 11 · 6–9PM</span>
-                <span class="hp-tag hp-tag--outline">Free · RSVP</span>
-              </div>
-              <div class="hp-hero__actions">
-                <a class="btn btn--tickets" href="#">Save My Spot</a>
-              </div>
             </div>
           </section>
         </div>
@@ -169,27 +172,19 @@
 
     <section class="hero-options__section" aria-labelledby="medium-heading">
       <h2 id="medium-heading">Medium</h2>
-      <span class="hero-options__label"><code>data-hero-h="md"</code> · min-height 18rem (default)</span>
-      <div class="hero-options__specimen">
+      <span class="hero-options__label" data-hero-label><code>data-hero-h="md"</code> · min-height 18rem (default) · title + subtitle</span>
+      <div class="hero-options__specimen" data-hero-specimen>
         <div class="wf-demo" data-hero-h="md">
           <section class="hp-hero hp-hero--image">
             <img class="hp-hero__photo" src="assets/images/happenings/hero-ticketed.jpg" alt="" width="1112" height="416">
             <div class="hp-hero__shade" aria-hidden="true"></div>
             <div class="hp-hero__inner">
-              <p class="hp-crumb">Happenings / Gameday Kickoff Party</p>
+              <p class="hp-crumb">Happenings / Kickoff Party</p>
               <h1 class="hp-hero__title">
-                <span class="hp-hero__title-line hp-hero__title-line--stroke">Gameday</span>
-                <span class="hp-hero__title-line">Kickoff Party</span>
+                <span class="hp-hero__title-line hp-hero__title-line--stroke">Kickoff</span>
+                <span class="hp-hero__title-line">Party</span>
               </h1>
               <p class="hp-hero__subtitle">Every Saturday in October</p>
-              <div class="hp-hero__meta">
-                <span class="hp-meta">Every Saturday in October · 10AM–5PM</span>
-                <span class="hp-tag">Ticketed</span>
-              </div>
-              <div class="hp-hero__actions">
-                <a class="btn btn--tickets" href="#">Get Tickets</a>
-                <a class="btn btn--outline" href="#">Learn more</a>
-              </div>
             </div>
           </section>
         </div>
@@ -198,8 +193,36 @@
 
     <section class="hero-options__section" aria-labelledby="tall-heading">
       <h2 id="tall-heading">Tall</h2>
-      <span class="hero-options__label"><code>data-hero-h="lg"</code> · min-height 24rem</span>
-      <div class="hero-options__specimen">
+      <span class="hero-options__label" data-hero-label><code>data-hero-h="lg"</code> · min-height 24rem · title + meta + CTA</span>
+      <div class="hero-options__specimen" data-hero-specimen>
+        <div class="wf-demo" data-hero-h="lg">
+          <section class="hp-hero hp-hero--image">
+            <img class="hp-hero__photo" src="assets/images/happenings/hero-listing.jpg" alt="" width="1112" height="416">
+            <div class="hp-hero__shade" aria-hidden="true"></div>
+            <div class="hp-hero__inner">
+              <p class="hp-crumb">Happenings / Football Fest</p>
+              <h1 class="hp-hero__title">
+                <span class="hp-hero__title-line hp-hero__title-line--stroke">Football</span>
+                <span class="hp-hero__title-line">Fest</span>
+              </h1>
+              <p class="hp-hero__subtitle">Plaza activities + museum access</p>
+              <div class="hp-hero__meta">
+                <span class="hp-meta">Saturday, August 22 · 10 AM–5 PM</span>
+                <span class="hp-tag hp-tag--outline">Free · RSVP</span>
+              </div>
+              <div class="hp-hero__actions">
+                <a class="btn btn--tickets" href="#">Reserve My Passes</a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero-options__section hero-options__section--compare" aria-labelledby="compare-heading">
+      <h2 id="compare-heading">Full copy — tiers collapse</h2>
+      <span class="hero-options__label" data-hero-label>Football Fest with full stack — sm / md / lg all render the same once copy exceeds the floor</span>
+      <div class="hero-options__specimen" data-hero-specimen>
         <div class="wf-demo" data-hero-h="lg">
           <section class="hp-hero hp-hero--image">
             <img class="hp-hero__photo" src="assets/images/happenings/hero-listing.jpg" alt="" width="1112" height="416">
@@ -253,5 +276,18 @@
       </ul>
     </aside>
   </main>
+  <script>
+    document.querySelectorAll("[data-hero-specimen]").forEach(function (specimen) {
+      var hero = specimen.querySelector(".hp-hero--image");
+      if (!hero) return;
+      var label = specimen.previousElementSibling;
+      if (!label || !label.matches("[data-hero-label], .hero-options__label")) return;
+      var height = Math.round(hero.getBoundingClientRect().height);
+      var note = document.createElement("span");
+      note.className = "hero-options__measured";
+      note.textContent = " · rendered " + height + "px";
+      label.appendChild(note);
+    });
+  </script>
 </body>
 </html>
