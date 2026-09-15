@@ -109,6 +109,8 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 
 **Handoff:** **Happenings only.** Search + CCFB parked. Transactional ticket UI: `.hp-checkout` Ventrata-style mock (local); real `<ventrata-checkout>` when keys set. Football Fest: `hero-football-fest.jpg` + Join the Legacy `<img>` background. Footer: rail-aware breakpoints in `search.css`. Client Figma: [Happenings — Client review](https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football---Global-Banner?node-id=634-136). Next: Ventrata sandbox keys; `02-listing-filter-m` into 01m-filter.
 
+> **2026-09-15 footer Option F breakpoints (Cursor):** Grid queries `.site-main` width. 3-col at **1078px** (Figma `453:5398`); 2-col at 640px. Checkout 3-col at 960px container.
+
 > **2026-09-14 footer breakpoints (Cursor):** Footer grid used viewport `1024px` while content sits beside 280/328px rail → overlap at ~1100px. Fixed with rail-adjusted `@media` in `search.css` (2-col + full-width newsletter until 1272/1320; signup/social row at 1528+). Local until push.
 
 > **2026-09-11 Football Fest UX audit (Cursor):** `football-fest` RSVP content + template fixes — date/year, Reserve My Passes, party cap, rain/a11y sections, expanded FAQs. Local only until push.

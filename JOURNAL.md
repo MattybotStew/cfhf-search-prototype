@@ -1,5 +1,15 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-15 — Cursor: Legal bar CCFB logo (Option F)
+
+- Added ATL Capital of College Football lockup (`ccfb-logo-01-on-black-transparent-web.png`, 120×72) to `.site-footer-legal` — logo · copyright · Privacy/Terms, matching Figma `453:5426`.
+
+## 2026-09-15 — Cursor: Footer Option F container breakpoints
+
+- Figma [453:5398](https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football---Global-Banner?node-id=453-5398) is **1078px** (main column, not viewport).
+- `.site-main` is a size container; footer 3-col (1.2 / 1 / 0.7) + legal row at **1078px**; 2-col + newsletter span at **640px**; promo 160px until **1280px**.
+- Checkout uses its own container: 3-col at **960px**, 2-col at **720px**, stacked Continue only below **720px**.
+
 ## 2026-09-15 — Cursor: Checkout Continue button width
 
 - Desktop Continue: scoped `.hp-checkout__foot .btn.hp-checkout__submit { width: auto }` to beat global `.btn { width: 100% }` (matches sticky bar pattern); full-width only ≤900px.

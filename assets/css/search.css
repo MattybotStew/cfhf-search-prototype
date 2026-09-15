@@ -683,13 +683,15 @@ button {
   gap: var(--space-3);
 }
 
-/* Main column */
+/* Main column — size queries ignore the left rail */
 .site-main {
   flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
   position: relative;
+  container-type: inline-size;
+  container-name: site-main;
 }
 
 /* Hours bar — elevated so typeahead stacks above mobile topbar / hero */
@@ -1601,8 +1603,11 @@ button {
   align-items: start;
 }
 
-/* Footer sits in .site-main beside the rail — breakpoints account for rail width */
-@media (min-width: 901px) {
+/*
+  Footer Option F (Figma 453:5398) is 1078px — the main column, not the viewport.
+  Query .site-main so the rail never shifts the 3-col / 2-col / 1-col points.
+*/
+@container site-main (min-width: 640px) {
   .site-footer__inner {
     grid-template-columns: 1fr 1fr;
   }
@@ -1616,31 +1621,25 @@ button {
   }
 }
 
-/* 3-col when main column >= ~62rem (992px): 1272 = 992 + 280px rail */
-@media (min-width: 1272px) and (max-width: 1279px) {
+@container site-main (min-width: 1078px) {
   .site-footer__inner {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 0.7fr);
+    gap: var(--space-8) 1.5rem;
+  }
+
+  .site-footer__col--know {
+    grid-column: auto;
+  }
+}
+
+@container site-main (min-width: 1280px) {
+  .site-footer__inner {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 0.7fr);
     gap: var(--space-8) var(--space-10);
   }
-
-  .site-footer__col--know {
-    grid-column: auto;
-  }
 }
 
-/* 328px rail from 1280 — need 1320 = 992 + 328 before 3-col */
-@media (min-width: 1320px) {
-  .site-footer__inner {
-    grid-template-columns: minmax(280px, 1fr) minmax(260px, 0.85fr) 300px;
-  }
-
-  .site-footer__col--know {
-    grid-column: auto;
-  }
-}
-
-/* Signup + social side-by-side only when main column >= ~75rem (1200px) */
-@media (min-width: 1528px) {
+@container site-main (min-width: 1200px) {
   .site-footer__col--know {
     flex-direction: row;
     gap: var(--space-8);
@@ -1650,6 +1649,45 @@ button {
   .site-footer__social-block {
     flex: 1 1 50%;
     min-width: 0;
+  }
+}
+
+@supports not (container-type: inline-size) {
+  @media (min-width: 920px) {
+    .site-footer__inner {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .site-footer__col--know {
+      grid-column: 1 / -1;
+    }
+
+    .site-footer__col--promo {
+      justify-self: end;
+    }
+  }
+
+  @media (min-width: 1358px) {
+    .site-footer__inner {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 0.7fr);
+    }
+
+    .site-footer__col--know {
+      grid-column: auto;
+    }
+  }
+
+  @media (min-width: 1528px) {
+    .site-footer__col--know {
+      flex-direction: row;
+      gap: var(--space-8);
+    }
+
+    .site-footer__signup,
+    .site-footer__social-block {
+      flex: 1 1 50%;
+      min-width: 0;
+    }
   }
 }
 
@@ -1955,28 +1993,36 @@ button {
   object-fit: cover;
 }
 
-/* Legal bar under footer */
+@container site-main (min-width: 1078px) and (max-width: 1279px) {
+  .site-footer__promo {
+    max-width: 160px;
+  }
+}
+
+/* Legal bar under footer — Option F (Figma 453:5426) */
 .site-footer-legal {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-4);
-  padding: var(--space-8) var(--space-6);
+  padding: 1.25rem var(--space-6);
   background: var(--cfhf-black);
   border-top: 1px solid var(--cfhf-white);
   color: var(--cfhf-white);
   text-align: center;
 }
 
-@media (min-width: 768px) {
-  .site-footer-legal {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    text-align: left;
-    padding-left: var(--space-10);
-    padding-right: var(--space-10);
-  }
+.site-footer-legal__logo {
+  flex: 0 0 auto;
+  display: block;
+  max-width: 120px;
+}
+
+.site-footer-legal__logo img {
+  display: block;
+  width: 120px;
+  height: 72px;
+  object-fit: contain;
 }
 
 @media (min-width: 1280px) {
@@ -1986,16 +2032,60 @@ button {
   }
 }
 
+@container site-main (min-width: 1078px) {
+  .site-footer-legal {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    gap: var(--space-6);
+    padding: 1.25rem var(--space-10);
+  }
+
+  .site-footer-legal__copy {
+    font-size: var(--fs-ui);
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .site-footer-legal nav {
+    flex: 0 0 auto;
+  }
+
+  .site-footer-legal__links {
+    justify-content: flex-end;
+  }
+}
+
+@supports not (container-type: inline-size) {
+  @media (min-width: 1358px) {
+    .site-footer-legal {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      gap: var(--space-6);
+      padding: 1.25rem var(--space-10);
+    }
+
+    .site-footer-legal__copy {
+      font-size: var(--fs-ui);
+      flex: 1 1 auto;
+      text-align: center;
+    }
+
+    .site-footer-legal__links {
+      justify-content: flex-end;
+    }
+  }
+}
+
 .site-footer-legal__copy {
   margin: 0;
   font-family: var(--font-body);
   font-size: var(--fs-caption);
-}
-
-@media (min-width: 768px) {
-  .site-footer-legal__copy {
-    font-size: var(--fs-ui);
-  }
 }
 
 .site-footer-legal__links {
@@ -2073,7 +2163,7 @@ button {
   }
 }
 
-@media (max-width: 1271px) {
+@container site-main (max-width: 1077px) {
   .site-footer__reviews {
     flex-direction: column;
     align-items: flex-start;
@@ -2083,6 +2173,21 @@ button {
   .site-footer__reviews-label {
     max-width: none;
     flex: 0 1 auto;
+  }
+}
+
+@supports not (container-type: inline-size) {
+  @media (max-width: 1357px) {
+    .site-footer__reviews {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+
+    .site-footer__reviews-label {
+      max-width: none;
+      flex: 0 1 auto;
+    }
   }
 }
 

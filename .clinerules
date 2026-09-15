@@ -6,15 +6,15 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-09-15 (Cursor — Ventrata checkout mock)
+**Last Updated:** 2026-09-15 (Cursor — footer Option F breakpoints)
 **Active Agent:** Cursor
-**Branch:** `master` (local uncommitted: Ventrata checkout mock + footer/responsive/Fest work)
+**Branch:** `master` (local uncommitted: container-query footer + checkout breakpoints)
 **Focus:** **Happenings only.** Search + CCFB parked.
-**Status:** Transactional ticket widget matches live Ventrata popup layout (steppers, calendar, special pricing, Manage my booking). Falls back to mock when no sandbox keys; real `<ventrata-checkout>` when keys configured.
+**Status:** Footer 3-col matches Figma Option F at **1078px main column** (container queries). Checkout 3-col at 960px container; Continue full-width only under 720px.
 
 ### Pick up here (next agent)
-1. Hard-refresh transactional page if checkout still shows old date/qty form
-2. Real Ventrata sandbox `apiKey` / `productID` in JSON or script `data-config` when available
+1. Hard-refresh for `search.css` (container-type on `.site-main`)
+2. Real Ventrata sandbox `apiKey` / `productID` when available
 3. html.to.design `02-listing-filter-m` onto Client review **01m-filter**
 4. **Do not** revert hero/legacy to CSS-only backgrounds on import targets
 
@@ -56,6 +56,9 @@ Matt: “i want what is there now with the search functionality requested.”
 - Prototype-link cards: ticketed → 03, RSVP → 06; then wire FigJam if needed
 - Real Ventrata sandbox `apiKey` / `productID` when available
 - Do **not** pick up CCFB / search unless Matt asks
+
+### Newly completed (2026-09-15 — Cursor: legal bar logo)
+- Option F legal strip: ATL Capital of College Football logo (120×72) left of copyright, Privacy/Terms right (`453:5426`)
 
 ### Newly completed (2026-09-15 — Cursor: checkout Continue width)
 - Desktop Continue button no longer full-width (`width: auto` on `.hp-checkout__submit`)
