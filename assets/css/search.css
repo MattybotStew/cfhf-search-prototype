@@ -1601,7 +1601,8 @@ button {
   align-items: start;
 }
 
-@media (min-width: 640px) {
+/* Footer sits in .site-main beside the rail — breakpoints account for rail width */
+@media (min-width: 901px) {
   .site-footer__inner {
     grid-template-columns: 1fr 1fr;
   }
@@ -1615,7 +1616,8 @@ button {
   }
 }
 
-@media (min-width: 1024px) {
+/* 3-col when main column >= ~62rem (992px): 1272 = 992 + 280px rail */
+@media (min-width: 1272px) and (max-width: 1279px) {
   .site-footer__inner {
     grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto;
     gap: var(--space-8) var(--space-10);
@@ -1626,19 +1628,19 @@ button {
   }
 }
 
-@media (min-width: 1280px) {
+/* 328px rail from 1280 — need 1320 = 992 + 328 before 3-col */
+@media (min-width: 1320px) {
   .site-footer__inner {
     grid-template-columns: minmax(280px, 1fr) minmax(260px, 0.85fr) 300px;
   }
+
+  .site-footer__col--know {
+    grid-column: auto;
+  }
 }
 
-.site-footer__col--know {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
-}
-
-@media (min-width: 1024px) and (max-width: 1279px) {
+/* Signup + social side-by-side only when main column >= ~75rem (1200px) */
+@media (min-width: 1528px) {
   .site-footer__col--know {
     flex-direction: row;
     gap: var(--space-8);
@@ -1649,6 +1651,12 @@ button {
     flex: 1 1 50%;
     min-width: 0;
   }
+}
+
+.site-footer__col--know {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
 }
 
 .site-footer__title {
@@ -1673,14 +1681,15 @@ button {
 
 .site-footer__form {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: stretch;
   width: 100%;
   max-width: 28rem;
 }
 
 .site-footer__email {
-  flex: 1 1 10rem;
+  box-sizing: border-box;
+  flex: 1 1 auto;
   min-width: 0;
   height: 55px;
   padding: 0 var(--space-4);
@@ -1702,20 +1711,21 @@ button {
 }
 
 .site-footer__subscribe {
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
   flex: 0 0 auto;
-  min-width: 9.5rem;
+  min-width: 7.5rem;
   height: 55px;
-  padding: 0 var(--space-5);
+  padding: 0 var(--space-4);
   background: var(--cfhf-black);
   border: 2px solid var(--cfhf-white);
   color: var(--cfhf-white);
   font-family: var(--font-display);
   font-weight: var(--fw-bold);
-  font-size: 1.5rem;
+  font-size: clamp(1.15rem, 3.5vw, 1.5rem);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   transition: background var(--duration-fast) var(--ease-out),
@@ -1926,7 +1936,7 @@ button {
   justify-content: center;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 901px) {
   .site-footer__col--promo {
     justify-content: flex-end;
   }
@@ -2009,24 +2019,70 @@ button {
   color: var(--cfhf-border);
 }
 
-@media (max-width: 639px) {
+@media (max-width: 900px) {
+  .site-footer {
+    padding: var(--space-8) var(--space-4) var(--space-10);
+  }
+
+  .site-footer__inner {
+    gap: var(--space-6);
+  }
+
+  .site-footer__col--know {
+    gap: var(--space-5);
+  }
+
   .site-footer__form {
-    flex-direction: column;
+    max-width: none;
   }
 
-  .site-footer__email {
-    border-right: 2px solid var(--cfhf-white);
-    border-bottom: 0;
-    width: 100%;
+  .site-footer__social {
+    padding-top: 0;
   }
 
-  .site-footer__subscribe {
-    width: 100%;
-    min-width: 0;
+  .site-footer__reviews {
+    margin-top: var(--space-3);
+    padding: var(--space-4) 0 0;
+    gap: var(--space-3);
+  }
+
+  .site-footer__col--links {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .site-footer__heading--spaced {
+    margin-top: var(--space-6);
   }
 
   .site-footer__partner {
     margin-top: var(--space-6);
+  }
+
+  .site-footer__promo {
+    max-width: 260px;
+  }
+
+  .site-footer__subscribe {
+    min-width: 6.75rem;
+    padding: 0 var(--space-3);
+  }
+
+  .site-footer__subscribe-arrow {
+    width: 1.35rem;
+  }
+}
+
+@media (max-width: 1271px) {
+  .site-footer__reviews {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .site-footer__reviews-label {
+    max-width: none;
+    flex: 0 1 auto;
   }
 }
 

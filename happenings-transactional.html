@@ -96,14 +96,13 @@
               <span class="hp-tag" data-hp="tag">Ticketed</span>
             </div>
             <div class="hp-hero__actions">
-              <button type="button" class="btn btn--tickets" data-scroll-tickets data-hp="cta-tickets">Get Tickets</button>
-              <a class="btn btn--outline" href="#details" data-scroll-to="details">Learn more</a>
+              <a class="btn btn--tickets" href="#details" data-scroll-to="details">Learn more</a>
             </div>
           </div>
         </section>
 
         <main id="main" class="hp-wrap">
-          <section class="hp-offer" id="tickets">
+          <section class="hp-offer hp-offer--ticketed" id="tickets">
             <div class="hp-offer__copy">
               <h2 data-hp="offer-title">Before kickoff at the Hall</h2>
               <p class="hp-offer__price" data-hp="price">From $12</p>
@@ -113,23 +112,64 @@
                 <a class="btn btn--outline" data-mod="calendar" data-hp="calendar" href="#">Add to calendar</a>
               </div>
             </div>
+
             <div class="hp-widget" data-mod="ventrata" id="ventrata-checkout">
-              <h2>Select tickets</h2>
-              <p>Choose your date and quantity below to complete checkout.</p>
+              <ventrata-checkout data-config='{"env":"test"}'></ventrata-checkout>
             </div>
-            <form class="hp-ticket-form hp-form" action="#" method="post">
-              <span class="hp-widget__kicker">Complete the path</span>
-              <h2>Choose date &amp; quantity</h2>
-              <label for="ticket-date">Date</label>
-              <select id="ticket-date" name="ticket-date" required></select>
-              <label for="ticket-qty">Quantity</label>
-              <select id="ticket-qty" name="ticket-qty">
-                <option>1</option><option>2</option><option>3</option><option>4</option>
-              </select>
-              <label class="hp-check"><input type="checkbox" name="ticket-member"> Member price (−$4)</label>
-              <p>Total <strong data-hp="ticket-total">$12</strong></p>
-              <button class="btn btn--tickets" type="submit">Complete purchase</button>
-            </form>
+
+            <div class="hp-checkout" data-mod="checkout-mock" aria-label="Ticket checkout">
+              <div class="hp-checkout__panel">
+                <header class="hp-checkout__head">
+                  <h2 class="hp-checkout__title">Tickets</h2>
+                  <button type="button" class="hp-checkout__manage" data-hp="manage-booking">Manage my booking</button>
+                  <button type="button" class="hp-checkout__close" aria-label="Close checkout">&times;</button>
+                </header>
+
+                <div class="hp-checkout__body">
+                  <div class="hp-checkout__product">
+                    <div class="hp-checkout__gallery">
+                      <img class="hp-checkout__photo" src="assets/images/happenings/hero-ticketed.jpg" alt="" width="320" height="200" data-hp="checkout-photo">
+                      <button type="button" class="hp-checkout__gallery-btn hp-checkout__gallery-btn--prev" aria-label="Previous photo">&lsaquo;</button>
+                      <button type="button" class="hp-checkout__gallery-btn hp-checkout__gallery-btn--next" aria-label="Next photo">&rsaquo;</button>
+                      <div class="hp-checkout__gallery-dots" aria-hidden="true">
+                        <span class="is-active"></span><span></span><span></span>
+                      </div>
+                    </div>
+                    <h3 class="hp-checkout__product-title" data-hp="checkout-title">General Admission</h3>
+                    <p class="hp-checkout__product-desc" data-hp="checkout-desc">Embark on a legendary journey with event admission. Immerse yourself in the rich history of college football.</p>
+                    <div class="hp-checkout__lines" data-hp="ticket-lines"></div>
+                  </div>
+
+                  <div class="hp-checkout__calendar-wrap">
+                    <div class="hp-checkout__calendar" data-hp="ticket-calendar">
+                      <div class="hp-checkout__cal-head">
+                        <button type="button" class="hp-checkout__cal-nav" data-cal-prev aria-label="Previous month">&lsaquo;</button>
+                        <strong data-hp="cal-label">October 2026</strong>
+                        <button type="button" class="hp-checkout__cal-nav" data-cal-next aria-label="Next month">&rsaquo;</button>
+                      </div>
+                      <div class="hp-checkout__cal-grid" data-hp="cal-grid" role="grid" aria-label="Select a date"></div>
+                    </div>
+                  </div>
+
+                  <aside class="hp-checkout__pricing">
+                    <h3 class="hp-checkout__pricing-title">Special Pricing</h3>
+                    <ul class="hp-checkout__pricing-list">
+                      <li><span>Senior (65+)</span><strong>$33.00</strong></li>
+                      <li><span>Student (with valid ID)</span><strong>$33.00</strong></li>
+                      <li><span>Military (active &amp; veterans with ID)</span><strong>FREE</strong></li>
+                      <li><span>Military guest — Adult</span><strong>$26.00</strong></li>
+                      <li><span>Military guest — Child</span><strong>$22.00</strong></li>
+                    </ul>
+                    <p class="hp-checkout__pricing-note">*Discounted tickets are only available at the Box Office.</p>
+                  </aside>
+                </div>
+
+                <footer class="hp-checkout__foot">
+                  <p class="hp-checkout__total">Total <strong data-hp="ticket-total">$0.00</strong></p>
+                  <button type="button" class="btn btn--tickets hp-checkout__submit" data-hp="checkout-submit">Continue</button>
+                </footer>
+              </div>
+            </div>
           </section>
 
           <section class="hp-tix-confirm" hidden>
@@ -210,6 +250,8 @@
       </div>
 
             <section class="home-legacy" aria-labelledby="legacy-title">
+        <img class="home-legacy__photo" src="assets/images/happenings/legacy-background.jpg" alt="" width="1920" height="1440" aria-hidden="true">
+        <div class="home-legacy__shade" aria-hidden="true"></div>
         <div class="home-legacy__inner">
           <div class="home-legacy__copy">
             <h2 id="legacy-title" class="home-legacy__title">

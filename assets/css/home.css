@@ -360,9 +360,26 @@
 
 /* ----- 3. Join the Legacy ----- */
 .home-legacy {
-  background: linear-gradient(135deg, #111 0%, #2a2a2a 45%, #1a1a1a 100%);
+  position: relative;
+  overflow: hidden;
   color: var(--cfhf-white);
   padding: var(--space-12) var(--space-6);
+}
+
+.home-legacy__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.home-legacy__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(17, 17, 17, 0.92) 0%, rgba(42, 42, 42, 0.85) 45%, rgba(26, 26, 26, 0.9) 100%);
+  pointer-events: none;
 }
 
 @media (min-width: 960px) {
@@ -373,6 +390,8 @@
 }
 
 .home-legacy__inner {
+  position: relative;
+  z-index: 1;
   display: grid;
   gap: var(--space-10);
   max-width: 1100px;

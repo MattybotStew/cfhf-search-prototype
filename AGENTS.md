@@ -77,7 +77,7 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 | 7. Empty state | **DONE** |
 | 8. A11y + mobile polish | **DONE** |
 
-**Status:** Search prototype is complete and **parked**. Active track is **Happenings only**. Sep 11: mobile listing filter dropdown merged to `master` @ `2d2850b`. Pages deploy pending. Next: html.to.design `screens/01`–`09`; optional Ventrata keys.
+**Status:** Search prototype is complete and **parked**. Active track is **Happenings only**. Sep 15: transactional `.hp-checkout` mock matches live Ventrata popup (steppers, calendar, special pricing, Manage my booking); falls back when no API keys. Next: html.to.design `screens/01`–`09`; optional Ventrata sandbox keys.
 
 ### What the Happenings outline + Figma screens delivered (Cursor — 2026-09-08)
 - `happenings.html` — headlines and links to listing / ticketed / RSVP (no board, no toggles)
@@ -107,7 +107,9 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 
 > **2026-08-06 CCFB options 404 (Cursor):** `/ccfb-logo-options.html` 404 while home 200; Actions for `6fad3bf` stuck **queued**. Empty re-trigger `a4c5a77` → deploy success → **page LIVE (200)**. No Pages Settings toggle needed.
 
-**Handoff:** **Happenings only.** Search + CCFB parked. Listing **mobile filters** = styled dropdown on `master` @ `2d2850b`. Hero overlay = flex + absolute `<img>`. **Figma import:** localhost + absolute URLs. Next: html.to.design `screens/01`–`09` (re-import `*-m` listing). Dev banner: `?dev=1`.
+**Handoff:** **Happenings only.** Search + CCFB parked. Transactional ticket UI: `.hp-checkout` Ventrata-style mock (local); real `<ventrata-checkout>` when keys set. Football Fest: `hero-football-fest.jpg` + Join the Legacy `<img>` background. Footer: rail-aware breakpoints in `search.css`. Client Figma: [Happenings — Client review](https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football---Global-Banner?node-id=634-136). Next: Ventrata sandbox keys; `02-listing-filter-m` into 01m-filter.
+
+> **2026-09-14 footer breakpoints (Cursor):** Footer grid used viewport `1024px` while content sits beside 280/328px rail → overlap at ~1100px. Fixed with rail-adjusted `@media` in `search.css` (2-col + full-width newsletter until 1272/1320; signup/social row at 1528+). Local until push.
 
 > **2026-09-11 Football Fest UX audit (Cursor):** `football-fest` RSVP content + template fixes — date/year, Reserve My Passes, party cap, rain/a11y sections, expanded FAQs. Local only until push.
 

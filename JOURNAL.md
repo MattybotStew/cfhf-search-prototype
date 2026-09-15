@@ -1,5 +1,62 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-15 — Cursor: Checkout Continue button width
+
+- Desktop Continue: scoped `.hp-checkout__foot .btn.hp-checkout__submit { width: auto }` to beat global `.btn { width: 100% }` (matches sticky bar pattern); full-width only ≤900px.
+
+## 2026-09-15 — Cursor: Ventrata-style ticket checkout mock
+
+- Replaced simple date/qty `.hp-ticket-form` on transactional pages with `.hp-checkout` — 3-panel layout matching live Ventrata popup (product gallery + qty steppers, calendar, special pricing sidebar, total + Continue footer).
+- `happenings.js`: stepper/calendar/total logic, Manage my booking toast (opens Ventrata check-in when keys exist), fallback when no API keys (`data-ventrata="fallback"`).
+- Fixed `hasVentrataCheckout()` so empty `<ventrata-checkout>` element no longer blocks fallback init.
+
+## 2026-09-14 — Cursor: Transactional hero CTA
+
+- Removed duplicate Get Tickets from transactional hero; **Learn more** is now the sole primary CTA (`btn--tickets`). Ticket path stays in offer + sticky.
+
+## 2026-09-14 — Cursor: Footer mobile spacing
+
+- Mobile footer (≤900px): single-column stack (no 2-col links+promo squeeze), tighter grid/reviews gaps, About/Address stacked, reviews label no flex-grow.
+
+## 2026-09-14 — Cursor: Full responsive audit + footer form fix
+
+- Playwright audit (`scripts/responsive_audit.py`) on 10 pages × 6 widths (390–1440): all pass after fixes.
+- Footer newsletter: removed mobile column stack (`max-width: 575px`); email + Subscribe stay inline with `flex-wrap: nowrap` + tighter subscribe sizing.
+- Form embed: `box-sizing: border-box` on `.hp-form` inputs (15px overflow fixed).
+
+## 2026-09-14 — Cursor: Footer breakpoint fix
+
+- Footer lived in `.site-main` beside the rail but used viewport `@media (1024px)` for 3-column + signup/social row → overlap at ~1100px (Matt screenshot).
+- `search.css`: rail-aware breakpoints — 2-col with newsletter full-width until 1272/1320px; signup/social row only at 1528px+ (328px rail + ~75rem content).
+
+## 2026-09-14 — Cursor: Join the Legacy Unsplash background
+
+- Join the Legacy band now uses `assets/images/happenings/legacy-background.jpg` (Unsplash: group watching football, `b_y4wUk6WhE`) across home + Happenings pages.
+
+## 2026-09-14 — Cursor: Football Fest PM comment fixes
+
+- PM comment on `633:14977` (Join the Legacy): added `<img class="home-legacy__photo">` + shade in `home.css` and all pages with the band; Figma legacy sections got image/gradient fills + bg rectangle on Wireframes 3.
+- Football Fest hero: downloaded `hero-football-fest.jpg` from live site; JSON `football-fest` image/thumb updated; Wireframes 3 swapped 4 wrong “Community Film Night hero” layers to Fest card photo.
+
+## 2026-09-11 — Cursor: Figma client review page
+
+- New page **Happenings — Client review** (`634:136`): cover, listing / RSVP / reserved / ticketed / reserved (desktop + mobile), prototype clicks from cover + listing cards.
+- Fest detail heroes swapped off the Film Night still onto the Fest card photo. Hero-options + visitor flow stay on Wireframes 2 as INTERNAL. Empty leftover sections hidden.
+- Still needed: html.to.design of `screens/02-listing-filter-m.html` into the 01m-filter slot.
+
+## 2026-09-11 — Cursor: Standard ticket form style
+
+- Transactional ticket picker now uses `hp-form hp-offer__form` (same card, labels, and actions pattern as RSVP); removed custom fallback widget styling.
+
+## 2026-09-11 — Cursor: Ticket form spacing
+
+- Tightened fallback `.hp-ticket-form` spacing — removed flex gap stacking on label margins; card no longer stretches to full offer column height.
+
+## 2026-09-11 — Cursor: Ventrata fallback checkout
+
+- Transactional pages with `data-ventrata="on"` but no sandbox keys now switch to `data-ventrata="fallback"` and show the native date/qty ticket form in the widget column.
+- `happenings.js`: `resolveVentrataMode()` checks script config, `<ventrata-checkout>`, or JSON `ventrata.apiKey`/`productId`; Get Tickets scrolls to the form in fallback mode.
+
 ## 2026-09-11 — Cursor: Mobile sticky bar layout
 
 - ≤900px: `.hp-sticky` stacks info + full-width CTA vertically so long labels and “Reserve My Passes” no longer overlap.

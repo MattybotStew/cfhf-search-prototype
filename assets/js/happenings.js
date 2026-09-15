@@ -492,6 +492,37 @@
     window.addEventListener("resize", update);
   }
 
+  function getVentrataScriptConfig() {
+    var script = document.querySelector('script[src*="ventrata-checkout"]');
+    if (!script) return null;
+    try {
+      return JSON.parse(script.getAttribute("data-config") || "{}");
+    } catch (err) {
+      return null;
+    }
+  }
+
+  function hasVentrataCheckout(ev) {
+    var cfg = getVentrataScriptConfig();
+    if (cfg && cfg.apiKey && (cfg.productID || cfg.productId)) return true;
+    if (ev && ev.ventrata && ev.ventrata.apiKey && ev.ventrata.productId) return true;
+    var el = qs("ventrata-checkout");
+    if (el) {
+      try {
+        var elCfg = JSON.parse(el.getAttribute("data-config") || "{}");
+        if (elCfg.apiKey && (elCfg.productID || elCfg.productId)) return true;
+      } catch (err) { /* ignore */ }
+    }
+    return false;
+  }
+
+  function resolveVentrataMode(ev) {
+    var demo = qs(".wf-demo");
+    if (!demo || demo.getAttribute("data-ventrata") !== "on") return;
+    if (hasVentrataCheckout(ev)) return;
+    demo.setAttribute("data-ventrata", "fallback");
+  }
+
   function initDetailPage(template) {
     var paramId = getParam("event");
     var id = paramId || (template === "transactional" ? DEFAULT_TX : DEFAULT_RSVP);
@@ -508,6 +539,7 @@
     }
 
     hydrateDetail(ev);
+    resolveVentrataMode(ev);
     initRsvpForm(ev);
     initTicketPicker(ev);
     initCalendar(ev);
@@ -556,74 +588,250 @@
     });
   }
 
+  function formatMoney(n) {
+    return "$" + Number(n).toFixed(2);
+  }
+
+  function defaultTicketTypes(tickets) {
+    var unit = tickets.unitPrice || 0;
+    var child = tickets.childPrice != null ? tickets.childPrice : Math.max(0, Math.round(unit * 0.7));
+    return [
+      { id: "adult", label: "Adult", price: unit },
+      { id: "child", label: "Child", subtitle: "Ages 3–12", price: child },
+      { id: "toddler", label: "Toddlers", subtitle: "Ages 3 & Under", price: 0 },
+      { id: "member", label: "Member", linkLabel: "Learn More", linkHref: "#", price: tickets.memberPrice != null ? tickets.memberPrice : 0 }
+    ];
+  }
+
+  function monthLabel(year, month) {
+    return new Date(year, month, 1).toLocaleString("en-US", { month: "long", year: "numeric" });
+  }
+
   function initTicketPicker(ev) {
+    resolveVentrataMode(ev);
     var demo = qs(".wf-demo");
-    if (demo && demo.getAttribute("data-ventrata") === "on") return;
+    var mode = demo && demo.getAttribute("data-ventrata");
+    if (mode === "on" && hasVentrataCheckout(ev)) return; /* live Ventrata only */
 
-    var form = qs(".hp-ticket-form") || qs(".wf-live-tickets");
-    if (!form || !ev.tickets) return;
+    var checkout = qs(".hp-checkout");
+    if (!checkout || !ev.tickets) return;
+    if (checkout.getAttribute("data-hp-checkout-bound")) return;
+    checkout.setAttribute("data-hp-checkout-bound", "1");
 
-    var dateSel = qs("[name='ticket-date']", form);
-    var qtySel = qs("[name='ticket-qty']", form);
-    var member = qs("[name='ticket-member']", form);
-    var totalEl = qs("[data-hp='ticket-total']", form);
+    var linesRoot = qs("[data-hp='ticket-lines']", checkout);
+    var totalEl = qs("[data-hp='ticket-total']", checkout);
+    var submitBtn = qs("[data-hp='checkout-submit']", checkout);
+    var calGrid = qs("[data-hp='cal-grid']", checkout);
+    var calLabel = qs("[data-hp='cal-label']", checkout);
+    var photoEl = qs("[data-hp='checkout-photo']", checkout);
+    var types = (ev.tickets.types && ev.tickets.types.length) ? ev.tickets.types : defaultTicketTypes(ev.tickets);
+    var availableDates = (ev.tickets.dates || []).slice();
+    var dateMap = {};
+    availableDates.forEach(function (d) { dateMap[d.value] = d; });
 
-    if (dateSel && ev.tickets.dates) {
-      dateSel.innerHTML = ev.tickets.dates.map(function (d) {
-        return '<option value="' + esc(d.value) + '">' + esc(d.label) + "</option>";
-      }).join("");
-    }
+    var state = {
+      qty: {},
+      selectedDate: availableDates.length ? availableDates[0].value : "",
+      viewYear: 2026,
+      viewMonth: 9
+    };
 
-    function priceEach() {
-      return member && member.checked ? ev.tickets.memberPrice : ev.tickets.unitPrice;
-    }
+    types.forEach(function (t) { state.qty[t.id] = 0; });
 
-    function qty() {
-      return parseInt((qtySel && qtySel.value) || "1", 10) || 1;
-    }
-
-    function refresh() {
-      if (totalEl) totalEl.textContent = "$" + (priceEach() * qty());
-    }
-
-    [dateSel, qtySel, member].forEach(function (el) {
-      if (el) el.addEventListener("change", refresh);
-    });
-    refresh();
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var dateLabel = dateSel && dateSel.options[dateSel.selectedIndex]
-        ? dateSel.options[dateSel.selectedIndex].text
-        : ev.dateLabel;
-      var record = {
-        eventId: ev.id,
-        title: ev.title,
-        date: dateSel ? dateSel.value : "",
-        dateLabel: dateLabel,
-        qty: qty(),
-        member: !!(member && member.checked),
-        total: priceEach() * qty(),
-        at: new Date().toISOString()
-      };
-      try { sessionStorage.setItem(TIX_KEY, JSON.stringify(record)); } catch (err) {}
-
-      form.hidden = true;
-      var confirm = qs(".hp-tix-confirm") || qs(".wf-tix-confirm");
-      if (confirm) {
-        confirm.removeAttribute("hidden");
-        setText("[data-hp='tix-title']", ev.title);
-        setText("[data-hp='tix-date']", dateLabel);
-        setText("[data-hp='tix-qty']", String(record.qty));
-        setText("[data-hp='tix-total']", "$" + record.total);
-        requestAnimationFrame(function () {
-          confirm.classList.add("is-visible");
-        });
-        scrollToEl(confirm);
+    if (state.selectedDate) {
+      var first = new Date(state.selectedDate + "T12:00:00");
+      if (!isNaN(first.getTime())) {
+        state.viewYear = first.getFullYear();
+        state.viewMonth = first.getMonth();
       }
-      markConverted(qs(".wf-demo"));
-      toast("Tickets reserved — you can view your booking below.");
-    });
+    }
+
+    if (photoEl && ev.image) photoEl.src = ev.image;
+    setText("[data-hp='checkout-title']", "General Admission");
+    setText(
+      "[data-hp='checkout-desc']",
+      ev.checkoutDesc ||
+        "Embark on a legendary journey with our self-guided general tickets. Immerse yourself in the rich history of college football."
+    );
+
+    function totalQty() {
+      return Object.keys(state.qty).reduce(function (sum, id) {
+        return sum + (state.qty[id] || 0);
+      }, 0);
+    }
+
+    function lineTotal() {
+      return types.reduce(function (sum, t) {
+        return sum + (state.qty[t.id] || 0) * (t.price || 0);
+      }, 0);
+    }
+
+    function refreshTotal() {
+      var total = lineTotal();
+      if (totalEl) totalEl.textContent = formatMoney(total);
+      if (submitBtn) submitBtn.disabled = total <= 0 || !state.selectedDate;
+    }
+
+    function renderLines() {
+      if (!linesRoot) return;
+      linesRoot.innerHTML = types.map(function (t) {
+        var qty = state.qty[t.id] || 0;
+        var subtitle = t.subtitle ? "<span>" + esc(t.subtitle) + "</span>" : "";
+        var link = t.linkLabel
+          ? '<a href="' + esc(t.linkHref || "#") + '">' + esc(t.linkLabel) + "</a>"
+          : "";
+        return (
+          '<div class="hp-checkout__line" data-ticket-id="' + esc(t.id) + '">' +
+            '<div class="hp-checkout__line-label">' +
+              "<strong>" + esc(t.label) + "</strong>" + subtitle + link +
+            "</div>" +
+            '<div class="hp-checkout__stepper">' +
+              '<button type="button" data-step="-1" aria-label="Decrease ' + esc(t.label) + '"' +
+                (qty <= 0 ? " disabled" : "") + ">&minus;</button>" +
+              '<output aria-live="polite">' + qty + "</output>" +
+              '<button type="button" data-step="1" aria-label="Increase ' + esc(t.label) + '">+</button>' +
+            "</div>" +
+          "</div>"
+        );
+      }).join("");
+
+      qsa(".hp-checkout__line", linesRoot).forEach(function (row) {
+        var id = row.getAttribute("data-ticket-id");
+        qsa("button[data-step]", row).forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var step = parseInt(btn.getAttribute("data-step"), 10) || 0;
+            var next = Math.max(0, (state.qty[id] || 0) + step);
+            state.qty[id] = next;
+            renderLines();
+            refreshTotal();
+          });
+        });
+      });
+    }
+
+    function renderCalendar() {
+      if (!calGrid) return;
+      if (calLabel) calLabel.textContent = monthLabel(state.viewYear, state.viewMonth);
+
+      var firstDay = new Date(state.viewYear, state.viewMonth, 1).getDay();
+      var daysInMonth = new Date(state.viewYear, state.viewMonth + 1, 0).getDate();
+      var cells = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(function (d) {
+        return '<span class="hp-checkout__cal-dow">' + d + "</span>";
+      });
+
+      for (var i = 0; i < firstDay; i++) {
+        cells.push('<span class="hp-checkout__cal-day is-empty" aria-hidden="true"></span>');
+      }
+
+      for (var day = 1; day <= daysInMonth; day++) {
+        var iso = state.viewYear + "-" + String(state.viewMonth + 1).padStart(2, "0") + "-" + String(day).padStart(2, "0");
+        var available = !!dateMap[iso];
+        var selected = state.selectedDate === iso;
+        var cls = "hp-checkout__cal-day";
+        if (available) cls += " is-available";
+        if (selected) cls += " is-selected";
+        if (available) {
+          cells.push(
+            '<button type="button" class="' + cls + '" data-date="' + iso + '" aria-pressed="' + selected + '">' + day + "</button>"
+          );
+        } else {
+          cells.push('<span class="' + cls + '">' + day + "</span>");
+        }
+      }
+
+      calGrid.innerHTML = cells.join("");
+
+      qsa("[data-date]", calGrid).forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          state.selectedDate = btn.getAttribute("data-date");
+          renderCalendar();
+          refreshTotal();
+        });
+      });
+    }
+
+    var calPrev = qs("[data-cal-prev]", checkout);
+    var calNext = qs("[data-cal-next]", checkout);
+    if (calPrev) {
+      calPrev.addEventListener("click", function () {
+        state.viewMonth -= 1;
+        if (state.viewMonth < 0) {
+          state.viewMonth = 11;
+          state.viewYear -= 1;
+        }
+        renderCalendar();
+      });
+    }
+    if (calNext) {
+      calNext.addEventListener("click", function () {
+        state.viewMonth += 1;
+        if (state.viewMonth > 11) {
+          state.viewMonth = 0;
+          state.viewYear += 1;
+        }
+        renderCalendar();
+      });
+    }
+
+    var manageBtn = qs("[data-hp='manage-booking']", checkout);
+    if (manageBtn) {
+      manageBtn.addEventListener("click", function () {
+        var key = (ev.ventrata && ev.ventrata.apiKey) || (getVentrataScriptConfig() && getVentrataScriptConfig().apiKey);
+        if (key) {
+          window.open("https://checkin.ventrata.com/" + encodeURIComponent(key), "_blank", "noopener,noreferrer");
+        } else {
+          toast("Manage my booking opens Ventrata check-in when live API keys are configured.");
+        }
+      });
+    }
+
+    var closeBtn = qs(".hp-checkout__close", checkout);
+    if (closeBtn) {
+      closeBtn.addEventListener("click", function () {
+        scrollToEl(qs("#details") || checkout);
+      });
+    }
+
+    renderLines();
+    renderCalendar();
+    refreshTotal();
+
+    if (submitBtn) {
+      submitBtn.addEventListener("click", function () {
+        if (submitBtn.disabled) return;
+        var dateInfo = dateMap[state.selectedDate] || { value: state.selectedDate, label: state.selectedDate };
+        var qty = totalQty();
+        var record = {
+          eventId: ev.id,
+          title: ev.title,
+          date: dateInfo.value,
+          dateLabel: dateInfo.label,
+          qty: qty,
+          lines: types.map(function (t) {
+            return { id: t.id, label: t.label, qty: state.qty[t.id] || 0, price: t.price || 0 };
+          }).filter(function (l) { return l.qty > 0; }),
+          total: lineTotal(),
+          at: new Date().toISOString()
+        };
+        try { sessionStorage.setItem(TIX_KEY, JSON.stringify(record)); } catch (err) {}
+
+        checkout.hidden = true;
+        var confirm = qs(".hp-tix-confirm") || qs(".wf-tix-confirm");
+        if (confirm) {
+          confirm.removeAttribute("hidden");
+          setText("[data-hp='tix-title']", ev.title);
+          setText("[data-hp='tix-date']", dateInfo.label);
+          setText("[data-hp='tix-qty']", String(qty));
+          setText("[data-hp='tix-total']", formatMoney(record.total));
+          requestAnimationFrame(function () {
+            confirm.classList.add("is-visible");
+          });
+          scrollToEl(confirm);
+        }
+        markConverted(qs(".wf-demo"));
+        toast("Tickets reserved — you can view your booking below.");
+      });
+    }
   }
 
   function icsStamp(iso) {
@@ -705,9 +913,13 @@
       var ticketsBtn = e.target.closest("[data-scroll-tickets]");
       if (ticketsBtn) {
         var demo = qs(".wf-demo");
-        var target = (demo && demo.getAttribute("data-ventrata") === "on")
-          ? (qs('.hp-widget[data-mod="ventrata"]') || document.getElementById("tickets"))
-          : document.getElementById("tickets");
+        var ventrataMode = demo && demo.getAttribute("data-ventrata");
+        var target = document.getElementById("tickets");
+        if (ventrataMode === "on") {
+          target = qs('.hp-widget[data-mod="ventrata"]') || target;
+        } else if (ventrataMode === "fallback" || ventrataMode === "off") {
+          target = qs(".hp-checkout") || target;
+        }
         if (target) {
           e.preventDefault();
           scrollToHash(target, target.id ? "#" + target.id : "");

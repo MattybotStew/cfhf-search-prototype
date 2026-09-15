@@ -6,17 +6,17 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-09-11 (Cursor — mobile sticky bar)
+**Last Updated:** 2026-09-15 (Cursor — Ventrata checkout mock)
 **Active Agent:** Cursor
-**Branch:** `master` (local uncommitted: mobile sticky stack fix)
+**Branch:** `master` (local uncommitted: Ventrata checkout mock + footer/responsive/Fest work)
 **Focus:** **Happenings only.** Search + CCFB parked.
-**Status:** Mobile sticky bar stacks info + full-width CTA (no overlap). Prior push `a41a4c3`.
+**Status:** Transactional ticket widget matches live Ventrata popup layout (steppers, calendar, special pricing, Manage my booking). Falls back to mock when no sandbox keys; real `<ventrata-checkout>` when keys configured.
 
 ### Pick up here (next agent)
-1. Verify: http://127.0.0.1:8080/happenings-listing.html at ~390px — **Filter** dropdown opens/closes, no horizontal chips
-2. Desktop ≥901px still chip row
-3. **Do not** revert hero to CSS `background-image`
-4. **Matt’s next task:** html.to.design `screens/01`–`09` → Figma [553:1219](https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football---Global-Banner?node-id=553-1219) (re-import `01-listing-m` / `02-listing-filter-m`)
+1. Hard-refresh transactional page if checkout still shows old date/qty form
+2. Real Ventrata sandbox `apiKey` / `productID` in JSON or script `data-config` when available
+3. html.to.design `02-listing-filter-m` onto Client review **01m-filter**
+4. **Do not** revert hero/legacy to CSS-only backgrounds on import targets
 
 ### Live — Happenings (verified 200)
 - https://mattybotstew.github.io/cfhf-search-prototype/happenings.html — client outline
@@ -56,6 +56,13 @@ Matt: “i want what is there now with the search functionality requested.”
 - Prototype-link cards: ticketed → 03, RSVP → 06; then wire FigJam if needed
 - Real Ventrata sandbox `apiKey` / `productID` when available
 - Do **not** pick up CCFB / search unless Matt asks
+
+### Newly completed (2026-09-15 — Cursor: checkout Continue width)
+- Desktop Continue button no longer full-width (`width: auto` on `.hp-checkout__submit`)
+
+### Newly completed (2026-09-15 — Cursor: Ventrata-style checkout mock)
+- Transactional `.hp-checkout`: 3-panel popup layout (gallery + steppers, calendar, special pricing), total + Continue, Manage my booking
+- `happenings.js` fallback when no Ventrata keys; fixed empty `<ventrata-checkout>` blocking init
 
 ### Newly completed (2026-09-11 — Cursor: fake Facebook event card)
 - Sidebar/offer Facebook module uses static `.hp-fb-mock` graphic (logo, hero, date, Interested/Going) instead of empty iframe
