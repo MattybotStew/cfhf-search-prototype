@@ -353,6 +353,11 @@
       if (ev.image) img.src = ev.image;
     });
 
+    qsa("[data-hp='offer-photo']").forEach(function (img) {
+      var src = ev.offerImage || ev.image;
+      if (src) img.src = src;
+    });
+
     var agenda = qs("[data-hp='agenda']");
     var agendaSection = qs("[data-hp-section='agenda']");
     if (agenda && ev.agenda && ev.agenda.length) {
@@ -592,14 +597,13 @@
     return "$" + Number(n).toFixed(2);
   }
 
-  function defaultTicketTypes(tickets) {
-    var unit = tickets.unitPrice || 0;
-    var child = tickets.childPrice != null ? tickets.childPrice : Math.max(0, Math.round(unit * 0.7));
+  function gaTicketTypes() {
     return [
-      { id: "adult", label: "Adult", price: unit },
-      { id: "child", label: "Child", subtitle: "Ages 3–12", price: child },
-      { id: "toddler", label: "Toddlers", subtitle: "Ages 3 & Under", price: 0 },
-      { id: "member", label: "Member", linkLabel: "Learn More", linkHref: "#", price: tickets.memberPrice != null ? tickets.memberPrice : 0 }
+      { id: "adult", label: "Adult", price: 23, help: "Ages 13 and up" },
+      { id: "child", label: "Child", price: 22, help: "Ages 3–12" },
+      { id: "family2", label: "Family 2-Pack", price: 40, help: "2 adults and 2 children" },
+      { id: "family4", label: "Family 4-Pack", price: 75, help: "4 adults and 4 children" },
+      { id: "donation", label: "Donation (%)", kind: "percent", help: "Add a donation to support the Hall of Fame" }
     ];
   }
 
@@ -607,11 +611,40 @@
     return new Date(year, month, 1).toLocaleString("en-US", { month: "long", year: "numeric" });
   }
 
+  function resetCheckoutView(checkout) {
+    checkout = checkout || qs(".hp-checkout");
+    if (!checkout) return;
+    var done = qs(".hp-checkout__done", checkout);
+    if (done) done.hidden = true;
+    qsa(".hp-checkout__body, .hp-checkout__foot", checkout).forEach(function (el) {
+      el.hidden = false;
+    });
+  }
+
+  function openCheckout() {
+    var checkout = qs(".hp-checkout");
+    if (!checkout) return;
+    resetCheckoutView(checkout);
+    checkout.hidden = false;
+    checkout.classList.add("is-open");
+    document.body.classList.add("hp-checkout-open");
+    var close = qs(".hp-checkout__close", checkout);
+    if (close) close.focus();
+  }
+
+  function closeCheckout() {
+    var checkout = qs(".hp-checkout");
+    if (!checkout) return;
+    checkout.classList.remove("is-open");
+    checkout.hidden = true;
+    document.body.classList.remove("hp-checkout-open");
+  }
+
   function initTicketPicker(ev) {
     resolveVentrataMode(ev);
     var demo = qs(".wf-demo");
     var mode = demo && demo.getAttribute("data-ventrata");
-    if (mode === "on" && hasVentrataCheckout(ev)) return; /* live Ventrata only */
+    if (mode === "on" && hasVentrataCheckout(ev)) return;
 
     var checkout = qs(".hp-checkout");
     if (!checkout || !ev.tickets) return;
@@ -624,7 +657,7 @@
     var calGrid = qs("[data-hp='cal-grid']", checkout);
     var calLabel = qs("[data-hp='cal-label']", checkout);
     var photoEl = qs("[data-hp='checkout-photo']", checkout);
-    var types = (ev.tickets.types && ev.tickets.types.length) ? ev.tickets.types : defaultTicketTypes(ev.tickets);
+    var types = gaTicketTypes();
     var availableDates = (ev.tickets.dates || []).slice();
     var dateMap = {};
     availableDates.forEach(function (d) { dateMap[d.value] = d; });
@@ -655,15 +688,25 @@
     );
 
     function totalQty() {
-      return Object.keys(state.qty).reduce(function (sum, id) {
-        return sum + (state.qty[id] || 0);
+      return types.reduce(function (sum, t) {
+        return t.kind === "percent" ? sum : sum + (state.qty[t.id] || 0);
       }, 0);
     }
 
-    function lineTotal() {
+    function baseTotal() {
       return types.reduce(function (sum, t) {
-        return sum + (state.qty[t.id] || 0) * (t.price || 0);
+        return t.kind === "percent" ? sum : sum + (state.qty[t.id] || 0) * (t.price || 0);
       }, 0);
+    }
+
+    function donationPercent() {
+      var d = types.filter(function (t) { return t.kind === "percent"; })[0];
+      return d ? state.qty[d.id] || 0 : 0;
+    }
+
+    function lineTotal() {
+      var base = baseTotal();
+      return base + base * (donationPercent() / 100);
     }
 
     function refreshTotal() {
@@ -676,19 +719,25 @@
       if (!linesRoot) return;
       linesRoot.innerHTML = types.map(function (t) {
         var qty = state.qty[t.id] || 0;
-        var subtitle = t.subtitle ? "<span>" + esc(t.subtitle) + "</span>" : "";
+        var isPercent = t.kind === "percent";
+        var subtitle = t.subtitle ? '<span class="hp-checkout__line-sub">' + esc(t.subtitle) + "</span>" : "";
         var link = t.linkLabel
           ? '<a href="' + esc(t.linkHref || "#") + '">' + esc(t.linkLabel) + "</a>"
+          : "";
+        var help = t.help
+          ? '<button type="button" class="hp-checkout__help" aria-label="About ' + esc(t.label) +
+              '" title="' + esc(t.help) + '">?</button>'
           : "";
         return (
           '<div class="hp-checkout__line" data-ticket-id="' + esc(t.id) + '">' +
             '<div class="hp-checkout__line-label">' +
-              "<strong>" + esc(t.label) + "</strong>" + subtitle + link +
+              '<span class="hp-checkout__line-name"><strong>' + esc(t.label) + "</strong>" + help + "</span>" +
+              subtitle + link +
             "</div>" +
             '<div class="hp-checkout__stepper">' +
               '<button type="button" data-step="-1" aria-label="Decrease ' + esc(t.label) + '"' +
                 (qty <= 0 ? " disabled" : "") + ">&minus;</button>" +
-              '<output aria-live="polite">' + qty + "</output>" +
+              '<output aria-live="polite">' + qty + (isPercent ? "%" : "") + "</output>" +
               '<button type="button" data-step="1" aria-label="Increase ' + esc(t.label) + '">+</button>' +
             "</div>" +
           "</div>"
@@ -697,10 +746,13 @@
 
       qsa(".hp-checkout__line", linesRoot).forEach(function (row) {
         var id = row.getAttribute("data-ticket-id");
+        var type = types.filter(function (t) { return t.id === id; })[0] || {};
         qsa("button[data-step]", row).forEach(function (btn) {
           btn.addEventListener("click", function () {
-            var step = parseInt(btn.getAttribute("data-step"), 10) || 0;
-            var next = Math.max(0, (state.qty[id] || 0) + step);
+            var dir = parseInt(btn.getAttribute("data-step"), 10) || 0;
+            var step = type.kind === "percent" ? 5 : 1;
+            var next = Math.max(0, (state.qty[id] || 0) + dir * step);
+            if (type.kind === "percent") next = Math.min(100, next);
             state.qty[id] = next;
             renderLines();
             refreshTotal();
@@ -788,13 +840,33 @@
     var closeBtn = qs(".hp-checkout__close", checkout);
     if (closeBtn) {
       closeBtn.addEventListener("click", function () {
-        scrollToEl(qs("#details") || checkout);
+        closeCheckout();
+      });
+    }
+
+    var doneCloseBtn = qs(".hp-checkout__done-close", checkout);
+    if (doneCloseBtn) {
+      doneCloseBtn.addEventListener("click", function () {
+        closeCheckout();
+      });
+    }
+
+    checkout.addEventListener("click", function (e) {
+      if (e.target === checkout) closeCheckout();
+    });
+
+    if (!initTicketPicker._escBound) {
+      initTicketPicker._escBound = true;
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeCheckout();
       });
     }
 
     renderLines();
     renderCalendar();
     refreshTotal();
+
+    if (getParam("checkout") === "1") openCheckout();
 
     if (submitBtn) {
       submitBtn.addEventListener("click", function () {
@@ -808,28 +880,44 @@
           dateLabel: dateInfo.label,
           qty: qty,
           lines: types.map(function (t) {
-            return { id: t.id, label: t.label, qty: state.qty[t.id] || 0, price: t.price || 0 };
+            var q = state.qty[t.id] || 0;
+            var price = t.kind === "percent" ? (baseTotal() * q) / 100 : (t.price || 0);
+            return { id: t.id, label: t.label, qty: q, price: price };
           }).filter(function (l) { return l.qty > 0; }),
           total: lineTotal(),
           at: new Date().toISOString()
         };
         try { sessionStorage.setItem(TIX_KEY, JSON.stringify(record)); } catch (err) {}
 
-        checkout.hidden = true;
-        var confirm = qs(".hp-tix-confirm") || qs(".wf-tix-confirm");
-        if (confirm) {
-          confirm.removeAttribute("hidden");
-          setText("[data-hp='tix-title']", ev.title);
-          setText("[data-hp='tix-date']", dateInfo.label);
-          setText("[data-hp='tix-qty']", String(qty));
-          setText("[data-hp='tix-total']", formatMoney(record.total));
-          requestAnimationFrame(function () {
-            confirm.classList.add("is-visible");
+        var done = qs(".hp-checkout__done", checkout);
+        if (done) {
+          setText("[data-hp='done-title']", ev.title);
+          setText("[data-hp='done-date']", dateInfo.label);
+          setText("[data-hp='done-qty']", String(qty));
+          setText("[data-hp='done-total']", formatMoney(record.total));
+          qsa(".hp-checkout__body, .hp-checkout__foot", checkout).forEach(function (el) {
+            el.hidden = true;
           });
-          scrollToEl(confirm);
+          done.hidden = false;
+          var doneClose = qs(".hp-checkout__done-close", checkout);
+          if (doneClose) doneClose.focus();
+        } else {
+          closeCheckout();
+          var confirm = qs(".hp-tix-confirm") || qs(".wf-tix-confirm");
+          if (confirm) {
+            confirm.removeAttribute("hidden");
+            setText("[data-hp='tix-title']", ev.title);
+            setText("[data-hp='tix-date']", dateInfo.label);
+            setText("[data-hp='tix-qty']", String(qty));
+            setText("[data-hp='tix-total']", formatMoney(record.total));
+            requestAnimationFrame(function () {
+              confirm.classList.add("is-visible");
+            });
+            scrollToEl(confirm);
+          }
         }
         markConverted(qs(".wf-demo"));
-        toast("Tickets reserved — you can view your booking below.");
+        toast("Tickets reserved — " + ev.title + ", " + dateInfo.label + ".");
       });
     }
   }
@@ -912,17 +1000,13 @@
     document.addEventListener("click", function (e) {
       var ticketsBtn = e.target.closest("[data-scroll-tickets]");
       if (ticketsBtn) {
-        var demo = qs(".wf-demo");
-        var ventrataMode = demo && demo.getAttribute("data-ventrata");
-        var target = document.getElementById("tickets");
-        if (ventrataMode === "on") {
-          target = qs('.hp-widget[data-mod="ventrata"]') || target;
-        } else if (ventrataMode === "fallback" || ventrataMode === "off") {
-          target = qs(".hp-checkout") || target;
-        }
-        if (target) {
-          e.preventDefault();
-          scrollToHash(target, target.id ? "#" + target.id : "");
+        e.preventDefault();
+        var checkout = qs(".hp-checkout");
+        if (checkout && checkout.getAttribute("data-hp-checkout-bound")) {
+          openCheckout();
+        } else {
+          var target = qs('.hp-widget[data-mod="ventrata"]') || document.getElementById("tickets");
+          if (target) scrollToHash(target, target.id ? "#" + target.id : "");
         }
         return;
       }

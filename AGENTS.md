@@ -77,7 +77,7 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 | 7. Empty state | **DONE** |
 | 8. A11y + mobile polish | **DONE** |
 
-**Status:** Search prototype is complete and **parked**. Active track is **Happenings only**. Sep 15: transactional `.hp-checkout` mock matches live Ventrata popup (steppers, calendar, special pricing, Manage my booking); falls back when no API keys. Next: html.to.design `screens/01`–`09`; optional Ventrata sandbox keys.
+**Status:** Search prototype is complete and **parked**. Active track is **Happenings only**. Sep 16: ticketed `.hp-checkout` popup content matches the real Ventrata GA form (Adult/Child/Family 2-/4-Pack/Donation %, help icons, Special Pricing rows); preview with `?checkout=1`; falls back to live widget when API keys set. Gameday Kickoff hero + Facebook event card use `hero-gameday-kickoff.jpg`; offer panel uses `offer-gameday-kickoff.png`. Next: html.to.design `screens/01`–`09`; optional Ventrata sandbox keys.
 
 ### What the Happenings outline + Figma screens delivered (Cursor — 2026-09-08)
 - `happenings.html` — headlines and links to listing / ticketed / RSVP (no board, no toggles)
@@ -108,6 +108,10 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 > **2026-08-06 CCFB options 404 (Cursor):** `/ccfb-logo-options.html` 404 while home 200; Actions for `6fad3bf` stuck **queued**. Empty re-trigger `a4c5a77` → deploy success → **page LIVE (200)**. No Pages Settings toggle needed.
 
 **Handoff:** **Happenings only.** Search + CCFB parked. Transactional ticket UI: `.hp-checkout` Ventrata-style mock (local); real `<ventrata-checkout>` when keys set. Football Fest: `hero-football-fest.jpg` + Join the Legacy `<img>` background. Footer: rail-aware breakpoints in `search.css`. Client Figma: [Happenings — Client review](https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football---Global-Banner?node-id=634-136). Next: Ventrata sandbox keys; `02-listing-filter-m` into 01m-filter.
+
+> **2026-09-16 Ventrata success in popup (opencode):** Continue shows the confirmation inside the checkout modal (✓ · You're going! · Event/Date/Tickets/Total · Done) — matching real Ventrata. `resetCheckoutView()` restores the form on reopen; header is sticky.
+
+> **2026-09-16 Ventrata popup content match (opencode):** Ticket lines hardcoded to the GA set — Adult $23 · Child $22 · Family 2-Pack $40 · Family 4-Pack $75 · Donation (%) — each with a `?` help icon; donation adds `subtotal × %`. Special Pricing = Senior 65+ / Student With Valid ID / Military / Military Guest (Adult/Child). Preview with `?checkout=1`.
 
 > **2026-09-15 footer Option F breakpoints (Cursor):** Grid queries `.site-main` width. 3-col at **1078px** (Figma `453:5398`); 2-col at 640px. Checkout 3-col at 960px container.
 

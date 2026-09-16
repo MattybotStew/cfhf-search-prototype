@@ -1,5 +1,35 @@
 # Journal — CFHF Search Prototype
 
+## 2026-09-16 — opencode: Ventrata success message inside the popup
+
+- Continue now swaps the popup body for an in-popup confirmation (check ✓ · "You're going!" · Event / Date / Tickets / Total · Done) — matching real Ventrata, which confirms in the widget instead of closing it.
+- Added `.hp-checkout__done` markup + styles; `resetCheckoutView()` restores the form when the popup reopens; header is now `position: sticky`.
+- Fixed `hidden` on `.hp-checkout__body` / `.hp-checkout__foot` being overridden by their `display: grid`/`flex` — added explicit `[hidden] { display: none !important }`.
+- Verified via CDP: 2 Adult + 1 Child + 10% donation → popup shows Total **$74.80**, Done closes, reopening resets to the form.
+
+## 2026-09-16 — opencode: Gameday offer image (next to Get Tickets)
+
+- Added `offerImage` field: hydration now sets `[data-hp='offer-photo']` from `ev.offerImage || ev.image`, while the hero keeps `ev.image`.
+- Downloaded the supplied simpleview PNG to `assets/images/happenings/offer-gameday-kickoff.png` (1016×730) and set it on `gameday-kickoff`.
+
+## 2026-09-16 — opencode: Gameday hero + Facebook event image
+
+- Downloaded the supplied al.com Auburn-at-sunset JPEG to `assets/images/happenings/hero-gameday-kickoff.jpg` (1280×720) and pointed `gameday-kickoff` `image` + `thumb` at it.
+- Both the detail hero and the sidebar Facebook event mock read `ev.image`, so both now use the photo. Saved locally (not hot-linked) to keep the locked html.to.design import rule — remote URLs and expiring auth tokens break Figma capture.
+
+## 2026-09-16 — opencode: Ventrata popup matches real GA form
+
+- Ticket lines replaced with the hardcoded General Admission set — Adult $23 · Child $22 · Family 2-Pack $40 · Family 4-Pack $75 · Donation (%) — each with a `?` help icon.
+- Donation is a percentage line (step 5, capped 100) that adds `subtotal × %` to the total; `lineTotal()` splits base vs donation.
+- Special Pricing now matches the reference: Senior 65+ $23.00 · Student With Valid ID $23.00 · Military Active & Veterans With ID FREE · **Military Guest** group → Adult $23.00 / Child $22.00.
+- Header: "Manage my booking" restyled from bordered button to text link; gallery dots 3 → 5.
+- `?checkout=1` query param auto-opens the popup (dev/preview + Figma capture); Get Tickets now only opens the mock when it is bound, otherwise scrolls to the live Ventrata widget.
+- Verified via CDP: 2 Adult + 1 Child + 10% donation = **$74.80**, Continue enabled. Layouts checked at 1920 / 820 / 390.
+
+## 2026-09-15 — Cursor: Ticketed offer photo + Ventrata popup
+
+- Ticketed offer is copy + photo (not inline checkout). Get Tickets / sticky CTA opens a Ventrata-style modal (product, calendar, special pricing). Close via X, overlay, or Escape.
+
 ## 2026-09-15 — Cursor: Legal bar CCFB logo (Option F)
 
 - Added ATL Capital of College Football lockup (`ccfb-logo-01-on-black-transparent-web.png`, 120×72) to `.site-footer-legal` — logo · copyright · Privacy/Terms, matching Figma `453:5426`.

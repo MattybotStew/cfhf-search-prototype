@@ -303,16 +303,9 @@
 .hp-page .wf-demo[data-hero-h="lg"] .hp-hero--image { min-height: 24rem; }
 
 /* Module reflow */
-.hp-page .wf-demo[data-ventrata="on"] .hp-checkout {
-  display: none;
-}
-
-.hp-page .wf-demo[data-ventrata="on"] [data-mod="ventrata"] {
-  display: block;
-}
-
 .hp-page .wf-demo[data-ventrata="fallback"] [data-mod="ventrata"],
 .hp-page .wf-demo[data-ventrata="off"] [data-mod="ventrata"],
+.hp-page .wf-demo[data-ventrata="on"] [data-mod="ventrata"],
 .hp-page .wf-demo[data-calendar="off"] [data-mod="calendar"],
 .hp-page .wf-demo[data-sidebar="off"] .hp-aside,
 .hp-page .wf-demo[data-fb="off"] [data-mod="fb-sidebar"],
@@ -325,7 +318,7 @@
   display: none;
 }
 
-.hp-page .wf-demo[data-ventrata="off"] .hp-offer {
+.hp-page .wf-demo[data-ventrata="off"] .hp-offer:not(.hp-offer--ticketed) {
   grid-template-columns: 1fr;
 }
 
@@ -552,21 +545,62 @@
 }
 
 .hp-offer--ticketed {
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: stretch;
+  overflow: hidden;
+  padding: 0;
+}
+
+.hp-offer--ticketed .hp-offer__copy {
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hp-offer__media {
+  margin: 0;
+  min-height: 18rem;
+  background: var(--cfhf-ink);
+}
+
+.hp-offer__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .hp-checkout {
-  grid-column: 1 / -1;
-  width: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 220;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4.5rem 1rem 2rem;
+  overflow: auto;
+  background: rgba(20, 20, 20, 0.55);
   container-type: inline-size;
   container-name: checkout;
 }
 
+.hp-checkout[hidden] {
+  display: none !important;
+}
+
+body.hp-checkout-open {
+  overflow: hidden;
+}
+
 .hp-checkout__panel {
   background: #fff;
-  border: 1px solid #e2e2e2;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  border: 0;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.28);
   overflow: hidden;
+  width: min(1120px, 100%);
+  margin: 0 auto 2rem;
+  position: relative;
 }
 
 .hp-checkout__head {
@@ -575,6 +609,15 @@
   gap: var(--space-4);
   padding: var(--space-5) var(--space-6);
   border-bottom: 1px solid #e8e8e8;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #fff;
+}
+
+.hp-checkout__body[hidden],
+.hp-checkout__foot[hidden] {
+  display: none !important;
 }
 
 .hp-checkout__title {
@@ -591,18 +634,18 @@
 
 .hp-checkout__manage {
   margin-left: auto;
-  padding: 0.35rem 0.75rem;
-  font-size: 0.82rem;
+  padding: 0.25rem 0;
+  font-size: 0.85rem;
   font-weight: 600;
-  color: var(--cfhf-body);
+  color: var(--cfhf-muted);
   background: transparent;
-  border: 1px solid #ccc;
-  border-radius: 2px;
+  border: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
   cursor: pointer;
 }
 
 .hp-checkout__manage:hover {
-  border-color: var(--cfhf-ink);
   color: var(--cfhf-ink);
 }
 
@@ -793,7 +836,33 @@
   color: var(--cfhf-ink);
 }
 
-.hp-checkout__line-label span {
+.hp-checkout__line-name {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hp-checkout__help {
+  flex-shrink: 0;
+  width: 1.05rem;
+  height: 1.05rem;
+  padding: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--cfhf-muted);
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  cursor: help;
+}
+
+.hp-checkout__help:hover,
+.hp-checkout__help:focus-visible {
+  color: var(--cfhf-ink);
+}
+
+.hp-checkout__line-sub {
   display: block;
   font-size: 0.82rem;
   color: var(--cfhf-muted);
@@ -972,6 +1041,27 @@
   border-bottom: 0;
 }
 
+.hp-checkout__pricing-list li > span {
+  display: flex;
+  flex-direction: column;
+}
+
+.hp-checkout__pricing-list li small {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--cfhf-muted);
+}
+
+.hp-checkout__pricing-list .hp-checkout__pricing-group {
+  padding-bottom: 0.15rem;
+  border-bottom: 0;
+}
+
+.hp-checkout__pricing-list .hp-checkout__pricing-group span {
+  font-weight: 700;
+  color: var(--cfhf-ink);
+}
+
 .hp-checkout__pricing-list strong {
   flex-shrink: 0;
   font-weight: 700;
@@ -1021,6 +1111,79 @@
 .hp-checkout__foot .btn.hp-checkout__submit:disabled {
   opacity: 0.45;
   cursor: not-allowed;
+}
+
+.hp-checkout__done {
+  padding: var(--space-10) var(--space-6) var(--space-8);
+  text-align: center;
+}
+
+.hp-checkout__done[hidden] {
+  display: none;
+}
+
+.hp-checkout__done-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: var(--space-4);
+  font-size: 1.5rem;
+  color: #fff;
+  background: var(--cfhf-crimson);
+  border-radius: 50%;
+}
+
+.hp-checkout__done-title {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-body);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  border: 0;
+  padding: 0;
+}
+
+.hp-checkout__done-sub {
+  margin: 0 0 var(--space-6);
+  color: var(--cfhf-muted);
+  max-width: none;
+}
+
+.hp-checkout__done-list {
+  max-width: 26rem;
+  margin: 0 auto var(--space-6);
+  text-align: left;
+}
+
+.hp-checkout__done-list > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.hp-checkout__done-list > div:last-child {
+  border-bottom: 0;
+}
+
+.hp-checkout__done-list dt {
+  color: var(--cfhf-muted);
+  font-size: 0.85rem;
+}
+
+.hp-checkout__done-list dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+}
+
+.hp-checkout__done-close {
+  width: auto;
+  min-width: 10rem;
 }
 
 .hp-tix-confirm {
@@ -1984,7 +2147,7 @@ body.hp-dev .hp-banner {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .hp-offer,
+  .hp-offer:not(.hp-offer--ticketed),
   .hp-page .wf-demo[data-rsvp="native"] .hp-offer--rsvp {
     grid-template-columns: 1fr;
   }
@@ -2047,8 +2210,22 @@ body.hp-dev .hp-banner {
     min-width: 0;
   }
 
-  .hp-offer {
+  .hp-offer,
+  .hp-offer--ticketed {
+    grid-template-columns: 1fr;
+  }
+
+  .hp-offer:not(.hp-offer--ticketed) {
     padding: var(--space-6);
+  }
+
+  .hp-offer--ticketed .hp-offer__copy {
+    padding: var(--space-6);
+  }
+
+  .hp-offer__media {
+    min-height: 14rem;
+    max-height: 18rem;
   }
 }
 

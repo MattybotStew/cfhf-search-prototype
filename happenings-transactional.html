@@ -112,65 +112,82 @@
                 <a class="btn btn--outline" data-mod="calendar" data-hp="calendar" href="#">Add to calendar</a>
               </div>
             </div>
+            <figure class="hp-offer__media">
+              <img src="assets/images/happenings/hero-ticketed.jpg" alt="" width="720" height="480" data-hp="offer-photo">
+            </figure>
+          </section>
 
-            <div class="hp-widget" data-mod="ventrata" id="ventrata-checkout">
-              <ventrata-checkout data-config='{"env":"test"}'></ventrata-checkout>
-            </div>
+          <div class="hp-checkout" data-mod="checkout-mock" hidden role="dialog" aria-modal="true" aria-labelledby="hp-checkout-title">
+            <div class="hp-checkout__panel">
+              <header class="hp-checkout__head">
+                <h2 class="hp-checkout__title" id="hp-checkout-title">Tickets</h2>
+                <button type="button" class="hp-checkout__manage" data-hp="manage-booking">Manage my booking</button>
+                <button type="button" class="hp-checkout__close" aria-label="Close checkout">&times;</button>
+              </header>
 
-            <div class="hp-checkout" data-mod="checkout-mock" aria-label="Ticket checkout">
-              <div class="hp-checkout__panel">
-                <header class="hp-checkout__head">
-                  <h2 class="hp-checkout__title">Tickets</h2>
-                  <button type="button" class="hp-checkout__manage" data-hp="manage-booking">Manage my booking</button>
-                  <button type="button" class="hp-checkout__close" aria-label="Close checkout">&times;</button>
-                </header>
+              <div class="hp-widget" data-mod="ventrata" id="ventrata-checkout">
+                <ventrata-checkout data-config='{"env":"test"}'></ventrata-checkout>
+              </div>
 
-                <div class="hp-checkout__body">
-                  <div class="hp-checkout__product">
-                    <div class="hp-checkout__gallery">
-                      <img class="hp-checkout__photo" src="assets/images/happenings/hero-ticketed.jpg" alt="" width="320" height="200" data-hp="checkout-photo">
-                      <button type="button" class="hp-checkout__gallery-btn hp-checkout__gallery-btn--prev" aria-label="Previous photo">&lsaquo;</button>
-                      <button type="button" class="hp-checkout__gallery-btn hp-checkout__gallery-btn--next" aria-label="Next photo">&rsaquo;</button>
-                      <div class="hp-checkout__gallery-dots" aria-hidden="true">
-                        <span class="is-active"></span><span></span><span></span>
-                      </div>
-                    </div>
-                    <h3 class="hp-checkout__product-title" data-hp="checkout-title">General Admission</h3>
-                    <p class="hp-checkout__product-desc" data-hp="checkout-desc">Embark on a legendary journey with event admission. Immerse yourself in the rich history of college football.</p>
-                    <div class="hp-checkout__lines" data-hp="ticket-lines"></div>
-                  </div>
-
-                  <div class="hp-checkout__calendar-wrap">
-                    <div class="hp-checkout__calendar" data-hp="ticket-calendar">
-                      <div class="hp-checkout__cal-head">
-                        <button type="button" class="hp-checkout__cal-nav" data-cal-prev aria-label="Previous month">&lsaquo;</button>
-                        <strong data-hp="cal-label">October 2026</strong>
-                        <button type="button" class="hp-checkout__cal-nav" data-cal-next aria-label="Next month">&rsaquo;</button>
-                      </div>
-                      <div class="hp-checkout__cal-grid" data-hp="cal-grid" role="grid" aria-label="Select a date"></div>
+              <div class="hp-checkout__body">
+                <div class="hp-checkout__product">
+                  <div class="hp-checkout__gallery">
+                    <img class="hp-checkout__photo" src="assets/images/happenings/hero-ticketed.jpg" alt="" width="320" height="200" data-hp="checkout-photo">
+                    <button type="button" class="hp-checkout__gallery-btn hp-checkout__gallery-btn--prev" aria-label="Previous photo">&lsaquo;</button>
+                    <button type="button" class="hp-checkout__gallery-btn hp-checkout__gallery-btn--next" aria-label="Next photo">&rsaquo;</button>
+                    <div class="hp-checkout__gallery-dots" aria-hidden="true">
+                      <span class="is-active"></span><span></span><span></span><span></span><span></span>
                     </div>
                   </div>
-
-                  <aside class="hp-checkout__pricing">
-                    <h3 class="hp-checkout__pricing-title">Special Pricing</h3>
-                    <ul class="hp-checkout__pricing-list">
-                      <li><span>Senior (65+)</span><strong>$33.00</strong></li>
-                      <li><span>Student (with valid ID)</span><strong>$33.00</strong></li>
-                      <li><span>Military (active &amp; veterans with ID)</span><strong>FREE</strong></li>
-                      <li><span>Military guest — Adult</span><strong>$26.00</strong></li>
-                      <li><span>Military guest — Child</span><strong>$22.00</strong></li>
-                    </ul>
-                    <p class="hp-checkout__pricing-note">*Discounted tickets are only available at the Box Office.</p>
-                  </aside>
+                  <h3 class="hp-checkout__product-title" data-hp="checkout-title">General Admission</h3>
+                  <p class="hp-checkout__product-desc" data-hp="checkout-desc">Embark on a legendary journey with event admission. Immerse yourself in the rich history of college football.</p>
+                  <div class="hp-checkout__lines" data-hp="ticket-lines"></div>
                 </div>
 
-                <footer class="hp-checkout__foot">
-                  <p class="hp-checkout__total">Total <strong data-hp="ticket-total">$0.00</strong></p>
-                  <button type="button" class="btn btn--tickets hp-checkout__submit" data-hp="checkout-submit">Continue</button>
-                </footer>
+                <div class="hp-checkout__calendar-wrap">
+                  <div class="hp-checkout__calendar" data-hp="ticket-calendar">
+                    <div class="hp-checkout__cal-head">
+                      <button type="button" class="hp-checkout__cal-nav" data-cal-prev aria-label="Previous month">&lsaquo;</button>
+                      <strong data-hp="cal-label">October 2026</strong>
+                      <button type="button" class="hp-checkout__cal-nav" data-cal-next aria-label="Next month">&rsaquo;</button>
+                    </div>
+                    <div class="hp-checkout__cal-grid" data-hp="cal-grid" role="grid" aria-label="Select a date"></div>
+                  </div>
+                </div>
+
+                <aside class="hp-checkout__pricing">
+                  <h3 class="hp-checkout__pricing-title">Special Pricing</h3>
+                  <ul class="hp-checkout__pricing-list">
+                    <li><span>Senior<small>65+</small></span><strong>$23.00</strong></li>
+                    <li><span>Student<small>With Valid ID</small></span><strong>$23.00</strong></li>
+                    <li><span>Military<small>Active &amp; Veterans With ID</small></span><strong>FREE</strong></li>
+                    <li class="hp-checkout__pricing-group"><span>Military Guest</span></li>
+                    <li><span>Adult</span><strong>$23.00</strong></li>
+                    <li><span>Child</span><strong>$22.00</strong></li>
+                  </ul>
+                  <p class="hp-checkout__pricing-note">*Discounted tickets are only available at the Box Office.</p>
+                </aside>
+              </div>
+
+              <footer class="hp-checkout__foot">
+                <p class="hp-checkout__total">Total <strong data-hp="ticket-total">$0.00</strong></p>
+                <button type="button" class="btn btn--tickets hp-checkout__submit" data-hp="checkout-submit">Continue</button>
+              </footer>
+
+              <div class="hp-checkout__done" hidden role="status" aria-live="polite">
+                <span class="hp-checkout__done-icon" aria-hidden="true">&#10003;</span>
+                <h3 class="hp-checkout__done-title">You&rsquo;re going!</h3>
+                <p class="hp-checkout__done-sub">Your tickets are reserved.</p>
+                <dl class="hp-checkout__done-list">
+                  <div><dt>Event</dt><dd data-hp="done-title"></dd></div>
+                  <div><dt>Date</dt><dd data-hp="done-date"></dd></div>
+                  <div><dt>Tickets</dt><dd data-hp="done-qty"></dd></div>
+                  <div><dt>Total</dt><dd data-hp="done-total"></dd></div>
+                </dl>
+                <button type="button" class="btn btn--tickets hp-checkout__done-close">Done</button>
               </div>
             </div>
-          </section>
+          </div>
 
           <section class="hp-tix-confirm" hidden>
             <h2>You’re going</h2>

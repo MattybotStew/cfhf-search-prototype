@@ -6,17 +6,23 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-09-15 (Cursor — footer Option F breakpoints)
-**Active Agent:** Cursor
-**Branch:** `master` (local uncommitted: container-query footer + checkout breakpoints)
+**Last Updated:** 2026-09-16 (opencode — Ventrata popup content match)
+**Active Agent:** opencode
+**Branch:** `master` (local uncommitted: ticketed offer photo + checkout modal)
 **Focus:** **Happenings only.** Search + CCFB parked.
-**Status:** Footer 3-col matches Figma Option F at **1078px main column** (container queries). Checkout 3-col at 960px container; Continue full-width only under 720px.
+**Status:** Ticketed checkout popup now matches the real Ventrata GA form (Adult/Child/Family 2-/4-Pack/Donation %, help icons, Special Pricing rows). Preview direct via `?checkout=1`. Gameday Kickoff hero + Facebook event card use `hero-gameday-kickoff.jpg`; offer panel uses `offer-gameday-kickoff.png`.
 
 ### Pick up here (next agent)
-1. Hard-refresh for `search.css` (container-type on `.site-main`)
+1. Hard-refresh `happenings-transactional.html?event=gameday-kickoff&checkout=1` — popup should match Image 1 reference
 2. Real Ventrata sandbox `apiKey` / `productID` when available
 3. html.to.design `02-listing-filter-m` onto Client review **01m-filter**
 4. **Do not** revert hero/legacy to CSS-only backgrounds on import targets
+
+### Decision LOCKED — Ventrata checkout popup content (2026-09-16)
+- Ticket types are the **hardcoded GA set** (not event JSON): Adult $23 · Child $22 · Family 2-Pack $40 · Family 4-Pack $75 · Donation (%) step 5
+- Each line has a `?` help icon; Special Pricing = Senior 65+ / Student With Valid ID / Military / Military Guest (Adult+Child)
+- 3-column modal keeps pricing **inside** (prototype has no page sidebar); header = Tickets + Manage my booking text link + X
+- Dev preview: add `?checkout=1` to a transactional URL to auto-open the popup
 
 ### Live — Happenings (verified 200)
 - https://mattybotstew.github.io/cfhf-search-prototype/happenings.html — client outline
@@ -56,6 +62,24 @@ Matt: “i want what is there now with the search functionality requested.”
 - Prototype-link cards: ticketed → 03, RSVP → 06; then wire FigJam if needed
 - Real Ventrata sandbox `apiKey` / `productID` when available
 - Do **not** pick up CCFB / search unless Matt asks
+
+### Newly completed (2026-09-16 — opencode: Ventrata success in popup)
+- Continue shows the confirmation **inside** the popup (`.hp-checkout__done`: ✓ · You're going! · Event/Date/Tickets/Total · Done) instead of closing the modal + scrolling to a page panel
+- `resetCheckoutView()` restores the form on reopen; sticky `.hp-checkout__head`; `[hidden]` fix for body/foot display rules
+
+### Newly completed (2026-09-16 — opencode: Gameday offer image)
+- `offerImage` in JSON + hydration split: `[data-hp='offer-photo']` = `ev.offerImage || ev.image`; hero stays `ev.image`
+- `offer-gameday-kickoff.png` (local, 1016×730) set on `gameday-kickoff` — sits beside the Get Tickets copy
+
+### Newly completed (2026-09-16 — opencode: Gameday hero + FB event image)
+- `hero-gameday-kickoff.jpg` (1280×720, local) set as `gameday-kickoff` `image`/`thumb` → detail hero, offer photo, and Facebook event mock all use it
+
+### Newly completed (2026-09-16 — opencode: Ventrata popup content match)
+- `happenings.js`: hardcoded GA ticket set (Adult/Child/Family 2-Pack/Family 4-Pack/Donation %); percent donation contributes to total; per-line `?` help icons; steppers (donation step 5, capped 100)
+- `happenings-transactional.html`: Special Pricing rows now Senior 65+ / Student With Valid ID / Military / Military Guest (Adult/Child) at $23/$22; gallery 5 dots
+- `happenings-pages.css`: `.hp-checkout__line-name` + `.hp-checkout__help`, pricing `small`/group rows, Manage my booking as text link
+- `?checkout=1` dev param auto-opens the popup; Get Tickets falls back to Ventrata widget when real keys exist
+- Verified: 2 Adult + 1 Child + 10% donation = $74.80; layouts at 1920 / 820 / 390
 
 ### Newly completed (2026-09-15 — Cursor: legal bar logo)
 - Option F legal strip: ATL Capital of College Football logo (120×72) left of copyright, Privacy/Terms right (`453:5426`)
