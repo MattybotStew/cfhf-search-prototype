@@ -1,5 +1,9 @@
 # Journal — CFHF Search Prototype
 
+## 2026-10-04 — Cursor: approved footer
+
+- Locked the live cfbhall.com footer (Stay In The Know, social, reviews, About, address/phone, CityPASS, right promo) as the approved footer. Prototype already uses that structure. Right promo on the live site is a rotating ad (Home Depot in the screenshot); prototype slot stays the static Aflac Kickoff image.
+
 ## 2026-10-04 — Cursor: push Nebo V2
 
 - Committed and pushed the local Nebo V2 fixes to `master` so GitHub Pages can pick them up. Left Playwright captures and `listing-current.png` untracked.
