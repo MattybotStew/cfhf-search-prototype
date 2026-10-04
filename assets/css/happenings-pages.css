@@ -2142,6 +2142,36 @@ body.hp-dev .hp-banner {
   line-height: 1.5;
 }
 
+/* [hidden] must win over the row layout, or the invisible confirm panel leaves a gap under the hero. */
+.hp-confirm[hidden],
+.hp-tix-confirm[hidden] {
+  display: none !important;
+}
+
+/* Confirmation actions stay on one row until the 900px mobile shell. */
+@media (min-width: 901px) {
+  .hp-confirm:not([hidden]),
+  .hp-tix-confirm:not([hidden]) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: var(--space-3);
+    row-gap: var(--space-4);
+  }
+
+  .hp-confirm > :not(.btn),
+  .hp-tix-confirm > :not(.btn) {
+    flex: 1 0 100%;
+  }
+
+  .hp-confirm .btn,
+  .hp-tix-confirm .btn {
+    width: auto;
+    flex: 1 1 0;
+  }
+}
+
 .hp-toast {
   position: fixed;
   bottom: var(--space-6);

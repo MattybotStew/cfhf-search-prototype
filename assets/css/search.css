@@ -1604,8 +1604,9 @@ button {
 }
 
 /*
-  Footer Option F (Figma 453:5398) is 1078px — the main column, not the viewport.
-  Query .site-main so the rail never shifts the 3-col / 2-col / 1-col points.
+  Approved live footer is one row once the main column is desktop-width beside the rail:
+  Stay In The Know | About + Address | promo. 720px matches that; 1078px left typical
+  laptop windows in the stacked layout.
 */
 @container site-main (min-width: 640px) {
   .site-footer__inner {
@@ -1621,9 +1622,9 @@ button {
   }
 }
 
-@container site-main (min-width: 1078px) {
+@container site-main (min-width: 720px) {
   .site-footer__inner {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 0.7fr);
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) auto;
     gap: var(--space-8) 1.5rem;
   }
 
@@ -1636,19 +1637,6 @@ button {
   .site-footer__inner {
     grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 0.7fr);
     gap: var(--space-8) var(--space-10);
-  }
-}
-
-@container site-main (min-width: 1200px) {
-  .site-footer__col--know {
-    flex-direction: row;
-    gap: var(--space-8);
-  }
-
-  .site-footer__signup,
-  .site-footer__social-block {
-    flex: 1 1 50%;
-    min-width: 0;
   }
 }
 
@@ -1667,26 +1655,13 @@ button {
     }
   }
 
-  @media (min-width: 1358px) {
+  @media (min-width: 1000px) {
     .site-footer__inner {
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 0.7fr);
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) auto;
     }
 
     .site-footer__col--know {
       grid-column: auto;
-    }
-  }
-
-  @media (min-width: 1528px) {
-    .site-footer__col--know {
-      flex-direction: row;
-      gap: var(--space-8);
-    }
-
-    .site-footer__signup,
-    .site-footer__social-block {
-      flex: 1 1 50%;
-      min-width: 0;
     }
   }
 }
@@ -1993,11 +1968,6 @@ button {
   object-fit: cover;
 }
 
-@container site-main (min-width: 1078px) and (max-width: 1279px) {
-  .site-footer__promo {
-    max-width: 160px;
-  }
-}
 
 /* Legal bar under footer — Option F (Figma 453:5426) */
 .site-footer-legal {
@@ -2032,7 +2002,8 @@ button {
   }
 }
 
-@container site-main (min-width: 1078px) {
+/* Horizontal legal bar through a 960px window. Rail is 280px, so the content column is 680px. */
+@container site-main (min-width: 680px) {
   .site-footer-legal {
     flex-direction: row;
     flex-wrap: nowrap;
@@ -2059,7 +2030,7 @@ button {
 }
 
 @supports not (container-type: inline-size) {
-  @media (min-width: 1358px) {
+  @media (min-width: 960px) {
     .site-footer-legal {
       flex-direction: row;
       flex-wrap: nowrap;
@@ -2163,7 +2134,7 @@ button {
   }
 }
 
-@container site-main (max-width: 1077px) {
+@container site-main (max-width: 719px) {
   .site-footer__reviews {
     flex-direction: column;
     align-items: flex-start;
@@ -2177,7 +2148,7 @@ button {
 }
 
 @supports not (container-type: inline-size) {
-  @media (max-width: 1357px) {
+  @media (max-width: 999px) {
     .site-footer__reviews {
       flex-direction: column;
       align-items: flex-start;

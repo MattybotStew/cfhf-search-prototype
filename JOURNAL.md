@@ -1,5 +1,21 @@
 # Journal — CFHF Search Prototype
 
+## 2026-10-04 — Cursor: hidden RSVP confirm no longer leaves a gap
+
+- The side-by-side button rule set `.hp-confirm` to `display: flex`, which overrode `hidden` and left an invisible block under the hero. `[hidden]` is `display: none` again until the confirmation is shown.
+
+## 2026-10-04 — Cursor: confirmation buttons side by side
+
+- RSVP and ticketed confirmation actions (Browse more events / Add to calendar) share one row from 901px up and stack at the 900px mobile shell.
+
+## 2026-10-04 — Cursor: legal bar through 960
+
+- The logo / copyright / legal-links row stays horizontal until the window is under 960px. With the 280px rail that is a 680px content column. Below that it stacks. Hard-refresh to load `search.css`.
+
+## 2026-10-04 — Cursor: footer row on desktop
+
+- The approved one-row footer was only applied once the content column reached 1078px, so a normal laptop beside the left rail still stacked Stay In The Know full width. The one-row layout now starts at 720px of `.site-main`. Hard-refresh the external browser to pick up `search.css`.
+
 ## 2026-10-04 — Cursor: approved footer
 
 - Locked the live cfbhall.com footer (Stay In The Know, social, reviews, About, address/phone, CityPASS, right promo) as the approved footer. Prototype already uses that structure. Right promo on the live site is a rotating ad (Home Depot in the screenshot); prototype slot stays the static Aflac Kickoff image.
