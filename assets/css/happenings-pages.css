@@ -249,28 +249,37 @@
   background: #fff;
 }
 
+/* Tags are pills with a muted treatment so they never read as CTAs.
+ * CTAs (`.btn`) are square-cornered crimson/filled; tags are rounded + neutral. */
 .hp-tag {
   display: inline-flex;
   align-items: center;
+  align-self: flex-start;
+  max-width: 100%;
   font-family: var(--font-ui-compact);
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.08em;
+  line-height: 1;
   text-transform: uppercase;
-  color: #fff;
-  background: var(--cfhf-crimson);
-  padding: 0.28rem 0.7rem;
+  color: var(--cfhf-ink);
+  background: var(--cfhf-surface-alt);
+  border: 1px solid var(--cfhf-border);
+  border-radius: 999px;
+  padding: 0.32rem 0.75rem;
 }
 
 .hp-tag--outline {
-  background: transparent;
-  color: var(--cfhf-crimson);
-  border: 2px solid var(--cfhf-crimson);
+  background: #fff;
+  color: var(--cfhf-muted);
+  border-color: var(--cfhf-border);
 }
 
+.hp-hero--image .hp-tag,
 .hp-hero--image .hp-tag--outline {
   color: #fff;
-  border-color: rgba(255, 255, 255, 0.85);
+  background: rgba(0, 0, 0, 0.55);
+  border-color: rgba(255, 255, 255, 0.55);
 }
 
 .hp-hero__actions {
@@ -1432,6 +1441,11 @@ body.hp-checkout-open {
   border-top: 2px dashed color-mix(in srgb, var(--cfhf-border) 85%, var(--cfhf-crimson));
 }
 
+/* Collapse to one column when the sidebar has no applicable cards */
+.hp-layout--single {
+  grid-template-columns: 1fr;
+}
+
 .hp-section + .hp-section {
   margin-top: var(--space-10);
   padding-top: var(--space-10);
@@ -1736,11 +1750,22 @@ body.hp-checkout-open {
 }
 
 /* Listing filters — chips only */
+.hp-filter__label {
+  display: block;
+  font-family: var(--font-ui-compact);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--cfhf-muted);
+  margin: var(--space-6) 0 0;
+}
+
 .hp-chips {
   display: flex;
   flex-wrap: nowrap;
   gap: 0.5rem;
-  margin: var(--space-6) 0 var(--space-8);
+  margin: var(--space-3) 0 var(--space-8);
   padding-bottom: var(--space-6);
   border-bottom: 1px solid var(--cfhf-border);
   overflow-x: auto;
@@ -2037,7 +2062,8 @@ body.hp-checkout-open {
   color: #8b1a20;
 }
 
-/* ----- Post-conversion: hide duplicate CTAs -----
+/* Post-conversion: hide the redundant offer + duplicate CTAs so the
+ * confirmation is the clear focus of the page. */
 .hp-page .wf-demo[data-converted="on"] .hp-sticky,
 .hp-page .wf-demo[data-converted="on"] .hp-hero__actions,
 .hp-page .wf-demo[data-converted="on"] .hp-offer {
@@ -2154,6 +2180,10 @@ body.hp-dev .hp-banner {
 }
 
 @media (max-width: 900px) {
+  .hp-filter__label {
+    display: none;
+  }
+
   .hp-chips {
     display: none;
   }

@@ -1,5 +1,32 @@
 # Journal — CFHF Search Prototype
 
+## 2026-10-04 — Cursor: push Nebo V2
+
+- Committed and pushed the local Nebo V2 fixes to `master` so GitHub Pages can pick them up. Left Playwright captures and `listing-current.png` untracked.
+
+## 2026-10-04 — opencode: Nebo feedback V2 verification
+
+- Reviewed the codebase + live local build against Nebo feedback V2 (source of truth) and the Figma node `627-519` ("01 Listing").
+- **All 5 V2 items confirmed done at runtime:**
+  1. Tags vs CTAs — `.hp-tag` renders as rounded neutral pills (`999px`, `#888a8e` text); hero tags translucent.
+  2. Filter label — "Filter by category" visible above chips; chips/dropdown rendered from `INDEX.categories`.
+  3. RSVP confirmation — `.hp-confirm` is the first block in `main`; submit sets `data-converted="on"` and hides offer/hero-CTA/sticky.
+  4. Ticketed confirmation — `.hp-tix-confirm` populates behind the Ventrata popup (verified 2 adult = $46.00).
+  5. Sidebar — `applyAsideVisibility()` + `.hp-layout--single` collapse when Location/Facebook data is absent.
+- Flagged: Figma `627-519` is the **pre-V2** snapshot (crimson tags, no visible label) and must be re-imported from `screens/01-listing-d.html` / `02-listing-filter-d.html`.
+- No production file changes this session (verification only); the V2 fixes remain uncommitted.
+
+## 2026-10-02 — opencode: Nebo Happenings feedback V2 fixes
+
+Response to `Nebo x CFB Hall – Happenings Page Feedback V2`:
+
+- **Tags vs CTAs:** `.hp-tag` / `.hp-tag--outline` are now rounded, muted pills (`align-self: flex-start`, neutral surface) so they no longer resemble the square crimson `.btn` CTAs. Hero-image tags keep a translucent dark pill for contrast. Updated `screens/figma-screens.css` `.tag` to match.
+- **Desktop filter section:** added a visible **“Filter by category”** label above the listing chips (hidden ≤900px where the labeled dropdown already exists); categories are now rendered in `happenings.js` from `INDEX.categories`, so the CMS copy is the source of truth.
+- **RSVP confirmation:** moved `.hp-confirm` to be the **first block** in `main`, added a date/location detail line, and enabled the `[data-converted="on"]` rule so the offer (“Reserve your free admission”) + hero CTA + sticky bar are hidden after submit.
+- **Ticketed confirmation:** the page `.hp-tix-confirm` is now populated even when the confirmation shows inside the Ventrata popup, so closing the popup never reveals an empty page.
+- **Sidebar adapts when N/A:** `applyAsideVisibility()` hides the Location / Facebook cards when their data is absent and collapses `.hp-layout` to one column if the sidebar is empty.
+- Regenerated `screens/01-listing-d.html` + `02-listing-filter-d.html`.
+
 ## 2026-09-16 — opencode: Ventrata success message inside the popup
 
 - Continue now swaps the popup body for an in-popup confirmation (check ✓ · "You're going!" · Event / Date / Tickets / Total · Done) — matching real Ventrata, which confirms in the widget instead of closing it.

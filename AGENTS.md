@@ -109,6 +109,10 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 
 **Handoff:** **Happenings only.** Search + CCFB parked. Transactional ticket UI: `.hp-checkout` Ventrata-style mock (local); real `<ventrata-checkout>` when keys set. Football Fest: `hero-football-fest.jpg` + Join the Legacy `<img>` background. Footer: rail-aware breakpoints in `search.css`. Client Figma: [Happenings — Client review](https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football---Global-Banner?node-id=634-136). Next: Ventrata sandbox keys; `02-listing-filter-m` into 01m-filter.
 
+> **2026-10-02 Nebo feedback V2 (opencode):** Tag pills no longer resemble CTAs (`.hp-tag` rounded/neutral; hero tags translucent); listing gained a “Filter by category” label + categories rendered from JSON; RSVP confirmation is the first block and the offer/hero-CTA/sticky hide post-submit; ticketed page confirmation populates behind the Ventrata success popup; sidebar Location/Facebook cards auto-hide and the layout collapses when empty. `screens/01-listing-d.html` + `02-listing-filter-d.html` regenerated.
+
+> **2026-10-04 Nebo V2 verification (opencode):** All 5 V2 items runtime-verified on the local build (Nebo V2 is the source of truth). Figma node `627-519` ("01 Listing") is the **stale pre-V2** state — still crimson tags + no visible "Filter by category" label — so re-import `screens/01-listing-d.html` / `02-listing-filter-d.html` to sync. V2 fixes remain local/uncommitted.
+
 > **2026-09-16 Ventrata success in popup (opencode):** Continue shows the confirmation inside the checkout modal (✓ · You're going! · Event/Date/Tickets/Total · Done) — matching real Ventrata. `resetCheckoutView()` restores the form on reopen; header is sticky.
 
 > **2026-09-16 Ventrata popup content match (opencode):** Ticket lines hardcoded to the GA set — Adult $23 · Child $22 · Family 2-Pack $40 · Family 4-Pack $75 · Donation (%) — each with a `?` help icon; donation adds `subtotal × %`. Special Pricing = Senior 65+ / Student With Valid ID / Military / Military Guest (Adult/Child). Preview with `?checkout=1`.

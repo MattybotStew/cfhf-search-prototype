@@ -6,17 +6,28 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-09-16 (opencode — Ventrata popup content match)
-**Active Agent:** opencode
-**Branch:** `master` (local uncommitted: ticketed offer photo + checkout modal)
+**Last Updated:** 2026-10-04 (Cursor — pushed Nebo V2)
+**Active Agent:** Cursor
+**Branch:** `master` (Nebo V2 pushed; Pages deploy pending)
 **Focus:** **Happenings only.** Search + CCFB parked.
-**Status:** Ticketed checkout popup now matches the real Ventrata GA form (Adult/Child/Family 2-/4-Pack/Donation %, help icons, Special Pricing rows). Preview direct via `?checkout=1`. Gameday Kickoff hero + Facebook event card use `hero-gameday-kickoff.jpg`; offer panel uses `offer-gameday-kickoff.png`.
+**Status:** Addressed Nebo feedback V2 — tag styling distinct from CTAs, visible desktop filter label + JSON-driven categories, RSVP confirmation moved to first block with offer hidden post-submit, page-level ticketed confirmation, sidebar auto-hides N/A cards. **Verified all 5 V2 items at runtime (2026-10-04).**
 
 ### Pick up here (next agent)
-1. Hard-refresh `happenings-transactional.html?event=gameday-kickoff&checkout=1` — popup should match Image 1 reference
-2. Real Ventrata sandbox `apiKey` / `productID` when available
-3. html.to.design `02-listing-filter-m` onto Client review **01m-filter**
+1. Confirm GitHub Pages deploy, then share the live listing URL
+2. Re-import `screens/01-listing-d.html` / `02-listing-filter-d.html` into Figma — **Figma node `627-519` is the stale pre-V2 state** (still shows crimson tags, no visible "Filter by category" label), so it must be re-imported to reflect V2
+3. Real Ventrata sandbox `apiKey` / `productID` when available
 4. **Do not** revert hero/legacy to CSS-only backgrounds on import targets
+
+### Newly completed (2026-10-04 — opencode: Nebo V2 verification)
+- Runtime-verified all 5 V2 fixes on the local build: neutral rounded tags (`999px`, `#888a8e` text), "Filter by category" label + JSON chips (6, "All" active), RSVP confirm-first + offer/hero/sticky hidden on submit, ticketed `.hp-tix-confirm` populating behind the popup, sidebar auto-hide/collapse logic in place
+- Confirmed Nebo V2 is the source of truth; Figma `627-519` is the pre-feedback snapshot and needs re-import
+
+### Newly completed (2026-10-02 — opencode: Nebo feedback V2)
+- `.hp-tag` / `.hp-tag--outline` → muted rounded pills (`align-self:flex-start`); hero-image tags translucent dark. `screens/figma-screens.css` `.tag` matched
+- Listing: “Filter by category” label above chips (desktop); chips + dropdown rebuilt from `INDEX.categories`
+- RSVP: `.hp-confirm` is first block in `main`; `[data-converted="on"]` hides `.hp-offer` / `.hp-hero__actions` / `.hp-sticky`; confirm shows date + address
+- Ticketed: `.hp-tix-confirm` populates even when the Ventrata popup shows its own success, so closing it leaves a confirmation
+- `applyAsideVisibility()` hides Location / Facebook cards when data missing; `.hp-layout--single` collapses the two-column layout when the sidebar is empty
 
 ### Decision LOCKED — Ventrata checkout popup content (2026-09-16)
 - Ticket types are the **hardcoded GA set** (not event JSON): Adult $23 · Child $22 · Family 2-Pack $40 · Family 4-Pack $75 · Donation (%) step 5

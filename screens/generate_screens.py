@@ -50,7 +50,7 @@ def chips(active):
     for c in CHIPS:
         on = " is-on" if c == active else ""
         bits.append(f'<span class="chip{on}">{c}</span>')
-    return '<div class="chips">' + "".join(bits) + "</div>"
+    return '<div class="filter-label">Filter by category</div><div class="chips">' + "".join(bits) + "</div>"
 
 
 def filter_dropdown(active, open_menu=False):

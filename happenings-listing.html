@@ -88,13 +88,16 @@
       </section>
 
       <main id="main" class="hp-wrap hp-wrap--listing">
-        <div class="hp-chips" aria-label="Filter by category">
-          <button type="button" class="is-active" data-category="all" aria-pressed="true">All</button>
-          <button type="button" data-category="upcoming" aria-pressed="false">Upcoming</button>
-          <button type="button" data-category="free-rsvp" aria-pressed="false">Free / RSVP</button>
-          <button type="button" data-category="ticketed" aria-pressed="false">Ticketed</button>
-          <button type="button" data-category="exhibitions" aria-pressed="false">Exhibitions</button>
-          <button type="button" data-category="community" aria-pressed="false">Community</button>
+        <div class="hp-filter" aria-label="Filter happenings by category">
+          <p class="hp-filter__label" id="hp-filter-heading">Filter by category</p>
+          <div class="hp-chips" aria-labelledby="hp-filter-heading">
+            <button type="button" class="is-active" data-category="all" aria-pressed="true">All</button>
+            <button type="button" data-category="upcoming" aria-pressed="false">Upcoming</button>
+            <button type="button" data-category="free-rsvp" aria-pressed="false">Free / RSVP</button>
+            <button type="button" data-category="ticketed" aria-pressed="false">Ticketed</button>
+            <button type="button" data-category="exhibitions" aria-pressed="false">Exhibitions</button>
+            <button type="button" data-category="community" aria-pressed="false">Community</button>
+          </div>
         </div>
         <div class="hp-filter-dropdown">
           <span class="hp-filter-dropdown__label" id="hp-filter-label">Filter</span>

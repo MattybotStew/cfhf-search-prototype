@@ -176,8 +176,33 @@
     var filterTrigger = filterDropdown ? qs(".hp-filter-dropdown__trigger", filterDropdown) : null;
     var filterMenu = filterDropdown ? qs(".hp-filter-dropdown__menu", filterDropdown) : null;
     var filterValue = filterDropdown ? qs(".hp-filter-dropdown__value", filterDropdown) : null;
-    var filterOptions = filterMenu ? qsa("button[data-category]", filterMenu) : [];
     var empty = qs(".hp-listing-empty");
+
+    // Categories are CMS-editable: render chips + dropdown from the JSON index
+    // instead of hardcoding them in the template.
+    function renderCategoryControls() {
+      var cats = (INDEX && INDEX.categories) || [];
+      if (!cats.length) return;
+      if (chips) {
+        chips.innerHTML = cats.map(function (cat, i) {
+          return '<button type="button"' + (i === 0 ? ' class="is-active"' : "") +
+            ' data-category="' + esc(cat.id) + '" aria-pressed="' + (i === 0) + '">' +
+            esc(cat.label) + "</button>";
+        }).join("");
+      }
+      if (filterMenu) {
+        filterMenu.innerHTML = cats.map(function (cat, i) {
+          return '<li><button type="button" role="option" data-category="' + esc(cat.id) +
+            '" aria-selected="' + (i === 0) + '"' + (i === 0 ? ' class="is-active"' : "") + '>' +
+            esc(cat.label) + "</button></li>";
+        }).join("");
+      }
+      if (filterValue && cats[0]) filterValue.textContent = cats[0].label;
+    }
+
+    renderCategoryControls();
+
+    var filterOptions = filterMenu ? qsa("button[data-category]", filterMenu) : [];
 
     cards.forEach(function (card) {
       var id = card.getAttribute("data-event-id");
@@ -425,6 +450,29 @@
     }
 
     renderRelated(ev);
+    applyAsideVisibility(ev);
+  }
+
+  /* Hide sidebar cards whose data isn't applicable to this event, and collapse
+   * the two-column layout to a single column when the whole sidebar is empty. */
+  function applyAsideVisibility(ev) {
+    var aside = qs(".hp-aside");
+    if (!aside) return;
+    var v = venue();
+
+    qsa(".hp-card", aside).forEach(function (card) {
+      var mod = card.getAttribute("data-mod");
+      if (mod === "fb-sidebar") {
+        card.hidden = !(ev && ev.facebookEventUrl);
+      } else if (qs("[data-hp='address']", card)) {
+        card.hidden = !(v && v.address);
+      }
+    });
+
+    var anyVisible = qsa(".hp-card", aside).some(function (card) { return !card.hidden; });
+    var layout = aside.closest(".hp-layout");
+    aside.hidden = !anyVisible;
+    if (layout) layout.classList.toggle("hp-layout--single", !anyVisible);
   }
 
   function renderRelated(current) {
@@ -580,10 +628,20 @@
           if (who) who.textContent = name;
           var evt = qs("[data-hp='confirm-event']", confirm);
           if (evt) evt.textContent = ev.title;
+          var detail = qs("[data-hp='confirm-detail']", confirm);
+          if (detail) {
+            var v = venue();
+            detail.textContent = [
+              ev.dateLabel || ev.dateShort || "",
+              [v.address, v.cityLine].filter(Boolean).join(", ")
+            ].filter(Boolean).join(" · ");
+          }
           // Trigger CSS transition
           requestAnimationFrame(function () {
             confirm.classList.add("is-visible");
           });
+          // Confirm is the first content block — bring it to the top of the page
+          window.scrollTo({ top: 0, behavior: scrollBehavior() });
           scrollToEl(confirm);
         }
         var demo = form.closest(".wf-demo");
@@ -903,18 +961,21 @@
           if (doneClose) doneClose.focus();
         } else {
           closeCheckout();
-          var confirm = qs(".hp-tix-confirm") || qs(".wf-tix-confirm");
-          if (confirm) {
-            confirm.removeAttribute("hidden");
-            setText("[data-hp='tix-title']", ev.title);
-            setText("[data-hp='tix-date']", dateInfo.label);
-            setText("[data-hp='tix-qty']", String(qty));
-            setText("[data-hp='tix-total']", formatMoney(record.total));
-            requestAnimationFrame(function () {
-              confirm.classList.add("is-visible");
-            });
-            scrollToEl(confirm);
-          }
+        }
+
+        // Always leave a confirmation on the page so closing the popup
+        // doesn't reveal an empty page once the offer is hidden.
+        var confirm = qs(".hp-tix-confirm") || qs(".wf-tix-confirm");
+        if (confirm) {
+          confirm.removeAttribute("hidden");
+          setText("[data-hp='tix-title']", ev.title);
+          setText("[data-hp='tix-date']", dateInfo.label);
+          setText("[data-hp='tix-qty']", String(qty));
+          setText("[data-hp='tix-total']", formatMoney(record.total));
+          requestAnimationFrame(function () {
+            confirm.classList.add("is-visible");
+          });
+          if (!done) scrollToEl(confirm);
         }
         markConverted(qs(".wf-demo"));
         toast("Tickets reserved — " + ev.title + ", " + dateInfo.label + ".");
