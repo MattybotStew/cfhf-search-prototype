@@ -1,5 +1,37 @@
 # Journal — CFHF Search Prototype
 
+## 2026-10-04 — Cursor: RSVP confirmation matches ticketed card
+
+- Football Fest `.hp-confirm` already uses `.hp-success` (kicker, display title, meta, note, label-sized 55px actions, crimson left bar). Verified visible on the local page; the plain light-blue card was the unpushed previous layout.
+
+## 2026-10-04 — Cursor: confirmation buttons same height
+
+- Browse more events and Add to calendar in `.hp-success__actions` are both 55px tall (3.4375rem, ticket-button type). Width still follows the label. Measured on the ticket confirmation and the RSVP confirmation.
+
+## 2026-10-04 — Cursor: equal hero spacing
+
+- Image heroes use equal space above and below the copy. From 1024px the top padding clears the overlaid hours bar (4.625rem) plus 2rem, matching the 2rem bottom padding. Measured gap is 32px both sides on Gameday and the listing. Under 900px the bar is not overlaid, so the hero padding is 2rem top and bottom. Height stays auto; min-height floors are unchanged.
+
+## 2026-10-04 — Cursor: center Happenings hero copy
+
+- Reverted the hours-bar padding bump. Image heroes center their copy (`justify-content: center`) with space below the hours overlay on desktop and equal padding at ≤900px. Photo stays an absolutely positioned `img`.
+
+## 2026-10-04 — Cursor: hours bar breathing room
+
+- `.hours-bar` vertical padding is 1.125rem on desktop and in the ≤900px shell, with items vertically centered. The always-visible search chrome is unchanged.
+
+## 2026-10-04 — Cursor: Happenings type and button polish
+
+- Listing, RSVP, and ticketed pages pick up the confirmation-card accent: offer panels get the crimson left bar, section titles step up slightly, and form/offer CTAs size to their labels on desktop (full width only at ≤900px). Footer, rail, and checkout math were left alone.
+
+## 2026-10-04 — Cursor: confirmation buttons hug their labels
+
+- Ticket and RSVP confirmation actions (Browse more events / Add to calendar) size to their labels. They sit side by side from 901px and stack below that without stretching full width.
+
+## 2026-10-04 — Cursor: remove Special Pricing
+
+- PM note: removed the Special Pricing column from the checkout popup. Ticket lines and the calendar stay; the modal is two columns on desktop.
+
 ## 2026-10-04 — Cursor: hidden RSVP confirm no longer leaves a gap
 
 - The side-by-side button rule set `.hp-confirm` to `display: flex`, which overrode `hidden` and left an invisible block under the hero. `[hidden]` is `display: none` again until the confirmation is shown.

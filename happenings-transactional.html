@@ -154,19 +154,6 @@
                     <div class="hp-checkout__cal-grid" data-hp="cal-grid" role="grid" aria-label="Select a date"></div>
                   </div>
                 </div>
-
-                <aside class="hp-checkout__pricing">
-                  <h3 class="hp-checkout__pricing-title">Special Pricing</h3>
-                  <ul class="hp-checkout__pricing-list">
-                    <li><span>Senior<small>65+</small></span><strong>$23.00</strong></li>
-                    <li><span>Student<small>With Valid ID</small></span><strong>$23.00</strong></li>
-                    <li><span>Military<small>Active &amp; Veterans With ID</small></span><strong>FREE</strong></li>
-                    <li class="hp-checkout__pricing-group"><span>Military Guest</span></li>
-                    <li><span>Adult</span><strong>$23.00</strong></li>
-                    <li><span>Child</span><strong>$22.00</strong></li>
-                  </ul>
-                  <p class="hp-checkout__pricing-note">*Discounted tickets are only available at the Box Office.</p>
-                </aside>
               </div>
 
               <footer class="hp-checkout__foot">
@@ -189,16 +176,25 @@
             </div>
           </div>
 
-          <section class="hp-tix-confirm" hidden>
-            <h2>You’re going</h2>
-            <p>
-              <strong data-hp="tix-qty">1</strong> ticket(s) for
-              <strong data-hp="tix-title">Gameday Kickoff Party</strong>
-              on <strong data-hp="tix-date">Saturday</strong> —
-              <strong data-hp="tix-total">$12</strong>. A receipt will be emailed to you.
-            </p>
-            <a class="btn btn--tickets" href="happenings-listing.html">Browse more events</a>
-            <a class="btn btn--outline" href="#" data-hp="calendar">Add to calendar</a>
+          <section class="hp-tix-confirm hp-success" hidden>
+            <p class="hp-success__kicker">Tickets reserved</p>
+            <h2 class="hp-success__title">You&rsquo;re going</h2>
+            <p class="hp-success__lead"><strong data-hp="tix-qty">1</strong> ticket(s) for <strong data-hp="tix-title">Gameday Kickoff Party</strong></p>
+            <dl class="hp-success__facts">
+              <div>
+                <dt>Date</dt>
+                <dd data-hp="tix-date">Saturday</dd>
+              </div>
+              <div>
+                <dt>Total</dt>
+                <dd data-hp="tix-total">$12</dd>
+              </div>
+            </dl>
+            <p class="hp-success__note">A receipt will be emailed to you.</p>
+            <div class="hp-success__actions">
+              <a class="btn btn--tickets" href="happenings-listing.html">Browse more events</a>
+              <a class="btn btn--outline" href="#" data-hp="calendar">Add to calendar</a>
+            </div>
           </section>
 
           <div class="hp-sticky">

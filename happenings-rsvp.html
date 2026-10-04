@@ -102,13 +102,16 @@
         </section>
 
         <main id="main" class="hp-wrap">
-          <section class="hp-confirm" hidden aria-live="polite">
-            <h2>You&apos;re on the list</h2>
-            <p>Thanks, <strong data-hp="confirm-name">Guest</strong> — your RSVP for <strong data-hp="confirm-event">Community Film Night</strong> is confirmed.</p>
-            <p data-hp="confirm-detail">Free admission · Friday, September 11 · 6–9PM · 250 Marietta St. N.W., Atlanta, GA 30313</p>
-            <p>We&apos;ll send a reminder email before the event.</p>
-            <a class="btn btn--tickets" href="happenings-listing.html">Browse more events</a>
-            <a class="btn btn--outline" href="#" data-hp="calendar">Add to calendar</a>
+          <section class="hp-confirm hp-success" hidden aria-live="polite">
+            <p class="hp-success__kicker">RSVP confirmed</p>
+            <h2 class="hp-success__title">You&apos;re on the list</h2>
+            <p class="hp-success__lead">Thanks, <strong data-hp="confirm-name">Guest</strong>. Your RSVP for <strong data-hp="confirm-event">Community Film Night</strong> is confirmed.</p>
+            <p class="hp-success__meta" data-hp="confirm-detail">Friday, September 11 · 6–9PM · 250 Marietta St. N.W., Atlanta, GA 30313</p>
+            <p class="hp-success__note">We&apos;ll send a reminder email before the event.</p>
+            <div class="hp-success__actions">
+              <a class="btn btn--tickets" href="happenings-listing.html">Browse more events</a>
+              <a class="btn btn--outline" href="#" data-hp="calendar">Add to calendar</a>
+            </div>
           </section>
 
           <section class="hp-offer hp-offer--rsvp" id="rsvp-form">
