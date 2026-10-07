@@ -16,16 +16,16 @@ CARD_IMGS = (IMG_LISTING, IMG_TICKETED, IMG_EXHIBIT)
 CARDS_ALL = [
     ("Aug 22", "Football Fest & Free Day", "Free · RSVP", True),
     ("Saturdays in Oct", "Gameday Kickoff Party", "Ticketed", False),
-    ("Sep 05", "Ascension: Rise of the QB", "Exhibitions", True),
+    ("Sep 05", "Ascension: Rise of the QB", "Special Exhibits", True),
     ("Sep 11", "Community Film Night", "Community", True),
     ("Sep 19", "Legendary Saturday", "Ticketed", False),
     ("Sep 26", "Kids Game Day", "Community", True),
-    ("Oct 03", "Hall of Fame Talks", "Exhibitions", True),
+    ("Oct 03", "Hall of Fame Talks", "Special Exhibits", True),
     ("Oct 10", "Members Appreciation", "Free · RSVP", True),
 ]
 CARDS_TICKETED = [c for c in CARDS_ALL if c[2] == "Ticketed"]
 
-CHIPS = ["All", "Upcoming", "Free / RSVP", "Ticketed", "Exhibitions", "Community"]
+CHIPS = ["All", "Upcoming", "Free / RSVP", "Ticketed", "Promotions", "Special Exhibits", "Community"]
 
 
 def rail():

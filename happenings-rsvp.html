@@ -95,9 +95,6 @@
               <span class="hp-meta" data-hp="date-label">Friday, September 11 · 6–9PM</span>
               <span class="hp-tag hp-tag--outline" data-hp="tag">Free · RSVP</span>
             </div>
-            <div class="hp-hero__actions">
-              <a class="btn btn--tickets" href="#rsvp-form" data-scroll-to="rsvp-form" data-hp="cta-rsvp">Reserve My Passes</a>
-            </div>
           </div>
         </section>
 
@@ -133,7 +130,7 @@
               </select>
               <label class="hp-check"><input type="checkbox" name="newsletter"> Send me Hall emails &amp; offers</label>
               <div class="hp-offer__actions">
-                <button class="btn btn--tickets" type="submit" data-hp="cta-rsvp">Reserve My Passes</button>
+                <button class="btn btn--tickets" type="submit" data-cta="inline" data-hp="cta-rsvp">Reserve My Passes</button>
                 <a class="btn btn--outline" data-mod="calendar" data-hp="calendar" href="#">Add to calendar</a>
               </div>
             </form>
@@ -147,14 +144,6 @@
               <p><a data-hp="fb-link" href="https://www.facebook.com/CollegeFootballHOF/events" target="_blank" rel="noopener noreferrer">RSVP on Facebook</a></p>
             </div>
           </section>
-
-          <div class="hp-sticky">
-            <div class="hp-sticky__info">
-              <span class="hp-sticky__label" data-hp="sticky-label">Community Film Night</span>
-              <strong data-hp="sticky-meta">Free · Fri, Sep 11</strong>
-            </div>
-            <a class="btn btn--tickets" href="#rsvp-form" data-scroll-to="rsvp-form" data-hp="cta-rsvp">Reserve My Passes</a>
-          </div>
 
           <div class="hp-layout">
             <div>
@@ -194,6 +183,11 @@
                 <iframe class="hp-map" data-hp="map" title="Map of the College Football Hall of Fame" loading="lazy"></iframe>
                 <p><a data-hp="directions" href="#" target="_blank" rel="noopener noreferrer">Get directions</a></p>
               </div>
+              <div class="hp-card" data-mod="contact">
+                <h3>Questions?</h3>
+                <p>Email us for more details about this event.</p>
+                <p><a data-hp="contact-email" href="#">info@cfbhall.com</a></p>
+              </div>
               <div class="hp-card" data-mod="fb-sidebar">
                 <h3>Facebook Event</h3>
                 <div class="hp-fb-mock-wrap" data-hp="fb-mock"></div>
@@ -202,10 +196,10 @@
               <div class="hp-card">
                 <h3>Share this event</h3>
                 <div class="hp-share">
-                  <a class="hp-share__link" data-hp="share-fb" href="#" target="_blank" rel="noopener noreferrer">Facebook</a>
-                  <a class="hp-share__link" data-hp="share-ig" href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
-                  <a class="hp-share__link" data-hp="share-x" href="#" target="_blank" rel="noopener noreferrer">X</a>
-                  <a class="hp-share__link" data-hp="calendar" href="#">Add to calendar</a>
+                  <a class="hp-share__link hp-share__link--facebook" data-hp="share-fb" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook"><svg viewBox="0 0 13.993 26.128" aria-hidden="true" focusable="false"><path d="M35.966,14.7l.726-4.729H32.155V6.9a2.364,2.364,0,0,1,2.666-2.555h2.063V.319A25.151,25.151,0,0,0,33.222,0c-3.736,0-6.179,2.265-6.179,6.365v3.6H22.89V14.7h4.153V26.128h5.112V14.7Z" transform="translate(-22.89)"/></svg></a>
+                  <a class="hp-share__link hp-share__link--instagram" data-hp="share-ig" href="#" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram" title="Open Instagram"><svg viewBox="0 0 22.927 22.922" aria-hidden="true" focusable="false"><path d="M11.391,37.409a5.877,5.877,0,1,0,5.877,5.877A5.868,5.868,0,0,0,11.391,37.409Zm0,9.7a3.821,3.821,0,1,1,3.821-3.821,3.828,3.828,0,0,1-3.821,3.821Zm7.488-9.938A1.371,1.371,0,1,1,17.508,35.8,1.368,1.368,0,0,1,18.879,37.169Zm3.892,1.391a6.784,6.784,0,0,0-1.852-4.8,6.828,6.828,0,0,0-4.8-1.852c-1.892-.107-7.565-.107-9.457,0a6.818,6.818,0,0,0-4.8,1.846,6.806,6.806,0,0,0-1.852,4.8C-.1,40.447-.1,46.12.006,48.012a6.784,6.784,0,0,0,1.852,4.8,6.837,6.837,0,0,0,4.8,1.852c1.892.107,7.565.107,9.457,0a6.783,6.783,0,0,0,4.8-1.852,6.828,6.828,0,0,0,1.852-4.8c.107-1.893.107-7.56,0-9.452ZM20.326,50.043a3.868,3.868,0,0,1-2.179,2.179c-1.509.6-5.089.46-6.756.46s-5.253.133-6.756-.46a3.868,3.868,0,0,1-2.179-2.179c-.6-1.509-.46-5.089-.46-6.757s-.133-5.253.46-6.757A3.868,3.868,0,0,1,4.634,34.35c1.509-.6,5.089-.46,6.756-.46s5.253-.133,6.756.46a3.868,3.868,0,0,1,2.179,2.179c.6,1.509.46,5.089.46,6.757S20.925,48.539,20.326,50.043Z" transform="translate(0.075 -31.825)"/></svg></a>
+                  <a class="hp-share__link hp-share__link--x" data-hp="share-x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X"><svg viewBox="0 0 1200 1227" aria-hidden="true" focusable="false"><path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z"/></svg></a>
+                  <a class="hp-share__link hp-share__link--calendar" data-hp="calendar" href="#">Add to calendar</a>
                 </div>
               </div>
             </aside>
@@ -220,29 +214,6 @@
           </section>
         </main>
       </div>
-
-            <section class="home-legacy" aria-labelledby="legacy-title">
-        <img class="home-legacy__photo" src="assets/images/happenings/legacy-background.jpg" alt="" width="1920" height="1440" aria-hidden="true">
-        <div class="home-legacy__shade" aria-hidden="true"></div>
-        <div class="home-legacy__inner">
-          <div class="home-legacy__copy">
-            <h2 id="legacy-title" class="home-legacy__title">
-              <span class="home-legacy__title-stroke">Join the Legacy</span>
-              Unleash Exclusive Benefits
-            </h2>
-            <p class="home-legacy__body">
-              Join the legacy of the College Football Hall of Fame and unleash a world of exclusive benefits, engagement, and more.
-            </p>
-            <a href="#" class="btn btn--outline btn--sm">Join the Legacy Today</a>
-          </div>
-          <blockquote class="home-legacy__quote">
-            <p>
-              “None of us are here on our own. We're here because there are so many people that influenced us and inspired us, lead us and encouraged us and picked us up when we were down.”
-            </p>
-            <footer>— Tim Tebow · Class of 2023</footer>
-          </blockquote>
-        </div>
-      </section>
 
       <footer class="site-footer" aria-label="Site footer">
         <div class="site-footer__inner">

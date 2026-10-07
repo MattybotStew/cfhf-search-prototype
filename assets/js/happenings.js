@@ -368,6 +368,12 @@
     setText("[data-hp='address']", v.address || "");
     setText("[data-hp='city']", v.cityLine || "");
 
+    var contactEmail = ev.contactEmail || v.contactEmail || "";
+    qsa("[data-hp='contact-email']").forEach(function (a) {
+      a.textContent = contactEmail;
+      a.href = contactEmail ? "mailto:" + contactEmail : "#";
+    });
+
     qsa("[data-hp='tag']").forEach(function (el) {
       el.textContent = ev.tag;
       el.classList.toggle("hp-tag--outline", !!ev.tagOutline);
@@ -451,6 +457,29 @@
 
     renderRelated(ev);
     applyAsideVisibility(ev);
+    applyCtaPlacements(ev, demo);
+  }
+
+  /* CTA placements are optional and configured per event. Defaults:
+   * hero + inline on, sticky off. `sticky` stays independent of the
+   * "Add to calendar" secondary action, which is never toggled here. */
+  function applyCtaPlacements(ev, demo) {
+    var cfg = (ev && ev.ctas) || {};
+    var scope = demo || document;
+    var showHero = cfg.hero !== false;
+    var showInline = cfg.form !== false;
+    var showSticky = cfg.sticky === true;
+
+    qsa("[data-cta='hero']", scope).forEach(function (el) {
+      el.hidden = !showHero;
+    });
+    qsa("[data-cta='inline']", scope).forEach(function (el) {
+      el.hidden = !showInline;
+    });
+    qsa("[data-cta='sticky']", scope).forEach(function (el) {
+      el.hidden = !showSticky;
+      if (!showSticky) el.classList.remove("is-visible");
+    });
   }
 
   /* Hide sidebar cards whose data isn't applicable to this event, and collapse
@@ -464,6 +493,8 @@
       var mod = card.getAttribute("data-mod");
       if (mod === "fb-sidebar") {
         card.hidden = !(ev && ev.facebookEventUrl);
+      } else if (mod === "contact") {
+        card.hidden = !(ev && (ev.contactEmail || (v && v.contactEmail)));
       } else if (qs("[data-hp='address']", card)) {
         card.hidden = !(v && v.address);
       }
@@ -522,7 +553,7 @@
   function initStickyBar() {
     var sticky = qs(".hp-sticky");
     var hero = qs(".hp-hero");
-    if (!sticky || !hero) return;
+    if (!sticky || !hero || sticky.hidden) return;
 
     var demo = qs(".wf-demo");
     if (demo && demo.getAttribute("data-converted") === "on") return;
@@ -950,9 +981,7 @@
         var done = qs(".hp-checkout__done", checkout);
         if (done) {
           setText("[data-hp='done-title']", ev.title);
-          setText("[data-hp='done-date']", dateInfo.label);
           setText("[data-hp='done-qty']", String(qty));
-          setText("[data-hp='done-total']", formatMoney(record.total));
           qsa(".hp-checkout__body, .hp-checkout__foot", checkout).forEach(function (el) {
             el.hidden = true;
           });
@@ -969,9 +998,7 @@
         if (confirm) {
           confirm.removeAttribute("hidden");
           setText("[data-hp='tix-title']", ev.title);
-          setText("[data-hp='tix-date']", dateInfo.label);
           setText("[data-hp='tix-qty']", String(qty));
-          setText("[data-hp='tix-total']", formatMoney(record.total));
           requestAnimationFrame(function () {
             confirm.classList.add("is-visible");
           });

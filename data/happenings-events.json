@@ -9,14 +9,16 @@
     "mapsLink": "https://www.google.com/maps/search/?api=1&query=College+Football+Hall+of+Fame+250+Marietta+Street+NW+Atlanta",
     "facebookPage": "https://www.facebook.com/CollegeFootballHOF",
     "instagram": "https://www.instagram.com/cfbhall/",
-    "x": "https://x.com/CFBHall"
+    "x": "https://x.com/CFBHall",
+    "contactEmail": "info@cfbhall.com"
   },
   "categories": [
     { "id": "all", "label": "All" },
     { "id": "upcoming", "label": "Upcoming" },
     { "id": "free-rsvp", "label": "Free / RSVP" },
     { "id": "ticketed", "label": "Ticketed" },
-    { "id": "exhibitions", "label": "Exhibitions" },
+    { "id": "promotions", "label": "Promotions" },
+    { "id": "exhibitions", "label": "Special Exhibits" },
     { "id": "community", "label": "Community" }
   ],
   "events": [
@@ -117,7 +119,7 @@
       "titleSolid": "Rise of the QB",
       "template": "transactional",
       "categories": ["upcoming", "exhibitions", "ticketed"],
-      "tag": "Exhibitions",
+      "tag": "Special Exhibits",
       "tagOutline": true,
       "dateShort": "Sep 05",
       "dateLabel": "Opens September 5 · During museum hours",
@@ -253,7 +255,7 @@
       "titleSolid": "Talks",
       "template": "rsvp",
       "categories": ["upcoming", "exhibitions"],
-      "tag": "Exhibitions",
+      "tag": "Special Exhibits",
       "tagOutline": true,
       "dateShort": "Oct 03",
       "dateLabel": "Friday, October 3 · 7PM",

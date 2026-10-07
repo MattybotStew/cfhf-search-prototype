@@ -1,5 +1,74 @@
 # Journal — CFHF Search Prototype
 
+## 2026-10-07 — opencode: Client reply tracker created (internal)
+
+- Added **`client-reply-happenings.md`** — internal-only tracker (not client-facing copy) summarising what shipped this round, **7 open client questions** with our recommended answers, and the held collapsible-box item.
+- Continuity pointers added to `.clinerules` + `AGENTS.md` so the next agent checks it before the next client round.
+- Docs only — no code/CSS/JSON/screens changed in this step.
+
+## 2026-10-07 — opencode: Client review action items (all but the collapsible RSVP box)
+
+- **Categories:** added **Promotions**; renamed **Exhibitions → Special Exhibits** (id `exhibitions` kept so `?category=exhibitions` still works); retagged `ascension` + `hof-talks`. Updated `data/happenings-events.json`, `happenings-listing.html` fallback chips/dropdown, `happenings.html` table, `screens/index.html`.
+- **Listing legibility:** `.hp-card-event__title` now `font-weight:700`, `1.25rem`, `letter-spacing:.035em` (also affects related cards).
+- **Contact email:** `venue.contactEmail` (`info@cfbhall.com`) + optional per-event `contactEmail`; new “Questions?” sidebar card on both detail templates, hydrated in `hydrateDetail`, auto-hidden when empty.
+- **Share icons:** Facebook / Instagram / X are inline SVGs (`fill:currentColor`; crimson on hover), reusing the footer icon paths. “Add to calendar” stays a text button.
+- **Legacy section removed:** “Unleash Exclusive Benefits” (`.home-legacy`) deleted from the 3 Happenings pages; **kept on `index.html`**.
+- **Mobile ticketed reservation:** ≤900px is now a compact 9rem photo banner on top + tighter copy + full-width CTA (was copy then 14–18rem image).
+- **“You’re going”:** Date and Total removed from both the checkout popup (`.hp-checkout__done`) and the page card (`.hp-tix-confirm`).
+- **Not done (needs client):** collapsible “Reserve Your Free Admission” box (explicitly excluded); where free RSVPs live; per-event section add/remove.
+- Verified live on `127.0.0.1:8080` (listing chips, RSVP contact + share icons, mobile ticketed, checkout done). Only console error is the pre-existing `favicon.ico` 404. Screens regenerated.
+
+## 2026-10-05 — opencode: Sticky CTA removed from all pages
+
+- Removed the `.hp-sticky` bar from both `happenings-rsvp.html` and `happenings-transactional.html`; removed the now-pointless per-event `"ctas"` fields from `data/happenings-events.json`.
+- Both detail templates now have **no hero CTA and no sticky** — the only conversion CTA is the inline one (`data-cta="inline"`).
+- `applyCtaPlacements()` / `initStickyBar()` / `.hp-sticky` CSS remain in the code as unused placeholders (no `.hp-sticky` markup remains).
+- Verified on the running server: RSVP + ticketed each report `sticky: removed, hero: removed, inline present`.
+
+## 2026-10-05 — opencode: Ticketed hero CTA removed too
+
+- Removed the hero CTA (`.hp-hero__actions`) from `happenings-transactional.html` as well. **Both Happenings detail templates now have no hero CTA** (desktop + mobile) — the hero keeps eyebrow / title / subtitle / meta / tag only.
+- Inline conversion (`data-cta="inline"`) and the optional sticky stay on both templates.
+- The `ctas.hero` config and the `.hp-hero__actions[hidden]` guard remain in the code but are currently unused by the templates.
+- Verified: gameday hero has no `.hp-hero__actions`; inline “Get Gameday Tickets” + sticky present.
+
+## 2026-10-05 — opencode: RSVP hero CTA removed (desktop + mobile)
+
+- Removed the hero CTA (`.hp-hero__actions`) from `happenings-rsvp.html`. RSVP pages now have no above-the-fold CTA at either breakpoint; the inline form submit and the optional sticky remain. Ticketed pages keep their hero CTA.
+- Verified: `football-fest` → inline + sticky visible, no hero CTA; `community-film-night` → inline visible, no hero CTA, no sticky.
+- The Figma CTA-placement note’s “Header / hero” row now applies to the **ticketed** template only.
+
+## 2026-10-05 — opencode: Optional CTA placements implemented (Nebo V2 item 3/6)
+
+- Implemented the Figma “Note — CTA placements (RSVP & Ticketed templates)” annotation.
+- `happenings-rsvp.html` / `happenings-transactional.html`: added `data-cta="hero"` (hero actions), `data-cta="inline"` (the conversion button only, so “Add to calendar” stays independent), `data-cta="sticky"` (sticky bar).
+- `assets/js/happenings.js`: new `applyCtaPlacements(ev, demo)` called from `hydrateDetail`; reads per-event `ctas`. Defaults **hero + inline on, sticky off**. `initStickyBar()` bails when `.hp-sticky` is `hidden`.
+- `data/happenings-events.json`: `football-fest` + `gameday-kickoff` set `"ctas": { "sticky": true }` (the design shows the sticky); every other event uses the default (no sticky).
+- `assets/css/happenings-pages.css`: `[hidden]` guards for `.hp-hero__actions`, `.hp-offer__actions .btn`, `.hp-sticky` so `hidden` beats their flex displays.
+- Ticketed hero CTA now targets `#tickets` (was `#details`) per the note “header CTA scrolls to the ticket module”; the label is still “Learn more” — **confirm whether the label should change**.
+- Verified on a fresh port (cache-independent): `community-film-night` default → sticky hidden; `football-fest`/`gameday-kickoff` → all three visible; inline “Get Gameday Tickets” opens the checkout.
+
+## 2026-10-05 — Cursor: sidebar layout examples in Figma
+
+- Three desktop examples under the listing row on Happenings — Client review 2: no address (`777:410`), no Facebook URL (`777:815`), and an empty sidebar that becomes one column (`777:1220`). Share stays when any other sidebar card is still there.
+
+## 2026-10-05 — Cursor: configuration answers in Figma
+
+- Added “Note — Flexibility / Configuration” (`775:2`) on Happenings — Client review 2, above the listing. Categories are CMS-editable; CTA text, field count, and labels are per event; Location and Facebook hide when empty and the sidebar collapses when nothing is left; header CTA is a scroll-to button.
+
+## 2026-10-05 — Cursor: offer panels match confirmation card
+
+- RSVP and ticketed offer bands use the confirmation card: white surface, hairline border, 6px crimson left bar. Applied in `happenings-pages.css` and on client review 2 (`769:7754`, `769:9504`, `769:10708`, `769:11259`).
+
+## 2026-10-05 — Cursor: client review moved
+
+- Happenings frames now live on page **Happenings — Client review 2** (`769:136`): https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football-Hall-of-Fame---Website?node-id=769-136
+- CTA notes: `770:16240` above the Football Fest RSVP frames, `770:16244` above the Gameday ticketed frames.
+
+## 2026-10-05 — Cursor: CTA placement note in Figma
+
+- Added “Note — CTA placements (RSVP & Ticketed templates)” on the client review page: above the Football Fest RSVP frames (`771:2`) and above the Gameday ticketed frames (`771:5`). Config note only — hero, form, and sticky CTAs are optional per event.
+
 ## 2026-10-04 — Cursor: RSVP confirmation matches ticketed card
 
 - Football Fest `.hp-confirm` already uses `.hp-success` (kicker, display title, meta, note, label-sized 55px actions, crimson left bar). Verified visible on the local page; the plain light-blue card was the unpushed previous layout.

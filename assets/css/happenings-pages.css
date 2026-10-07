@@ -440,17 +440,18 @@
   margin-bottom: var(--space-3);
 }
 
-/* Offer / RSVP band */
+/* Offer band — same card as the confirmation (.hp-success) */
 .hp-offer {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: var(--space-8);
   align-items: start;
-  padding: var(--space-8);
   margin-bottom: var(--space-6);
-  background: var(--cfhf-surface);
-  border: 1px solid var(--cfhf-border);
-  box-shadow: var(--shadow-sm);
+  padding: var(--space-8) var(--space-8) var(--space-8) calc(var(--space-8) + 6px);
+  background: #fff;
+  border: 1px solid #ead6d8;
+  border-left: 6px solid var(--cfhf-crimson);
+  box-shadow: var(--shadow-md);
 }
 
 .hp-offer__intro h2,
@@ -1504,7 +1505,23 @@ body.hp-checkout-open {
 .hp-share__link:hover {
   border-color: var(--cfhf-crimson);
   color: var(--cfhf-crimson);
-  background: var(--cfhf-surface);
+  background-color: var(--cfhf-surface);
+}
+
+/* Social shares render as platform icons; "Add to calendar" stays a text button. */
+.hp-share__link--facebook,
+.hp-share__link--instagram,
+.hp-share__link--x {
+  width: 2.5rem;
+  min-width: 2.5rem;
+  padding: 0;
+}
+
+.hp-share__link svg {
+  display: block;
+  height: 1rem;
+  width: auto;
+  fill: currentColor;
 }
 
 /* RSVP form */
@@ -1737,9 +1754,10 @@ body.hp-checkout-open {
 
 .hp-card-event__title {
   font-family: var(--font-display);
-  font-size: 1.15rem;
-  line-height: 1;
-  letter-spacing: 0.02em;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.035em;
   text-transform: uppercase;
   color: var(--cfhf-ink);
 }
@@ -2238,6 +2256,13 @@ body.hp-dev .hp-banner {
   display: none !important;
 }
 
+/* Optional CTA placements — [hidden] must beat the flex displays. */
+.hp-hero__actions[hidden],
+.hp-offer__actions .btn[hidden],
+.hp-sticky[hidden] {
+  display: none !important;
+}
+
 .hp-toast {
   position: fixed;
   bottom: var(--space-6);
@@ -2350,13 +2375,25 @@ body.hp-dev .hp-banner {
     padding: var(--space-6);
   }
 
-  .hp-offer--ticketed .hp-offer__copy {
-    padding: var(--space-6);
+  /* Compact mobile reservation: short photo banner on top, tighter copy,
+   * full-width CTA — keeps the image without the tall stacked scroll. */
+  .hp-offer--ticketed .hp-offer__media {
+    order: -1;
+    min-height: 0;
+    max-height: none;
+    height: 9rem;
   }
 
-  .hp-offer__media {
-    min-height: 14rem;
-    max-height: 18rem;
+  .hp-offer--ticketed .hp-offer__copy {
+    padding: var(--space-5) var(--space-5) var(--space-6);
+  }
+
+  .hp-offer--ticketed .hp-offer__price {
+    font-size: 1.4rem;
+  }
+
+  .hp-offer--ticketed .hp-offer__actions {
+    max-width: none;
   }
 }
 

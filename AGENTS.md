@@ -107,11 +107,15 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
 
 > **2026-08-06 CCFB options 404 (Cursor):** `/ccfb-logo-options.html` 404 while home 200; Actions for `6fad3bf` stuck **queued**. Empty re-trigger `a4c5a77` → deploy success → **page LIVE (200)**. No Pages Settings toggle needed.
 
-**Handoff:** **Happenings only.** Search + CCFB parked. Transactional ticket UI: `.hp-checkout` Ventrata-style mock (local); real `<ventrata-checkout>` when keys set. Football Fest: `hero-football-fest.jpg` + Join the Legacy `<img>` background. Footer: rail-aware breakpoints in `search.css`. Client Figma: [Happenings — Client review](https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football---Global-Banner?node-id=634-136). Next: Ventrata sandbox keys; `02-listing-filter-m` into 01m-filter.
+**Handoff:** **Happenings only.** Search + CCFB parked. Transactional ticket UI: `.hp-checkout` Ventrata-style mock (local); real `<ventrata-checkout>` when keys set. Football Fest: `hero-football-fest.jpg` + Join the Legacy `<img>` background. Footer: rail-aware breakpoints in `search.css`. Client Figma: [Happenings — Client review 2](https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football-Hall-of-Fame---Website?node-id=769-136). Next: Ventrata sandbox keys; `02-listing-filter-m` into 01m-filter.
 
 > **2026-10-02 Nebo feedback V2 (opencode):** Tag pills no longer resemble CTAs (`.hp-tag` rounded/neutral; hero tags translucent); listing gained a “Filter by category” label + categories rendered from JSON; RSVP confirmation is the first block and the offer/hero-CTA/sticky hide post-submit; ticketed page confirmation populates behind the Ventrata success popup; sidebar Location/Facebook cards auto-hide and the layout collapses when empty. `screens/01-listing-d.html` + `02-listing-filter-d.html` regenerated.
 
 > **2026-10-04 Nebo V2 verification (opencode):** All 5 V2 items runtime-verified on the local build (Nebo V2 is the source of truth). Figma node `627-519` ("01 Listing") is the **stale pre-V2** state — still crimson tags + no visible "Filter by category" label — so re-import `screens/01-listing-d.html` / `02-listing-filter-d.html` to sync. V2 fixes remain local/uncommitted.
+
+> **2026-10-05 optional CTA placements (opencode):** Implemented the Figma “Note — CTA placements (RSVP & Ticketed templates)” (`770:16240` / `770:16244`). Hero / inline / sticky CTAs are now optional per event via an optional `"ctas"` object in `data/happenings-events.json` (default **hero + inline on, sticky off**; `football-fest` + `gameday-kickoff` opt into `sticky`). Hooks `data-cta="hero|inline|sticky"`; `applyCtaPlacements()` runs in `hydrateDetail`; `initStickyBar()` bails when hidden; `[hidden]` CSS guards added. **Both Happenings detail templates now have NO hero CTA and NO sticky bar** (desktop + mobile) — no `.hp-hero__actions` or `.hp-sticky` in `happenings-rsvp.html` / `happenings-transactional.html`; the only CTA left is the inline conversion button. Per-event `ctas` fields removed from the JSON. Local/uncommitted.
+
+> **2026-10-07 client review action items (opencode):** Implemented all client action items **except the collapsible “Reserve Your Free Admission” box** (explicitly held). Added **Promotions** category and renamed **Exhibitions → Special Exhibits** in `data/happenings-events.json` (id `exhibitions` unchanged so `?category=exhibitions` links survive) + listing fallback chips/dropdown + `happenings.html` + screens notes. Listing `.hp-card-event__title` heavier (`700`, `1.25rem`, tracking `.035em`). New per-event/venue `contactEmail` + “Questions?” aside card on both detail templates. “Share this event” FB/IG/X are inline SVG icons (`fill:currentColor`). Removed the “Unleash Exclusive Benefits” (`.home-legacy`) section from the 3 Happenings pages (kept on `index.html`). Compact ≤900px ticketed reservation (short photo banner on top). Dropped **Date + Total** from the checkout popup “You’re going!” and the page confirmation card. Screens regenerated. Local/uncommitted. **Still open (client):** free-RSVP destination, per-event section add/remove (#8). Client questions/preferences tracked in `client-reply-happenings.md` (internal).
 
 > **2026-09-16 Ventrata success in popup (opencode):** Continue shows the confirmation inside the checkout modal (✓ · You're going! · Event/Date/Tickets/Total · Done) — matching real Ventrata. `resetCheckoutView()` restores the form on reopen; header is sticky.
 
@@ -251,6 +255,7 @@ Local: `python3 -m http.server 8080` from repo root → also `/ccfb-logo-options
   cline-project-handoff.md
   AGENTS.md
   JOURNAL.md
+  client-reply-happenings.md        ← internal client Q tracker (not client copy)
   README.md
   FIGMA.md
 ```
