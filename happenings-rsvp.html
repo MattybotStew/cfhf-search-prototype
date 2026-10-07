@@ -99,19 +99,29 @@
         </section>
 
         <main id="main" class="hp-wrap">
-          <section class="hp-confirm hp-success" hidden aria-live="polite">
-            <p class="hp-success__kicker">RSVP confirmed</p>
-            <h2 class="hp-success__title">You&apos;re on the list</h2>
-            <p class="hp-success__lead">Thanks, <strong data-hp="confirm-name">Guest</strong>. Your RSVP for <strong data-hp="confirm-event">Community Film Night</strong> is confirmed.</p>
-            <p class="hp-success__meta" data-hp="confirm-detail">Friday, September 11 · 6–9PM · 250 Marietta St. N.W., Atlanta, GA 30313</p>
-            <p class="hp-success__note">We&apos;ll send a reminder email before the event.</p>
-            <div class="hp-success__actions">
-              <a class="btn btn--tickets" href="happenings-listing.html">Browse more events</a>
-              <a class="btn btn--outline" href="#" data-hp="calendar">Add to calendar</a>
+          <section class="hp-confirm hp-success hp-success--collapsible" id="rsvp-confirm" hidden aria-live="polite">
+            <button type="button" class="hp-offer__toggle hp-success__toggle" data-hp="confirm-toggle" aria-expanded="true" aria-controls="rsvp-confirm-body">
+              <span class="hp-offer__toggle-label">You&apos;re on the list</span>
+              <span class="hp-offer__toggle-icon" aria-hidden="true"></span>
+            </button>
+            <div class="hp-success__body" id="rsvp-confirm-body">
+              <p class="hp-success__kicker">RSVP confirmed</p>
+              <p class="hp-success__lead">Thanks, <strong data-hp="confirm-name">Guest</strong>. Your RSVP for <strong data-hp="confirm-event">Community Film Night</strong> is confirmed.</p>
+              <p class="hp-success__meta" data-hp="confirm-detail">Friday, September 11 · 6–9PM · 250 Marietta St. N.W., Atlanta, GA 30313</p>
+              <p class="hp-success__note">We&apos;ll send a reminder email before the event.</p>
+              <div class="hp-success__actions">
+                <a class="btn btn--tickets" href="happenings-listing.html">Browse more events</a>
+                <a class="btn btn--outline" href="#" data-hp="calendar">Add to calendar</a>
+              </div>
             </div>
           </section>
 
-          <section class="hp-offer hp-offer--rsvp" id="rsvp-form">
+          <section class="hp-offer hp-offer--rsvp hp-offer--collapsible is-collapsed" id="rsvp-form">
+            <button type="button" class="hp-offer__toggle" data-hp="offer-toggle" aria-expanded="false" aria-controls="rsvp-offer-body">
+              <span class="hp-offer__toggle-label" data-hp="offer-toggle-label">Reserve your seat</span>
+              <span class="hp-offer__toggle-icon" aria-hidden="true"></span>
+            </button>
+            <div class="hp-offer__body" id="rsvp-offer-body">
             <div class="hp-offer__intro">
               <h2 data-hp="offer-title">Reserve your seat</h2>
               <p class="hp-offer__date" data-hp="offer-date"></p>
@@ -142,6 +152,7 @@
               <span class="hp-widget__kicker">Facebook Event</span>
               <div class="hp-fb-mock-wrap hp-fb-mock-wrap--tall" data-hp="fb-mock"></div>
               <p><a data-hp="fb-link" href="https://www.facebook.com/CollegeFootballHOF/events" target="_blank" rel="noopener noreferrer">RSVP on Facebook</a></p>
+            </div>
             </div>
           </section>
 

@@ -1,5 +1,25 @@
 # Journal — CFHF Search Prototype
 
+## 2026-10-07 — opencode: Collapsible confirmation panels (RSVP + ticketed)
+
+- Both confirmation blocks now collapse, matching the reservation box:
+  - `happenings-rsvp.html` → `.hp-confirm` (`.hp-success--collapsible`, id `rsvp-confirm`) with toggle label “You’re on the list”.
+  - `happenings-transactional.html` → `.hp-tix-confirm` (`.hp-success--collapsible`, id `tix-confirm`) with toggle label “You’re going”.
+- Markup: added an `.hp-offer__toggle` header button (`data-hp="confirm-toggle"`, `aria-expanded="true"`, `aria-controls=…`) and wrapped the card body in `.hp-success__body`; removed the now-redundant `<h2 class="hp-success__title">` from the body (its text is the toggle label).
+- CSS (`happenings-pages.css`): `.hp-success.hp-success--collapsible` (padding:0, overflow hidden — **two-class specificity** so it beats `.hp-success`), `.hp-success__toggle` padding, divider rule, icon rotation, `.hp-success__body` padding, and `.hp-success--collapsible.is-collapsed .hp-success__body { display:none }`.
+- JS (`happenings.js`): `initOfferToggle()` now handles `[data-hp='confirm-toggle']` too, resolving `.hp-success` / `.hp-success__body`; confirmations start **open** (`wantsOpen = isConfirm || …`), the offer still starts **collapsed**.
+- Verified on `127.0.0.1:8080` desktop + mobile (cache disabled): RSVP submit → confirm open, toggle closes/reopens; ticketed checkout → `.hp-tix-confirm` open behind the popup, toggle closes/reopens; padding computes to `0px`; no console errors. Screens are static frames and do not show the toggle.
+
+## 2026-10-07 — opencode: Collapsible reservation box on all event pages
+
+- Applied the collapsible "reserve" pattern to **both detail templates**, collapsed by default:
+  - `happenings-rsvp.html` → "Reserve Your Free Admission" (`.hp-offer--rsvp`), tab label from `offerTitle`.
+  - `happenings-transactional.html` → "Before kickoff at the Hall" (`.hp-offer--ticketed`).
+- Markup: added `hp-offer--collapsible` + `is-collapsed` on the section, an `.hp-offer__toggle` header tab, and wrapped the existing content in `.hp-offer__body`.
+- CSS (`happenings-pages.css`): generic `.hp-offer--collapsible` / `.hp-offer__toggle` styles; per-template body grids (RSVP 2-col; ticketed copy|media); collapses to one column ≤1100px; `+`/`−` toggle icon; crimson hover.
+- JS (`happenings.js`): `initOfferToggle()` now iterates every `[data-hp='offer-toggle']`, toggling `is-collapsed` + `aria-expanded`; opens on load for a matching hash (`#rsvp-form` / `#tickets`) or `?rsvp=open`.
+- Verified desktop + mobile: collapsed shows the tab with event info immediately below; expanding reveals the form / ticket CTA; "Get Gameday Tickets" still opens the checkout. Screens (`screens/*`) are separate static frames and do not yet show the toggle.
+
 ## 2026-10-07 — opencode: Client reply tracker created (internal)
 
 - Added **`client-reply-happenings.md`** — internal-only tracker (not client-facing copy) summarising what shipped this round, **7 open client questions** with our recommended answers, and the held collapsible-box item.

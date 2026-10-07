@@ -341,6 +341,7 @@
     setText("[data-hp='hero-subtitle']", ev.heroSubtitle || "");
     setText("[data-hp='date-label']", ev.dateLabel);
     setText("[data-hp='offer-title']", ev.offerTitle);
+    setText("[data-hp='offer-toggle-label']", ev.offerTitle || "Reserve your spot");
     setText("[data-hp='offer-date']", ev.offerDate || ev.dateLabel || "");
     setText("[data-hp='offer-copy']", ev.offerCopy);
     setText("[data-hp='rsvp-deadline']", ev.rsvpDeadline || "");
@@ -550,6 +551,32 @@
     }
   }
 
+  /* Collapsible reservation box (RSVP + ticketed) — collapsed by default so
+   * visitors who aren't reserving can reach event information without scrolling
+   * past the offer. The confirmation panels (`.hp-confirm` / `.hp-tix-confirm`)
+   * reuse the toggle but start open — they're the result of converting. */
+  function initOfferToggle() {
+    qsa("[data-hp='offer-toggle'], [data-hp='confirm-toggle']").forEach(function (toggle) {
+      var isConfirm = toggle.getAttribute("data-hp") === "confirm-toggle";
+      var section = toggle.closest(isConfirm ? ".hp-success" : ".hp-offer");
+      var body = section ? qs(isConfirm ? ".hp-success__body" : ".hp-offer__body", section) : null;
+      if (!section || !body || toggle.getAttribute("data-hp-toggle-bound")) return;
+      toggle.setAttribute("data-hp-toggle-bound", "1");
+
+      function setOpen(open) {
+        section.classList.toggle("is-collapsed", !open);
+        toggle.setAttribute("aria-expanded", String(open));
+      }
+
+      toggle.addEventListener("click", function () {
+        setOpen(toggle.getAttribute("aria-expanded") !== "true");
+      });
+
+      var wantsOpen = isConfirm || getParam("rsvp") === "open" || window.location.hash === "#" + section.id;
+      setOpen(wantsOpen);
+    });
+  }
+
   function initStickyBar() {
     var sticky = qs(".hp-sticky");
     var hero = qs(".hp-hero");
@@ -624,6 +651,7 @@
 
     hydrateDetail(ev);
     resolveVentrataMode(ev);
+    initOfferToggle();
     initRsvpForm(ev);
     initTicketPicker(ev);
     initCalendar(ev);

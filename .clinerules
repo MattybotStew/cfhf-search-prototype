@@ -6,11 +6,11 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-10-07 (opencode — client review action items)
+**Last Updated:** 2026-10-07 (opencode — collapsible confirmation panels)
 **Active Agent:** opencode
-**Branch:** `master` (Nebo V2 + CTA placements + client action items local, uncommitted; Pages deploy pending)
+**Branch:** `master` (Nebo V2 + CTA placements + client action items + collapsible confirmations local, uncommitted; Pages deploy pending)
 **Focus:** **Happenings only.** Search + CCFB parked.
-**Status:** Client review action items **(all except the collapsible RSVP box)** implemented: Promotions category added; “Exhibitions” → **Special Exhibits**; listing title weight/tracking; “Questions?” contact email card; share **icons**; “Unleash Exclusive Benefits” removed from Happenings pages; compact mobile ticketed reservation; Date/Total dropped from “You’re going”. Local, uncommitted.
+**Status:** Client review action items **all implemented**. Collapsible reservation box added to **all event pages** (RSVP + ticketed), **collapsed by default**; both **confirmation panels** (`.hp-confirm` RSVP + `.hp-tix-confirm` ticketed) are now collapsible too (same toggle, **open by default**). Added **Promotions** category; “Exhibitions” → **Special Exhibits**; listing title weight/tracking; “Questions?” contact email card; share **icons**; “Unleash Exclusive Benefits” removed from Happenings pages; compact mobile ticketed reservation; Date/Total dropped from “You’re going”. Local, uncommitted.
 
 ### Newly completed (2026-10-07 — opencode: client review action items)
 - **Categories** (`data/happenings-events.json`): added `promotions` (“Promotions”); renamed `exhibitions` label to “Special Exhibits” (id unchanged so `?category=exhibitions` links keep working); retagged `ascension` + `hof-talks`. Listing fallback chips/dropdown + `happenings.html` table + `screens/index.html` updated
@@ -20,7 +20,9 @@
 - **Legacy section removed**: `.home-legacy` (“Unleash Exclusive Benefits”) deleted from `happenings-listing.html`, `happenings-rsvp.html`, `happenings-transactional.html`; **kept on `index.html`**
 - **Mobile ticketed reservation**: ≤900px now a compact 9rem photo banner on top + tighter copy + full-width CTA
 - **“You’re going”**: Date + Total removed from both the checkout popup (`.hp-checkout__done`) and the page card (`.hp-tix-confirm`)
-- **NOT done (asked, pending client):** collapsible “Reserve Your Free Admission” box (#2); free-RSVP destination; per-event section add/remove (#8)
+- **Collapsible reservation box (all events)**: both `.hp-offer--rsvp` (“Reserve Your Free Admission”) and `.hp-offer--ticketed` (“Before kickoff at the Hall”) are now header-tab toggles (`.hp-offer--collapsible` + `.hp-offer__toggle` + `.hp-offer__body`), **collapsed by default**; `initOfferToggle()` iterates every `[data-hp='offer-toggle']` and handles open/close + `aria-expanded`; tab label hydrated from `offerTitle`; body collapses to one column at ≤1100px. `#rsvp-form` / `#tickets` hash or `?rsvp=open` opens on load
+- **Collapsible confirmation panels**: both `.hp-confirm` (RSVP “You’re on the list”) and `.hp-tix-confirm` (ticketed “You’re going”) now reuse the offer toggle (`.hp-success--collapsible` + `.hp-success__toggle` + `.hp-success__body`), **open by default**; `initOfferToggle()` iterates `[data-hp='offer-toggle']` + `[data-hp='confirm-toggle']`; `<h2 class="hp-success__title">` moved into the toggle label
+- **NOT done (asked, pending client):** free-RSVP destination; per-event section add/remove (#8)
 - Screens regenerated (`generate_screens.py` + `generate_figma_import.py`)
 - Open client questions + preferences tracked in **`client-reply-happenings.md`** (internal) — check it before the next client round
 

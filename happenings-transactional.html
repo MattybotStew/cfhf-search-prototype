@@ -99,7 +99,12 @@
         </section>
 
         <main id="main" class="hp-wrap">
-          <section class="hp-offer hp-offer--ticketed" id="tickets">
+          <section class="hp-offer hp-offer--ticketed hp-offer--collapsible is-collapsed" id="tickets">
+            <button type="button" class="hp-offer__toggle" data-hp="offer-toggle" aria-expanded="false" aria-controls="tickets-body">
+              <span class="hp-offer__toggle-label" data-hp="offer-toggle-label">Before kickoff at the Hall</span>
+              <span class="hp-offer__toggle-icon" aria-hidden="true"></span>
+            </button>
+            <div class="hp-offer__body" id="tickets-body">
             <div class="hp-offer__copy">
               <h2 data-hp="offer-title">Before kickoff at the Hall</h2>
               <p class="hp-offer__price" data-hp="price">From $12</p>
@@ -112,6 +117,7 @@
             <figure class="hp-offer__media">
               <img src="assets/images/happenings/hero-ticketed.jpg" alt="" width="720" height="480" data-hp="offer-photo">
             </figure>
+            </div>
           </section>
 
           <div class="hp-checkout" data-mod="checkout-mock" hidden role="dialog" aria-modal="true" aria-labelledby="hp-checkout-title">
@@ -171,14 +177,19 @@
             </div>
           </div>
 
-          <section class="hp-tix-confirm hp-success" hidden>
-            <p class="hp-success__kicker">Tickets reserved</p>
-            <h2 class="hp-success__title">You&rsquo;re going</h2>
-            <p class="hp-success__lead"><strong data-hp="tix-qty">1</strong> ticket(s) for <strong data-hp="tix-title">Gameday Kickoff Party</strong></p>
-            <p class="hp-success__note">A receipt will be emailed to you.</p>
-            <div class="hp-success__actions">
-              <a class="btn btn--tickets" href="happenings-listing.html">Browse more events</a>
-              <a class="btn btn--outline" href="#" data-hp="calendar">Add to calendar</a>
+          <section class="hp-tix-confirm hp-success hp-success--collapsible" id="tix-confirm" hidden>
+            <button type="button" class="hp-offer__toggle hp-success__toggle" data-hp="confirm-toggle" aria-expanded="true" aria-controls="tix-confirm-body">
+              <span class="hp-offer__toggle-label">You&rsquo;re going</span>
+              <span class="hp-offer__toggle-icon" aria-hidden="true"></span>
+            </button>
+            <div class="hp-success__body" id="tix-confirm-body">
+              <p class="hp-success__kicker">Tickets reserved</p>
+              <p class="hp-success__lead"><strong data-hp="tix-qty">1</strong> ticket(s) for <strong data-hp="tix-title">Gameday Kickoff Party</strong></p>
+              <p class="hp-success__note">A receipt will be emailed to you.</p>
+              <div class="hp-success__actions">
+                <a class="btn btn--tickets" href="happenings-listing.html">Browse more events</a>
+                <a class="btn btn--outline" href="#" data-hp="calendar">Add to calendar</a>
+              </div>
             </div>
           </section>
 

@@ -590,6 +590,128 @@
   object-fit: cover;
 }
 
+/* Collapsible reservation box (RSVP + ticketed) — collapsed by default so
+ * visitors who aren't reserving can reach event information without scrolling
+ * past the offer. The toggle stays visible as a header tab; `.hp-offer__body`
+ * holds the intro/form (RSVP) or copy/media (ticketed). */
+.hp-offer--collapsible {
+  display: block;
+  padding: 0;
+  overflow: hidden;
+}
+
+.hp-offer__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  width: 100%;
+  padding: var(--space-5) var(--space-8) var(--space-5) calc(var(--space-8) + 6px);
+  background: #fff;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--cfhf-ink);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+}
+
+.hp-offer--collapsible:not(.is-collapsed) .hp-offer__toggle {
+  border-bottom-color: var(--cfhf-border);
+}
+
+.hp-offer__toggle:hover,
+.hp-offer__toggle:focus-visible {
+  color: var(--cfhf-crimson);
+}
+
+.hp-offer__toggle:focus-visible {
+  outline: 3px solid var(--cfhf-crimson);
+  outline-offset: -3px;
+}
+
+.hp-offer__toggle-icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.hp-offer__toggle-icon::before,
+.hp-offer__toggle-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  background: var(--cfhf-crimson);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.hp-offer__toggle-icon::after {
+  transform: rotate(90deg);
+}
+
+.hp-offer--collapsible:not(.is-collapsed) .hp-offer__toggle-icon::after {
+  transform: rotate(0deg);
+}
+
+.hp-offer--collapsible .hp-offer__body {
+  display: grid;
+  gap: var(--space-8);
+  align-items: start;
+  padding: var(--space-8) var(--space-8) var(--space-8) calc(var(--space-8) + 6px);
+}
+
+.hp-offer--rsvp .hp-offer__body {
+  grid-template-columns: minmax(0, 1fr) minmax(17rem, 22rem);
+}
+
+.hp-offer--ticketed .hp-offer__body {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: stretch;
+  padding: 0;
+}
+
+.hp-offer--collapsible.is-collapsed .hp-offer__body {
+  display: none;
+}
+
+/* Collapsible confirmation panel (RSVP `.hp-confirm` + ticketed `.hp-tix-confirm`).
+ * Reuses the offer toggle tab so the success card can be folded away after
+ * conversion. Open by default; the toggle sits in the card's header. */
+.hp-success.hp-success--collapsible {
+  padding: 0;
+  overflow: hidden;
+}
+
+.hp-success.hp-success--collapsible .hp-success__toggle {
+  padding: var(--space-6) var(--space-8) var(--space-6) calc(var(--space-8) + 6px);
+}
+
+.hp-success.hp-success--collapsible:not(.is-collapsed) .hp-success__toggle {
+  border-bottom-color: #ead6d8;
+}
+
+.hp-success.hp-success--collapsible:not(.is-collapsed) .hp-offer__toggle-icon::after {
+  transform: rotate(0deg);
+}
+
+.hp-success__body {
+  padding: var(--space-8) var(--space-8) var(--space-8) calc(var(--space-8) + 6px);
+}
+
+.hp-success--collapsible.is-collapsed .hp-success__body {
+  display: none;
+}
+
 .hp-checkout {
   position: fixed;
   inset: 0;
@@ -2298,6 +2420,10 @@ body.hp-dev .hp-banner {
   .hp-page .wf-demo[data-rsvp="native"] .hp-offer--rsvp {
     grid-template-columns: 1fr;
   }
+
+  .hp-offer--collapsible .hp-offer__body {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 900px) {
@@ -2371,8 +2497,17 @@ body.hp-dev .hp-banner {
     grid-template-columns: 1fr;
   }
 
-  .hp-offer:not(.hp-offer--ticketed) {
+  .hp-offer:not(.hp-offer--ticketed):not(.hp-offer--rsvp) {
     padding: var(--space-6);
+  }
+
+  .hp-offer--rsvp .hp-offer__body {
+    grid-template-columns: 1fr;
+    padding: var(--space-6);
+  }
+
+  .hp-offer__toggle {
+    padding: var(--space-4) var(--space-6);
   }
 
   /* Compact mobile reservation: short photo banner on top, tighter copy,
