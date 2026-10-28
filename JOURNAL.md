@@ -1,5 +1,29 @@
 # Journal — CFHF Search Prototype
 
+## 2026-10-28 — opencode: second client round (card hierarchy, guests label, mobile density)
+
+- **Event cards**: `.hp-card-event__title` → `1.35rem` / `font-weight:800` / `line-height:1.02`; `.hp-card-event__date` → `var(--cfhf-muted)` at `600` (was crimson `700`). Removed the later duplicate `.hp-card-event__title { font-size:1.25rem; line-height:1.05 }` override that was cancelling the increase.
+- **RSVP form**: `# Attending` → **Number of Guests** (`happenings-rsvp.html`, hint still “(max 6 per RSVP)”).
+- **RSVP removed from labels**: category label `Free / RSVP` → **Free** (`data/happenings-events.json`, id `free-rsvp` unchanged so `?category=free-rsvp` links survive); every card tag `Free · RSVP` → **Free**; listing chips + mobile dropdown + fallback cards updated. Prose that legitimately says RSVP (FAQ, offer copy) untouched.
+- **Mobile listing is denser** (≤900px): grid gap `space-6 → space-4`, card media `16/10 → 2/1`, body padding/gap tightened; ≤480px keeps 12px body padding. Card height 328 → **273px**; mobile title now uses the **same treatment as desktop** (removed the local 1.18rem downsize).
+- **Mobile detail hero is shorter**: ≤900px hero padding cut and title/subtitle/meta margins tightened → hero **270 → 218px**, so the reservation CTA + first section sit above the fold.
+- **“Unleash Exclusive Benefits”** confirmed absent from all three Happenings pages (still on `index.html` only).
+- Verified in the browser at 390 + 1440 (dates muted, titles bold, tags “Free”, `?category=free-rsvp` filters to 3 free events, labels read “Number of Guests”).
+- **Figma**: applied the same fixes on both **Happenings — Client review V3** (`800:136`) and **V4** (`860:404`) — 65 muted date labels per page, 26 tag/chip labels → “Free”, 5 “Number of Guests” labels, board legacy sections deleted, mobile listing cards compacted (328 → 273, grid gap 16), mobile detail heroes shortened (384 → 332 / 300 → 272, `minHeight` cleared). **Font note:** the brand families (`neusa-next-std`, `neusa-next-std-compact`, `kaneda-gothic`) are not installed in this Figma session, so text layers had to move to **Neusa Next Std Trial** (Compact Bold/Regular) to be editable. **Open:** card-title size/weight (Kaneda Gothic) could not be changed — needs the Adobe Fonts activated, then the 20px Kaneda title layers can go to 21.6px.
+
+## 2026-10-07 — Cursor: V3 functionality questions note
+
+- Added **Note — Functionality questions (V3)** (`808:2`) on Happenings — Client review V3 (`800:136`), above the listing frames.
+- Seven open client functionality questions from `client-reply-happenings.md`: RSVP destination, Special Exhibits label, homepage benefits section, Date/Total on “You’re going”, collapsed-by-default reservation, questions email, per-event section control.
+- Link: https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football-Hall-of-Fame---Website?node-id=808-2
+
+## 2026-10-07 — Cursor: Working Figma page is Client review V3
+
+- Matt: the new working layer is **Happenings — Client review V3** (`800:136`): https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football-Hall-of-Fame---Website?node-id=800-136
+- Client review 2 (`769:136`) is the previous round.
+- V3 canvas includes listing, Football Fest RSVP, Gameday ticketed, checkout dialogs, and section `800:4429` (no address / no Facebook URL / empty sidebar).
+- `master` is even with `origin/master` at `cc55766` (collapsible confirmations already pushed). Continuity notes that called that work uncommitted were stale.
+
 ## 2026-10-07 — opencode: Collapsible confirmation panels (RSVP + ticketed)
 
 - Both confirmation blocks now collapse, matching the reservation box:

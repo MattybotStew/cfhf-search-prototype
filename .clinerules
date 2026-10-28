@@ -6,11 +6,19 @@
 
 ## Current Session State
 
-**Last Updated:** 2026-10-07 (opencode — collapsible confirmation panels)
+**Last Updated:** 2026-10-28 (opencode — second client round in build + Figma V3/V4)
 **Active Agent:** opencode
-**Branch:** `master` (Nebo V2 + CTA placements + client action items + collapsible confirmations local, uncommitted; Pages deploy pending)
+**Branch:** `master`
 **Focus:** **Happenings only.** Search + CCFB parked.
-**Status:** Client review action items **all implemented**. Collapsible reservation box added to **all event pages** (RSVP + ticketed), **collapsed by default**; both **confirmation panels** (`.hp-confirm` RSVP + `.hp-tix-confirm` ticketed) are now collapsible too (same toggle, **open by default**). Added **Promotions** category; “Exhibitions” → **Special Exhibits**; listing title weight/tracking; “Questions?” contact email card; share **icons**; “Unleash Exclusive Benefits” removed from Happenings pages; compact mobile ticketed reservation; Date/Total dropped from “You’re going”. Local, uncommitted.
+**Status:** Second client round **implemented and verified** locally, and mirrored in Figma **V3** (`800:136`) + **V4** (`860:404`). Card hierarchy (bigger/bolder titles, muted dates), “# Attending” → **Number of Guests**, “RSVP” dropped from card tags + category label (ids unchanged), denser mobile cards with desktop title treatment, mobile detail hero reduced (270 → 218px), “Unleash Exclusive Benefits” absent. Local, uncommitted.
+
+### Newly completed (2026-10-28 — opencode: second client round)
+- **Card hierarchy**: `.hp-card-event__title` `1.35rem`/`800`/`1.02`; `.hp-card-event__date` `var(--cfhf-muted)`/`600`. Deleted the stale later `.hp-card-event__title` override (`1.25rem`/`1.05`) that was cancelling the size bump
+- **Labels**: `happenings-rsvp.html` “Number of Guests”; `data/happenings-events.json` category label `Free / RSVP` → `Free` (id `free-rsvp` kept) + all `Free · RSVP` tags → `Free`; listing chips/dropdown/fallback updated. Prose RSVP mentions intentionally kept
+- **Mobile listing** (≤900px): grid gap `space-4`, card media `2/1`, tighter body padding/gap; ≤480 keeps 12px padding. Card 328 → **273px**; mobile title = desktop treatment (removed the local 1.18rem override)
+- **Mobile detail hero** (≤900px): tighter padding + title/subtitle/meta margins → **218px** (was 270), CTA + first section above the fold
+- **Figma parity**: V3 + V4 — 65 muted dates/page, 26 `Free` labels/page, 5 `Number of Guests` labels, legacy sections deleted (+ their `Placeholder for Section`), mobile listing cards 328 → 273 with 16px gap, mobile heroes 384 → 332 / 300 → 272 (had to clear `minHeight` — a `minHeight` on the hero Section silently voids `resize()`)
+- **Figma font constraint (IMPORTANT for next session)**: `neusa-next-std`, `neusa-next-std-compact`, `kaneda-gothic` are **not installed** in the desktop session; `figma.loadFontAsync` fails, so no text layer can be edited until the family is changed. Edited layers were moved to **Neusa Next Std Trial** (Compact Bold/Regular). `kaneda-gothic` has **no** Trial equivalent → **card/hero title sizes still unchanged in Figma**; activate the Adobe Typekit fonts, then set the 60 Kaneda 20px title layers to 21.6px
 
 ### Newly completed (2026-10-07 — opencode: client review action items)
 - **Categories** (`data/happenings-events.json`): added `promotions` (“Promotions”); renamed `exhibitions` label to “Special Exhibits” (id unchanged so `?category=exhibitions` links keep working); retagged `ascension` + `hof-talks`. Listing fallback chips/dropdown + `happenings.html` table + `screens/index.html` updated
@@ -34,9 +42,17 @@
 - Ticketed hero CTA now targets `#tickets`; **open question: label still says “Learn more”**
 - **Hero CTA + sticky bar removed entirely on both detail templates** (desktop + mobile) — neither template has `.hp-hero__actions` or `.hp-sticky`; the only CTA is the inline conversion button. `ctas` fields removed from `happenings-events.json`; the “Header / hero” and “Sticky bar” rows of the Figma note are no longer used
 
+### Decision LOCKED — Figma working page (2026-10-07)
+**Happenings — Client review V3** (`800:136`) is the working canvas. Client review 2 (`769:136`) is the previous round.
+https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football-Hall-of-Fame---Website?node-id=800-136
+
+V3 holds the full flow (listing desktop/mobile, Football Fest RSVP, Gameday ticketed, checkout dialogs, confirmation states) plus the sidebar examples section (`800:4429`: no address, no Facebook URL, empty sidebar → one column).
+
+**Note — Functionality questions (V3)** (`808:2`) sits above the listing row and lists the seven open client functionality questions. https://www.figma.com/design/jcbtHK67Ih9BsBxFQK7F7l/College-Football-Hall-of-Fame---Website?node-id=808-2
+
 ### Pick up here (next agent)
-1. Confirm GitHub Pages deploy, then share the live listing URL
-2. Re-import `screens/*` into Figma **Happenings — Client review 2** (`769:136`) — all `01`–`09` regenerated 2026-10-07 (Promotions + Special Exhibits labels). Note `screens/figma-screens.css` is separate, so the listing-title weight change lives only on the live build, not the import frames
+1. Treat **V3** (`800:136`) as the design source. Re-import `screens/*` there when frames need a refresh — listing-title weight lives on the live build; `screens/figma-screens.css` is separate
+2. Confirm GitHub Pages deploy, then share the live listing URL
 3. Real Ventrata sandbox `apiKey` / `productID` when available
 4. **Do not** revert hero/legacy to CSS-only backgrounds on import targets
 

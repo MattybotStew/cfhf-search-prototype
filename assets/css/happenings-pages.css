@@ -320,6 +320,12 @@
 .hp-page .wf-demo[data-hero-h="md"] .hp-hero--image { min-height: 18rem; }
 .hp-page .wf-demo[data-hero-h="lg"] .hp-hero--image { min-height: 24rem; }
 
+@media (max-width: 900px) {
+  .hp-page .wf-demo[data-hero-h="sm"] .hp-hero--image { min-height: 9rem; }
+  .hp-page .wf-demo[data-hero-h="md"] .hp-hero--image { min-height: 11rem; }
+  .hp-page .wf-demo[data-hero-h="lg"] .hp-hero--image { min-height: 13rem; }
+}
+
 /* Module reflow */
 .hp-page .wf-demo[data-ventrata="fallback"] [data-mod="ventrata"],
 .hp-page .wf-demo[data-ventrata="off"] [data-mod="ventrata"],
@@ -1868,17 +1874,17 @@ body.hp-checkout-open {
 .hp-card-event__date {
   font-family: var(--font-ui-compact);
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--cfhf-crimson);
+  color: var(--cfhf-muted);
 }
 
 .hp-card-event__title {
   font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 700;
-  line-height: 1.05;
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.02;
   letter-spacing: 0.035em;
   text-transform: uppercase;
   color: var(--cfhf-ink);
@@ -2428,8 +2434,58 @@ body.hp-dev .hp-banner {
 
 @media (max-width: 900px) {
   .hp-hero--image {
-    padding-top: var(--space-8);
-    padding-bottom: var(--space-8);
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-5);
+    min-height: 10rem;
+  }
+
+  .hp-hero--listing {
+    min-height: 10rem;
+  }
+
+  /* Client feedback: shrink the mobile event-detail header so date, location
+   * and the reservation CTA land above the fold. */
+  .hp-page .hp-hero--image:not(.hp-hero--listing) {
+    min-height: 0;
+    padding-top: var(--space-5);
+    padding-bottom: var(--space-4);
+  }
+
+  .hp-hero--image:not(.hp-hero--listing) .hp-hero__title {
+    font-size: clamp(2rem, 9vw, 2.5rem);
+    line-height: 0.86;
+    margin-bottom: var(--space-2);
+  }
+
+  .hp-hero--image:not(.hp-hero--listing) .hp-crumb {
+    margin-bottom: var(--space-2);
+  }
+
+  .hp-hero--image:not(.hp-hero--listing) .hp-hero__subtitle {
+    margin-bottom: var(--space-2);
+  }
+
+  .hp-hero--image:not(.hp-hero--listing) .hp-hero__meta {
+    margin-bottom: var(--space-3);
+    gap: 0.4rem 0.75rem;
+  }
+
+  .hp-wrap--listing {
+    padding-top: var(--space-6);
+  }
+
+  /* Client feedback: compact mobile listing cards, less whitespace. */
+  .hp-listing__grid {
+    gap: var(--space-4);
+  }
+
+  .hp-card-event__media {
+    aspect-ratio: 2 / 1;
+  }
+
+  .hp-card-event__body {
+    padding: var(--space-3) var(--space-4) var(--space-4);
+    gap: 0.2rem;
   }
 
   .hp-filter__label {
@@ -2533,9 +2589,27 @@ body.hp-dev .hp-banner {
 }
 
 @media (max-width: 480px) {
-  .hp-listing__grid,
+  .hp-listing__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
   .hp-related__grid {
     grid-template-columns: 1fr;
+  }
+
+  .hp-card-event__body {
+    padding: var(--space-3) var(--space-3) var(--space-4);
+    gap: 0.25rem;
+  }
+
+  .hp-card-event__date {
+    font-size: 0.7rem;
+  }
+
+  .hp-tag {
+    font-size: 0.64rem;
+    padding: 0.28rem 0.65rem;
   }
 }
 
@@ -2556,11 +2630,6 @@ body.hp-dev .hp-banner {
 .hp-section h2,
 .hp-related h2 {
   font-size: clamp(1.85rem, 3vw, 2.6rem);
-}
-
-.hp-card-event__title {
-  font-size: 1.25rem;
-  line-height: 1.05;
 }
 
 @media (min-width: 901px) {
